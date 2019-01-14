@@ -1,0 +1,9 @@
+eclipse.preferences.version=1
+encoding//src/computer/ComputerDBBean.java=UTF-8
+encoding//src/cpu/Cpu.java=UTF-8
+encoding//src/graphic/GraphicDBBean.java=UTF-8
+encoding//src/hdd/HDDDBBean.java=UTF-8
+encoding//src/mainboard/MainBoardDBBean.java=UTF-8
+encoding//src/power/PowerDBBean.java=UTF-8
+encoding//src/ram/RamDBBean.java=UTF-8
+encoding//src/ssd/SSDDBBean.java=UTF-8

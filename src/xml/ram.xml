@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+  <mapper namespace="mapper.ram">
+     
+     <select id = "getRamCount" resultType="int">
+        select ifnull(count(*),0) from ram
+     </select>
+     
+     <select id = "getRams" parameterType="hashmap" resultType="ram">
+        select * from ram limit #{start}, #{end} 
+     </select>
+     
+     <insert id="insert" parameterType="ram">
+        insert into ram(id, productName, productCompany, brand, socket,
+               core, thread, clockSpeed, tdp, productDate, regDate, price, count, filename, filesize) 
+               values(0, #{productName},#{productCompany},#{brand},#{socket},#{core}
+      ,#{thread},#{clockSpeed},#{tdp},#{productDate},curdate(),#{price},#{count}, #{filename},#{filesize})
+     </insert>
+     
+     <select id="getRam" resultType="ram" parameterType="hashmap">
+        select * from ram where id = #{id}
+     </select>
+     
+     <update id="readCount" parameterType="hashmap">
+        update ram set readcount = readcount + 1 where id = #{id}
+     </update>
+     
+     <update id="update" parameterType="ram">
+        update ram set productName=#{productName}, productCompany=#{productCompany}, brand=#{brand}, 
+        socket= #{socket}, core=#{core}, thread=#{thread}, clockSpeed=#{clockSpeed}, tdp=#{tdp}, productDate=#{productDate}, price=#{price}, filename=#{filename}, filesize=#{filesize} where id=#{id}
+     </update>
+     
+     <delete id="deleteRam" parameterType="hashmap">
+        delete from ram where id=#{id}
+     </delete>
+  </mapper>

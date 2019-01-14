@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+  <mapper namespace="mapper.graphic">
+     
+     <select id = "getGraphicCount" resultType="int">
+        select ifnull(count(*),0) from graphic
+     </select>
+     
+     <select id = "getGraphics" parameterType="hashmap" resultType="graphic">
+        select * from graphic limit #{start}, #{end} 
+     </select>
+     
+     <insert id="insert" parameterType="Graphic">
+        insert into graphic(id, productName, productCompany, brand, socket,
+               core, thread, clockSpeed, tdp, productDate, regDate, price, count, filename, filesize) 
+               values(0, #{productName},#{productCompany},#{brand},#{socket},#{core}
+      ,#{thread},#{clockSpeed},#{tdp},#{productDate},curdate(),#{price},#{count}, #{filename},#{filesize})
+     </insert>
+     
+     <select id="getGraphic" resultType="graphic" parameterType="hashmap">
+        select * from graphic where id = #{id}
+     </select>
+     
+     <update id="readCount" parameterType="hashmap">
+        update graphic set readcount = readcount + 1 where id = #{id}
+     </update>
+     
+     <update id="update" parameterType="graphic">
+        update graphic set productName=#{productName}, productCompany=#{productCompany}, brand=#{brand}, 
+        socket= #{socket}, core=#{core}, thread=#{thread}, clockSpeed=#{clockSpeed}, tdp=#{tdp}, productDate=#{productDate}, price=#{price}, filename=#{filename}, filesize=#{filesize} where id=#{id}
+     </update>
+     
+     <delete id="deleteGraphic" parameterType="hashmap">
+        delete from graphic where id=#{id}
+     </delete>
+  </mapper>
