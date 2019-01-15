@@ -116,7 +116,7 @@ public class MainBoardAction extends Action {
 				filename = multi.getFilesystemName(name);
 				file = multi.getFile(name);
 			}
-
+//
 			MainBoard mainboard = new MainBoard();
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 

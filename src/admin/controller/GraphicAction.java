@@ -223,7 +223,7 @@ public class GraphicAction extends Action {
 
 			Graphic graphic = new Graphic();
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
-////////////
+
 			graphic.setId(Long.parseLong(multi.getParameter("id")));
 			graphic.setProductName(multi.getParameter("productName"));
 			graphic.setProductCompany(multi.getParameter("productCompany"));
