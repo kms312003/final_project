@@ -61,9 +61,13 @@
 <div class="container-fluid text-center">    
   <div class="row content">
     <div class="col-sm-2 sidenav">
-      <p><a href="<%= request.getContextPath() %>/houseModel2/list">숙소관리</a></p>
-      <p><a href="<%= request.getContextPath() %>/likeModel2/list">찜관리</a></p>
-      <p><a href="<%= request.getContextPath() %>/reservationModel2/list">예약관리</a></p>
+      <p><a href="<%= request.getContextPath() %>/admin/cpu/list">Cpu</a></p>
+      <p><a href="<%= request.getContextPath() %>/admin/mainboard/list">메인보드</a></p>
+      <p><a href="<%= request.getContextPath() %>/admin/ram/list">메모리(Ram)</a></p>
+      <p><a href="<%= request.getContextPath() %>/admin/graphic/list">그래픽카드</a></p>
+      <p><a href="<%= request.getContextPath() %>/admin/hdd/list">하드디스크(HDD)</a></p>
+      <p><a href="<%= request.getContextPath() %>/admin/ssd/list">SSD</a></p>
+      <p><a href="<%= request.getContextPath() %>/admin/power/list">파워</a></p>
     </div>
     
     <div class="col-sm-9 text-left">
