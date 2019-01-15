@@ -1,8 +1,14 @@
 package hdd;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import org.apache.ibatis.io.Resources;
-
-import graphic.GraphicDBBean;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 public class HDDDBBean {
 
@@ -29,7 +35,7 @@ public class HDDDBBean {
 		return new SqlSessionFactoryBuilder().build(inputStream);
 	}
 
-	// Cpu 媛��닔
+	// HDD 갯수
 	public int getHDDCount() {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
@@ -40,7 +46,7 @@ public class HDDDBBean {
 		}
 	}
 
-	// Cpu 由ъ뒪�듃
+	// HDD 리스트
 	public List getHDDList(int start, int end) throws Exception {
 
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
@@ -55,7 +61,7 @@ public class HDDDBBean {
 		}
 	}
 
-	// Cpu �벑濡�
+	// HDD 등록
 	public void insertHDD(HDD hdd) throws Exception {
 
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
@@ -74,7 +80,7 @@ public class HDDDBBean {
 		System.out.println(result);
 	}
 
-	// Cpu 媛��졇�삤湲�
+	// HDD 가져오기
 	public HDD getHDD(Long id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
@@ -88,7 +94,7 @@ public class HDDDBBean {
 		return hdd;
 	}
 
-	// Cpu �닔�젙 Get
+	// HDD 수정 Get
 	public HDD getUpdate(Long id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
@@ -101,7 +107,7 @@ public class HDDDBBean {
 		return hdd;
 	}
 
-	// Cpu �닔�젙 Post
+	// HDD 수정 Post
 	public void updateHDD(HDD hdd) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
@@ -111,7 +117,7 @@ public class HDDDBBean {
 		sqlSession.close();
 	}
 
-	// Cpu �궘�젣
+	// HDD 삭제
 	public void deleteHDD(Long id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 

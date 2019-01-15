@@ -1,6 +1,15 @@
 package ssd;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 public class SSDDBBean {
 
@@ -27,7 +36,7 @@ public class SSDDBBean {
 		return new SqlSessionFactoryBuilder().build(inputStream);
 	}
 
-	// Cpu 媛��닔
+	// SSD 갯수
 	public int getSSDCount() {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
@@ -38,7 +47,7 @@ public class SSDDBBean {
 		}
 	}
 
-	// Cpu 由ъ뒪�듃
+	// SSD 리스트 가져오기
 	public List getSSDList(int start, int end) throws Exception {
 
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
@@ -53,7 +62,7 @@ public class SSDDBBean {
 		}
 	}
 
-	// Cpu �벑濡�
+	// SSD 등록
 	public void insertSSD(SSD ssd) throws Exception {
 
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
@@ -72,7 +81,7 @@ public class SSDDBBean {
 		System.out.println(result);
 	}
 
-	// Cpu 媛��졇�삤湲�
+	// SSD 가져오기
 	public SSD getSSD(Long id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
@@ -86,7 +95,7 @@ public class SSDDBBean {
 		return ssd;
 	}
 
-	// Cpu �닔�젙 Get
+	// SSD 수정 Get
 	public SSD getUpdate(Long id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
@@ -99,7 +108,7 @@ public class SSDDBBean {
 		return ssd;
 	}
 
-	// Cpu �닔�젙 Post
+	// SSD 수정 Post
 	public void updateSSD(SSD ssd) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
@@ -109,7 +118,7 @@ public class SSDDBBean {
 		sqlSession.close();
 	}
 
-	// Cpu �궘�젣
+	// SSD 삭제
 	public void deleteSSD(Long id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 

@@ -1,8 +1,15 @@
 package mainboard;
 
-import org.apache.ibatis.io.Resources;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import graphic.GraphicDBBean;
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 public class MainBoardDBBean {
 
@@ -29,7 +36,7 @@ public class MainBoardDBBean {
 		return new SqlSessionFactoryBuilder().build(inputStream);
 	}
 
-	// Cpu 媛��닔
+	// MainBoard 갯수
 	public int getMainBoardCount() {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
@@ -40,7 +47,7 @@ public class MainBoardDBBean {
 		}
 	}
 
-	// Cpu 由ъ뒪�듃
+	// MainBoard 리스트 가져오기
 	public List getMainBoardList(int start, int end) throws Exception {
 
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
@@ -55,7 +62,7 @@ public class MainBoardDBBean {
 		}
 	}
 
-	// Cpu �벑濡�
+	// MainBoard 등록
 	public void insertMainBoard(MainBoard mainboard) throws Exception {
 
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
@@ -74,7 +81,7 @@ public class MainBoardDBBean {
 		System.out.println(result);
 	}
 
-	// Cpu 媛��졇�삤湲�
+	// MainBoard 가져오기
 	public MainBoard getMainBoard(Long id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
@@ -88,7 +95,7 @@ public class MainBoardDBBean {
 		return mainboard;
 	}
 
-	// Cpu �닔�젙 Get
+	// MainBoard 수정 Get
 	public MainBoard getUpdate(Long id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
@@ -101,7 +108,7 @@ public class MainBoardDBBean {
 		return mainBoard;
 	}
 
-	// Cpu �닔�젙 Post
+	// MainBoard 수정 Post
 	public void updateMainBoard(MainBoard mainboard) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
@@ -111,7 +118,7 @@ public class MainBoardDBBean {
 		sqlSession.close();
 	}
 
-	// Cpu �궘�젣
+	// MainBoard 삭제
 	public void deleteMainBoard(Long id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 

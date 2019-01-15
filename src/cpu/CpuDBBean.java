@@ -49,7 +49,7 @@ public class CpuDBBean {
 		}
 	}
 
-	// Cpu 리스트
+	// Cpu 리스트 가져오기
 	public List getCpuList(int start, int end) throws Exception {
 
 		SqlSession sqlSession = getSqlSessionFactory().openSession();

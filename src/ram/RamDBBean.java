@@ -1,6 +1,15 @@
 package ram;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 public class RamDBBean {
 
@@ -27,7 +36,7 @@ public class RamDBBean {
 		return new SqlSessionFactoryBuilder().build(inputStream);
 	}
 
-	// Cpu 媛��닔
+	// Ram 갯수
 	public int getRamCount() {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
@@ -38,7 +47,7 @@ public class RamDBBean {
 		}
 	}
 
-	// Cpu 由ъ뒪�듃
+	// Ram 리스트 가져오기
 	public List getRamList(int start, int end) throws Exception {
 
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
@@ -53,7 +62,7 @@ public class RamDBBean {
 		}
 	}
 
-	// Cpu �벑濡�
+	// Ram 등록
 	public void insertRam(Ram ram) throws Exception {
 
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
@@ -62,7 +71,7 @@ public class RamDBBean {
 
 		Map map = new HashMap();
 
-//		number = (int) sqlSession.selectOne(namespace + ".nextVal");
+		// number = (int) sqlSession.selectOne(namespace + ".nextVal");
 
 		ram.setId(id);
 
@@ -72,7 +81,7 @@ public class RamDBBean {
 		System.out.println(result);
 	}
 
-	// Cpu 媛��졇�삤湲�
+	// Ram 가져오기
 	public Ram getRam(Long id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
@@ -86,7 +95,7 @@ public class RamDBBean {
 		return ram;
 	}
 
-	// Cpu �닔�젙 Get
+	// Ram 수정 Get
 	public Ram getUpdate(Long id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
@@ -99,7 +108,7 @@ public class RamDBBean {
 		return ram;
 	}
 
-	// Cpu �닔�젙 Post
+	// Ram 수정 Post
 	public void updateRam(Ram ram) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
@@ -109,7 +118,7 @@ public class RamDBBean {
 		sqlSession.close();
 	}
 
-	// Cpu �궘�젣
+	// Ram 삭제
 	public void deleteRam(Long id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
