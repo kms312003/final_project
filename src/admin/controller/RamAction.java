@@ -174,7 +174,7 @@ public class RamAction extends Action {
 		RamDBBean dbPro = RamDBBean.getInstance();
 		Ram ram = new Ram();
 		try {
-			cpu = dbPro.getUpdate(id);
+			ram = dbPro.getUpdate(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
