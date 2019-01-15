@@ -239,7 +239,7 @@ public class RamAction extends Action {
 					ram.setFilesize(oldfilesize);
 				}
 			}
-			//
+			
 			RamDBBean dbPro = RamDBBean.getInstance();
 			System.out.println("ram: " + ram);
 			dbPro.updateRam(ram);

@@ -18,7 +18,7 @@ import graphic.Graphic;
 import graphic.GraphicDBBean;
 
 public class GraphicAction extends Action {
-
+//
 	// ë¦¬ìŠ¤?Š¸
 	public String listGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 

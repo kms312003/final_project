@@ -245,7 +245,7 @@ public class SSDAction extends Action {
 					ssd.setFilesize(oldfilesize);
 				}
 			}
-			//
+			
 			SSDDBBean dbPro = SSDDBBean.getInstance();
 			System.out.println("ssd: " + ssd);
 			dbPro.updateSSD(ssd);

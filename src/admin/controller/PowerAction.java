@@ -237,7 +237,7 @@ public class PowerAction extends Action {
 					power.setFilesize(oldfilesize);
 				}
 			}
-			//
+			
 			PowerDBBean dbPro = PowerDBBean.getInstance();
 			System.out.println("power: " + power);
 			dbPro.updatePower(power);
