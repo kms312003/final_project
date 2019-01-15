@@ -1,6 +1,15 @@
 package power;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 public class PowerDBBean {
 
@@ -27,7 +36,7 @@ public class PowerDBBean {
 		return new SqlSessionFactoryBuilder().build(inputStream);
 	}
 
-	// Cpu 媛��닔
+	// Power 갯수
 	public int getPowerCount() {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
@@ -38,7 +47,7 @@ public class PowerDBBean {
 		}
 	}
 
-	// Cpu 由ъ뒪�듃
+	// Power 리스트 가져오기
 	public List getPowerList(int start, int end) throws Exception {
 
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
@@ -53,7 +62,7 @@ public class PowerDBBean {
 		}
 	}
 
-	// Cpu �벑濡�
+	// Power 등록
 	public void insertPower(Power power) throws Exception {
 
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
@@ -72,7 +81,7 @@ public class PowerDBBean {
 		System.out.println(result);
 	}
 
-	// Cpu 媛��졇�삤湲�
+	// Power 가져오기
 	public Power getPower(Long id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
@@ -86,7 +95,7 @@ public class PowerDBBean {
 		return power;
 	}
 
-	// Cpu �닔�젙 Get
+	// Power 수정 Get
 	public Power getUpdate(Long id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
@@ -99,7 +108,7 @@ public class PowerDBBean {
 		return power;
 	}
 
-	// Cpu �닔�젙 Post
+	// Power 수정 Post
 	public void updatePower(Power power) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
@@ -109,7 +118,7 @@ public class PowerDBBean {
 		sqlSession.close();
 	}
 
-	// Cpu �궘�젣
+	// Power 삭제
 	public void deletePower(Long id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 

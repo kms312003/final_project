@@ -2,9 +2,12 @@ package graphic;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
@@ -33,7 +36,7 @@ public class GraphicDBBean {
 		return new SqlSessionFactoryBuilder().build(inputStream);
 	}
 
-	// Cpu 媛��닔
+	// Graphic 갯수
 	public int getGraphicCount() {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
@@ -44,7 +47,7 @@ public class GraphicDBBean {
 		}
 	}
 
-	// Cpu 由ъ뒪�듃
+	// Graphic 리스트 가져오기
 	public List getGraphicList(int start, int end) throws Exception {
 
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
@@ -59,7 +62,7 @@ public class GraphicDBBean {
 		}
 	}
 
-	// Cpu �벑濡�
+	// Graphic 등록
 	public void insertGraphic(Graphic graphic) throws Exception {
 
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
@@ -78,7 +81,7 @@ public class GraphicDBBean {
 		System.out.println(result);
 	}
 
-	// Cpu 媛��졇�삤湲�
+	// Graphic 가져오기
 	public Graphic getGraphic(Long id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
@@ -92,7 +95,7 @@ public class GraphicDBBean {
 		return graphic;
 	}
 
-	// Cpu �닔�젙 Get
+	// Graphic 수정 Get
 	public Graphic getUpdate(Long id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
@@ -105,7 +108,7 @@ public class GraphicDBBean {
 		return graphic;
 	}
 
-	// Cpu �닔�젙 Post
+	// Graphic 수정 Post
 	public void updateGraphic(Graphic graphic) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
@@ -115,7 +118,7 @@ public class GraphicDBBean {
 		sqlSession.close();
 	}
 
-	// Cpu �궘�젣
+	// Graphic 삭제
 	public void deleteGraphic(Long id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
