@@ -14,10 +14,10 @@ import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import hdd.HDD;
-import hdd.HDDDBBean;
+import mainboard.MainBoard;
+import mainboard.MainBoardDBBean;
 
-public class HDDAction extends Action {
+public class MainBoardAction extends Action {
 
 	// ë¦¬ìŠ¤?Š¸
 	public String listGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -42,19 +42,19 @@ public class HDDAction extends Action {
 		System.out.println("start: " + start);
 		System.out.println("end: " + end);
 
-		HDDDBBean dbPro = HDDDBBean.getInstance();
+		MainBoardDBBean dbPro = MainBoardDBBean.getInstance();
 
 		int count = 0;
 
 		int number = 0;
 
-		List hddList = null;
+		List mainBoardList = null;
 		try {
-			count = dbPro.getHDDCount();
+			count = dbPro.getMainBoardCount();
 			number = count - ((currentPage - 1) * pageSize);
 
 			if (count > 0) {
-				hddList = dbPro.getHDDList(start, end);
+				mainBoardList = dbPro.getMainBoardList(start, end);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -69,10 +69,10 @@ public class HDDAction extends Action {
 
 		System.out.println("count: " + count);
 		System.out.println("number: " + number);
-		System.out.println("cpuList: " + hddList);
+		System.out.println("mainBoardList: " + mainBoardList);
 
 		request.setAttribute("count", count);
-		request.setAttribute("cpuList", hddList);
+		request.setAttribute("mainBoardList", mainBoardList);
 		request.setAttribute("number", number);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("bottomLine", bottomLine);
@@ -80,7 +80,7 @@ public class HDDAction extends Action {
 		request.setAttribute("pageCount", pageCount);
 		request.setAttribute("currentPage", currentPage);
 
-		return "/hdd/admin/hddList.jsp";
+		return "/mainboard/admin/mainBoardList.jsp";
 	}
 
 	// ?ž…? ¥
@@ -90,7 +90,7 @@ public class HDDAction extends Action {
 
 		pageNum = request.getParameter("pageNum");
 
-		return "/hdd/admin/hddWriteForm.jsp";
+		return "/mainboard/admin/mainBoardForm.jsp";
 	}
 
 	public String writePOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -117,32 +117,35 @@ public class HDDAction extends Action {
 				file = multi.getFile(name);
 			}
 
-			HDD hdd = new HDD();
+			MainBoard mainboard = new MainBoard();
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-			// hdd.setId(Long.parseLong(multi.getParameter("id")));
-			hdd.setProductName(multi.getParameter("productName"));
-			hdd.setProductCompany(multi.getParameter("productCompany"));
-			hdd.setInterFace(multi.getParameter("interFace"));
-			hdd.setDiskSize(multi.getParameter("diskSize"));
-			hdd.setDiskCapacity(Integer.parseInt(multi.getParameter("diskCapacity")));
-			hdd.setBufferCapacity(multi.getParameter("bufferCapacity"));
-			hdd.setRotation(multi.getParameter("rotation"));
-			hdd.setPrice(Integer.parseInt(multi.getParameter("price")));
-			hdd.setFilename(filename);
+			// mainboard.setId(Long.parseLong(multi.getParameter("id")));
+			mainboard.setProductName(multi.getParameter("productName"));
+			mainboard.setProductCompany(multi.getParameter("productCompany"));
+			mainboard.setCpuSocket(multi.getParameter("cpuSocket"));
+			mainboard.setChipSet(multi.getParameter("chipSet"));
+			mainboard.setFormFactor(multi.getParameter("formFactor"));
+			mainboard.setMemoryType(multi.getParameter("memoryType"));
+			mainboard.setProductSort(multi.getParameter("productSort"));
+			mainboard.setMemorySlot(Integer.parseInt(multi.getParameter("memorySlot")));
+			// mainboard.setProductDate(transFormat.parse(multi.getParameter("productDate")));
+			mainboard.setPrice(Integer.parseInt(multi.getParameter("price")));
+			mainboard.setFilename(filename);
 			if (file != null) {
 				filesize = (int) file.length();
 			}
-			hdd.setFilesize(filesize);
+			mainboard.setFilesize(filesize);
 
-			HDDDBBean dbPro = HDDDBBean.getInstance();
-			dbPro.insertHDD(hdd);
+			MainBoardDBBean dbPro = MainBoardDBBean.getInstance();
+			dbPro.insertMainBoard(mainboard);
 			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return "/hdd/admin/hddWrite.jsp";
+		return "/mainboard/admin/mainBoardWrite.jsp";
 	}
 
 	public String detailGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -150,20 +153,20 @@ public class HDDAction extends Action {
 		String no = request.getParameter("id");
 		Long id = Long.parseLong(no);
 
-		HDDDBBean dbPro = HDDDBBean.getInstance();
-		HDD hdd = new HDD();
+		MainBoardDBBean dbPro = MainBoardDBBean.getInstance();
+		MainBoard mainboard = new MainBoard();
 
 		try {
-			hdd = dbPro.getHDD(id);
+			mainboard = dbPro.getMainBoard(id);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		request.setAttribute("no", no);
-		request.setAttribute("hdd", hdd);
+		request.setAttribute("mainboard", mainboard);
 
-		return "/hdd/admin/hddDetail.jsp";
+		return "/mainboard/admin/mainBoardDetail.jsp";
 	}
 
 	public String updateGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -171,24 +174,24 @@ public class HDDAction extends Action {
 		Long id = Long.parseLong(request.getParameter("id"));
 		String no = String.valueOf(id);
 
-		HDDDBBean dbPro = HDDDBBean.getInstance();
-		HDD hdd = new HDD();
+		MainBoardDBBean dbPro = MainBoardDBBean.getInstance();
+		MainBoard mainboard = new MainBoard();
 		try {
-			hdd = dbPro.getUpdate(id);
+			mainboard = dbPro.getUpdate(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
-		System.out.println("productDate: " + hdd.getProductDate());
-		Date productDate_date = hdd.getProductDate();
+		System.out.println("productDate: " + mainboard.getProductDate());
+		Date productDate_date = mainboard.getProductDate();
 		String productDate = transFormat.format(productDate_date);
 
 		request.setAttribute("no", no);
-		request.setAttribute("hdd", hdd);
+		request.setAttribute("mainboard", mainboard);
 		request.setAttribute("productDate", productDate);
 
-		return "/hdd/admin/hddUpdateForm.jsp";
+		return "/mainboard/admin/mainBoardUpdateForm.jsp";
 	}
 
 	public String updatePOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -217,56 +220,55 @@ public class HDDAction extends Action {
 				file = multi.getFile(name);
 			}
 
-			HDD hdd = new HDD();
+			MainBoard mainboard = new MainBoard();
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-			hdd.setId(Long.parseLong(multi.getParameter("id")));
-			hdd.setProductName(multi.getParameter("productName"));
-			hdd.setProductCompany(multi.getParameter("productCompany"));
-			hdd.setInterFace(multi.getParameter("interFace"));
-			hdd.setDiskSize(multi.getParameter("diskSize"));
-			hdd.setDiskCapacity(Integer.parseInt(multi.getParameter("diskCapacity")));
-			hdd.setBufferCapacity(multi.getParameter("bufferCapacity"));
-			hdd.setRotation(multi.getParameter("rotation"));
-			hdd.setProductDate(transFormat.parse(multi.getParameter("productDate")));
-			hdd.setPrice(Integer.parseInt(multi.getParameter("price")));
-			//hdd.setFilename(filename);
 			
+			mainboard.setId(Long.parseLong(multi.getParameter("id")));
+			mainboard.setProductName(multi.getParameter("productName"));
+			mainboard.setProductCompany(multi.getParameter("productCompany"));
+			mainboard.setCpuSocket(multi.getParameter("cpuSocket"));
+			mainboard.setChipSet(multi.getParameter("chipSet"));
+			mainboard.setFormFactor(multi.getParameter("formFactor"));
+			mainboard.setMemoryType(multi.getParameter("memoryType"));
+			mainboard.setProductSort(multi.getParameter("productSort"));
+			mainboard.setMemorySlot(Integer.parseInt(multi.getParameter("memorySlot")));
+			mainboard.setProductDate(transFormat.parse(multi.getParameter("productDate")));
+			mainboard.setPrice(Integer.parseInt(multi.getParameter("price")));
 			if (file != null) {
-				hdd.setFilename(filename);
+				mainboard.setFilename(filename);
 				filesize = (int) file.length();
-				hdd.setFilesize(filesize);
+				mainboard.setFilesize(filesize);
 			} else {
 				if (oldfilename != null) {
-					hdd.setFilename(oldfilename);
-					hdd.setFilesize(oldfilesize);
+					mainboard.setFilename(oldfilename);
+					mainboard.setFilesize(oldfilesize);
 				}
 			}
-
-			HDDDBBean dbPro = HDDDBBean.getInstance();
-			System.out.println("hdd: " + hdd);
-			dbPro.insertHDD(hdd);
 			
-
+			MainBoardDBBean dbPro = MainBoardDBBean.getInstance();
+			System.out.println("mainboard: " + mainboard);
+			dbPro.updateMainBoard(mainboard);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return "/hdd/admin/hddUpdate.jsp";
+		return "/mainboard/admin/mainBoardUpdate.jsp";
 	}
 
 	public String deleteGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		Long id = Long.parseLong(request.getParameter("id"));
 
-		HDDDBBean dbPro = HDDDBBean.getInstance();
+		MainBoardDBBean dbPro = MainBoardDBBean.getInstance();
 
 		try {
-			dbPro.deleteHDD(id);
+			dbPro.deleteMainBoard(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return "/hdd/admin/hddDelete.jsp";
+		return "/mainboard/admin/mainBoardDelete.jsp";
 	}
 }

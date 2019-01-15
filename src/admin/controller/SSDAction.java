@@ -14,10 +14,11 @@ import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import hdd.HDD;
-import hdd.HDDDBBean;
+import ssd.SSD;
+import ssd.SSDDBBean;
 
-public class HDDAction extends Action {
+
+public class SSDAction extends Action {
 
 	// ë¦¬ìŠ¤?Š¸
 	public String listGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -42,19 +43,19 @@ public class HDDAction extends Action {
 		System.out.println("start: " + start);
 		System.out.println("end: " + end);
 
-		HDDDBBean dbPro = HDDDBBean.getInstance();
+		SSDDBBean dbPro = SSDDBBean.getInstance();
 
 		int count = 0;
 
 		int number = 0;
 
-		List hddList = null;
+		List SSDList = null;
 		try {
-			count = dbPro.getHDDCount();
+			count = dbPro.getSSDCount();
 			number = count - ((currentPage - 1) * pageSize);
 
 			if (count > 0) {
-				hddList = dbPro.getHDDList(start, end);
+				SSDList = dbPro.getSSDList(start, end);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -69,10 +70,10 @@ public class HDDAction extends Action {
 
 		System.out.println("count: " + count);
 		System.out.println("number: " + number);
-		System.out.println("cpuList: " + hddList);
+		System.out.println("SSDList: " + SSDList);
 
 		request.setAttribute("count", count);
-		request.setAttribute("cpuList", hddList);
+		request.setAttribute("SSDList", SSDList);
 		request.setAttribute("number", number);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("bottomLine", bottomLine);
@@ -80,7 +81,7 @@ public class HDDAction extends Action {
 		request.setAttribute("pageCount", pageCount);
 		request.setAttribute("currentPage", currentPage);
 
-		return "/hdd/admin/hddList.jsp";
+		return "/ssd/admin/ssdList.jsp";
 	}
 
 	// ?ž…? ¥
@@ -90,7 +91,7 @@ public class HDDAction extends Action {
 
 		pageNum = request.getParameter("pageNum");
 
-		return "/hdd/admin/hddWriteForm.jsp";
+		return "/ssd/admin/ssdWriteForm.jsp";
 	}
 
 	public String writePOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -117,32 +118,35 @@ public class HDDAction extends Action {
 				file = multi.getFile(name);
 			}
 
-			HDD hdd = new HDD();
+			SSD ssd = new SSD();
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-			// hdd.setId(Long.parseLong(multi.getParameter("id")));
-			hdd.setProductName(multi.getParameter("productName"));
-			hdd.setProductCompany(multi.getParameter("productCompany"));
-			hdd.setInterFace(multi.getParameter("interFace"));
-			hdd.setDiskSize(multi.getParameter("diskSize"));
-			hdd.setDiskCapacity(Integer.parseInt(multi.getParameter("diskCapacity")));
-			hdd.setBufferCapacity(multi.getParameter("bufferCapacity"));
-			hdd.setRotation(multi.getParameter("rotation"));
-			hdd.setPrice(Integer.parseInt(multi.getParameter("price")));
-			hdd.setFilename(filename);
+			// ssd.setId(Long.parseLong(multi.getParameter("id")));
+			ssd.setProductName(multi.getParameter("productName"));
+			ssd.setProductCompany(multi.getParameter("productCompany"));
+			ssd.setDiskType(multi.getParameter("diskType"));
+			ssd.setDiskCapacity(Integer.parseInt(multi.getParameter("diskCapacity")));
+			ssd.setInterFace(multi.getParameter("interFace"));
+			ssd.setMemoryType(multi.getParameter("memoryType"));
+			ssd.setReadSpeed(Integer.parseInt(multi.getParameter("readSpeed")));
+			ssd.setWriteSpeed(Integer.parseInt(multi.getParameter("writeSpeed")));
+			// ssd.setProductDate(transFormat.parse(multi.getParameter("productDate")));
+			ssd.setPrice(Integer.parseInt(multi.getParameter("price")));
+			ssd.setFilename(filename);
 			if (file != null) {
 				filesize = (int) file.length();
 			}
-			hdd.setFilesize(filesize);
+			ssd.setFilesize(filesize);
 
-			HDDDBBean dbPro = HDDDBBean.getInstance();
-			dbPro.insertHDD(hdd);
+			SSDDBBean dbPro = SSDDBBean.getInstance();
+			dbPro.insertSSD(ssd);
 			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return "/hdd/admin/hddWrite.jsp";
+		return "/ssd/admin/ssdWrite.jsp";
 	}
 
 	public String detailGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -150,20 +154,20 @@ public class HDDAction extends Action {
 		String no = request.getParameter("id");
 		Long id = Long.parseLong(no);
 
-		HDDDBBean dbPro = HDDDBBean.getInstance();
-		HDD hdd = new HDD();
+		SSDDBBean dbPro = SSDDBBean.getInstance();
+		SSD ssd = new SSD();
 
 		try {
-			hdd = dbPro.getHDD(id);
+			ssd = dbPro.getSSD(id);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		request.setAttribute("no", no);
-		request.setAttribute("hdd", hdd);
+		request.setAttribute("ssd", ssd);
 
-		return "/hdd/admin/hddDetail.jsp";
+		return "/ssd/admin/ssdDetail.jsp";
 	}
 
 	public String updateGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -171,24 +175,24 @@ public class HDDAction extends Action {
 		Long id = Long.parseLong(request.getParameter("id"));
 		String no = String.valueOf(id);
 
-		HDDDBBean dbPro = HDDDBBean.getInstance();
-		HDD hdd = new HDD();
+		SSDDBBean dbPro = SSDDBBean.getInstance();
+		SSD ssd = new SSD();
 		try {
-			hdd = dbPro.getUpdate(id);
+			ssd = dbPro.getUpdate(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
-		System.out.println("productDate: " + hdd.getProductDate());
-		Date productDate_date = hdd.getProductDate();
+		System.out.println("productDate: " + ssd.getProductDate());
+		Date productDate_date = ssd.getProductDate();
 		String productDate = transFormat.format(productDate_date);
 
 		request.setAttribute("no", no);
-		request.setAttribute("hdd", hdd);
+		request.setAttribute("ssd", ssd);
 		request.setAttribute("productDate", productDate);
 
-		return "/hdd/admin/hddUpdateForm.jsp";
+		return "/ssd/admin/ssdUpdateForm.jsp";
 	}
 
 	public String updatePOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -217,56 +221,54 @@ public class HDDAction extends Action {
 				file = multi.getFile(name);
 			}
 
-			HDD hdd = new HDD();
+			SSD ssd = new SSD();
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-			hdd.setId(Long.parseLong(multi.getParameter("id")));
-			hdd.setProductName(multi.getParameter("productName"));
-			hdd.setProductCompany(multi.getParameter("productCompany"));
-			hdd.setInterFace(multi.getParameter("interFace"));
-			hdd.setDiskSize(multi.getParameter("diskSize"));
-			hdd.setDiskCapacity(Integer.parseInt(multi.getParameter("diskCapacity")));
-			hdd.setBufferCapacity(multi.getParameter("bufferCapacity"));
-			hdd.setRotation(multi.getParameter("rotation"));
-			hdd.setProductDate(transFormat.parse(multi.getParameter("productDate")));
-			hdd.setPrice(Integer.parseInt(multi.getParameter("price")));
-			//hdd.setFilename(filename);
-			
+			ssd.setId(Long.parseLong(multi.getParameter("id")));
+			ssd.setProductName(multi.getParameter("productName"));
+			ssd.setProductCompany(multi.getParameter("productCompany"));
+			ssd.setDiskType(multi.getParameter("diskType"));
+			ssd.setDiskCapacity(Integer.parseInt(multi.getParameter("diskCapacity")));
+			ssd.setInterFace(multi.getParameter("interFace"));
+			ssd.setMemoryType(multi.getParameter("memoryType"));
+			ssd.setReadSpeed(Integer.parseInt(multi.getParameter("readSpeed")));
+			ssd.setWriteSpeed(Integer.parseInt(multi.getParameter("writeSpeed")));
+			ssd.setProductDate(transFormat.parse(multi.getParameter("productDate")));
+			ssd.setPrice(Integer.parseInt(multi.getParameter("price")));
 			if (file != null) {
-				hdd.setFilename(filename);
+				ssd.setFilename(filename);
 				filesize = (int) file.length();
-				hdd.setFilesize(filesize);
+				ssd.setFilesize(filesize);
 			} else {
 				if (oldfilename != null) {
-					hdd.setFilename(oldfilename);
-					hdd.setFilesize(oldfilesize);
+					ssd.setFilename(oldfilename);
+					ssd.setFilesize(oldfilesize);
 				}
 			}
-
-			HDDDBBean dbPro = HDDDBBean.getInstance();
-			System.out.println("hdd: " + hdd);
-			dbPro.insertHDD(hdd);
 			
-
+			SSDDBBean dbPro = SSDDBBean.getInstance();
+			System.out.println("ssd: " + ssd);
+			dbPro.updateSSD(ssd);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return "/hdd/admin/hddUpdate.jsp";
+		return "/ssd/admin/ssdUpdate.jsp";
 	}
 
 	public String deleteGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		Long id = Long.parseLong(request.getParameter("id"));
 
-		HDDDBBean dbPro = HDDDBBean.getInstance();
+		SSDDBBean dbPro = SSDDBBean.getInstance();
 
 		try {
-			dbPro.deleteHDD(id);
+			dbPro.deleteSSD(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return "/hdd/admin/hddDelete.jsp";
+		return "/ssd/admin/ssdDelete.jsp";
 	}
 }

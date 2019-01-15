@@ -14,10 +14,10 @@ import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import hdd.HDD;
-import hdd.HDDDBBean;
+import ram.Ram;
+import ram.RamDBBean;
 
-public class HDDAction extends Action {
+public class RamAction extends Action {
 
 	// ë¦¬ìŠ¤?Š¸
 	public String listGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -42,19 +42,19 @@ public class HDDAction extends Action {
 		System.out.println("start: " + start);
 		System.out.println("end: " + end);
 
-		HDDDBBean dbPro = HDDDBBean.getInstance();
+		RamDBBean dbPro = RamDBBean.getInstance();
 
 		int count = 0;
 
 		int number = 0;
 
-		List hddList = null;
+		List ramList = null;
 		try {
-			count = dbPro.getHDDCount();
+			count = dbPro.getRamCount();
 			number = count - ((currentPage - 1) * pageSize);
 
 			if (count > 0) {
-				hddList = dbPro.getHDDList(start, end);
+				ramList = dbPro.getRamList(start, end);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -69,10 +69,10 @@ public class HDDAction extends Action {
 
 		System.out.println("count: " + count);
 		System.out.println("number: " + number);
-		System.out.println("cpuList: " + hddList);
+		System.out.println("ramList: " + ramList);
 
 		request.setAttribute("count", count);
-		request.setAttribute("cpuList", hddList);
+		request.setAttribute("ramList", ramList);
 		request.setAttribute("number", number);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("bottomLine", bottomLine);
@@ -80,7 +80,7 @@ public class HDDAction extends Action {
 		request.setAttribute("pageCount", pageCount);
 		request.setAttribute("currentPage", currentPage);
 
-		return "/hdd/admin/hddList.jsp";
+		return "/ram/admin/ramList.jsp";
 	}
 
 	// ?ž…? ¥
@@ -90,7 +90,7 @@ public class HDDAction extends Action {
 
 		pageNum = request.getParameter("pageNum");
 
-		return "/hdd/admin/hddWriteForm.jsp";
+		return "/ram/admin/ramWriteForm.jsp";
 	}
 
 	public String writePOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -117,32 +117,32 @@ public class HDDAction extends Action {
 				file = multi.getFile(name);
 			}
 
-			HDD hdd = new HDD();
+			Ram ram = new Ram();
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-			// hdd.setId(Long.parseLong(multi.getParameter("id")));
-			hdd.setProductName(multi.getParameter("productName"));
-			hdd.setProductCompany(multi.getParameter("productCompany"));
-			hdd.setInterFace(multi.getParameter("interFace"));
-			hdd.setDiskSize(multi.getParameter("diskSize"));
-			hdd.setDiskCapacity(Integer.parseInt(multi.getParameter("diskCapacity")));
-			hdd.setBufferCapacity(multi.getParameter("bufferCapacity"));
-			hdd.setRotation(multi.getParameter("rotation"));
-			hdd.setPrice(Integer.parseInt(multi.getParameter("price")));
-			hdd.setFilename(filename);
+			// ram.setId(Long.parseLong(multi.getParameter("id")));
+			ram.setProductName(multi.getParameter("productName"));
+			ram.setProductCompany(multi.getParameter("productCompany"));
+			ram.setProductSort(multi.getParameter("productSort"));
+			ram.setMemoryCapacity(Integer.parseInt(multi.getParameter("memoryCapacity")));
+			ram.setClock(Integer.parseInt(multi.getParameter("clock")));
+			ram.setVoltage(Integer.parseInt(multi.getParameter("voltage")));
+			// ram.setProductDate(transFormat.parse(multi.getParameter("productDate")));
+			ram.setPrice(Integer.parseInt(multi.getParameter("price")));
+			ram.setFilename(filename);
 			if (file != null) {
 				filesize = (int) file.length();
 			}
-			hdd.setFilesize(filesize);
+			ram.setFilesize(filesize);
 
-			HDDDBBean dbPro = HDDDBBean.getInstance();
-			dbPro.insertHDD(hdd);
+			RamDBBean dbPro = RamDBBean.getInstance();
+			dbPro.insertRam(ram);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return "/hdd/admin/hddWrite.jsp";
+		return "/ram/admin/ramWrite.jsp";
 	}
 
 	public String detailGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -150,20 +150,20 @@ public class HDDAction extends Action {
 		String no = request.getParameter("id");
 		Long id = Long.parseLong(no);
 
-		HDDDBBean dbPro = HDDDBBean.getInstance();
-		HDD hdd = new HDD();
+		RamDBBean dbPro = RamDBBean.getInstance();
+		Ram ram = new Ram();
 
 		try {
-			hdd = dbPro.getHDD(id);
+			ram = dbPro.getRam(id);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		request.setAttribute("no", no);
-		request.setAttribute("hdd", hdd);
+		request.setAttribute("ram", ram);
 
-		return "/hdd/admin/hddDetail.jsp";
+		return "/ram/admin/ramDetail.jsp";
 	}
 
 	public String updateGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -171,24 +171,24 @@ public class HDDAction extends Action {
 		Long id = Long.parseLong(request.getParameter("id"));
 		String no = String.valueOf(id);
 
-		HDDDBBean dbPro = HDDDBBean.getInstance();
-		HDD hdd = new HDD();
+		RamDBBean dbPro = RamDBBean.getInstance();
+		Ram ram = new Ram();
 		try {
-			hdd = dbPro.getUpdate(id);
+			cpu = dbPro.getUpdate(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
-		System.out.println("productDate: " + hdd.getProductDate());
-		Date productDate_date = hdd.getProductDate();
+		System.out.println("productDate: " + ram.getProductDate());
+		Date productDate_date = ram.getProductDate();
 		String productDate = transFormat.format(productDate_date);
 
 		request.setAttribute("no", no);
-		request.setAttribute("hdd", hdd);
+		request.setAttribute("ram", ram);
 		request.setAttribute("productDate", productDate);
 
-		return "/hdd/admin/hddUpdateForm.jsp";
+		return "/ram/admin/ramUpdateForm.jsp";
 	}
 
 	public String updatePOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -217,56 +217,52 @@ public class HDDAction extends Action {
 				file = multi.getFile(name);
 			}
 
-			HDD hdd = new HDD();
+			Ram ram = new Ram();
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-			hdd.setId(Long.parseLong(multi.getParameter("id")));
-			hdd.setProductName(multi.getParameter("productName"));
-			hdd.setProductCompany(multi.getParameter("productCompany"));
-			hdd.setInterFace(multi.getParameter("interFace"));
-			hdd.setDiskSize(multi.getParameter("diskSize"));
-			hdd.setDiskCapacity(Integer.parseInt(multi.getParameter("diskCapacity")));
-			hdd.setBufferCapacity(multi.getParameter("bufferCapacity"));
-			hdd.setRotation(multi.getParameter("rotation"));
-			hdd.setProductDate(transFormat.parse(multi.getParameter("productDate")));
-			hdd.setPrice(Integer.parseInt(multi.getParameter("price")));
-			//hdd.setFilename(filename);
-			
+			ram.setId(Long.parseLong(multi.getParameter("id")));
+			ram.setProductName(multi.getParameter("productName"));
+			ram.setProductCompany(multi.getParameter("productCompany"));
+			ram.setProductSort(multi.getParameter("productSort"));
+			ram.setMemoryCapacity(Integer.parseInt(multi.getParameter("memoryCapacity")));
+			ram.setClock(Integer.parseInt(multi.getParameter("clock")));
+			ram.setVoltage(Integer.parseInt(multi.getParameter("voltage")));
+			ram.setProductDate(transFormat.parse(multi.getParameter("productDate")));
+			ram.setPrice(Integer.parseInt(multi.getParameter("price")));
 			if (file != null) {
-				hdd.setFilename(filename);
+				ram.setFilename(filename);
 				filesize = (int) file.length();
-				hdd.setFilesize(filesize);
+				ram.setFilesize(filesize);
 			} else {
 				if (oldfilename != null) {
-					hdd.setFilename(oldfilename);
-					hdd.setFilesize(oldfilesize);
+					ram.setFilename(oldfilename);
+					ram.setFilesize(oldfilesize);
 				}
 			}
-
-			HDDDBBean dbPro = HDDDBBean.getInstance();
-			System.out.println("hdd: " + hdd);
-			dbPro.insertHDD(hdd);
 			
+			RamDBBean dbPro = RamDBBean.getInstance();
+			System.out.println("ram: " + ram);
+			dbPro.updateRam(ram);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return "/hdd/admin/hddUpdate.jsp";
+		return "/ram/admin/ramUpdate.jsp";
 	}
 
 	public String deleteGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		Long id = Long.parseLong(request.getParameter("id"));
 
-		HDDDBBean dbPro = HDDDBBean.getInstance();
+		RamDBBean dbPro = RamDBBean.getInstance();
 
 		try {
-			dbPro.deleteHDD(id);
+			dbPro.deleteRam(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return "/hdd/admin/hddDelete.jsp";
+		return "/ram/admin/ramDelete.jsp";
 	}
 }

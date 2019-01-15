@@ -14,10 +14,10 @@ import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import hdd.HDD;
-import hdd.HDDDBBean;
+import power.Power;
+import power.PowerDBBean;
 
-public class HDDAction extends Action {
+public class PowerAction extends Action {
 
 	// ë¦¬ìŠ¤?Š¸
 	public String listGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -42,19 +42,19 @@ public class HDDAction extends Action {
 		System.out.println("start: " + start);
 		System.out.println("end: " + end);
 
-		HDDDBBean dbPro = HDDDBBean.getInstance();
+		PowerDBBean dbPro = PowerDBBean.getInstance();
 
 		int count = 0;
 
 		int number = 0;
 
-		List hddList = null;
+		List powerList = null;
 		try {
-			count = dbPro.getHDDCount();
+			count = dbPro.getPowerCount();
 			number = count - ((currentPage - 1) * pageSize);
 
 			if (count > 0) {
-				hddList = dbPro.getHDDList(start, end);
+				powerList = dbPro.getPowerList(start, end);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -69,10 +69,10 @@ public class HDDAction extends Action {
 
 		System.out.println("count: " + count);
 		System.out.println("number: " + number);
-		System.out.println("cpuList: " + hddList);
+		System.out.println("powerList: " + powerList);
 
 		request.setAttribute("count", count);
-		request.setAttribute("cpuList", hddList);
+		request.setAttribute("powerList", powerList);
 		request.setAttribute("number", number);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("bottomLine", bottomLine);
@@ -80,7 +80,7 @@ public class HDDAction extends Action {
 		request.setAttribute("pageCount", pageCount);
 		request.setAttribute("currentPage", currentPage);
 
-		return "/hdd/admin/hddList.jsp";
+		return "/power/admin/powerList.jsp";
 	}
 
 	// ?ž…? ¥
@@ -90,7 +90,7 @@ public class HDDAction extends Action {
 
 		pageNum = request.getParameter("pageNum");
 
-		return "/hdd/admin/hddWriteForm.jsp";
+		return "/power/admin/powerWriteForm.jsp";
 	}
 
 	public String writePOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -117,32 +117,31 @@ public class HDDAction extends Action {
 				file = multi.getFile(name);
 			}
 
-			HDD hdd = new HDD();
+			Power power = new Power();
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-			// hdd.setId(Long.parseLong(multi.getParameter("id")));
-			hdd.setProductName(multi.getParameter("productName"));
-			hdd.setProductCompany(multi.getParameter("productCompany"));
-			hdd.setInterFace(multi.getParameter("interFace"));
-			hdd.setDiskSize(multi.getParameter("diskSize"));
-			hdd.setDiskCapacity(Integer.parseInt(multi.getParameter("diskCapacity")));
-			hdd.setBufferCapacity(multi.getParameter("bufferCapacity"));
-			hdd.setRotation(multi.getParameter("rotation"));
-			hdd.setPrice(Integer.parseInt(multi.getParameter("price")));
-			hdd.setFilename(filename);
+			// power.setId(Long.parseLong(multi.getParameter("id")));
+			power.setProductName(multi.getParameter("productName"));
+			power.setProductCompany(multi.getParameter("productCompany"));
+			power.setProductSort(multi.getParameter("productSort"));
+			power.setNominalOutput(Integer.parseInt(multi.getParameter("nominalOutput")));
+			power.setRatedOutput(Integer.parseInt(multi.getParameter("ratedOutput")));
+			// power.setProductDate(transFormat.parse(multi.getParameter("productDate")));
+			power.setPrice(Integer.parseInt(multi.getParameter("price")));
+			power.setFilename(filename);
 			if (file != null) {
 				filesize = (int) file.length();
 			}
-			hdd.setFilesize(filesize);
+			power.setFilesize(filesize);
 
-			HDDDBBean dbPro = HDDDBBean.getInstance();
-			dbPro.insertHDD(hdd);
+			PowerDBBean dbPro = PowerDBBean.getInstance();
+			dbPro.insertPower(power);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return "/hdd/admin/hddWrite.jsp";
+		return "/power/admin/powerWrite.jsp";
 	}
 
 	public String detailGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -150,20 +149,20 @@ public class HDDAction extends Action {
 		String no = request.getParameter("id");
 		Long id = Long.parseLong(no);
 
-		HDDDBBean dbPro = HDDDBBean.getInstance();
-		HDD hdd = new HDD();
+		PowerDBBean dbPro = PowerDBBean.getInstance();
+		Power power = new Power();
 
 		try {
-			hdd = dbPro.getHDD(id);
+			power = dbPro.getPower(id);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		request.setAttribute("no", no);
-		request.setAttribute("hdd", hdd);
+		request.setAttribute("power", power);
 
-		return "/hdd/admin/hddDetail.jsp";
+		return "/power/admin/powerDetail.jsp";
 	}
 
 	public String updateGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -171,24 +170,24 @@ public class HDDAction extends Action {
 		Long id = Long.parseLong(request.getParameter("id"));
 		String no = String.valueOf(id);
 
-		HDDDBBean dbPro = HDDDBBean.getInstance();
-		HDD hdd = new HDD();
+		PowerDBBean dbPro = PowerDBBean.getInstance();
+		Power power = new Power();
 		try {
-			hdd = dbPro.getUpdate(id);
+			power = dbPro.getUpdate(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
-		System.out.println("productDate: " + hdd.getProductDate());
-		Date productDate_date = hdd.getProductDate();
+		System.out.println("productDate: " + power.getProductDate());
+		Date productDate_date = power.getProductDate();
 		String productDate = transFormat.format(productDate_date);
 
 		request.setAttribute("no", no);
-		request.setAttribute("hdd", hdd);
+		request.setAttribute("power", power);
 		request.setAttribute("productDate", productDate);
 
-		return "/hdd/admin/hddUpdateForm.jsp";
+		return "/power/admin/powerUpdateForm.jsp";
 	}
 
 	public String updatePOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -217,56 +216,52 @@ public class HDDAction extends Action {
 				file = multi.getFile(name);
 			}
 
-			HDD hdd = new HDD();
+			Power power = new Power();
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-			hdd.setId(Long.parseLong(multi.getParameter("id")));
-			hdd.setProductName(multi.getParameter("productName"));
-			hdd.setProductCompany(multi.getParameter("productCompany"));
-			hdd.setInterFace(multi.getParameter("interFace"));
-			hdd.setDiskSize(multi.getParameter("diskSize"));
-			hdd.setDiskCapacity(Integer.parseInt(multi.getParameter("diskCapacity")));
-			hdd.setBufferCapacity(multi.getParameter("bufferCapacity"));
-			hdd.setRotation(multi.getParameter("rotation"));
-			hdd.setProductDate(transFormat.parse(multi.getParameter("productDate")));
-			hdd.setPrice(Integer.parseInt(multi.getParameter("price")));
-			//hdd.setFilename(filename);
-			
+			power.setId(Long.parseLong(multi.getParameter("id")));
+			power.setProductName(multi.getParameter("productName"));
+			power.setProductCompany(multi.getParameter("productCompany"));
+			power.setProductSort(multi.getParameter("productSort"));
+			power.setNominalOutput(Integer.parseInt(multi.getParameter("nominalOutput")));
+			power.setRatedOutput(Integer.parseInt(multi.getParameter("ratedOutput")));
+			power.setProductDate(transFormat.parse(multi.getParameter("productDate")));
+			power.setPrice(Integer.parseInt(multi.getParameter("price")));
 			if (file != null) {
-				hdd.setFilename(filename);
+				power.setFilename(filename);
 				filesize = (int) file.length();
-				hdd.setFilesize(filesize);
+				power.setFilesize(filesize);
 			} else {
 				if (oldfilename != null) {
-					hdd.setFilename(oldfilename);
-					hdd.setFilesize(oldfilesize);
+					power.setFilename(oldfilename);
+					power.setFilesize(oldfilesize);
 				}
 			}
-
-			HDDDBBean dbPro = HDDDBBean.getInstance();
-			System.out.println("hdd: " + hdd);
-			dbPro.insertHDD(hdd);
+			
+			PowerDBBean dbPro = PowerDBBean.getInstance();
+			System.out.println("power: " + power);
+			dbPro.updatePower(power);
 			
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return "/hdd/admin/hddUpdate.jsp";
+		return "/power/admin/powerUpdate.jsp";
 	}
 
 	public String deleteGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		Long id = Long.parseLong(request.getParameter("id"));
 
-		HDDDBBean dbPro = HDDDBBean.getInstance();
+		PowerDBBean dbPro = PowerDBBean.getInstance();
 
 		try {
-			dbPro.deleteHDD(id);
+			dbPro.deletePower(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return "/hdd/admin/hddDelete.jsp";
+		return "/power/admin/powerDelete.jsp";
 	}
 }
