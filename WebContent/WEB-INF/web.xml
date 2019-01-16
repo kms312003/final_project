@@ -44,6 +44,72 @@
 		<url-pattern>/admin/cpu/*</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>AdminGraphicController</servlet-name>
+		<servlet-class>admin.controller.GraphicAction</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>AdminGraphicController</servlet-name>
+		<url-pattern>/admin/graphic/*</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>AdminHDDController</servlet-name>
+		<servlet-class>admin.controller.HDDAction</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>AdminHDDController</servlet-name>
+		<url-pattern>/admin/hdd/*</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>AdminMainBoardController</servlet-name>
+		<servlet-class>admin.controller.MainBoardAction</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>AdminMainBoardController</servlet-name>
+		<url-pattern>/admin/mainboard/*</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>AdminPowerController</servlet-name>
+		<servlet-class>admin.controller.PowerAction</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>AdminPowerController</servlet-name>
+		<url-pattern>/admin/power/*</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>AdminRAMController</servlet-name>
+		<servlet-class>admin.controller.RamAction</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>AdminRAMController</servlet-name>
+		<url-pattern>/admin/ram/*</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>AdminSSDController</servlet-name>
+		<servlet-class>admin.controller.SSDAction</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>AdminSSDController</servlet-name>
+		<url-pattern>/admin/ssd/*</url-pattern>
+	</servlet-mapping>
+	
 	<!-- 메인 페이지 properties -->
 	<!-- <servlet>
 		<servlet-name>UserController</servlet-name>
