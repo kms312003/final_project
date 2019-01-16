@@ -12,6 +12,12 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   
+  <!-- datepicker 필요 --> 
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />    
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
+  <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+  <script src="/final_project/js/datepicker.js"></script>
+
   <!-- <script>
 	function checkCpu() {
 		var form = document.createform;
@@ -128,7 +134,7 @@
 				</tr>
 				<tr>
 					<td>제품 등록일</td>
-					<td><input type="text" name="productDate" size="50" maxlength="20"></td>
+					<td><input type="text" name="productDate" size="50" maxlength="20" class="datepicker"></td>
 				</tr>
 				<tr>
 					<td>가격</td>
