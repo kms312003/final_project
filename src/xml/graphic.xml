@@ -6,7 +6,7 @@
   <mapper namespace="mapper.graphic">
      
      <select id = "getGraphicCount" resultType="int">
-        select ifnull(count(*),0) from graphic
+        select if null(count(*),0) from graphic
      </select>
      
      <select id = "getGraphics" parameterType="hashmap" resultType="graphic">
@@ -14,10 +14,10 @@
      </select>
      
      <insert id="insert" parameterType="Graphic">
-        insert into graphic(id, productName, productCompany, brand, socket,
-               core, thread, clockSpeed, tdp, productDate, regDate, price, count, filename, filesize) 
-               values(0, #{productName},#{productCompany},#{brand},#{socket},#{core}
-      ,#{thread},#{clockSpeed},#{tdp},#{productDate},curdate(),#{price},#{count}, #{filename},#{filesize})
+        insert into graphic(id, productName, productCompany, chipSetGroup, interFace, powerPort,
+         memoryCapacity, nvidiaChipSet, maxPower, maxMonitor, length, productDate, regDate, price, count, filename, filesize) 
+               values(0, #{productName},#{productCompany},#{chipSetGroup},#{interFace},#{powerPort}
+      ,#{memoryCapacity},#{nvidiaChipSet},#{maxPower},#{maxMonitor},#{length},#{productDate},curdate(),#{price},#{count}, #{filename},#{filesize})
      </insert>
      
      <select id="getGraphic" resultType="graphic" parameterType="hashmap">
@@ -29,8 +29,8 @@
      </update>
      
      <update id="update" parameterType="graphic">
-        update graphic set productName=#{productName}, productCompany=#{productCompany}, brand=#{brand}, 
-        socket= #{socket}, core=#{core}, thread=#{thread}, clockSpeed=#{clockSpeed}, tdp=#{tdp}, productDate=#{productDate}, price=#{price}, filename=#{filename}, filesize=#{filesize} where id=#{id}
+        update graphic set productName=#{productName}, productCompany=#{productCompany}, chipSetGroup=#{chipSetGroup}, 
+        interFace= #{interFace}, powerPort=#{powerPort}, memoryCapacity=#{memoryCapacity}, nvidiaChipSet=#{nvidiaChipSet}, maxPower=#{maxPower}, maxMonitor=#{maxMonitor}, length=#{length}, productDate=#{productDate}, price=#{price}, filename=#{filename}, filesize=#{filesize} where id=#{id}
      </update>
      
      <delete id="deleteGraphic" parameterType="hashmap">

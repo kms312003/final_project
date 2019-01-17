@@ -6,7 +6,7 @@
   <mapper namespace="mapper.power">
      
      <select id = "getPowerCount" resultType="int">
-        select ifnull(count(*),0) from power
+        select if null(count(*),0) from power
      </select>
      
      <select id = "getPowers" parameterType="hashmap" resultType="power">
@@ -14,10 +14,10 @@
      </select>
      
      <insert id="insert" parameterType="power">
-        insert into power(id, productName, productCompany, brand, socket,
-               core, thread, clockSpeed, tdp, productDate, regDate, price, count, filename, filesize) 
-               values(0, #{productName},#{productCompany},#{brand},#{socket},#{core}
-      ,#{thread},#{clockSpeed},#{tdp},#{productDate},curdate(),#{price},#{count}, #{filename},#{filesize})
+        insert into power(id, productName, productCompany, productSort, nominalOutput,
+               ratedOutput, productDate, regDate, price, count, filename, filesize) 
+               values(0, #{productName},#{productCompany},#{productSort},#{nominalOutput},#{ratedOutput}
+      ,#{productDate},curdate(),#{price},#{count}, #{filename},#{filesize})
      </insert>
      
      <select id="getPower" resultType="power" parameterType="hashmap">
@@ -29,8 +29,8 @@
      </update>
      
      <update id="update" parameterType="power">
-        update power set productName=#{productName}, productCompany=#{productCompany}, brand=#{brand}, 
-        socket= #{socket}, core=#{core}, thread=#{thread}, clockSpeed=#{clockSpeed}, tdp=#{tdp}, productDate=#{productDate}, price=#{price}, filename=#{filename}, filesize=#{filesize} where id=#{id}
+        update power set productName=#{productName}, productCompany=#{productCompany}, productSort=#{productSort}, 
+        nominalOutput= #{nominalOutput}, ratedOutput=#{ratedOutput}, productDate=#{productDate}, price=#{price}, filename=#{filename}, filesize=#{filesize} where id=#{id}
      </update>
      
      <delete id="deletePower" parameterType="hashmap">

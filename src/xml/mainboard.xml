@@ -6,7 +6,7 @@
   <mapper namespace="mapper.mainboard">
      
      <select id = "getMainBoardCount" resultType="int">
-        select ifnull(count(*),0) from hdd
+        select if null(count(*),0) from mainboard
      </select>
      
      <select id = "getMainBoards" parameterType="hashmap" resultType="mainboard">
@@ -14,10 +14,10 @@
      </select>
      
      <insert id="insert" parameterType="mainboard">
-        insert into mainboard(id, productName, productCompany, brand, socket,
-               core, thread, clockSpeed, tdp, productDate, regDate, price, count, filename, filesize) 
-               values(0, #{productName},#{productCompany},#{brand},#{socket},#{core}
-      ,#{thread},#{clockSpeed},#{tdp},#{productDate},curdate(),#{price},#{count}, #{filename},#{filesize})
+        insert into mainboard(id, productName, productCompany, cpuSocket, chipSet,
+               formFactor, memoryType, productSort, memorySlot, productDate, regDate, price, count, filename, filesize) 
+               values(0, #{productName},#{productCompany},#{cpuSocket},#{chipSet},#{formFactor}
+      ,#{memoryType},#{productSort},#{memorySlot},#{productDate},curdate(),#{price},#{count}, #{filename},#{filesize})
      </insert>
      
      <select id="getMainBoard" resultType="mainboard" parameterType="hashmap">
@@ -29,8 +29,8 @@
      </update>
      
      <update id="update" parameterType="mainboard">
-        update mainboard set productName=#{productName}, productCompany=#{productCompany}, brand=#{brand}, 
-        socket= #{socket}, core=#{core}, thread=#{thread}, clockSpeed=#{clockSpeed}, tdp=#{tdp}, productDate=#{productDate}, price=#{price}, filename=#{filename}, filesize=#{filesize} where id=#{id}
+        update mainboard set productName=#{productName}, productCompany=#{productCompany}, cpuSocket=#{cpuSocket}, 
+        chipSet= #{chipSet}, formFactor=#{formFactor}, memoryType=#{memoryType}, productSort=#{productSort}, memorySlot=#{memorySlot}, productDate=#{productDate}, price=#{price}, filename=#{filename}, filesize=#{filesize} where id=#{id}
      </update>
      
      <delete id="deleteMainBoard" parameterType="hashmap">

@@ -6,7 +6,7 @@
   <mapper namespace="mapper.ram">
      
      <select id = "getRamCount" resultType="int">
-        select ifnull(count(*),0) from ram
+        select if null(count(*),0) from ram
      </select>
      
      <select id = "getRams" parameterType="hashmap" resultType="ram">
@@ -14,10 +14,10 @@
      </select>
      
      <insert id="insert" parameterType="ram">
-        insert into ram(id, productName, productCompany, brand, socket,
-               core, thread, clockSpeed, tdp, productDate, regDate, price, count, filename, filesize) 
-               values(0, #{productName},#{productCompany},#{brand},#{socket},#{core}
-      ,#{thread},#{clockSpeed},#{tdp},#{productDate},curdate(),#{price},#{count}, #{filename},#{filesize})
+        insert into ram(id, productName, productCompany, productSort, memoryCapacity,
+               clock, voltage, productDate, regDate, price, count, filename, filesize) 
+               values(0, #{productName},#{productCompany},#{productSort},#{memoryCapacity},#{clock}
+      ,#{voltage},#{productDate},curdate(),#{price},#{count}, #{filename},#{filesize})
      </insert>
      
      <select id="getRam" resultType="ram" parameterType="hashmap">
@@ -29,8 +29,8 @@
      </update>
      
      <update id="update" parameterType="ram">
-        update ram set productName=#{productName}, productCompany=#{productCompany}, brand=#{brand}, 
-        socket= #{socket}, core=#{core}, thread=#{thread}, clockSpeed=#{clockSpeed}, tdp=#{tdp}, productDate=#{productDate}, price=#{price}, filename=#{filename}, filesize=#{filesize} where id=#{id}
+        update ram set productName=#{productName}, productCompany=#{productCompany}, productSort=#{productSort}, 
+        memoryCapacity= #{memoryCapacity}, clock=#{clock}, voltage=#{voltage}, productDate=#{productDate}, price=#{price}, filename=#{filename}, filesize=#{filesize} where id=#{id}
      </update>
      
      <delete id="deleteRam" parameterType="hashmap">

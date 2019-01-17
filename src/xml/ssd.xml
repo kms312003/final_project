@@ -6,7 +6,7 @@
   <mapper namespace="mapper.ssd">
      
      <select id = "getSSDCount" resultType="int">
-        select ifnull(count(*),0) from ssd
+        select if null(count(*),0) from ssd
      </select>
      
      <select id = "getSSDs" parameterType="hashmap" resultType="ssd">
@@ -14,10 +14,10 @@
      </select>
      
      <insert id="insert" parameterType="ssd">
-        insert into ssd(id, productName, productCompany, brand, socket,
-               core, thread, clockSpeed, tdp, productDate, regDate, price, count, filename, filesize) 
-               values(0, #{productName},#{productCompany},#{brand},#{socket},#{core}
-      ,#{thread},#{clockSpeed},#{tdp},#{productDate},curdate(),#{price},#{count}, #{filename},#{filesize})
+        insert into ssd(id, productName, productCompany, diskType, diskCapacity,
+               interFace, memoryType, readSpeed, writeSpeed, productDate, regDate, price, count, filename, filesize) 
+               values(0, #{productName},#{productCompany},#{diskType},#{diskCapacity},#{interFace}
+      ,#{memoryType},#{readSpeed},#{writeSpeed},#{productDate},curdate(),#{price},#{count}, #{filename},#{filesize})
      </insert>
      
      <select id="getSSD" resultType="ssd" parameterType="hashmap">
@@ -29,8 +29,8 @@
      </update>
      
      <update id="update" parameterType="ssd">
-        update ssd set productName=#{productName}, productCompany=#{productCompany}, brand=#{brand}, 
-        socket= #{socket}, core=#{core}, thread=#{thread}, clockSpeed=#{clockSpeed}, tdp=#{tdp}, productDate=#{productDate}, price=#{price}, filename=#{filename}, filesize=#{filesize} where id=#{id}
+        update ssd set productName=#{productName}, productCompany=#{productCompany}, diskType=#{diskType}, 
+        diskCapacity= #{diskCapacity}, interFace=#{interFace}, memoryType=#{memoryType}, readSpeed=#{readSpeed}, writeSpeed=#{writeSpeed}, productDate=#{productDate}, price=#{price}, filename=#{filename}, filesize=#{filesize} where id=#{id}
      </update>
      
      <delete id="deleteSSD" parameterType="hashmap">

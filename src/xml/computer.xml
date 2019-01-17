@@ -6,7 +6,7 @@
   <mapper namespace="mapper.computer">
      
      <select id = "getComputerCount" resultType="int">
-        select ifnull(count(*),0) from computer
+        select if null(count(*),0) from computer
      </select>
      
      <select id = "getComputers" parameterType="hashmap" resultType="computer">

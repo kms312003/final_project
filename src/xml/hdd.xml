@@ -6,7 +6,7 @@
   <mapper namespace="mapper.hdd">
      
      <select id = "getHDDCount" resultType="int">
-        select ifnull(count(*),0) from hdd
+        select if null(count(*),0) from hdd
      </select>
      
      <select id = "getHDDs" parameterType="hashmap" resultType="hdd">
@@ -14,10 +14,10 @@
      </select>
      
      <insert id="insert" parameterType="hdd">
-        insert into hdd(id, productName, productCompany, brand, socket,
-               core, thread, clockSpeed, tdp, productDate, regDate, price, count, filename, filesize) 
-               values(0, #{productName},#{productCompany},#{brand},#{socket},#{core}
-      ,#{thread},#{clockSpeed},#{tdp},#{productDate},curdate(),#{price},#{count}, #{filename},#{filesize})
+        insert into hdd(id, productName, productCompany, interFace, diskSize,
+               diskCapacity, bufferCapacity, rotation, productDate, regDate, price, count, filename, filesize) 
+               values(0, #{productName},#{productCompany},#{interFace},#{diskSize},#{diskCapacity}
+      ,#{bufferCapacity},#{rotation},#{productDate},curdate(),#{price},#{count}, #{filename},#{filesize})
      </insert>
      
      <select id="getHDD" resultType="hdd" parameterType="hashmap">
@@ -29,8 +29,8 @@
      </update>
      
      <update id="update" parameterType="hdd">
-        update hdd set productName=#{productName}, productCompany=#{productCompany}, brand=#{brand}, 
-        socket= #{socket}, core=#{core}, thread=#{thread}, clockSpeed=#{clockSpeed}, tdp=#{tdp}, productDate=#{productDate}, price=#{price}, filename=#{filename}, filesize=#{filesize} where id=#{id}
+        update hdd set productName=#{productName}, productCompany=#{productCompany}, interFace=#{interFace}, 
+        diskSize= #{diskSize}, diskCapacity=#{diskCapacity}, bufferCapacity=#{bufferCapacity}, rotation=#{rotation}, productDate=#{productDate}, price=#{price}, filename=#{filename}, filesize=#{filesize} where id=#{id}
      </update>
      
      <delete id="deleteHDD" parameterType="hashmap">

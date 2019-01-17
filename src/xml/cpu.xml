@@ -6,7 +6,7 @@
   <mapper namespace="mapper.cpu">
      
      <select id = "getCpuCount" resultType="int">
-        select ifnull(count(*),0) from cpu
+        select if null(count(*),0) from cpu
      </select>
      
      <select id = "getCpus" parameterType="hashmap" resultType="cpu">
