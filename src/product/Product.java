@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Product {
 
-	private Long id;				// PK
+	private int id;					// PK
 	private String productName;     // 제품
 	private String productCompany;  // 제조회사
 	private Date productDate;  		// 제품 등록일
@@ -14,10 +14,10 @@ public class Product {
 	private String filename;		// 파일 이름
 	private int filesize;			// 파일 사이즈
 	
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getProductName() {

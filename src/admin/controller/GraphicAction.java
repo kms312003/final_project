@@ -19,7 +19,7 @@ import graphic.GraphicDBBean;
 
 public class GraphicAction extends Action {
 //
-	// ë¦¬ìŠ¤?Š¸
+	// ë¦¬ìŠ¤?ï¿½ï¿½
 	public String listGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		HttpSession session = request.getSession();
@@ -84,7 +84,7 @@ public class GraphicAction extends Action {
 		return "/graphic/admin/graphicList.jsp";
 	}
 
-	// ?ž…? ¥
+	// ?ï¿½ï¿½?ï¿½ï¿½
 	public String writeGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		String pageNum = "";
@@ -152,7 +152,7 @@ public class GraphicAction extends Action {
 	public String detailGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		String no = request.getParameter("id");
-		Long id = Long.parseLong(no);
+		int id = Integer.parseInt(no);
 
 		GraphicDBBean dbPro = GraphicDBBean.getInstance();
 		Graphic graphic = new Graphic();
@@ -172,7 +172,7 @@ public class GraphicAction extends Action {
 
 	public String updateGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
-		Long id = Long.parseLong(request.getParameter("id"));
+		int id = Integer.parseInt(request.getParameter("id"));
 		String no = String.valueOf(id);
 
 		GraphicDBBean dbPro = GraphicDBBean.getInstance();
@@ -224,7 +224,7 @@ public class GraphicAction extends Action {
 			Graphic graphic = new Graphic();
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-			graphic.setId(Long.parseLong(multi.getParameter("id")));
+			graphic.setId(Integer.parseInt(multi.getParameter("id")));
 			graphic.setProductName(multi.getParameter("productName"));
 			graphic.setProductCompany(multi.getParameter("productCompany"));
 			graphic.setChipSetGroup(multi.getParameter("chipSetGroup"));
@@ -264,7 +264,7 @@ public class GraphicAction extends Action {
 
 	public String deleteGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
-		Long id = Long.parseLong(request.getParameter("id"));
+		int id = Integer.parseInt(request.getParameter("id"));
 
 		GraphicDBBean dbPro = GraphicDBBean.getInstance();
 		

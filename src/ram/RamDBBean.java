@@ -66,14 +66,8 @@ public class RamDBBean {
 	public void insertRam(Ram ram) throws Exception {
 
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		int number = 0;
-		Long id = ram.getId();
 
 		Map map = new HashMap();
-
-		// number = (int) sqlSession.selectOne(namespace + ".nextVal");
-
-		ram.setId(id);
 
 		int result = sqlSession.insert(namespace + ".insert", ram);
 		sqlSession.commit();
@@ -82,7 +76,7 @@ public class RamDBBean {
 	}
 
 	// Ram 가져오기
-	public Ram getRam(Long id) {
+	public Ram getRam(int id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
 		Map map = new HashMap();
@@ -96,7 +90,7 @@ public class RamDBBean {
 	}
 
 	// Ram 수정 Get
-	public Ram getUpdate(Long id) {
+	public Ram getUpdate(int id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
 		Map map = new HashMap();
@@ -119,7 +113,7 @@ public class RamDBBean {
 	}
 
 	// Ram 삭제
-	public void deleteRam(Long id) {
+	public void deleteRam(int id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
 		Map map = new HashMap();

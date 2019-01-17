@@ -19,7 +19,7 @@ import hdd.HDDDBBean;
 
 public class HDDAction extends Action {
 
-	// ë¦¬ìŠ¤?Š¸
+	// ë¦¬ìŠ¤?ï¿½ï¿½
 	public String listGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		HttpSession session = request.getSession();
@@ -83,7 +83,7 @@ public class HDDAction extends Action {
 		return "/hdd/admin/hddList.jsp";
 	}
 
-	// ?ž…? ¥
+	// ?ï¿½ï¿½?ï¿½ï¿½
 	public String writeGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		String pageNum = "";
@@ -148,7 +148,7 @@ public class HDDAction extends Action {
 	public String detailGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		String no = request.getParameter("id");
-		Long id = Long.parseLong(no);
+		int id = Integer.parseInt(no);
 
 		HDDDBBean dbPro = HDDDBBean.getInstance();
 		HDD hdd = new HDD();
@@ -168,7 +168,7 @@ public class HDDAction extends Action {
 
 	public String updateGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
-		Long id = Long.parseLong(request.getParameter("id"));
+		int id = Integer.parseInt(request.getParameter("id"));
 		String no = String.valueOf(id);
 
 		HDDDBBean dbPro = HDDDBBean.getInstance();
@@ -220,7 +220,7 @@ public class HDDAction extends Action {
 			HDD hdd = new HDD();
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-			hdd.setId(Long.parseLong(multi.getParameter("id")));
+			hdd.setId(Integer.parseInt(multi.getParameter("id")));
 			hdd.setProductName(multi.getParameter("productName"));
 			hdd.setProductCompany(multi.getParameter("productCompany"));
 			hdd.setInterFace(multi.getParameter("interFace"));
@@ -257,7 +257,7 @@ public class HDDAction extends Action {
 
 	public String deleteGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
-		Long id = Long.parseLong(request.getParameter("id"));
+		int id = Integer.parseInt(request.getParameter("id"));
 
 		HDDDBBean dbPro = HDDDBBean.getInstance();
 

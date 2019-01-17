@@ -65,14 +65,8 @@ public class HDDDBBean {
 	public void insertHDD(HDD hdd) throws Exception {
 
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		int number = 0;
-		Long id = hdd.getId();
 
 		Map map = new HashMap();
-
-//		number = (int) sqlSession.selectOne(namespace + ".nextVal");
-
-		hdd.setId(id);
 
 		int result = sqlSession.insert(namespace + ".insert", hdd);
 		sqlSession.commit();
@@ -81,7 +75,7 @@ public class HDDDBBean {
 	}
 
 	// HDD 가져오기
-	public HDD getHDD(Long id) {
+	public HDD getHDD(int id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
 		Map map = new HashMap();
@@ -95,7 +89,7 @@ public class HDDDBBean {
 	}
 
 	// HDD 수정 Get
-	public HDD getUpdate(Long id) {
+	public HDD getUpdate(int id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
 		Map map = new HashMap();
@@ -118,7 +112,7 @@ public class HDDDBBean {
 	}
 
 	// HDD 삭제
-	public void deleteHDD(Long id) {
+	public void deleteHDD(int id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
 		Map map = new HashMap();

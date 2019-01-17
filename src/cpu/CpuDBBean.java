@@ -68,14 +68,8 @@ public class CpuDBBean {
 	public void insertCpu(Cpu cpu) throws Exception {
 
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		int number = 0;
-		Long id = cpu.getId();
-
+		
 		Map map = new HashMap();
-
-//		number = (int) sqlSession.selectOne(namespace + ".nextVal");
-
-		cpu.setId(id);
 
 		int result = sqlSession.insert(namespace + ".insert", cpu);
 		sqlSession.commit();
@@ -84,7 +78,7 @@ public class CpuDBBean {
 	}
 
 	// Cpu 가져오기
-	public Cpu getCpu(Long id) {
+	public Cpu getCpu(int id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
 		Map map = new HashMap();
@@ -98,7 +92,7 @@ public class CpuDBBean {
 	}
 
 	// Cpu 수정 Get
-	public Cpu getUpdate(Long id) {
+	public Cpu getUpdate(int id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
 		Map map = new HashMap();
@@ -121,7 +115,7 @@ public class CpuDBBean {
 	}
 
 	// Cpu 삭제
-	public void deleteCpu(Long id) {
+	public void deleteCpu(int id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
 		Map map = new HashMap();

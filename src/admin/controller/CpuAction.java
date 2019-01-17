@@ -150,7 +150,7 @@ public class CpuAction extends Action {
 	public String detailGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		String no = request.getParameter("id");
-		Long id = Long.parseLong(no);
+		int id = Integer.parseInt(no);
 
 		CpuDBBean dbPro = CpuDBBean.getInstance();
 		Cpu cpu = new Cpu();
@@ -170,7 +170,7 @@ public class CpuAction extends Action {
 
 	public String updateGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
-		Long id = Long.parseLong(request.getParameter("id"));
+		int id = Integer.parseInt(request.getParameter("id"));
 		String no = String.valueOf(id);
 
 		CpuDBBean dbPro = CpuDBBean.getInstance();
@@ -222,7 +222,7 @@ public class CpuAction extends Action {
 			Cpu cpu = new Cpu();
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-			cpu.setId(Long.parseLong(multi.getParameter("id")));
+			cpu.setId(Integer.parseInt(multi.getParameter("id")));
 			cpu.setProductName(multi.getParameter("productName"));
 			cpu.setProductCompany(multi.getParameter("productCompany"));
 			cpu.setBrand(multi.getParameter("brand"));
@@ -258,7 +258,7 @@ public class CpuAction extends Action {
 
 	public String deleteGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
-		Long id = Long.parseLong(request.getParameter("id"));
+		int id = Integer.parseInt(request.getParameter("id"));
 
 		CpuDBBean dbPro = CpuDBBean.getInstance();
 

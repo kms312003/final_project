@@ -6,7 +6,7 @@
   <mapper namespace="mapper.graphic">
      
      <select id = "getGraphicCount" resultType="int">
-        select if null(count(*),0) from graphic
+        select ifnull(count(*),0) from graphic
      </select>
      
      <select id = "getGraphics" parameterType="hashmap" resultType="graphic">

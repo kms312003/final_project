@@ -66,14 +66,8 @@ public class MainBoardDBBean {
 	public void insertMainBoard(MainBoard mainboard) throws Exception {
 
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		int number = 0;
-		Long id = mainboard.getId();
 
 		Map map = new HashMap();
-
-//		number = (int) sqlSession.selectOne(namespace + ".nextVal");
-
-		mainboard.setId(id);
 
 		int result = sqlSession.insert(namespace + ".insert", mainboard);
 		sqlSession.commit();
@@ -82,7 +76,7 @@ public class MainBoardDBBean {
 	}
 
 	// MainBoard 가져오기
-	public MainBoard getMainBoard(Long id) {
+	public MainBoard getMainBoard(int id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
 		Map map = new HashMap();
@@ -96,7 +90,7 @@ public class MainBoardDBBean {
 	}
 
 	// MainBoard 수정 Get
-	public MainBoard getUpdate(Long id) {
+	public MainBoard getUpdate(int id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
 		Map map = new HashMap();
@@ -119,7 +113,7 @@ public class MainBoardDBBean {
 	}
 
 	// MainBoard 삭제
-	public void deleteMainBoard(Long id) {
+	public void deleteMainBoard(int id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
 		Map map = new HashMap();

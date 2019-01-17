@@ -6,7 +6,7 @@
   <mapper namespace="mapper.power">
      
      <select id = "getPowerCount" resultType="int">
-        select if null(count(*),0) from power
+        select ifnull(count(*),0) from power
      </select>
      
      <select id = "getPowers" parameterType="hashmap" resultType="power">

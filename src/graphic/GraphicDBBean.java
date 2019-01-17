@@ -66,14 +66,8 @@ public class GraphicDBBean {
 	public void insertGraphic(Graphic graphic) throws Exception {
 
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		int number = 0;
-		Long id = graphic.getId();
 
 		Map map = new HashMap();
-
-//		number = (int) sqlSession.selectOne(namespace + ".nextVal");
-
-		graphic.setId(id);
 
 		int result = sqlSession.insert(namespace + ".insert", graphic);
 		sqlSession.commit();
@@ -82,7 +76,7 @@ public class GraphicDBBean {
 	}
 
 	// Graphic 가져오기
-	public Graphic getGraphic(Long id) {
+	public Graphic getGraphic(int id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
 		Map map = new HashMap();
@@ -96,7 +90,7 @@ public class GraphicDBBean {
 	}
 
 	// Graphic 수정 Get
-	public Graphic getUpdate(Long id) {
+	public Graphic getUpdate(int id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
 		Map map = new HashMap();
@@ -119,7 +113,7 @@ public class GraphicDBBean {
 	}
 
 	// Graphic 삭제
-	public void deleteGraphic(Long id) {
+	public void deleteGraphic(int id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
 		Map map = new HashMap();

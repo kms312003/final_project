@@ -36,7 +36,7 @@ public class ComputerDBBean {
 		return new SqlSessionFactoryBuilder().build(inputStream);
 	}
 
-	// Cpu 媛��닔
+	// Computer 갯수
 	public int getComputerCount() {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
@@ -47,7 +47,7 @@ public class ComputerDBBean {
 		}
 	}
 
-	// Cpu 由ъ뒪�듃
+	// Computer 리스트 가저오기
 	public List getComputerList(int start, int end) throws Exception {
 
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
@@ -62,18 +62,12 @@ public class ComputerDBBean {
 		}
 	}
 
-	// Cpu �벑濡�
+	// Computer 등록
 	public void insertComputer(Computer computer) throws Exception {
 
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		int number = 0;
-		Long id = computer.getId();
 
 		Map map = new HashMap();
-
-//		number = (int) sqlSession.selectOne(namespace + ".nextVal");
-
-		computer.setId(id);
 
 		int result = sqlSession.insert(namespace + ".insert", computer);
 		sqlSession.commit();
@@ -81,8 +75,8 @@ public class ComputerDBBean {
 		System.out.println(result);
 	}
 
-	// Cpu 媛��졇�삤湲�
-	public Computer getComputer(Long id) {
+	// Computer 가져오기
+	public Computer getComputer(int id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
 		Map map = new HashMap();
@@ -95,8 +89,8 @@ public class ComputerDBBean {
 		return computer;
 	}
 
-	// Cpu �닔�젙 Get
-	public Computer getUpdate(Long id) {
+	// Computer 수정 Get
+	public Computer getUpdate(int id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
 		Map map = new HashMap();
@@ -108,7 +102,7 @@ public class ComputerDBBean {
 		return computer;
 	}
 
-	// Cpu �닔�젙 Post
+	// Computer 수정 Post
 	public void updateComputer(Computer computer) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
@@ -118,8 +112,8 @@ public class ComputerDBBean {
 		sqlSession.close();
 	}
 
-	// Cpu �궘�젣
-	public void deleteComputer(Long id) {
+	// Computer 삭제
+	public void deleteComputer(int id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
 		Map map = new HashMap();

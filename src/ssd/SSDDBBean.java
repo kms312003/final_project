@@ -66,14 +66,8 @@ public class SSDDBBean {
 	public void insertSSD(SSD ssd) throws Exception {
 
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		int number = 0;
-		Long id = ssd.getId();
 
 		Map map = new HashMap();
-
-//		number = (int) sqlSession.selectOne(namespace + ".nextVal");
-
-		ssd.setId(id);
 
 		int result = sqlSession.insert(namespace + ".insert", ssd);
 		sqlSession.commit();
@@ -82,7 +76,7 @@ public class SSDDBBean {
 	}
 
 	// SSD 가져오기
-	public SSD getSSD(Long id) {
+	public SSD getSSD(int id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
 		Map map = new HashMap();
@@ -96,7 +90,7 @@ public class SSDDBBean {
 	}
 
 	// SSD 수정 Get
-	public SSD getUpdate(Long id) {
+	public SSD getUpdate(int id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
 		Map map = new HashMap();
@@ -119,7 +113,7 @@ public class SSDDBBean {
 	}
 
 	// SSD 삭제
-	public void deleteSSD(Long id) {
+	public void deleteSSD(int id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
 		Map map = new HashMap();

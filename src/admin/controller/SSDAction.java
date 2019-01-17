@@ -20,7 +20,7 @@ import ssd.SSDDBBean;
 
 public class SSDAction extends Action {
 
-	// ë¦¬ìŠ¤?Š¸
+	// ë¦¬ìŠ¤?ï¿½ï¿½
 	public String listGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		HttpSession session = request.getSession();
@@ -84,7 +84,7 @@ public class SSDAction extends Action {
 		return "/ssd/admin/ssdList.jsp";
 	}
 
-	// ?ž…? ¥
+	// ?ï¿½ï¿½?ï¿½ï¿½
 	public String writeGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		String pageNum = "";
@@ -152,7 +152,7 @@ public class SSDAction extends Action {
 	public String detailGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		String no = request.getParameter("id");
-		Long id = Long.parseLong(no);
+		int id = Integer.parseInt(no);
 
 		SSDDBBean dbPro = SSDDBBean.getInstance();
 		SSD ssd = new SSD();
@@ -172,7 +172,7 @@ public class SSDAction extends Action {
 
 	public String updateGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
-		Long id = Long.parseLong(request.getParameter("id"));
+		int id = Integer.parseInt(request.getParameter("id"));
 		String no = String.valueOf(id);
 
 		SSDDBBean dbPro = SSDDBBean.getInstance();
@@ -224,7 +224,7 @@ public class SSDAction extends Action {
 			SSD ssd = new SSD();
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-			ssd.setId(Long.parseLong(multi.getParameter("id")));
+			ssd.setId(Integer.parseInt(multi.getParameter("id")));
 			ssd.setProductName(multi.getParameter("productName"));
 			ssd.setProductCompany(multi.getParameter("productCompany"));
 			ssd.setDiskType(multi.getParameter("diskType"));
@@ -259,7 +259,7 @@ public class SSDAction extends Action {
 
 	public String deleteGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
-		Long id = Long.parseLong(request.getParameter("id"));
+		int id = Integer.parseInt(request.getParameter("id"));
 
 		SSDDBBean dbPro = SSDDBBean.getInstance();
 

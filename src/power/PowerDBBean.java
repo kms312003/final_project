@@ -66,14 +66,8 @@ public class PowerDBBean {
 	public void insertPower(Power power) throws Exception {
 
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		int number = 0;
-		Long id = power.getId();
 
 		Map map = new HashMap();
-
-//		number = (int) sqlSession.selectOne(namespace + ".nextVal");
-
-		power.setId(id);
 
 		int result = sqlSession.insert(namespace + ".insert", power);
 		sqlSession.commit();
@@ -82,7 +76,7 @@ public class PowerDBBean {
 	}
 
 	// Power 가져오기
-	public Power getPower(Long id) {
+	public Power getPower(int id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
 		Map map = new HashMap();
@@ -96,7 +90,7 @@ public class PowerDBBean {
 	}
 
 	// Power 수정 Get
-	public Power getUpdate(Long id) {
+	public Power getUpdate(int id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
 		Map map = new HashMap();
@@ -119,7 +113,7 @@ public class PowerDBBean {
 	}
 
 	// Power 삭제
-	public void deletePower(Long id) {
+	public void deletePower(int id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
 		Map map = new HashMap();

@@ -6,7 +6,7 @@
   <mapper namespace="mapper.hdd">
      
      <select id = "getHDDCount" resultType="int">
-        select if null(count(*),0) from hdd
+        select ifnull(count(*),0) from hdd
      </select>
      
      <select id = "getHDDs" parameterType="hashmap" resultType="hdd">

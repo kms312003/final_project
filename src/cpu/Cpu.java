@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Cpu {
 	
-	private Long id;				// PK
+	private int id;				// PK
 	private String productName;     // �젣�뭹紐�
 	private String productCompany;  // �젣議고쉶�궗
 	private String brand;	        // 釉뚮옖�뱶 遺꾨쪟
@@ -29,10 +29,10 @@ public class Cpu {
 				+ ", tdp=" + tdp + ", productDate=" + productDate + ", regDate=" + regDate + ", price=" + price
 				+ ", count=" + count + ", filename=" + filename + ", filesize=" + filesize + "]";
 	}
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getProductName() {

@@ -39,27 +39,17 @@ public class BasketDBBean {
 		return new SqlSessionFactoryBuilder().build(inputStream);
 	}
 
-	// Cpu 갯수
-	public int getCpuCount() {
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
-
-		try {
-			return (int) sqlSession.selectOne(namespace + ".getCpuCount");
-		} finally {
-			sqlSession.close();
-		}
-	}
-
-	// Cpu 리스트 가져오기
-	public List getCpuList(int start, int end) throws Exception {
-
+	// 로그인한 유저 장바구니 상품 갯수
+	public List getBaskets(int userId, int start, int end) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
 		Map map = new HashMap();
+		map.put("userId", userId);
 		map.put("start", start);
 		map.put("end", end);
+		
 		try {
-			return sqlSession.selectList(namespace + ".getCpus", map);
+			return sqlSession.selectList(namespace + ".getBaskets", map);
 		} finally {
 			sqlSession.close();
 		}
@@ -69,14 +59,8 @@ public class BasketDBBean {
 	public void insertCpu(Cpu cpu) throws Exception {
 
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		int number = 0;
-		Long id = cpu.getId();
 
 		Map map = new HashMap();
-
-//		number = (int) sqlSession.selectOne(namespace + ".nextVal");
-
-		cpu.setId(id);
 
 		int result = sqlSession.insert(namespace + ".insert", cpu);
 		sqlSession.commit();
@@ -85,7 +69,7 @@ public class BasketDBBean {
 	}
 
 	// Cpu 가져오기
-	public Cpu getCpu(Long id) {
+	public Cpu getCpu(int id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
 		Map map = new HashMap();
@@ -99,7 +83,7 @@ public class BasketDBBean {
 	}
 
 	// Cpu 수정 Get
-	public Cpu getUpdate(Long id) {
+	public Cpu getUpdate(int id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
 		Map map = new HashMap();
@@ -122,7 +106,7 @@ public class BasketDBBean {
 	}
 
 	// Cpu 삭제
-	public void deleteCpu(Long id) {
+	public void deleteCpu(int id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
 		Map map = new HashMap();

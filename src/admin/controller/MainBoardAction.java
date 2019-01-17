@@ -19,7 +19,7 @@ import mainboard.MainBoardDBBean;
 
 public class MainBoardAction extends Action {
 
-	// ë¦¬ìŠ¤?Š¸
+	// ë¦¬ìŠ¤?ï¿½ï¿½
 	public String listGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		HttpSession session = request.getSession();
@@ -83,7 +83,7 @@ public class MainBoardAction extends Action {
 		return "/mainboard/admin/mainBoardList.jsp";
 	}
 
-	// ?ž…? ¥
+	// ?ï¿½ï¿½?ï¿½ï¿½
 	public String writeGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		String pageNum = "";
@@ -151,7 +151,7 @@ public class MainBoardAction extends Action {
 	public String detailGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		String no = request.getParameter("id");
-		Long id = Long.parseLong(no);
+		int id = Integer.parseInt(no);
 
 		MainBoardDBBean dbPro = MainBoardDBBean.getInstance();
 		MainBoard mainboard = new MainBoard();
@@ -171,7 +171,7 @@ public class MainBoardAction extends Action {
 
 	public String updateGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
-		Long id = Long.parseLong(request.getParameter("id"));
+		int id = Integer.parseInt(request.getParameter("id"));
 		String no = String.valueOf(id);
 
 		MainBoardDBBean dbPro = MainBoardDBBean.getInstance();
@@ -224,7 +224,7 @@ public class MainBoardAction extends Action {
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 
 			
-			mainboard.setId(Long.parseLong(multi.getParameter("id")));
+			mainboard.setId(Integer.parseInt(multi.getParameter("id")));
 			mainboard.setProductName(multi.getParameter("productName"));
 			mainboard.setProductCompany(multi.getParameter("productCompany"));
 			mainboard.setCpuSocket(multi.getParameter("cpuSocket"));
@@ -259,7 +259,7 @@ public class MainBoardAction extends Action {
 
 	public String deleteGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
-		Long id = Long.parseLong(request.getParameter("id"));
+		int id = Integer.parseInt(request.getParameter("id"));
 
 		MainBoardDBBean dbPro = MainBoardDBBean.getInstance();
 

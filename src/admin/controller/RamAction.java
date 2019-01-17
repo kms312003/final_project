@@ -19,7 +19,7 @@ import ram.RamDBBean;
 
 public class RamAction extends Action {
 
-	// ë¦¬ìŠ¤?Š¸
+	// ë¦¬ìŠ¤?ï¿½ï¿½
 	public String listGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		HttpSession session = request.getSession();
@@ -83,7 +83,7 @@ public class RamAction extends Action {
 		return "/ram/admin/ramList.jsp";
 	}
 
-	// ?ž…? ¥
+	// ?ï¿½ï¿½?ï¿½ï¿½
 	public String writeGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		String pageNum = "";
@@ -148,7 +148,7 @@ public class RamAction extends Action {
 	public String detailGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		String no = request.getParameter("id");
-		Long id = Long.parseLong(no);
+		int id = Integer.parseInt(no);
 
 		RamDBBean dbPro = RamDBBean.getInstance();
 		Ram ram = new Ram();
@@ -168,7 +168,7 @@ public class RamAction extends Action {
 
 	public String updateGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
-		Long id = Long.parseLong(request.getParameter("id"));
+		int id = Integer.parseInt(request.getParameter("id"));
 		String no = String.valueOf(id);
 
 		RamDBBean dbPro = RamDBBean.getInstance();
@@ -220,7 +220,7 @@ public class RamAction extends Action {
 			Ram ram = new Ram();
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-			ram.setId(Long.parseLong(multi.getParameter("id")));
+			ram.setId(Integer.parseInt(multi.getParameter("id")));
 			ram.setProductName(multi.getParameter("productName"));
 			ram.setProductCompany(multi.getParameter("productCompany"));
 			ram.setProductSort(multi.getParameter("productSort"));
@@ -253,7 +253,7 @@ public class RamAction extends Action {
 
 	public String deleteGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
-		Long id = Long.parseLong(request.getParameter("id"));
+		int id = Integer.parseInt(request.getParameter("id"));
 
 		RamDBBean dbPro = RamDBBean.getInstance();
 

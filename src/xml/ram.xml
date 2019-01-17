@@ -6,7 +6,7 @@
   <mapper namespace="mapper.ram">
      
      <select id = "getRamCount" resultType="int">
-        select if null(count(*),0) from ram
+        select ifnull(count(*),0) from ram
      </select>
      
      <select id = "getRams" parameterType="hashmap" resultType="ram">

@@ -19,7 +19,7 @@ import power.PowerDBBean;
 
 public class PowerAction extends Action {
 
-	// ë¦¬ìŠ¤?Š¸
+	// ë¦¬ìŠ¤?ï¿½ï¿½
 	public String listGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		HttpSession session = request.getSession();
@@ -83,7 +83,7 @@ public class PowerAction extends Action {
 		return "/power/admin/powerList.jsp";
 	}
 
-	// ?ž…? ¥
+	// ?ï¿½ï¿½?ï¿½ï¿½
 	public String writeGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		String pageNum = "";
@@ -147,7 +147,7 @@ public class PowerAction extends Action {
 	public String detailGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		String no = request.getParameter("id");
-		Long id = Long.parseLong(no);
+		int id = Integer.parseInt(no);
 
 		PowerDBBean dbPro = PowerDBBean.getInstance();
 		Power power = new Power();
@@ -167,7 +167,7 @@ public class PowerAction extends Action {
 
 	public String updateGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
-		Long id = Long.parseLong(request.getParameter("id"));
+		int id = Integer.parseInt(request.getParameter("id"));
 		String no = String.valueOf(id);
 
 		PowerDBBean dbPro = PowerDBBean.getInstance();
@@ -219,7 +219,7 @@ public class PowerAction extends Action {
 			Power power = new Power();
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-			power.setId(Long.parseLong(multi.getParameter("id")));
+			power.setId(Integer.parseInt(multi.getParameter("id")));
 			power.setProductName(multi.getParameter("productName"));
 			power.setProductCompany(multi.getParameter("productCompany"));
 			power.setProductSort(multi.getParameter("productSort"));
@@ -252,7 +252,7 @@ public class PowerAction extends Action {
 
 	public String deleteGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
-		Long id = Long.parseLong(request.getParameter("id"));
+		int id = Integer.parseInt(request.getParameter("id"));
 
 		PowerDBBean dbPro = PowerDBBean.getInstance();
 
