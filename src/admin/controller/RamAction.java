@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import product.ProductCode;
 import ram.Ram;
 import ram.RamDBBean;
 
@@ -120,7 +121,14 @@ public class RamAction extends Action {
 			Ram ram = new Ram();
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-			ram.setId(Integer.parseInt(multi.getParameter("id")));
+			ProductCode productC = new ProductCode();
+			
+			String productDate = multi.getParameter("productDate");
+			String productNum = "03";
+			String productCode = productC.productCode(productDate, productNum);
+			
+//			ram.setId(Integer.parseInt(multi.getParameter("id")));
+			ram.setProductCode(productCode);
 			ram.setProductName(multi.getParameter("productName"));
 			ram.setProductCompany(multi.getParameter("productCompany"));
 			ram.setProductSort(multi.getParameter("productSort"));
@@ -220,7 +228,12 @@ public class RamAction extends Action {
 			Ram ram = new Ram();
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 
+			String productDate = multi.getParameter("productDate").replaceAll("-", "").substring(4, 8);
+			String productCode = multi.getParameter("productCode");
+			String updateProductCode = productCode.replace(productCode.substring(0, 4), productDate);
+			
 			ram.setId(Integer.parseInt(multi.getParameter("id")));
+			ram.setProductCode(updateProductCode);
 			ram.setProductName(multi.getParameter("productName"));
 			ram.setProductCompany(multi.getParameter("productCompany"));
 			ram.setProductSort(multi.getParameter("productSort"));

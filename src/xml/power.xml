@@ -14,9 +14,9 @@
      </select>
      
      <insert id="insert" parameterType="power">
-        insert into power(id, productName, productCompany, productSort, nominalOutput,
+        insert into power(id, productCode, productName, productCompany, productSort, nominalOutput,
                ratedOutput, productDate, regDate, price, count, filename, filesize) 
-               values(0, #{productName},#{productCompany},#{productSort},#{nominalOutput},#{ratedOutput}
+               values(0, #{productCode}, #{productName},#{productCompany},#{productSort},#{nominalOutput},#{ratedOutput}
       ,#{productDate},curdate(),#{price},#{count}, #{filename},#{filesize})
      </insert>
      
@@ -29,7 +29,7 @@
      </update>
      
      <update id="update" parameterType="power">
-        update power set productName=#{productName}, productCompany=#{productCompany}, productSort=#{productSort}, 
+        update power set productCode=#{productCode}, productName=#{productName}, productCompany=#{productCompany}, productSort=#{productSort}, 
         nominalOutput= #{nominalOutput}, ratedOutput=#{ratedOutput}, productDate=#{productDate}, price=#{price}, filename=#{filename}, filesize=#{filesize} where id=#{id}
      </update>
      

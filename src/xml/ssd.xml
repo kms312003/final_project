@@ -14,9 +14,9 @@
      </select>
      
      <insert id="insert" parameterType="ssd">
-        insert into ssd(id, productName, productCompany, diskType, diskCapacity,
+        insert into ssd(id, productCode, productName, productCompany, diskType, diskCapacity,
                interFace, memoryType, readSpeed, writeSpeed, productDate, regDate, price, count, filename, filesize) 
-               values(0, #{productName},#{productCompany},#{diskType},#{diskCapacity},#{interFace}
+               values(0, #{productCode}, #{productName},#{productCompany},#{diskType},#{diskCapacity},#{interFace}
       ,#{memoryType},#{readSpeed},#{writeSpeed},#{productDate},curdate(),#{price},#{count}, #{filename},#{filesize})
      </insert>
      
@@ -29,7 +29,7 @@
      </update>
      
      <update id="update" parameterType="ssd">
-        update ssd set productName=#{productName}, productCompany=#{productCompany}, diskType=#{diskType}, 
+        update ssd set productCode=#{productCode}, productName=#{productName}, productCompany=#{productCompany}, diskType=#{diskType}, 
         diskCapacity= #{diskCapacity}, interFace=#{interFace}, memoryType=#{memoryType}, readSpeed=#{readSpeed}, writeSpeed=#{writeSpeed}, productDate=#{productDate}, price=#{price}, filename=#{filename}, filesize=#{filesize} where id=#{id}
      </update>
      

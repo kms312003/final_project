@@ -16,6 +16,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import cpu.Cpu;
 import cpu.CpuDBBean;
+import product.ProductCode;
 
 public class CpuAction extends Action {
 
@@ -105,7 +106,7 @@ public class CpuAction extends Action {
 
 		try {
 			multi = new MultipartRequest(request, realFolder, maxSize, encType, new DefaultFileRenamePolicy());
-
+			
 			Enumeration files = multi.getFileNames();
 			String filename = "";
 			int filesize = 0;
@@ -120,7 +121,16 @@ public class CpuAction extends Action {
 			Cpu cpu = new Cpu();
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 			
-			cpu.setId(Integer.parseInt(multi.getParameter("id")));
+			ProductCode productC = new ProductCode();
+			
+			String productDate = multi.getParameter("productDate");
+			String productNum = "01";
+			String productCode = productC.productCode(productDate, productNum);
+			System.out.println("productDate1: " + productDate);
+			System.out.println("productCode1: " + productCode);
+			
+//			cpu.setId(Integer.parseInt(multi.getParameter("id")));
+			cpu.setProductCode(productCode);
 			cpu.setProductName(multi.getParameter("productName"));
 			cpu.setProductCompany(multi.getParameter("productCompany"));
 			cpu.setBrand(multi.getParameter("brand"));
@@ -222,7 +232,15 @@ public class CpuAction extends Action {
 			Cpu cpu = new Cpu();
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 
+			String productDate = multi.getParameter("productDate").replaceAll("-", "").substring(4, 8);
+			String productCode = multi.getParameter("productCode");
+			String updateProductCode = productCode.replace(productCode.substring(0, 4), productDate);
+			System.out.println("productDate: " + productDate);
+			System.out.println("productCode: " + productCode);
+			System.out.println("updateProductCode: " + updateProductCode);
+			
 			cpu.setId(Integer.parseInt(multi.getParameter("id")));
+			cpu.setProductCode(updateProductCode);
 			cpu.setProductName(multi.getParameter("productName"));
 			cpu.setProductCompany(multi.getParameter("productCompany"));
 			cpu.setBrand(multi.getParameter("brand"));

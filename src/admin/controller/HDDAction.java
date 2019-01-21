@@ -16,6 +16,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import hdd.HDD;
 import hdd.HDDDBBean;
+import product.ProductCode;
 
 public class HDDAction extends Action {
 
@@ -120,7 +121,14 @@ public class HDDAction extends Action {
 			HDD hdd = new HDD();
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-			hdd.setId(Integer.parseInt(multi.getParameter("id")));
+			ProductCode productC = new ProductCode();
+			
+			String productDate = multi.getParameter("productDate");
+			String productNum = "05";
+			String productCode = productC.productCode(productDate, productNum);
+			
+//			hdd.setId(Integer.parseInt(multi.getParameter("id")));
+			hdd.setProductCode(productCode);
 			hdd.setProductName(multi.getParameter("productName"));
 			hdd.setProductCompany(multi.getParameter("productCompany"));
 			hdd.setInterFace(multi.getParameter("interFace"));
@@ -220,7 +228,12 @@ public class HDDAction extends Action {
 			HDD hdd = new HDD();
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 
+			String productDate = multi.getParameter("productDate").replaceAll("-", "").substring(4, 8);
+			String productCode = multi.getParameter("productCode");
+			String updateProductCode = productCode.replace(productCode.substring(0, 4), productDate);
+			
 			hdd.setId(Integer.parseInt(multi.getParameter("id")));
+			hdd.setProductCode(updateProductCode);
 			hdd.setProductName(multi.getParameter("productName"));
 			hdd.setProductCompany(multi.getParameter("productCompany"));
 			hdd.setInterFace(multi.getParameter("interFace"));

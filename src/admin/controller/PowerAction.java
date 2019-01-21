@@ -16,6 +16,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import power.Power;
 import power.PowerDBBean;
+import product.ProductCode;
 
 public class PowerAction extends Action {
 
@@ -120,7 +121,14 @@ public class PowerAction extends Action {
 			Power power = new Power();
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-			power.setId(Integer.parseInt(multi.getParameter("id")));
+			ProductCode productC = new ProductCode();
+			
+			String productDate = multi.getParameter("productDate");
+			String productNum = "07";
+			String productCode = productC.productCode(productDate, productNum);
+			
+//			power.setId(Integer.parseInt(multi.getParameter("id")));
+			power.setProductCode(productCode);
 			power.setProductName(multi.getParameter("productName"));
 			power.setProductCompany(multi.getParameter("productCompany"));
 			power.setProductSort(multi.getParameter("productSort"));
@@ -219,7 +227,12 @@ public class PowerAction extends Action {
 			Power power = new Power();
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 
+			String productDate = multi.getParameter("productDate").replaceAll("-", "").substring(4, 8);
+			String productCode = multi.getParameter("productCode");
+			String updateProductCode = productCode.replace(productCode.substring(0, 4), productDate);
+			
 			power.setId(Integer.parseInt(multi.getParameter("id")));
+			power.setProductCode(updateProductCode);
 			power.setProductName(multi.getParameter("productName"));
 			power.setProductCompany(multi.getParameter("productCompany"));
 			power.setProductSort(multi.getParameter("productSort"));

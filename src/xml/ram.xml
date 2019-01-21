@@ -14,9 +14,9 @@
      </select>
      
      <insert id="insert" parameterType="ram">
-        insert into ram(id, productName, productCompany, productSort, memoryCapacity,
+        insert into ram(id, productCode, productName, productCompany, productSort, memoryCapacity,
                clock, voltage, productDate, regDate, price, count, filename, filesize) 
-               values(0, #{productName},#{productCompany},#{productSort},#{memoryCapacity},#{clock}
+               values(0, #{productCode}, #{productName},#{productCompany},#{productSort},#{memoryCapacity},#{clock}
       ,#{voltage},#{productDate},curdate(),#{price},#{count}, #{filename},#{filesize})
      </insert>
      
@@ -29,7 +29,7 @@
      </update>
      
      <update id="update" parameterType="ram">
-        update ram set productName=#{productName}, productCompany=#{productCompany}, productSort=#{productSort}, 
+        update ram set productCode=#{productCode}, productName=#{productName}, productCompany=#{productCompany}, productSort=#{productSort}, 
         memoryCapacity= #{memoryCapacity}, clock=#{clock}, voltage=#{voltage}, productDate=#{productDate}, price=#{price}, filename=#{filename}, filesize=#{filesize} where id=#{id}
      </update>
      

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import product.ProductCode;
 import ssd.SSD;
 import ssd.SSDDBBean;
 
@@ -121,7 +122,14 @@ public class SSDAction extends Action {
 			SSD ssd = new SSD();
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-			ssd.setId(Integer.parseInt(multi.getParameter("id")));
+			ProductCode productC = new ProductCode();
+			
+			String productDate = multi.getParameter("productDate");
+			String productNum = "06";
+			String productCode = productC.productCode(productDate, productNum);
+			
+//			ssd.setId(Integer.parseInt(multi.getParameter("id")));
+			ssd.setProductCode(productCode);
 			ssd.setProductName(multi.getParameter("productName"));
 			ssd.setProductCompany(multi.getParameter("productCompany"));
 			ssd.setDiskType(multi.getParameter("diskType"));
@@ -224,7 +232,12 @@ public class SSDAction extends Action {
 			SSD ssd = new SSD();
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 
+			String productDate = multi.getParameter("productDate").replaceAll("-", "").substring(4, 8);
+			String productCode = multi.getParameter("productCode");
+			String updateProductCode = productCode.replace(productCode.substring(0, 4), productDate);
+			
 			ssd.setId(Integer.parseInt(multi.getParameter("id")));
+			ssd.setProductCode(updateProductCode);
 			ssd.setProductName(multi.getParameter("productName"));
 			ssd.setProductCompany(multi.getParameter("productCompany"));
 			ssd.setDiskType(multi.getParameter("diskType"));

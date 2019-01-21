@@ -16,6 +16,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import mainboard.MainBoard;
 import mainboard.MainBoardDBBean;
+import product.ProductCode;
 
 public class MainBoardAction extends Action {
 
@@ -120,7 +121,14 @@ public class MainBoardAction extends Action {
 			MainBoard mainboard = new MainBoard();
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-			mainboard.setId(Integer.parseInt(multi.getParameter("id")));
+			ProductCode productC = new ProductCode();
+			
+			String productDate = multi.getParameter("productDate");
+			String productNum = "02";
+			String productCode = productC.productCode(productDate, productNum);
+			
+//			mainboard.setId(Integer.parseInt(multi.getParameter("id")));
+			mainboard.setProductCode(productCode);
 			mainboard.setProductName(multi.getParameter("productName"));
 			mainboard.setProductCompany(multi.getParameter("productCompany"));
 			mainboard.setCpuSocket(multi.getParameter("cpuSocket"));
@@ -223,8 +231,12 @@ public class MainBoardAction extends Action {
 			MainBoard mainboard = new MainBoard();
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 
+			String productDate = multi.getParameter("productDate").replaceAll("-", "").substring(4, 8);
+			String productCode = multi.getParameter("productCode");
+			String updateProductCode = productCode.replace(productCode.substring(0, 4), productDate);
 			
 			mainboard.setId(Integer.parseInt(multi.getParameter("id")));
+			mainboard.setProductCode(updateProductCode);
 			mainboard.setProductName(multi.getParameter("productName"));
 			mainboard.setProductCompany(multi.getParameter("productCompany"));
 			mainboard.setCpuSocket(multi.getParameter("cpuSocket"));

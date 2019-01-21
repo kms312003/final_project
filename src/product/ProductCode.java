@@ -6,14 +6,12 @@ import java.util.Random;
 
 public class ProductCode {
 
-	SimpleDateFormat transFormat = new SimpleDateFormat("yyMMdd");
-
-	public String productCode(Date productDate, String productNum) {
+	public String productCode(String productDate, String productNum) {
 
 		// 제품등록날짜(달 + 일 4자리) + 제품번호 2자리 + 랜덤 4자리
 		String productCode = "";
-		String productDateS = transFormat.format(productDate).substring(2, 6);
-
+		String productDate2 = productDate.replaceAll("-", "").substring(4, 8);
+		
 		Random rand = new Random();
 		String random = "";
 		
@@ -23,7 +21,7 @@ public class ProductCode {
 			random += ran;
 		}
 		
-		productCode = productDateS + productNum + random;
+		productCode = productDate2 + productNum + random;
 
 		return productCode;
 	}

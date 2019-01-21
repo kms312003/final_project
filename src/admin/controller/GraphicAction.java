@@ -16,6 +16,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import graphic.Graphic;
 import graphic.GraphicDBBean;
+import product.ProductCode;
 
 public class GraphicAction extends Action {
 //
@@ -121,7 +122,14 @@ public class GraphicAction extends Action {
 			Graphic graphic = new Graphic();
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-			graphic.setId(Integer.parseInt(multi.getParameter("id")));
+			ProductCode productC = new ProductCode();
+			
+			String productDate = multi.getParameter("productDate");
+			String productNum = "04";
+			String productCode = productC.productCode(productDate, productNum);
+			
+//			graphic.setId(Integer.parseInt(multi.getParameter("id")));
+			graphic.setProductCode(productCode);
 			graphic.setProductName(multi.getParameter("productName"));
 			graphic.setProductCompany(multi.getParameter("productCompany"));
 			graphic.setChipSetGroup(multi.getParameter("chipSetGroup"));
@@ -133,7 +141,6 @@ public class GraphicAction extends Action {
 			graphic.setMaxMonitor(Integer.parseInt(multi.getParameter("maxMonitor")));
 			graphic.setLength(Integer.parseInt(multi.getParameter("length")));
 			graphic.setPrice(Integer.parseInt(multi.getParameter("price")));
-			//graphic.setCount(Integer.parseInt(multi.getParameter("count")));
 			graphic.setFilename(filename);
 			if (file != null) {
 				filesize = (int) file.length();
@@ -224,7 +231,12 @@ public class GraphicAction extends Action {
 			Graphic graphic = new Graphic();
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 
+			String productDate = multi.getParameter("productDate").replaceAll("-", "").substring(4, 8);
+			String productCode = multi.getParameter("productCode");
+			String updateProductCode = productCode.replace(productCode.substring(0, 4), productDate);
+			
 			graphic.setId(Integer.parseInt(multi.getParameter("id")));
+			graphic.setProductCode(updateProductCode);
 			graphic.setProductName(multi.getParameter("productName"));
 			graphic.setProductCompany(multi.getParameter("productCompany"));
 			graphic.setChipSetGroup(multi.getParameter("chipSetGroup"));

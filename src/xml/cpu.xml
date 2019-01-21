@@ -14,9 +14,9 @@
      </select>
      
      <insert id="insert" parameterType="cpu">
-        insert into cpu(id, productName, productCompany, brand, socket,
+        insert into cpu(id, productCode, productName, productCompany, brand, socket,
                core, thread, clockSpeed, tdp, productDate, regDate, price, count, filename, filesize) 
-               values(0, #{productName},#{productCompany},#{brand},#{socket},#{core}
+               values(0, #{productCode}, #{productName},#{productCompany},#{brand},#{socket},#{core}
       ,#{thread},#{clockSpeed},#{tdp},#{productDate},curdate(),#{price},#{count}, #{filename},#{filesize})
      </insert>
      
@@ -29,7 +29,7 @@
      </update>
      
      <update id="update" parameterType="cpu">
-        update cpu set productName=#{productName}, productCompany=#{productCompany}, brand=#{brand}, 
+        update cpu set productCode=#{productCode}, productName=#{productName}, productCompany=#{productCompany}, brand=#{brand}, 
         socket= #{socket}, core=#{core}, thread=#{thread}, clockSpeed=#{clockSpeed}, tdp=#{tdp}, productDate=#{productDate}, price=#{price}, filename=#{filename}, filesize=#{filesize} where id=#{id}
      </update>
      

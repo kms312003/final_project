@@ -14,9 +14,9 @@
      </select>
      
      <insert id="insert" parameterType="mainboard">
-        insert into mainboard(id, productName, productCompany, cpuSocket, chipSet,
+        insert into mainboard(id, productCode, productName, productCompany, cpuSocket, chipSet,
                formFactor, memoryType, productSort, memorySlot, productDate, regDate, price, count, filename, filesize) 
-               values(0, #{productName},#{productCompany},#{cpuSocket},#{chipSet},#{formFactor}
+               values(0, #{productCode}, #{productName},#{productCompany},#{cpuSocket},#{chipSet},#{formFactor}
       ,#{memoryType},#{productSort},#{memorySlot},#{productDate},curdate(),#{price},#{count}, #{filename},#{filesize})
      </insert>
      
@@ -29,7 +29,7 @@
      </update>
      
      <update id="update" parameterType="mainboard">
-        update mainboard set productName=#{productName}, productCompany=#{productCompany}, cpuSocket=#{cpuSocket}, 
+        update mainboard set productCode=#{productCode}, productName=#{productName}, productCompany=#{productCompany}, cpuSocket=#{cpuSocket}, 
         chipSet= #{chipSet}, formFactor=#{formFactor}, memoryType=#{memoryType}, productSort=#{productSort}, memorySlot=#{memorySlot}, productDate=#{productDate}, price=#{price}, filename=#{filename}, filesize=#{filesize} where id=#{id}
      </update>
      

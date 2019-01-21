@@ -14,9 +14,9 @@
      </select>
      
      <insert id="insert" parameterType="Graphic">
-        insert into graphic(id, productName, productCompany, chipSetGroup, interFace, powerPort,
+        insert into graphic(id, productCode, productName, productCompany, chipSetGroup, interFace, powerPort,
          memoryCapacity, nvidiaChipSet, maxPower, maxMonitor, length, productDate, regDate, price, count, filename, filesize) 
-               values(0, #{productName},#{productCompany},#{chipSetGroup},#{interFace},#{powerPort}
+               values(0, #{productCode}, #{productName},#{productCompany},#{chipSetGroup},#{interFace},#{powerPort}
       ,#{memoryCapacity},#{nvidiaChipSet},#{maxPower},#{maxMonitor},#{length},#{productDate},curdate(),#{price},#{count}, #{filename},#{filesize})
      </insert>
      
@@ -29,7 +29,7 @@
      </update>
      
      <update id="update" parameterType="graphic">
-        update graphic set productName=#{productName}, productCompany=#{productCompany}, chipSetGroup=#{chipSetGroup}, 
+        update graphic set productCode=#{productCode}, productName=#{productName}, productCompany=#{productCompany}, chipSetGroup=#{chipSetGroup}, 
         interFace= #{interFace}, powerPort=#{powerPort}, memoryCapacity=#{memoryCapacity}, nvidiaChipSet=#{nvidiaChipSet}, maxPower=#{maxPower}, maxMonitor=#{maxMonitor}, length=#{length}, productDate=#{productDate}, price=#{price}, filename=#{filename}, filesize=#{filesize} where id=#{id}
      </update>
      

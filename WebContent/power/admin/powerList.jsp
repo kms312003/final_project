@@ -82,10 +82,12 @@
 			</span>
 		</div>
 
-		<table class="table table-bordered table-hover" width="1100">
+		<table class="table table-bordered table-hover" width="1200">
 			<tr class="w3-grey">
 				<td align="center" width="50">번호</td>
+				<td align="center" width="100">제품코드</td>
 				<td align="center" width="200">제품명</td>
+				
 				<td align="center" width="100">제조회사</td>
 				<td align="center" width="150">제품 분류</td>
 				<td align="center" width="150">표기 출력</td>
@@ -97,7 +99,7 @@
 			
 			<c:if test="${powerList == null}">
 				<tr >
-					<td colspan="9" align="center">등록된 제품이 없습니다.</td>
+					<td colspan="10" align="center">등록된 제품이 없습니다.</td>
 				</tr>
 			</c:if>
 			
@@ -109,6 +111,7 @@
 				<tr>
 					<td align="center" width="50">${number}</td>
 					<c:set var="number" value="${number-1}"/>
+					<td align="center" width="100">${ power.productCode}</td>
 					<td align="center" width="200">${ power.productName}</td>
 					<td align="center" width="100">${ power.productCompany }</td>
 					<td align="center" width="150">${ power.productSort }</td>
