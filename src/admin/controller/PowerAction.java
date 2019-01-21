@@ -19,7 +19,7 @@ import power.PowerDBBean;
 
 public class PowerAction extends Action {
 
-	// 리스?��
+	// 리스트
 	public String listGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		HttpSession session = request.getSession();
@@ -83,7 +83,7 @@ public class PowerAction extends Action {
 		return "/power/admin/powerList.jsp";
 	}
 
-	// ?��?��
+	// 입력
 	public String writeGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		String pageNum = "";
@@ -120,13 +120,13 @@ public class PowerAction extends Action {
 			Power power = new Power();
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-			// power.setId(Long.parseLong(multi.getParameter("id")));
+			power.setId(Integer.parseInt(multi.getParameter("id")));
 			power.setProductName(multi.getParameter("productName"));
 			power.setProductCompany(multi.getParameter("productCompany"));
 			power.setProductSort(multi.getParameter("productSort"));
 			power.setNominalOutput(Integer.parseInt(multi.getParameter("nominalOutput")));
 			power.setRatedOutput(Integer.parseInt(multi.getParameter("ratedOutput")));
-			// power.setProductDate(transFormat.parse(multi.getParameter("productDate")));
+			power.setProductDate(transFormat.parse(multi.getParameter("productDate")));
 			power.setPrice(Integer.parseInt(multi.getParameter("price")));
 			power.setFilename(filename);
 			if (file != null) {
@@ -227,6 +227,7 @@ public class PowerAction extends Action {
 			power.setRatedOutput(Integer.parseInt(multi.getParameter("ratedOutput")));
 			power.setProductDate(transFormat.parse(multi.getParameter("productDate")));
 			power.setPrice(Integer.parseInt(multi.getParameter("price")));
+			
 			if (file != null) {
 				power.setFilename(filename);
 				filesize = (int) file.length();

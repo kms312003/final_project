@@ -19,7 +19,7 @@ import ram.RamDBBean;
 
 public class RamAction extends Action {
 
-	// 리스?��
+	// 리스트
 	public String listGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		HttpSession session = request.getSession();
@@ -83,7 +83,7 @@ public class RamAction extends Action {
 		return "/ram/admin/ramList.jsp";
 	}
 
-	// ?��?��
+	// 입력
 	public String writeGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		String pageNum = "";
@@ -120,14 +120,14 @@ public class RamAction extends Action {
 			Ram ram = new Ram();
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-			// ram.setId(Long.parseLong(multi.getParameter("id")));
+			ram.setId(Integer.parseInt(multi.getParameter("id")));
 			ram.setProductName(multi.getParameter("productName"));
 			ram.setProductCompany(multi.getParameter("productCompany"));
 			ram.setProductSort(multi.getParameter("productSort"));
 			ram.setMemoryCapacity(Integer.parseInt(multi.getParameter("memoryCapacity")));
 			ram.setClock(Integer.parseInt(multi.getParameter("clock")));
 			ram.setVoltage(Integer.parseInt(multi.getParameter("voltage")));
-			// ram.setProductDate(transFormat.parse(multi.getParameter("productDate")));
+			ram.setProductDate(transFormat.parse(multi.getParameter("productDate")));
 			ram.setPrice(Integer.parseInt(multi.getParameter("price")));
 			ram.setFilename(filename);
 			if (file != null) {
@@ -229,6 +229,7 @@ public class RamAction extends Action {
 			ram.setVoltage(Integer.parseInt(multi.getParameter("voltage")));
 			ram.setProductDate(transFormat.parse(multi.getParameter("productDate")));
 			ram.setPrice(Integer.parseInt(multi.getParameter("price")));
+			
 			if (file != null) {
 				ram.setFilename(filename);
 				filesize = (int) file.length();

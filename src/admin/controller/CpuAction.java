@@ -119,8 +119,8 @@ public class CpuAction extends Action {
 
 			Cpu cpu = new Cpu();
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
-
-			// cpu.setId(Long.parseLong(multi.getParameter("id")));
+			
+			cpu.setId(Integer.parseInt(multi.getParameter("id")));
 			cpu.setProductName(multi.getParameter("productName"));
 			cpu.setProductCompany(multi.getParameter("productCompany"));
 			cpu.setBrand(multi.getParameter("brand"));
@@ -129,7 +129,7 @@ public class CpuAction extends Action {
 			cpu.setThread(Integer.parseInt(multi.getParameter("thread")));
 			cpu.setClockSpeed(Integer.parseInt(multi.getParameter("clockSpeed")));
 			cpu.setTdp(Integer.parseInt(multi.getParameter("tdp")));
-			// cpu.setProductDate(transFormat.parse(multi.getParameter("productDate")));
+			cpu.setProductDate(transFormat.parse(multi.getParameter("productDate")));
 			cpu.setPrice(Integer.parseInt(multi.getParameter("price")));
 			cpu.setFilename(filename);
 			if (file != null) {

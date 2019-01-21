@@ -4,7 +4,8 @@ import java.util.Date;
 
 public class SSD {
 
-	private int id;				// PK
+	private int id;					// PK
+	private String productCode;		// 제품코드
 	private String productName;     // 제품
 	private String productCompany;  // 제조회사
 	private String diskType;		// 디스크 타입
@@ -20,11 +21,26 @@ public class SSD {
 	private String filename;		// 파일 이름
 	private int filesize;			// 파일 사이즈
 	
+	@Override
+	public String toString() {
+		return "SSD [id=" + id + ", productCode=" + productCode + ", productName=" + productName + ", productCompany="
+				+ productCompany + ", diskType=" + diskType + ", diskCapacity=" + diskCapacity + ", interFace="
+				+ interFace + ", memoryType=" + memoryType + ", readSpeed=" + readSpeed + ", writeSpeed=" + writeSpeed
+				+ ", productDate=" + productDate + ", regDate=" + regDate + ", price=" + price + ", count=" + count
+				+ ", filename=" + filename + ", filesize=" + filesize + "]";
+	}
+	
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public String getProductCode() {
+		return productCode;
+	}
+	public void setProductCode(String productCode) {
+		this.productCode = productCode;
 	}
 	public String getProductName() {
 		return productName;

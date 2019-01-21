@@ -19,7 +19,7 @@ import hdd.HDDDBBean;
 
 public class HDDAction extends Action {
 
-	// 리스?��
+	// 리스트
 	public String listGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		HttpSession session = request.getSession();
@@ -83,7 +83,7 @@ public class HDDAction extends Action {
 		return "/hdd/admin/hddList.jsp";
 	}
 
-	// ?��?��
+	// 입력
 	public String writeGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		String pageNum = "";
@@ -120,7 +120,7 @@ public class HDDAction extends Action {
 			HDD hdd = new HDD();
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-			// hdd.setId(Long.parseLong(multi.getParameter("id")));
+			hdd.setId(Integer.parseInt(multi.getParameter("id")));
 			hdd.setProductName(multi.getParameter("productName"));
 			hdd.setProductCompany(multi.getParameter("productCompany"));
 			hdd.setInterFace(multi.getParameter("interFace"));
@@ -230,7 +230,6 @@ public class HDDAction extends Action {
 			hdd.setRotation(multi.getParameter("rotation"));
 			hdd.setProductDate(transFormat.parse(multi.getParameter("productDate")));
 			hdd.setPrice(Integer.parseInt(multi.getParameter("price")));
-			//hdd.setFilename(filename);
 			
 			if (file != null) {
 				hdd.setFilename(filename);

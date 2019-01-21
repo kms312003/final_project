@@ -20,7 +20,7 @@ import ssd.SSDDBBean;
 
 public class SSDAction extends Action {
 
-	// 리스?��
+	// 리스트
 	public String listGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		HttpSession session = request.getSession();
@@ -84,7 +84,7 @@ public class SSDAction extends Action {
 		return "/ssd/admin/ssdList.jsp";
 	}
 
-	// ?��?��
+	// 입력
 	public String writeGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		String pageNum = "";
@@ -121,7 +121,7 @@ public class SSDAction extends Action {
 			SSD ssd = new SSD();
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-			// ssd.setId(Long.parseLong(multi.getParameter("id")));
+			ssd.setId(Integer.parseInt(multi.getParameter("id")));
 			ssd.setProductName(multi.getParameter("productName"));
 			ssd.setProductCompany(multi.getParameter("productCompany"));
 			ssd.setDiskType(multi.getParameter("diskType"));
@@ -130,7 +130,7 @@ public class SSDAction extends Action {
 			ssd.setMemoryType(multi.getParameter("memoryType"));
 			ssd.setReadSpeed(Integer.parseInt(multi.getParameter("readSpeed")));
 			ssd.setWriteSpeed(Integer.parseInt(multi.getParameter("writeSpeed")));
-			// ssd.setProductDate(transFormat.parse(multi.getParameter("productDate")));
+			ssd.setProductDate(transFormat.parse(multi.getParameter("productDate")));
 			ssd.setPrice(Integer.parseInt(multi.getParameter("price")));
 			ssd.setFilename(filename);
 			if (file != null) {
@@ -235,6 +235,7 @@ public class SSDAction extends Action {
 			ssd.setWriteSpeed(Integer.parseInt(multi.getParameter("writeSpeed")));
 			ssd.setProductDate(transFormat.parse(multi.getParameter("productDate")));
 			ssd.setPrice(Integer.parseInt(multi.getParameter("price")));
+			
 			if (file != null) {
 				ssd.setFilename(filename);
 				filesize = (int) file.length();

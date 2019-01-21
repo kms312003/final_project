@@ -19,7 +19,7 @@ import graphic.GraphicDBBean;
 
 public class GraphicAction extends Action {
 //
-	// 리스?��
+	// 리스트
 	public String listGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		HttpSession session = request.getSession();
@@ -84,7 +84,7 @@ public class GraphicAction extends Action {
 		return "/graphic/admin/graphicList.jsp";
 	}
 
-	// ?��?��
+	// 입력
 	public String writeGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		String pageNum = "";
@@ -121,7 +121,7 @@ public class GraphicAction extends Action {
 			Graphic graphic = new Graphic();
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-			// cpu.setId(Long.parseLong(multi.getParameter("id")));
+			graphic.setId(Integer.parseInt(multi.getParameter("id")));
 			graphic.setProductName(multi.getParameter("productName"));
 			graphic.setProductCompany(multi.getParameter("productCompany"));
 			graphic.setChipSetGroup(multi.getParameter("chipSetGroup"));
@@ -238,7 +238,7 @@ public class GraphicAction extends Action {
 			graphic.setProductDate(transFormat.parse(multi.getParameter("productDate")));
 			graphic.setPrice(Integer.parseInt(multi.getParameter("price")));
 			//graphic.setCount(Integer.parseInt(multi.getParameter("count")));
-			graphic.setFilename(filename);
+			
 			if (file != null) {
 				graphic.setFilename(filename);
 				filesize = (int) file.length();

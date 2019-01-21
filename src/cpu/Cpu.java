@@ -4,36 +4,44 @@ import java.util.Date;
 
 public class Cpu {
 	
-	private int id;				// PK
-	private String productName;     // �젣�뭹紐�
-	private String productCompany;  // �젣議고쉶�궗
-	private String brand;	        // 釉뚮옖�뱶 遺꾨쪟
-	private String socket;          // �냼耳볤뎄遺�
-	private String core;            // 肄붿뼱
-	private int thread;             // �벐�젅�뱶 �삎�깭
-	private int clockSpeed;         // �룞�옉�냽�룄
-	private int tdp;				// �꽕怨꾩쟾�젰(TDP)
-	private Date productDate;  		// �젣�뭹 �벑濡앹씪
-	private Date regDate;			// �젣�뭹 �엯�젰�씪
-	private int price; 				// 媛�寃�
-	private int count;				// �닔�웾
-	private String filename;		// �뙆�씪 �씠由�
-	private int filesize;			// �뙆�씪 �궗�씠利�
-	
-	
-	
+	private int id;					// PK
+	private String productCode;		// 제품코드
+	private String productName;     // 제품명
+	private String productCompany;  // 제조회사
+	private String brand;	        // 브랜드 분류
+	private String socket;          // 소켓 구분
+	private String core;            // 코어
+	private int thread;             // 쓰레드 형태
+	private int clockSpeed;         // 동작속도
+	private int tdp;				// 설계전력
+	private Date productDate;  		// 제품 등록일
+	private Date regDate;			// 데이터 등록일
+	private int price; 				// 가격
+	private int count;				// 수량
+	private String filename;		// 파일 첨부
+	private int filesize;			// 파일 사이즈
+
 	@Override
 	public String toString() {
-		return "Cpu [id=" + id + ", productName=" + productName + ", productCompany=" + productCompany + ", brand="
-				+ brand + ", socket=" + socket + ", core=" + core + ", thread=" + thread + ", clockSpeed=" + clockSpeed
-				+ ", tdp=" + tdp + ", productDate=" + productDate + ", regDate=" + regDate + ", price=" + price
-				+ ", count=" + count + ", filename=" + filename + ", filesize=" + filesize + "]";
+		return "Cpu [id=" + id + ", productCode=" + productCode + ", productName=" + productName + ", productCompany="
+				+ productCompany + ", brand=" + brand + ", socket=" + socket + ", core=" + core + ", thread=" + thread
+				+ ", clockSpeed=" + clockSpeed + ", tdp=" + tdp + ", productDate=" + productDate + ", regDate="
+				+ regDate + ", price=" + price + ", count=" + count + ", filename=" + filename + ", filesize="
+				+ filesize + "]";
 	}
+	
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public String getProductCode() {
+		return productCode;
+	}
+
+	public void setProductCode(String productCode) {
+		this.productCode = productCode;
 	}
 	public String getProductName() {
 		return productName;

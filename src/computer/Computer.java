@@ -5,6 +5,7 @@ import java.util.Date;
 public class Computer {
 
 	private int id;					// PK
+	private String productCode;		// 제품코드
 	private String category;        // 카테고리명
 	private String productCompany;  // 제조회사
 	private String cpu;				// cpu
@@ -21,11 +22,25 @@ public class Computer {
 	private String filename;		// 파일 이름
 	private int filesize;			// 파일 사이즈
 	
+	@Override
+	public String toString() {
+		return "Computer [id=" + id + ", productCode=" + productCode + ", category=" + category + ", productCompany="
+				+ productCompany + ", cpu=" + cpu + ", mainBoard=" + mainBoard + ", ram=" + ram + ", vga=" + vga
+				+ ", hdd=" + hdd + ", ssd=" + ssd + ", tower=" + tower + ", power=" + power + ", regDate=" + regDate
+				+ ", price=" + price + ", count=" + count + ", filename=" + filename + ", filesize=" + filesize + "]";
+	}
+	
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public String getProductCode() {
+		return productCode;
+	}
+	public void setProductCode(String productCode) {
+		this.productCode = productCode;
 	}
 	public String getCategory() {
 		return category;

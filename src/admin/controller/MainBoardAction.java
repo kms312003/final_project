@@ -19,7 +19,7 @@ import mainboard.MainBoardDBBean;
 
 public class MainBoardAction extends Action {
 
-	// 리스?��
+	// 리스트
 	public String listGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		HttpSession session = request.getSession();
@@ -83,7 +83,7 @@ public class MainBoardAction extends Action {
 		return "/mainboard/admin/mainBoardList.jsp";
 	}
 
-	// ?��?��
+	// 입력
 	public String writeGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		String pageNum = "";
@@ -120,7 +120,7 @@ public class MainBoardAction extends Action {
 			MainBoard mainboard = new MainBoard();
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-			// mainboard.setId(Long.parseLong(multi.getParameter("id")));
+			mainboard.setId(Integer.parseInt(multi.getParameter("id")));
 			mainboard.setProductName(multi.getParameter("productName"));
 			mainboard.setProductCompany(multi.getParameter("productCompany"));
 			mainboard.setCpuSocket(multi.getParameter("cpuSocket"));
@@ -129,7 +129,7 @@ public class MainBoardAction extends Action {
 			mainboard.setMemoryType(multi.getParameter("memoryType"));
 			mainboard.setProductSort(multi.getParameter("productSort"));
 			mainboard.setMemorySlot(Integer.parseInt(multi.getParameter("memorySlot")));
-			// mainboard.setProductDate(transFormat.parse(multi.getParameter("productDate")));
+			mainboard.setProductDate(transFormat.parse(multi.getParameter("productDate")));
 			mainboard.setPrice(Integer.parseInt(multi.getParameter("price")));
 			mainboard.setFilename(filename);
 			if (file != null) {
@@ -235,6 +235,7 @@ public class MainBoardAction extends Action {
 			mainboard.setMemorySlot(Integer.parseInt(multi.getParameter("memorySlot")));
 			mainboard.setProductDate(transFormat.parse(multi.getParameter("productDate")));
 			mainboard.setPrice(Integer.parseInt(multi.getParameter("price")));
+			
 			if (file != null) {
 				mainboard.setFilename(filename);
 				filesize = (int) file.length();
