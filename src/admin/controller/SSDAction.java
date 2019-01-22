@@ -50,13 +50,13 @@ public class SSDAction extends Action {
 
 		int number = 0;
 
-		List SSDList = null;
+		List ssdList = null;
 		try {
 			count = dbPro.getSSDCount();
 			number = count - ((currentPage - 1) * pageSize);
 
 			if (count > 0) {
-				SSDList = dbPro.getSSDList(start, end);
+				ssdList = dbPro.getSSDList(start, end);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -71,10 +71,10 @@ public class SSDAction extends Action {
 
 		System.out.println("count: " + count);
 		System.out.println("number: " + number);
-		System.out.println("SSDList: " + SSDList);
+		System.out.println("ssdList: " + ssdList);
 
 		request.setAttribute("count", count);
-		request.setAttribute("SSDList", SSDList);
+		request.setAttribute("ssdList", ssdList);
 		request.setAttribute("number", number);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("bottomLine", bottomLine);

@@ -49,13 +49,13 @@ public class MainBoardAction extends Action {
 
 		int number = 0;
 
-		List mainBoardList = null;
+		List mainboardList = null;
 		try {
 			count = dbPro.getMainBoardCount();
 			number = count - ((currentPage - 1) * pageSize);
 
 			if (count > 0) {
-				mainBoardList = dbPro.getMainBoardList(start, end);
+				mainboardList = dbPro.getMainBoardList(start, end);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -70,10 +70,10 @@ public class MainBoardAction extends Action {
 
 		System.out.println("count: " + count);
 		System.out.println("number: " + number);
-		System.out.println("mainBoardList: " + mainBoardList);
+		System.out.println("mainboardList: " + mainboardList);
 
 		request.setAttribute("count", count);
-		request.setAttribute("mainBoardList", mainBoardList);
+		request.setAttribute("mainboardList", mainboardList);
 		request.setAttribute("number", number);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("bottomLine", bottomLine);
@@ -91,7 +91,7 @@ public class MainBoardAction extends Action {
 
 		pageNum = request.getParameter("pageNum");
 
-		return "/mainboard/admin/mainBoardForm.jsp";
+		return "/mainboard/admin/mainBoardWriteForm.jsp";
 	}
 
 	public String writePOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {

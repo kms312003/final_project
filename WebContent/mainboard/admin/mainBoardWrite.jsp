@@ -5,4 +5,4 @@
 <script>
 	alert("제품 등록을 완료하였습니다.");
 </script>
-<meta http-equiv="Refresh" content="0;url=<%= request.getContextPath() %>/admin/mainBoard/list">
+<meta http-equiv="Refresh" content="0;url=<%= request.getContextPath() %>/admin/mainboard/list">

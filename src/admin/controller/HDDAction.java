@@ -73,7 +73,7 @@ public class HDDAction extends Action {
 		System.out.println("cpuList: " + hddList);
 
 		request.setAttribute("count", count);
-		request.setAttribute("cpuList", hddList);
+		request.setAttribute("hddList", hddList);
 		request.setAttribute("number", number);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("bottomLine", bottomLine);
@@ -136,6 +136,7 @@ public class HDDAction extends Action {
 			hdd.setDiskCapacity(Integer.parseInt(multi.getParameter("diskCapacity")));
 			hdd.setBufferCapacity(multi.getParameter("bufferCapacity"));
 			hdd.setRotation(multi.getParameter("rotation"));
+			hdd.setProductDate(transFormat.parse(multi.getParameter("productDate")));
 			hdd.setPrice(Integer.parseInt(multi.getParameter("price")));
 			hdd.setFilename(filename);
 			if (file != null) {

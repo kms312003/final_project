@@ -74,7 +74,7 @@ public class GraphicAction extends Action {
 		System.out.println("cpuList: " + graphicList);
 
 		request.setAttribute("count", count);
-		request.setAttribute("cpuList", graphicList);
+		request.setAttribute("graphicList", graphicList);
 		request.setAttribute("number", number);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("bottomLine", bottomLine);
@@ -140,6 +140,7 @@ public class GraphicAction extends Action {
 			graphic.setMaxPower(Integer.parseInt(multi.getParameter("maxPower")));
 			graphic.setMaxMonitor(Integer.parseInt(multi.getParameter("maxMonitor")));
 			graphic.setLength(Integer.parseInt(multi.getParameter("length")));
+			graphic.setProductDate(transFormat.parse(multi.getParameter("productDate")));
 			graphic.setPrice(Integer.parseInt(multi.getParameter("price")));
 			graphic.setFilename(filename);
 			if (file != null) {

@@ -13,7 +13,7 @@
         select * from graphic limit #{start}, #{end} 
      </select>
      
-     <insert id="insert" parameterType="Graphic">
+     <insert id="insert" parameterType="graphic">
         insert into graphic(id, productCode, productName, productCompany, chipSetGroup, interFace, powerPort,
          memoryCapacity, nvidiaChipSet, maxPower, maxMonitor, length, productDate, regDate, price, count, filename, filesize) 
                values(0, #{productCode}, #{productName},#{productCompany},#{chipSetGroup},#{interFace},#{powerPort}

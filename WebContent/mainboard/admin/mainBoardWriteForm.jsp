@@ -96,7 +96,7 @@
     
     <div class="col-sm-9 text-left"> 
     <center>
-	<form action="<%= request.getContextPath() %>/admin/mainBoard/write" enctype="multipart/form-data" method="post" name="createform" onsubmit="return checkMainBoard()">
+	<form action="<%= request.getContextPath() %>/admin/mainboard/write" enctype="multipart/form-data" method="post" name="createform" onsubmit="return checkMainBoard()">
 		<div class="w3-container">
 		<h2>MainBoard 등록</h2>	
 			<table class="table table-bordered" style="width:80%;">
@@ -151,7 +151,7 @@
 					<td colspan="2">
 					<input type="submit" class="btn btn-default" value="Create"> 
 					<input type="reset" class="btn btn-default" value="Reset">
-					<input type="button" class="btn btn-default" value="List" onclick="window.location='<%= request.getContextPath() %>/admin/mainBoard/list'">
+					<input type="button" class="btn btn-default" value="List" onclick="window.location='<%= request.getContextPath() %>/admin/mainboard/list'">
 					</td>
 				</tr>
 				</center>
