@@ -3,6 +3,7 @@ package user;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.io.Resources;
@@ -12,21 +13,21 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 public class UserDBBean {
 	private static UserDBBean instance = new UserDBBean();
-	
-	public static UserDBBean getInstance(){
+
+	public static UserDBBean getInstance() {
 		return instance;
 	}
-	
-	private UserDBBean(){
-		
+
+	private UserDBBean() {
+
 	}
-	
+
 	private final String namespace = "mapper.user";
-	
+
 	private SqlSessionFactory getSqlSessionFactory() {
 		String resource = "xml/mybatis-config.xml";
 		InputStream inputStream;
-		
+
 		try {
 			inputStream = Resources.getResourceAsStream(resource);
 		} catch (IOException e) {
@@ -34,51 +35,77 @@ public class UserDBBean {
 		}
 		return new SqlSessionFactoryBuilder().build(inputStream);
 	}
-	
-	//È¸¿ø°¡ÀÔ Á¤º¸ ÀÔ·Â
-	public void insertUser(User user) throws Exception{
+
+	// User ê°¯ìˆ˜
+	public int getUserCount() {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+
+		try {
+			return (int) sqlSession.selectOne(namespace + ".getUserCount");
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	// ìœ ì € ë¦¬ìŠ¤íŠ¸ ê°€ì ¸ì˜¤ê¸°
+	public List getUserList(int start, int end) throws Exception {
+
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+
+		Map map = new HashMap();
+		map.put("start", start);
+		map.put("end", end);
+		try {
+			return sqlSession.selectList(namespace + ".getUsers", map);
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	// È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½
+	public void insertUser(User user) throws Exception {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		Map map = new HashMap();
-		
-	    sqlSession.insert(namespace + ".insert", user);
+
+		sqlSession.insert(namespace + ".insert", user);
 		sqlSession.commit();
 		sqlSession.close();
 	}
-	
-	//·Î±×ÀÎ Ã¼Å©
-	public int loginCheck(String email, String password){
+
+	// ï¿½Î±ï¿½ï¿½ï¿½ Ã¼Å©
+	public int loginCheck(String email, String password) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		Map map = new HashMap();
 		map.put("email", email);
 		map.put("password", password);
-		int x=-1;
+		int x = -1;
 		String dbPassword = sqlSession.selectOne(namespace + ".getPassword", map);
-		if(dbPassword.equals(password)){
-			x=1;
-		}else if(!dbPassword.equals(password)){
-			x=0;
-		}else{
-			x=-1;
+		if (dbPassword.equals(password)) {
+			x = 1;
+		} else if (!dbPassword.equals(password)) {
+			x = 0;
+		} else {
+			x = -1;
 		}
-		
+
 		return x;
 	}
-	
-	//È¸¿ø°¡ÀÔ ÀÌ¸ÞÀÏ Áßº¹ Ã¼Å©
-	public int emailCheck(String email){
+
+	// È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ßºï¿½ Ã¼Å©
+	public int emailCheck(String email) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		Map map = new HashMap();
 		map.put("email", email);
-		int x=0;
+		int x = 0;
 		String dbEmail = sqlSession.selectOne(namespace + ".getEmail", map);
 		System.out.println("email: " + email);
 		System.out.println("dbEmail: " + dbEmail);
-		if(dbEmail==null){
-			x=1;
-		}else if(dbEmail.equals(email)){
-			x=0; //Áßº¹email o = È¸¿ø°¡ÀÔ ½ÇÆÐ
-		}else if(!dbEmail.equals(email)){
-			x=1; //Áßº¹email x = È¸¿ø°¡ÀÔ ¼º°ø
+		if (dbEmail == null) {
+			x = 1;
+		} else if (dbEmail.equals(email)) {
+			x = 0; // ï¿½ßºï¿½email o = È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		} else if (!dbEmail.equals(email)) {
+			x = 1; // ï¿½ßºï¿½email x = È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		}
 		System.out.println("check: " + x);
 		return x;

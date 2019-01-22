@@ -5,6 +5,11 @@
 
 <configuration>
 	<typeAliases>
+		
+		<!-- 유저 -->
+		<typeAlias type="user.User" alias="user"/>
+		
+		<!-- 제품 -->
 		<typeAlias type="computer.Computer" alias="computer" />
 		<typeAlias type="cpu.Cpu" alias="cpu" />
 		<typeAlias type="graphic.Graphic" alias="graphic" />
@@ -13,8 +18,6 @@
 		<typeAlias type="power.Power" alias="power" />
 		<typeAlias type="ram.Ram" alias="ram" />
 		<typeAlias type="ssd.SSD" alias="ssd" />
-		<typeAlias type="user.User" alias="user"/>
-		
 		
 		<!-- 게시판 -->
 		<typeAlias type="board.BoardDataBean" alias="board"/>
@@ -28,13 +31,19 @@
 			<transactionManager type="JDBC" />
 			<dataSource type="POOLED">
 				<property name="driver" value="com.mysql.jdbc.Driver" />
-				<property name="url" value="jdbc:mysql://localhost:3306/final_project?serverTimezone=UTC"/>
+				<property name="url" value="jdbc:mysql://localhost:3306/final_project"/>
+				<!-- ?serverTimezone=UTC -->
 				<property name="username" value="root" />
-				<property name="password" value="1111" />
+				<property name="password" value="1234" />
 			</dataSource>
 		</environment>
 	</environments>
 	<mappers>
+	
+		<!-- 유저 -->
+		<mapper resource="xml/user.xml"/>
+		
+		<!-- 제품 -->
 		<mapper resource="xml/computer.xml" />
 		<mapper resource="xml/cpu.xml" />
 		<mapper resource="xml/graphic.xml" />
@@ -43,7 +52,6 @@
 		<mapper resource="xml/power.xml" />
 		<mapper resource="xml/ram.xml" />
 		<mapper resource="xml/ssd.xml" />
-		<mapper resource="xml/user.xml"/>
 		
 		<!-- 게시판 -->
 		<mapper resource="xml/board.xml"/>

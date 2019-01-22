@@ -16,10 +16,6 @@
 		select * from board limit #{start},#{end}
 		</select>
 		
-		<!-- <select id="nextVal" resultType="int">
-  		select boardSer.nextval from dual
-  		</select>  -->
-  		
   		<update id="insertUpdate" parameterType="hashmap">
   		update board set re_step=re_step+1
 						where ref=#{ref} and re_step> #{re_step} and boardid=#{boardid}
@@ -28,7 +24,7 @@
   		<insert id="insert" parameterType="board">
   		insert into board(num,writer,email,subject,passwd,reg_date,
 			ref,re_step,re_level,content,ip,boardid,filename,filesize,inform)
-					values(#{num},#{writer},#{email},#{subject},#{passwd},curdate(),#{ref},#{re_step},#{re_level},#{content},#{ip},#{boardid},#{filename},#{filesize},#{inform})
+					values(0,#{writer},#{email},#{subject},#{passwd},curdate(),#{ref},#{re_step},#{re_level},#{content},#{ip},#{boardid},#{filename},#{filesize},#{inform})
   		</insert>
   		
   		<select id="getArticle" parameterType="hashmap" resultType="board">

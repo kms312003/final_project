@@ -12,8 +12,8 @@ import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-import com.sist.mskim.Action;
 
+import admin.controller.Action;
 import board.BoardDBBean;
 import board.BoardDBBeanMybatis;
 import board.BoardDataBean;
