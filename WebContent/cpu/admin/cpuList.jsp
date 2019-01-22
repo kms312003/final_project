@@ -68,6 +68,10 @@
       <p><a href="<%= request.getContextPath() %>/admin/hdd/list">하드디스크(HDD)</a></p>
       <p><a href="<%= request.getContextPath() %>/admin/ssd/list">SSD</a></p>
       <p><a href="<%= request.getContextPath() %>/admin/power/list">파워</a></p>
+      <p><a href="<%= request.getContextPath() %>/board/list">공지사항/이벤트</a></p>
+      <p><a href="<%= request.getContextPath() %>/board2/list">정보자료실</a></p>
+      <p><a href="<%= request.getContextPath() %>/board3/list">구매후기</a></p>
+      <p><a href="<%= request.getContextPath() %>/board4/list">견적문의</a></p>
     </div>
     
     <div class="col-sm-9 text-left">

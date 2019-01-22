@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+  <mapper namespace="mapper.board3">
+		
+		<select id="getArticleCount" parameterType="hashmap" resultType="int">
+		select ifnull(count(*),0) from board3
+		<if test="boardid !=null">
+		where boardid=#{boardid}
+		</if>
+		</select>
+	
+		<select id="getArticles" parameterType="hashmap" resultType="board3">
+		select * from board3 limit #{start},#{end}
+		</select>
+		
+<!-- 		<select id="nextVal" resultType="int">
+  		select boardSer.nextval from dual
+  		</select> -->
+  		
+  		<update id="insertUpdate" parameterType="hashmap">
+  		update board3 set re_step=re_step+1
+						where ref=#{ref} and re_step> #{re_step} and boardid=#{boardid}
+  		</update>
+  		
+  		<insert id="insert" parameterType="board3">
+  		insert into board3(num,writer,email,subject,passwd,reg_date,
+			ref,re_step,re_level,content,ip,boardid,filename,filesize)
+					values(#{num},#{writer},#{email},#{subject},#{passwd},curdate(),#{ref},#{re_step},#{re_level},#{content},#{ip},#{boardid},#{filename},#{filesize})
+  		</insert>
+  		
+  		<select id="getArticle" parameterType="hashmap" resultType="board3">
+  		select * from board3 where num = #{num}
+  		</select>
+  		
+  		<update id="readCount" parameterType="hashmap">
+  		update board3 set readcount = readcount+1 where num = #{num}
+  		</update>
+  		
+  		<select id="getPasswd" parameterType="hashmap" resultType="string">
+  		select passwd from board3 where num=#{num}
+  		</select>
+  		
+  		<update id="update" parameterType="board3">
+  		update board3 set writer=#{writer}, email=#{email}, subject=#{subject}, passwd=#{passwd}
+		,content=#{content} where num=#{num}
+  		</update>
+  		
+  		<delete id="delete" parameterType="hashmap">
+  		delete from board3 where num = #{num}
+  		</delete>
+
+  </mapper>

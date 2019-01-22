@@ -14,15 +14,23 @@
 		<typeAlias type="ram.Ram" alias="ram" />
 		<typeAlias type="ssd.SSD" alias="ssd" />
 		<typeAlias type="user.User" alias="user"/>
+		
+		
+		<!-- 게시판 -->
+		<typeAlias type="board.BoardDataBean" alias="board"/>
+		<typeAlias type="board2.BoardDataBean" alias="board2"/>
+		<typeAlias type="board3.BoardDataBean" alias="board3"/>
+		<typeAlias type="board4.BoardDataBean" alias="board4"/>
+		
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">
 			<transactionManager type="JDBC" />
 			<dataSource type="POOLED">
 				<property name="driver" value="com.mysql.jdbc.Driver" />
-				<property name="url" value="jdbc:mysql://localhost:3306/final_project" />
+				<property name="url" value="jdbc:mysql://localhost:3306/final_project?serverTimezone=UTC"/>
 				<property name="username" value="root" />
-				<property name="password" value="1234" />
+				<property name="password" value="1111" />
 			</dataSource>
 		</environment>
 	</environments>
@@ -36,6 +44,13 @@
 		<mapper resource="xml/ram.xml" />
 		<mapper resource="xml/ssd.xml" />
 		<mapper resource="xml/user.xml"/>
+		
+		<!-- 게시판 -->
+		<mapper resource="xml/board.xml"/>
+		<mapper resource="xml/board2.xml"/>
+		<mapper resource="xml/board3.xml"/>
+		<mapper resource="xml/board4.xml"/>
 	</mappers>
 </configuration>
 
+ 
