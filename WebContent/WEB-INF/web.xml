@@ -134,51 +134,50 @@
 
 	<!-- 게시판 -->
 	<servlet>
-		<servlet-name>boardController</servlet-name>
-		<servlet-class>controller.BoardAction</servlet-class>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>boardController</servlet-name>
-		<url-pattern>/board/*</url-pattern>
-	</servlet-mapping>
-
-
-	<servlet>
-		<servlet-name>boardController2</servlet-name>
-		<servlet-class>controller.BoardAction2</servlet-class>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>boardController2</servlet-name>
-		<url-pattern>/board2/*</url-pattern>
-	</servlet-mapping>
-
-
-	<servlet>
-		<servlet-name>boardController3</servlet-name>
-		<servlet-class>controller.BoardAction3</servlet-class>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>boardController3</servlet-name>
-		<url-pattern>/board3/*</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>boardController4</servlet-name>
-		<servlet-class>controller.BoardAction4</servlet-class>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>boardController4</servlet-name>
-		<url-pattern>/board4/*</url-pattern>
-	</servlet-mapping>
-
+   			<servlet-name>boardController</servlet-name>
+   			<servlet-class>board_controller.Notice_action</servlet-class>
+   			<load-on-startup>1</load-on-startup>
+   		</servlet>
+   		
+   		<servlet-mapping>
+   			<servlet-name>boardController</servlet-name>
+   			<url-pattern>/board_notice/*</url-pattern>
+   		</servlet-mapping> 
+   		
+   		
+   		<servlet>
+   			<servlet-name>boardController2</servlet-name>
+   			<servlet-class>board_controller.Information_action</servlet-class>
+   			<load-on-startup>1</load-on-startup>
+   		</servlet>
+   		
+   		<servlet-mapping>
+   			<servlet-name>boardController2</servlet-name>
+   			<url-pattern>/board_information/*</url-pattern>
+   		</servlet-mapping> 
+   	   		
+   	   		
+   	   	<servlet>
+   			<servlet-name>boardController3</servlet-name>
+   			<servlet-class>board_controller.Opinion_action</servlet-class>
+   			<load-on-startup>1</load-on-startup>
+   		</servlet>
+   		
+   		<servlet-mapping>
+   			<servlet-name>boardController3</servlet-name>
+   			<url-pattern>/board_opinion/*</url-pattern>
+   		</servlet-mapping> 
+   		
+   		<servlet>
+   			<servlet-name>boardController4</servlet-name>
+   			<servlet-class>board_controller.Qa_action</servlet-class>
+   			<load-on-startup>1</load-on-startup>
+   		</servlet>
+   		
+   		<servlet-mapping>
+   			<servlet-name>boardController4</servlet-name>
+   			<url-pattern>/board_qa/*</url-pattern>
+   		</servlet-mapping>
 
 	<!-- 한글필터 -->
 	<filter>
