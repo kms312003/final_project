@@ -7,7 +7,7 @@
 
 	<select id = "getUserCount" resultType="int">
         select ifnull(count(*),0) from user
-     </select>
+    </select>
 
 	<select id = "getUsers" parameterType="hashmap" resultType="user">
         select * from user limit #{start}, #{end} 
@@ -15,10 +15,27 @@
 
 	<insert id="insert" parameterType="user">
 		insert into 
-		userinfo (id, email, name, password, gender, birth, job, reg_date)
+		user (id, email, name, password, gender, birth, job, reg_date)
 		values 
 		(0, #{email}, #{name}, #{password}, #{gender}, #{birth},#{job},curdate())
 	</insert>
+	
+	<select id="getUser" resultType="user" parameterType="hashmap">
+        select * from user where id = #{id}
+     </select>
+     
+     <update id="readCount" parameterType="hashmap">
+        update user set readcount = readcount + 1 where id = #{id}
+     </update>
+     
+     <update id="update" parameterType="user">
+        update user set email=#{email}, name=#{name}, password=#{password}, gender=#{gender}, 
+        birth= #{birth}, job=#{job}, reg_date=#{reg_date} where id=#{id}
+     </update>
+     
+     <delete id="deleteUser" parameterType="hashmap">
+        delete from user where id=#{id}
+     </delete>
 
 	<select id="getPassword" parameterType="hashmap" resultType="String">
 		select password from userinfo where email=#{email}

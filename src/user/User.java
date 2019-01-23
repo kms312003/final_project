@@ -3,24 +3,24 @@ package user;
 import java.sql.Timestamp;
 
 public class User {
-	private Long id; // PK
-	private String email; // email(¾ÆÀÌµð·Î »ç¿ë)
-	private String name; // ÀÌ¸§
-	private String password; // ºñ¹Ð¹øÈ£
+	private int id; 	  // PK
+	private String email; // email(ï¿½ï¿½ï¿½Ìµï¿½ï¿½ ï¿½ï¿½ï¿½)
+	private String name; // ï¿½Ì¸ï¿½
+	private String password; // ï¿½ï¿½Ð¹ï¿½È£
 
 	public enum Gender {
 		MALE, FEMALE;
 	};
 
-	private Gender gender; // ¼ºº° (enum -'m','f')
-	private int birth; // »ý³â¿ùÀÏ(6ÀÚ¸®)
+	private Gender gender; // ï¿½ï¿½ï¿½ï¿½ (enum -'m','f')
+	private int birth; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(6ï¿½Ú¸ï¿½)
 
 	public enum Job {
 		STUDENT, EMPLOYED, UNEMPLOYED, ETC;
 	};
 
-	private Job job; // Á÷¾÷(enum -'student' 'employed' 'unemployed', 'etc')
-	private Timestamp reg_date; // µî·ÏÀÏ
+	private Job job; // ï¿½ï¿½ï¿½ï¿½(enum -'student' 'employed' 'unemployed', 'etc')
+	private Timestamp reg_date; // ï¿½ï¿½ï¿½ï¿½ï¿½
 
 	@Override
 	public String toString() {
@@ -28,11 +28,11 @@ public class User {
 				+ ", gender=" + gender + ", birth=" + birth + ", job=" + job + ", reg_date=" + reg_date + "]";
 	}
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

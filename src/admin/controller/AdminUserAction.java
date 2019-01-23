@@ -1,13 +1,23 @@
 package admin.controller;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Enumeration;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
 import admin.controller.Action;
+import cpu.Cpu;
 import cpu.CpuDBBean;
+import product.ProductCode;
 import user.User;
 import user.User.Gender;
 import user.User.Job;
@@ -78,65 +88,163 @@ public class AdminUserAction extends Action {
 		return "/user/admin/userList.jsp";
 	}
 
-	public String loginGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-		return "/user/loginForm.jsp";
+	// 입력
+	public String writeGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+
+		String pageNum = "";
+
+		pageNum = request.getParameter("pageNum");
+
+		return "/user/admin/userWriteForm.jsp";
 	}
 
-	public String loginPOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-		User user = new User();
-		user.setEmail(request.getParameter("email"));
-		user.setPassword(request.getParameter("password"));
+	public String writePOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
-		UserDBBean dbPro = UserDBBean.getInstance();
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");
-		int check = 0;
+		String realFolder = "";
+		String encType = "utf-8";
+		int maxSize = 5 * 1024 * 1024;
+		ServletContext context = request.getServletContext();
+		realFolder = context.getRealPath("fileSave");
+
+		MultipartRequest multi = null;
+
 		try {
-			check = dbPro.loginCheck(email, password);
-			HttpSession session = request.getSession();
+			multi = new MultipartRequest(request, realFolder, maxSize, encType, new DefaultFileRenamePolicy());
 
-			if (email != null && check == 1) {
-				session.setAttribute("email", email);
+			Enumeration files = multi.getFileNames();
+			String filename = "";
+			int filesize = 0;
+			File file = null;
+
+			if (files.hasMoreElements()) {
+				String name = (String) files.nextElement();
+				filename = multi.getFilesystemName(name);
+				file = multi.getFile(name);
 			}
+
+			User user = new User();
+			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+			user.setEmail(multi.getParameter("email"));
+			user.setName(multi.getParameter("name"));
+			user.setPassword(multi.getParameter("password"));
+			user.setGender(Gender.valueOf(multi.getParameter("gender")));
+			user.setBirth(Integer.parseInt(multi.getParameter("birth")));
+			user.setJob(Job.valueOf(multi.getParameter("job")));
+
+			UserDBBean dbPro = UserDBBean.getInstance();
+			dbPro.insertUser(user);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		request.setAttribute("check", check);
-		System.out.println("check:" + check);
-		return "/user/loginPro.jsp";
+
+		return "/user/admin/userWrite.jsp";
 	}
 
-	public String registerGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-		return "/user/registerForm.jsp";
-	}
+	public String detailGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
-	public String registerPOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-		User user = new User();
-		user.setEmail(request.getParameter("email"));
-		user.setName(request.getParameter("name"));
-		user.setPassword(request.getParameter("password"));
-		user.setGender(Gender.valueOf(request.getParameter("gender")));
-		user.setBirth(Integer.parseInt(request.getParameter("birth")));
-		user.setJob(Job.valueOf(request.getParameter("job")));
+		String no = request.getParameter("id");
+		int id = Integer.parseInt(no);
 
 		UserDBBean dbPro = UserDBBean.getInstance();
-		String email = request.getParameter("email");
-		int check = 0;
+		User user = new User();
+
 		try {
+			user = dbPro.getUser(id);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-			check = dbPro.emailCheck(email);
+		request.setAttribute("no", no);
+		request.setAttribute("user", user);
 
-			HttpSession session = request.getSession();
+		return "/user/admin/userDetail.jsp";
+	}
 
-			if (email != null && check == 1) {
-				dbPro.insertUser(user);
-			}
+	public String updateGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+
+		int id = Integer.parseInt(request.getParameter("id"));
+		String no = String.valueOf(id);
+
+		UserDBBean dbPro = UserDBBean.getInstance();
+		User user = new User();
+		try {
+			user = dbPro.getUpdate(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		request.setAttribute("check", check);
-		System.out.println("email check:" + check);
-		return "/user/registerPro.jsp";
+
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+	
+		request.setAttribute("no", no);
+		request.setAttribute("user", user);
+
+		return "/user/admin/userUpdateForm.jsp";
+	}
+
+	public String updatePOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+
+		String realFolder = "";
+		String encType = "utf-8";
+		int maxSize = 5 * 1024 * 1024;
+		ServletContext context = request.getServletContext();
+		realFolder = context.getRealPath("fileSave");
+
+		MultipartRequest multi = null;
+
+		try {
+			multi = new MultipartRequest(request, realFolder, maxSize, encType, new DefaultFileRenamePolicy());
+			String oldfilename = multi.getParameter("oldfilename");
+			int oldfilesize = Integer.parseInt(multi.getParameter("oldfilesize"));
+
+			Enumeration files = multi.getFileNames();
+			String filename = "";
+			int filesize = 0;
+			File file = null;
+
+			if (files.hasMoreElements()) {
+				String name = (String) files.nextElement();
+				filename = multi.getFilesystemName(name);
+				file = multi.getFile(name);
+			}
+
+			User user = new User();
+			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+			user.setId(Integer.parseInt(multi.getParameter("id")));
+			user.setEmail(request.getParameter("email"));
+			user.setName(request.getParameter("name"));
+			user.setPassword(request.getParameter("password"));
+			user.setGender(Gender.valueOf(request.getParameter("gender")));
+			user.setBirth(Integer.parseInt(request.getParameter("birth")));
+			user.setJob(Job.valueOf(request.getParameter("job")));	
+
+			UserDBBean dbPro = UserDBBean.getInstance();
+			
+			dbPro.updateUser(user);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "/user/admin/userUpdate.jsp";
+	}
+
+	public String deleteGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+
+		int id = Integer.parseInt(request.getParameter("id"));
+
+		UserDBBean dbPro = UserDBBean.getInstance();
+
+		try {
+			dbPro.deleteUser(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "/user/admin/userDelete.jsp";
 	}
 
 }

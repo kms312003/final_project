@@ -46,6 +46,7 @@ public class UserAction extends Action {
 
 	public String registerPOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		User user = new User();
+		
 		user.setEmail(request.getParameter("email"));
 		user.setName(request.getParameter("name"));
 		user.setPassword(request.getParameter("password"));
