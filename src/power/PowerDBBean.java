@@ -11,6 +11,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import mainboard.MainBoard;
+
 public class PowerDBBean {
 
 	private static PowerDBBean instance = new PowerDBBean();
@@ -123,5 +125,18 @@ public class PowerDBBean {
 		sqlSession.commit();
 
 		sqlSession.close();
+	}
+	
+	// Power 디테일 Get
+	public Power getDetail(int id) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+
+		Map map = new HashMap();
+		map.put("id", id);
+
+		Power power = sqlSession.selectOne(namespace + ".getPower", map);
+
+		sqlSession.close();
+		return power;
 	}
 }

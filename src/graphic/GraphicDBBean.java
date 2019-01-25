@@ -11,6 +11,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import cpu.Cpu;
+
 public class GraphicDBBean {
 
 	private static GraphicDBBean instance = new GraphicDBBean();
@@ -123,5 +125,18 @@ public class GraphicDBBean {
 		sqlSession.commit();
 
 		sqlSession.close();
+	}
+	
+	// Graphic 디테일 Get
+	public Graphic getDetail(int id) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+
+		Map map = new HashMap();
+		map.put("id", id);
+
+		Graphic graphic = sqlSession.selectOne(namespace + ".getGraphic", map);
+
+		sqlSession.close();
+		return graphic;
 	}
 }

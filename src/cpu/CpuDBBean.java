@@ -102,6 +102,19 @@ public class CpuDBBean {
 		sqlSession.close();
 		return cpu;
 	}
+	
+	// Cpu 디테일 Get
+	public Cpu getDetail(int id) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+
+		Map map = new HashMap();
+		map.put("id", id);
+
+		Cpu cpu = sqlSession.selectOne(namespace + ".getCpu", map);
+
+		sqlSession.close();
+		return cpu;
+	}
 
 	// Cpu 수정 Post
 	public void updateCpu(Cpu cpu) {

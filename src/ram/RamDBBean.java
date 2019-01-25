@@ -11,6 +11,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import power.Power;
+
 public class RamDBBean {
 
 	private static RamDBBean instance = new RamDBBean();
@@ -123,5 +125,18 @@ public class RamDBBean {
 		sqlSession.commit();
 
 		sqlSession.close();
+	}
+	
+	// Ram 디테일 Get
+	public Ram getDetail(int id) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+
+		Map map = new HashMap();
+		map.put("id", id);
+
+		Ram ram = sqlSession.selectOne(namespace + ".getRam", map);
+
+		sqlSession.close();
+		return ram;
 	}
 }

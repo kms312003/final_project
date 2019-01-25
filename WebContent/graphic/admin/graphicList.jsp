@@ -118,9 +118,12 @@
 					<td align="center" width="100">${ graphic.memoryCapacity }</td>
 					<td align="center" width="150">${ graphic.price }</td>
 					<td align="center" width="150">${ regDate }</td>
-					<td align="center" width="50">
-			        	<a href="<%= request.getContextPath() %>/admin/graphic/update?id=${ graphic.id }" class="btn btn-sm btn-default" data-toggle="tooltip" data-placement="top" title="상세보기 및 수정">
+					<td align="center" width="150">
+			        	<a href="<%= request.getContextPath() %>/admin/graphic/update?id=${ graphic.id }" class="btn btn-sm btn-default" data-toggle="tooltip" data-placement="top" title="수정">
 			            	<em class="fa fa-pencil"></em>
+			        	</a>
+			        	<a href="<%= request.getContextPath() %>/admin/graphic/detail?id=${ graphic.id }" class="btn btn-sm btn-default" data-toggle="tooltip" data-placement="top" title="상세보기 ">
+			            	<em class="glyphicon glyphicon-list-alt"></em>
 			        	</a>
 					</td>
 				</tr>

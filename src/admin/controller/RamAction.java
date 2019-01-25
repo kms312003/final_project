@@ -14,6 +14,8 @@ import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import graphic.Graphic;
+import graphic.GraphicDBBean;
 import product.ProductCode;
 import ram.Ram;
 import ram.RamDBBean;
@@ -153,26 +155,6 @@ public class RamAction extends Action {
 		return "/ram/admin/ramWrite.jsp";
 	}
 
-	public String detailGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-
-		String no = request.getParameter("id");
-		int id = Integer.parseInt(no);
-
-		RamDBBean dbPro = RamDBBean.getInstance();
-		Ram ram = new Ram();
-
-		try {
-			ram = dbPro.getRam(id);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		request.setAttribute("no", no);
-		request.setAttribute("ram", ram);
-
-		return "/ram/admin/ramDetail.jsp";
-	}
 
 	public String updateGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
@@ -265,18 +247,40 @@ public class RamAction extends Action {
 		return "/ram/admin/ramUpdate.jsp";
 	}
 
-	public String deleteGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+	public String detailGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		int id = Integer.parseInt(request.getParameter("id"));
+		String no = String.valueOf(id);
 
 		RamDBBean dbPro = RamDBBean.getInstance();
-
+		Ram ram = new Ram();
 		try {
-			dbPro.deleteRam(id);
+			ram = dbPro.getDetail(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return "/ram/admin/ramDelete.jsp";
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+		System.out.println("productDate: " + ram.getProductDate());
+		Date productDate_date = ram.getProductDate();
+		String productDate = transFormat.format(productDate_date);
+
+		System.out.println("ram.getProductCode 확인");
+		System.out.println(ram.getProductCode());
+		request.setAttribute("no", no);
+		request.setAttribute("productCode", ram.getProductCode());
+		request.setAttribute("productName", ram.getProductName());
+		request.setAttribute("productCompany", ram.getProductCompany());
+		request.setAttribute("productSort", ram.getProductSort());
+		request.setAttribute("memoryCapacity", ram.getMemoryCapacity());
+		request.setAttribute("clock", ram.getClock());
+		request.setAttribute("voltage", ram.getVoltage());
+		request.setAttribute("productDate", ram.getProductDate());
+		request.setAttribute("regDate", ram.getRegDate());
+		request.setAttribute("price", ram.getPrice());
+		request.setAttribute("count", ram.getCount());
+		request.setAttribute("filename", ram.getFilename());
+		
+		return "/ram/admin/ramDetailForm.jsp";
 	}
 }

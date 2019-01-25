@@ -159,23 +159,41 @@ public class CpuAction extends Action {
 
 	public String detailGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
-		String no = request.getParameter("id");
-		int id = Integer.parseInt(no);
+		int id = Integer.parseInt(request.getParameter("id"));
+		String no = String.valueOf(id);
 
 		CpuDBBean dbPro = CpuDBBean.getInstance();
 		Cpu cpu = new Cpu();
-
 		try {
-			cpu = dbPro.getCpu(id);
+			cpu = dbPro.getDetail(id);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		request.setAttribute("no", no);
-		request.setAttribute("cpu", cpu);
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+		System.out.println("productDate: " + cpu.getProductDate());
+		Date productDate_date = cpu.getProductDate();
+		String productDate = transFormat.format(productDate_date);
 
-		return "/cpu/admin/cpuDetail.jsp";
+		System.out.println("cpu.getProductCode 확인");
+		System.out.println(cpu.getProductCode());
+		request.setAttribute("no", no);
+		request.setAttribute("productCode", cpu.getProductCode());
+		request.setAttribute("productName", cpu.getProductName());
+		request.setAttribute("productCompany", cpu.getProductCompany());
+		request.setAttribute("brand", cpu.getBrand());
+		request.setAttribute("socket", cpu.getSocket());
+		request.setAttribute("core", cpu.getCore());
+		request.setAttribute("thread", cpu.getThread());
+		request.setAttribute("clockSpeed", cpu.getClockSpeed());
+		request.setAttribute("tdp", cpu.getTdp());
+		request.setAttribute("productDate", cpu.getProductDate());
+		request.setAttribute("regDate", cpu.getRegDate());
+		request.setAttribute("price", cpu.getPrice());
+		request.setAttribute("count", cpu.getCount());
+		request.setAttribute("filename", cpu.getFilename());
+		
+		return "/cpu/admin/cpuDetailForm.jsp";
 	}
 
 	public String updateGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -199,6 +217,8 @@ public class CpuAction extends Action {
 		request.setAttribute("no", no);
 		request.setAttribute("cpu", cpu);
 		request.setAttribute("productDate", productDate);
+		
+		
 
 		return "/cpu/admin/cpuUpdateForm.jsp";
 	}
@@ -274,7 +294,7 @@ public class CpuAction extends Action {
 		return "/cpu/admin/cpuUpdate.jsp";
 	}
 
-	public String deleteGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+	/*public String deleteGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		int id = Integer.parseInt(request.getParameter("id"));
 
@@ -287,5 +307,5 @@ public class CpuAction extends Action {
 		}
 
 		return "/cpu/admin/cpuDelete.jsp";
-	}
+	}*/
 }
