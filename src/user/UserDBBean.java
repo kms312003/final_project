@@ -56,6 +56,7 @@ public class UserDBBean {
 		Map map = new HashMap();
 		map.put("start", start);
 		map.put("end", end);
+		
 		try {
 			return sqlSession.selectList(namespace + ".getUsers", map);
 		} finally {

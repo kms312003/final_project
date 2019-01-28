@@ -3,24 +3,24 @@ package user;
 import java.sql.Timestamp;
 
 public class User {
-	private int id; 	  // PK
-	private String email; // email(���̵�� ���)
-	private String name; // �̸�
-	private String password; // ��й�ȣ
+	private int id; 	  	 // PK
+	private String email; 	 // email
+	private String name; 	 // 이름
+	private String password; // 비밀번호
 
 	public enum Gender {
 		MALE, FEMALE;
 	};
 
-	private Gender gender; // ���� (enum -'m','f')
-	private int birth; // �������(6�ڸ�)
+	private Gender gender; // 성별 (enum -'m','f')
+	private int birth;     // 생년월일(6자리)
 
 	public enum Job {
 		STUDENT, EMPLOYED, UNEMPLOYED, ETC;
 	};
 
-	private Job job; // ����(enum -'student' 'employed' 'unemployed', 'etc')
-	private Timestamp reg_date; // �����
+	private Job job; 			// 직업(enum -'student' 'employed' 'unemployed', 'etc')
+	private Timestamp reg_date; // 등록일
 
 	@Override
 	public String toString() {

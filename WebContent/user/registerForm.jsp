@@ -174,55 +174,39 @@ button:hover {
 					
 				</div>
 				<form id="Register" name="registerForm" method="post" action="<%=request.getContextPath()%>/user/register" onsubmit="return checkboard()">
-		
-					<div class="form-group">
-
 
 					<div class="form-group">
-
-
 						<input type="email" class="form-control" id="inputEmail" name="email" placeholder="이메일">
-
 					</div>
 					
 					<div class="form-group">
-
 						<input type="name" class="form-control" id="inputname" name="name" placeholder="이름">
-
 					</div>
 					
 					<div class="form-group">
-
 						<input type="password" class="form-control" id="inputPassword" name="password" placeholder="비밀번호" onkeyup='check();'>
-	
 					</div>
 					
 					<!-- confirm password -->
 					<div class="form-group">
-
 						<input type="password" class="form-control" id="confirmPassword" name="confirm_password" placeholder="비밀번호 확인" onkeyup='check();'>
 						<span id='message'></span>
 					</div>
 					
 					<div class="form-group">
-
 						<input type=radio id="inputGender" name="gender" value="MALE">남자
 						<input type=radio id="inputGender" name="gender" value="FEMALE">여자
-
 					</div>
 					
 					<div class="form-group">
-
 						<input type="text" class="form-control" id="inputBirth" name="birth" placeholder="생년월일">
-
 					</div>
+					
 					<div class="form-group">
-
 						<input type=radio id="inputJob" name="job" value="STUDENT">학생
 						<input type=radio id="inputJob" name="job" value="EMPLOYED">직장인
 						<input type=radio id="inputJob" name="job" value="UNEMPLOYED">무직
 						<input type=radio id="inputJob" name="job" value="ETC">기타
-
 					</div>
 					
 					<div>
@@ -232,7 +216,6 @@ button:hover {
 				</form>
 			</div>
 		</div>
-	</div>
 	</div>
 </body>
 </html>

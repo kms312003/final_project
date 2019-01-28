@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 
 public abstract class Action extends HttpServlet {
    
-
    public void doGet(// get방식의 서비스 메소드
          HttpServletRequest request, HttpServletResponse response)
          throws ServletException, IOException {

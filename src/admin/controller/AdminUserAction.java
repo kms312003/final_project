@@ -2,7 +2,6 @@ package admin.controller;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -15,9 +14,6 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import admin.controller.Action;
-import cpu.Cpu;
-import cpu.CpuDBBean;
-import product.ProductCode;
 import user.User;
 import user.User.Gender;
 import user.User.Job;
@@ -153,7 +149,6 @@ public class AdminUserAction extends Action {
 		try {
 			user = dbPro.getUser(id);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -175,8 +170,6 @@ public class AdminUserAction extends Action {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 	
 		request.setAttribute("no", no);
 		request.setAttribute("user", user);
@@ -211,7 +204,6 @@ public class AdminUserAction extends Action {
 			}
 
 			User user = new User();
-			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 
 			user.setId(Integer.parseInt(multi.getParameter("id")));
 			user.setEmail(request.getParameter("email"));

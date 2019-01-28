@@ -18,34 +18,7 @@
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
   <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
   <script src="/final_project/js/datepicker.js"></script>
-  
-  <!-- <script>
-	function checkCpu() {
-		var form = document.updateform;
-		if(!form.name.value) {
-			alert("name error");
-			return false;
-		}
-		if(!form.number.value) {
-			alert("number error");
-			return false;
-		}
-		if(!form.size.value) {
-			alert("size error");
-			return false;
-		}
-		if(!form.price.value) {
-			alert("price error");
-			return false;
-		}
-		if(!form.content.value) {
-			alert("content  error");
-			return false;
-		}
-		return true;
-	}
-</script> -->
-
+ 
   <style>
     /* Remove the navbar's default margin-bottom and rounded borders */ 
     .navbar {
@@ -85,6 +58,39 @@
     }
   </style>
 </head>
+<script>
+	function checkboard() {
+		var form = document.registerForm;
+		if (!form.email.value) {
+			alert("이메일을 적어주세요.");
+			return false;
+		}
+		if (!form.name.value) {
+			alert("name error");
+			return false;
+		}
+		if (!form.password.value) {
+			alert("비밀번호를 입력해주세요.");
+			return false;
+		}
+		
+		if (!form.birth.value){
+			alert("생년월일을 입력해주세요.");
+			return false;
+		}
+		return true;
+	}
+	
+	var check = function(){
+		if(document.getElementById('inputPassword').value==document.getElementById('confirmPassword').value){
+			document.getElementById('message').style.color = 'green';
+			document.getElementById('message').innerHTML ='matching';
+		}else{
+			document.getElementById('message').style.color = 'red';
+			document.getElementById('message').innerHTML ='not matching';
+		}
+	}
+</script>
 <body>            
      
 <div class="container-fluid text-center">    
@@ -97,59 +103,42 @@
     
     <div class="col-sm-9 text-left"> 
     <center>
-	<form action="<%= request.getContextPath() %>/admin/cpu/update" enctype="multipart/form-data" method="post" name="updateform" onsubmit="return checkCpu()">
+	<form action="<%= request.getContextPath() %>/admin/user/update" enctype="multipart/form-data" method="post" name="updateform" onsubmit="return checkboard()">
 	<input type="hidden" name="id" value="${ no }">
-	<input type="hidden" name="productCode" value="${ cpu.productCode }">
-	<input type="hidden" name="oldfilename" value="${ cpu.filename }">
-	<input type="hidden" name="oldfilesize" value="${ cpu.filesize }">
 		<div class="w3-container">
 		<h2>Cpu 수정</h2>	
 			<table class="table table-bordered" style="width:80%;">
 				<tr>
-					<td>제품명</td>
-					<td><input type="text" name="productName" size="50" maxlength="50" value="${cpu.productName}"></td>
+					<td>이메일</td>
+					<td><input type="email" name="email" size="50" maxlength="50" value="${user.email}" placeholder="email"></td>
 				</tr>
 				<tr>
-					<td>제조회사</td>
-					<td><input type="text" name="productCompany" size="50" maxlength="20" value="${cpu.productCompany}"></td>
+					<td>이름</td>
+					<td><input type="name" name="name" size="50" maxlength="20" value="${user.name}" placeholder="이름"></td>
 				</tr>
 				<tr>
-					<td>브랜드분류</td>
-					<td><input type="text" name="brand" size="50" maxlength="30" value="${cpu.brand}"></td>
+					<td>비밀번호</td>
+					<td><input type="password" name="password" size="50" maxlength="30" placeholder="비밀번호" onkeyup='check();'></td>
 				</tr>
 				<tr>
-					<td>소켓구분</td>
-					<td><input type="text" name="socket" size="50" maxlength="30" value="${cpu.socket}"></td>
+					<td>비밀번호 확인</td>
+					<td><input type="password" name="confirm_password" size="50" maxlength="30" placeholder="비밀번호 확인" onkeyup='check();'></td>
 				</tr>
 				<tr>
-					<td>코어</td>
-					<td><input type="text" name="core" size="50" maxlength="10" value="${cpu.core}"> 코어</td>
+					<td>성별</td>
+					<td><input type=radio id="inputGender" name="gender" value="MALE">남자</td>
+					<td><input type=radio id="inputGender" name="gender" value="FEMALE">여자</td>
 				</tr>
 				<tr>
-					<td>쓰레드</td>
-					<td><input type="text" name="thread" size="50" maxlength="20" value="${cpu.thread}"> 개</td>
+					<td>생년월일</td>
+					<td><input type="text" name="birth" size="50" maxlength="6" value="${user.birth}" placeholder="생년월일"> 개</td>
 				</tr>
 				<tr>
-					<td>동작속도</td>
-					<td><input type="text" name="clockSpeed" size="50" maxlength="20" value="${cpu.clockSpeed}"> GHz</td>
-				</tr>
-				<tr>
-					<td>설계전력(TDP)</td>
-					<td><input type="text" name="tdp" size="50" maxlength="20" value="${cpu.tdp}"> W</td>
-				</tr>
-				<tr>
-					<td>제품 등록일</td>
-					<td><input type="text" name="productDate" size="50" maxlength="20" class="datepicker" value="${productDate}"></td>
-				</tr>
-				<tr>
-					<td>가격</td>
-					<td><input type="text" name="price" size="50" maxlength="20" value="${cpu.price}"> 원</td>
-				</tr>
-				<tr>
-					<td width="70" align="center">file</td>
-					<td width="330">
-						<input type="file" size="50" maxlength="30" name="uploadfile" value="${cpu.filename}">
-					</td>
+					<td>직업</td>
+					<td><input type=radio id="inputJob" name="job" value="STUDENT">학생</td>
+					<td><input type=radio id="inputJob" name="job" value="EMPLOYED">직장인</td>
+					<td><input type=radio id="inputJob" name="job" value="UNEMPLOYED">무직</td>
+					<td><input type=radio id="inputJob" name="job" value="ETC">기타</td>		
 				</tr>
 				<center>
 				<tr>
@@ -157,10 +146,10 @@
 					<input type="submit" class="btn btn-default" value="Update"> 
 					<input type="reset" class="btn btn-default" value="Reset">
 					<!-- Button trigger modal -->
-					<button type="button" class="btn btn-default" data-toggle="modal" data-target="#cpuModal">
+					<button type="button" class="btn btn-default" data-toggle="modal" data-target="#userModal">
 					  Delete
 					</button>
-					<input type="button" class="btn btn-default" value="List" onclick="window.location='<%= request.getContextPath() %>/admin/cpu/list'">
+					<input type="button" class="btn btn-default" value="List" onclick="window.location='<%= request.getContextPath() %>/admin/user/list'">
 					</td>
 				</tr>
 				</center>
@@ -175,7 +164,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="cpuModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -189,14 +178,11 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" onclick="window.location='<%= request.getContextPath() %>/admin/cpu/delete?id=${ no }'">Delete</button>
+        <button type="button" class="btn btn-primary" onclick="window.location='<%= request.getContextPath() %>/admin/user/delete?id=${ no }'">Delete</button>
       </div>
     </div>
   </div>
 </div>
 
 </body>
-<!-- <footer class="container-fluid text-center">
-  <p>Footer Text</p>
-</footer> -->
 </html>

@@ -35,6 +35,18 @@
 		<url-pattern>/user/*</url-pattern>
 	</servlet-mapping>
 	
+	<!-- 결제 -->
+	<servlet>
+		<servlet-name>paymentController</servlet-name>
+		<servlet-class>payment.controller.PaymentAction</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>paymentController</servlet-name>
+		<url-pattern>/payment/*</url-pattern>
+	</servlet-mapping>
+	
 	<!-- <servlet-mapping>
 		<servlet-name>MainController</servlet-name>
 		<url-pattern>/main/*</url-pattern>
@@ -44,13 +56,13 @@
 	
 	<!-- 유저 -->
 	<servlet>
-		<servlet-name>adminUserController</servlet-name>
+		<servlet-name>AdminUserController</servlet-name>
 		<servlet-class>admin.controller.AdminUserAction</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>adminUserController</servlet-name>
+		<servlet-name>AdminUserController</servlet-name>
 		<url-pattern>/admin/user/*</url-pattern>
 	</servlet-mapping>
 	
@@ -186,7 +198,7 @@
 
 		<init-param>
 			<param-name>encoding</param-name>
-			<param-value>EUC-KR</param-value>
+			<param-value>UTF-8</param-value>
 		</init-param>
 	</filter>
 

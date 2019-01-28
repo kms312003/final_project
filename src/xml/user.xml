@@ -38,10 +38,10 @@
      </delete>
 
 	<select id="getPassword" parameterType="hashmap" resultType="String">
-		select password from userinfo where email=#{email}
+		select password from user where email=#{email}
 	</select>
 	
 	<select id="getEmail" parameterType="hashmap" resultType="String">
-		select email from userinfo where email = #{email}
+		select email from user where email = #{email}
 	</select>
 </mapper>

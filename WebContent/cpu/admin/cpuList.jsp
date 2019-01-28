@@ -69,10 +69,10 @@
       	<p><a href="<%= request.getContextPath() %>/admin/hdd/list">하드디스크(HDD)</a></p>
       	<p><a href="<%= request.getContextPath() %>/admin/ssd/list">SSD</a></p>
       	<p><a href="<%= request.getContextPath() %>/admin/power/list">파워</a></p>
-      	<p><a href="<%= request.getContextPath() %>/board_notice/list">공지사항/이벤트</a></p>
-      	<p><a href="<%= request.getContextPath() %>/board_information/list">정보자료실</a></p>
-      	<p><a href="<%= request.getContextPath() %>/board_opinion/list">구매후기</a></p>
-      	<p><a href="<%= request.getContextPath() %>/board_qa/list">견적문의</a></p>
+      	<p><a href="<%= request.getContextPath() %>/board/list">공지사항/이벤트</a></p>
+      	<p><a href="<%= request.getContextPath() %>/board2/list">정보자료실</a></p>
+      	<p><a href="<%= request.getContextPath() %>/board3/list">구매후기</a></p>
+      	<p><a href="<%= request.getContextPath() %>/board4/list">견적문의</a></p>
     </div>
     
     <div class="col-sm-9 text-left">
@@ -123,9 +123,12 @@
 					<td align="center" width="100">${ cpu.core }</td>
 					<td align="center" width="150">${ cpu.price }</td>
 					<td align="center" width="150">${ regDate }</td>
-					<td align="center" width="50">
-			        	<a href="<%= request.getContextPath() %>/admin/cpu/update?id=${ cpu.id }" class="btn btn-sm btn-default" data-toggle="tooltip" data-placement="top" title="상세보기 및 수정">
+					<td align="center" width="150">
+			        	<a href="<%= request.getContextPath() %>/admin/cpu/update?id=${ cpu.id }" class="btn btn-sm btn-default" data-toggle="tooltip" data-placement="top" title="수정">
 			            	<em class="fa fa-pencil"></em>
+			        	</a>
+			        	<a href="<%= request.getContextPath() %>/admin/cpu/detail?id=${ cpu.id }" class="btn btn-sm btn-default" data-toggle="tooltip" data-placement="top" title="상세보기 ">
+			            	<em class="glyphicon glyphicon-list-alt"></em>
 			        	</a>
 					</td>
 				</tr>
@@ -186,12 +189,21 @@ IMP.request_pay({
 }, function(rsp) {
     if ( rsp.success ) {
     	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
+    	console.log("rsp: ", rsp);
     	jQuery.ajax({
-    		url: "/payments/complete", //cross-domain error가 발생하지 않도록 주의해주세요
+    		url: "/final_project/payment/result", //cross-domain error가 발생하지 않도록 주의해주세요
     		type: 'POST',
     		dataType: 'json',
     		data: {
-	    		imp_uid : rsp.imp_uid
+	    		imp_uid : rsp.imp_uid,
+	    		merchant_uid : rsp.merchant_uid,
+	    		pay_method : rsp.pay_method,
+	    		card_quota : card_quota,
+	    		name : rsp.name,
+	    		amount : rsp.amount,
+	    		status : rsp.status,
+	    		buyer_email : rsp.buyer_email
+	    		
 	    		//기타 필요한 데이터가 있으면 추가 전달
     		}
     	}).done(function(data) {
