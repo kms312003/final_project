@@ -157,6 +157,7 @@ public class CpuAction extends Action {
 		return "/cpu/admin/cpuWrite.jsp";
 	}
 
+	// 상세보기
 	public String detailGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		int id = Integer.parseInt(request.getParameter("id"));
@@ -196,6 +197,7 @@ public class CpuAction extends Action {
 		return "/cpu/admin/cpuDetailForm.jsp";
 	}
 
+	// 수정
 	public String updateGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		int id = Integer.parseInt(request.getParameter("id"));
@@ -294,7 +296,8 @@ public class CpuAction extends Action {
 		return "/cpu/admin/cpuUpdate.jsp";
 	}
 
-	/*public String deleteGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+	// 삭제
+	public String deleteGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		int id = Integer.parseInt(request.getParameter("id"));
 
@@ -307,5 +310,5 @@ public class CpuAction extends Action {
 		}
 
 		return "/cpu/admin/cpuDelete.jsp";
-	}*/
+	}
 }

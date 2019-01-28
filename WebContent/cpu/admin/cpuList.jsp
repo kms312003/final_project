@@ -62,6 +62,7 @@
   <div class="row content">
     <div class="col-sm-2 sidenav">
     	<p><a href="<%= request.getContextPath() %>/admin/user/list">User</a></p>
+    	<p><a href="<%= request.getContextPath() %>/admin/computer/list">Computer</a></p>
       	<p><a href="<%= request.getContextPath() %>/admin/cpu/list">Cpu</a></p>
       	<p><a href="<%= request.getContextPath() %>/admin/mainboard/list">메인보드</a></p>
       	<p><a href="<%= request.getContextPath() %>/admin/ram/list">메모리(Ram)</a></p>
@@ -130,9 +131,6 @@
 			        	<a href="<%= request.getContextPath() %>/admin/cpu/detail?id=${ cpu.id }" class="btn btn-sm btn-default" data-toggle="tooltip" data-placement="top" title="상세보기 ">
 			            	<em class="glyphicon glyphicon-list-alt"></em>
 			        	</a>
-			        	<a href="<%= request.getContextPath() %>/admin/cpu/detail?id=${ cpu.id }" class="btn btn-sm btn-default" data-toggle="tooltip" data-placement="top" title="상세보기 ">
-			            	<em class="glyphicon glyphicon-list-alt"></em>
-			        	</a>
 					</td>
 				</tr>
 				</c:forEach>
@@ -193,15 +191,16 @@ IMP.request_pay({
     if ( rsp.success ) {
     	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
     	console.log("rsp: ", rsp);
+    	document.getElementById("test").innerHTML=JSON.stringify(rsp);
     	jQuery.ajax({
-    		url: "/final_project/payment/result", //cross-domain error가 발생하지 않도록 주의해주세요
+    		url: "/final_project/payment/", //cross-domain error가 발생하지 않도록 주의해주세요
     		type: 'POST',
     		dataType: 'json',
     		data: {
 	    		imp_uid : rsp.imp_uid,
 	    		merchant_uid : rsp.merchant_uid,
 	    		pay_method : rsp.pay_method,
-	    		card_quota : card_quota,
+	    		card_quota : rsp.card_quota,
 	    		name : rsp.name,
 	    		amount : rsp.amount,
 	    		status : rsp.status,
@@ -210,6 +209,8 @@ IMP.request_pay({
 	    		//기타 필요한 데이터가 있으면 추가 전달
     		}
     	}).done(function(data) {
+    		console.log("aaa");
+    		alert("data=======", data);
     		//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
     		if ( everythings_fine ) {
     			var msg = '결제가 완료되었습니다.';
@@ -233,4 +234,5 @@ IMP.request_pay({
 });
 }
 </script>
+<div id="test"></div>
 </html>

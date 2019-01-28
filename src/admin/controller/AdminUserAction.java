@@ -21,6 +21,7 @@ import user.UserDBBean;
 
 public class AdminUserAction extends Action {
 
+	// 리스트
 	public String listGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		HttpSession session = request.getSession();
@@ -158,6 +159,7 @@ public class AdminUserAction extends Action {
 		return "/user/admin/userDetail.jsp";
 	}
 
+	// 수정
 	public String updateGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		int id = Integer.parseInt(request.getParameter("id"));
@@ -224,6 +226,7 @@ public class AdminUserAction extends Action {
 		return "/user/admin/userUpdate.jsp";
 	}
 
+	// 삭제
 	public String deleteGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		int id = Integer.parseInt(request.getParameter("id"));

@@ -18,6 +18,7 @@ import graphic.Graphic;
 import graphic.GraphicDBBean;
 import hdd.HDD;
 import hdd.HDDDBBean;
+import mainboard.MainBoardDBBean;
 import product.ProductCode;
 
 public class HDDAction extends Action {
@@ -124,12 +125,12 @@ public class HDDAction extends Action {
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 
 			ProductCode productC = new ProductCode();
-			
+
 			String productDate = multi.getParameter("productDate");
 			String productNum = "05";
 			String productCode = productC.productCode(productDate, productNum);
-			
-//			hdd.setId(Integer.parseInt(multi.getParameter("id")));
+
+			// hdd.setId(Integer.parseInt(multi.getParameter("id")));
 			hdd.setProductCode(productCode);
 			hdd.setProductName(multi.getParameter("productName"));
 			hdd.setProductCompany(multi.getParameter("productCompany"));
@@ -148,7 +149,7 @@ public class HDDAction extends Action {
 
 			HDDDBBean dbPro = HDDDBBean.getInstance();
 			dbPro.insertHDD(hdd);
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -156,6 +157,7 @@ public class HDDAction extends Action {
 		return "/hdd/admin/hddWrite.jsp";
 	}
 
+	// 수정
 	public String updateGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		int id = Integer.parseInt(request.getParameter("id"));
@@ -213,7 +215,7 @@ public class HDDAction extends Action {
 			String productDate = multi.getParameter("productDate").replaceAll("-", "").substring(4, 8);
 			String productCode = multi.getParameter("productCode");
 			String updateProductCode = productCode.replace(productCode.substring(0, 4), productDate);
-			
+
 			hdd.setId(Integer.parseInt(multi.getParameter("id")));
 			hdd.setProductCode(updateProductCode);
 			hdd.setProductName(multi.getParameter("productName"));
@@ -225,7 +227,7 @@ public class HDDAction extends Action {
 			hdd.setRotation(multi.getParameter("rotation"));
 			hdd.setProductDate(transFormat.parse(multi.getParameter("productDate")));
 			hdd.setPrice(Integer.parseInt(multi.getParameter("price")));
-			
+
 			if (file != null) {
 				hdd.setFilename(filename);
 				filesize = (int) file.length();
@@ -240,7 +242,6 @@ public class HDDAction extends Action {
 			HDDDBBean dbPro = HDDDBBean.getInstance();
 			System.out.println("hdd: " + hdd);
 			dbPro.insertHDD(hdd);
-			
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -249,6 +250,7 @@ public class HDDAction extends Action {
 		return "/hdd/admin/hddUpdate.jsp";
 	}
 
+	// 상세보기
 	public String detailGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		int id = Integer.parseInt(request.getParameter("id"));
@@ -283,7 +285,23 @@ public class HDDAction extends Action {
 		request.setAttribute("price", hdd.getPrice());
 		request.setAttribute("count", hdd.getCount());
 		request.setAttribute("filename", hdd.getFilename());
-		
+
 		return "/hdd/admin/hddDetailForm.jsp";
+	}
+
+	// 삭제
+	public String deleteGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+
+		int id = Integer.parseInt(request.getParameter("id"));
+
+		HDDDBBean dbPro = HDDDBBean.getInstance();
+
+		try {
+			dbPro.deleteHDD(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "/hdd/admin/hddDelete.jsp";
 	}
 }

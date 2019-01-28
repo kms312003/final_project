@@ -6,7 +6,7 @@ public class Computer {
 
 	private int id;					// PK
 	private String productCode;		// 제품코드
-	private String category;        // 카테고리명
+	private Category category; // 컴퓨터 카테고리
 	private String productCompany;  // 제조회사
 	private String cpu;				// cpu
 	private String mainBoard;		// 메인보드
@@ -16,18 +16,25 @@ public class Computer {
 	private String ssd;				// ssd
 	private String tower;			// 케이스
 	private String power;			// 파워
+	private Date productDate;  		// 제품 등록일
 	private Date regDate;			// 제품 입력일
 	private int price; 				// 가격
 	private int count;				// 수량
 	private String filename;		// 파일 이름
 	private int filesize;			// 파일 사이즈
 	
+	public enum Category {
+		OFFICE, GAME, MULTI_MEDIA, SPECIAL_EDITION;
+	}
+	
+	
 	@Override
 	public String toString() {
 		return "Computer [id=" + id + ", productCode=" + productCode + ", category=" + category + ", productCompany="
 				+ productCompany + ", cpu=" + cpu + ", mainBoard=" + mainBoard + ", ram=" + ram + ", vga=" + vga
-				+ ", hdd=" + hdd + ", ssd=" + ssd + ", tower=" + tower + ", power=" + power + ", regDate=" + regDate
-				+ ", price=" + price + ", count=" + count + ", filename=" + filename + ", filesize=" + filesize + "]";
+				+ ", hdd=" + hdd + ", ssd=" + ssd + ", tower=" + tower + ", power=" + power + ", productDate="
+				+ productDate + ", regDate=" + regDate + ", price=" + price + ", count=" + count + ", filename="
+				+ filename + ", filesize=" + filesize + "]";
 	}
 	
 	public int getId() {
@@ -42,10 +49,10 @@ public class Computer {
 	public void setProductCode(String productCode) {
 		this.productCode = productCode;
 	}
-	public String getCategory() {
+	public Category getCategory() {
 		return category;
 	}
-	public void setCategory(String category) {
+	public void setCategory(Category category) {
 		this.category = category;
 	}
 	public String getProductCompany() {
@@ -101,6 +108,12 @@ public class Computer {
 	}
 	public void setPower(String power) {
 		this.power = power;
+	}
+	public Date getProductDate() {
+		return productDate;
+	}
+	public void setProductDate(Date productDate) {
+		this.productDate = productDate;
 	}
 	public Date getRegDate() {
 		return regDate;

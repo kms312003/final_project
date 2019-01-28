@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import cpu.CpuDBBean;
 import graphic.Graphic;
 import graphic.GraphicDBBean;
 import mainboard.MainBoard;
@@ -124,12 +125,12 @@ public class MainBoardAction extends Action {
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 
 			ProductCode productC = new ProductCode();
-			
+
 			String productDate = multi.getParameter("productDate");
 			String productNum = "02";
 			String productCode = productC.productCode(productDate, productNum);
-			
-//			mainboard.setId(Integer.parseInt(multi.getParameter("id")));
+
+			// mainboard.setId(Integer.parseInt(multi.getParameter("id")));
 			mainboard.setProductCode(productCode);
 			mainboard.setProductName(multi.getParameter("productName"));
 			mainboard.setProductCompany(multi.getParameter("productCompany"));
@@ -149,7 +150,6 @@ public class MainBoardAction extends Action {
 
 			MainBoardDBBean dbPro = MainBoardDBBean.getInstance();
 			dbPro.insertMainBoard(mainboard);
-			
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -158,6 +158,7 @@ public class MainBoardAction extends Action {
 		return "/mainboard/admin/mainBoardWrite.jsp";
 	}
 
+	// 수정
 	public String updateGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		int id = Integer.parseInt(request.getParameter("id"));
@@ -170,7 +171,7 @@ public class MainBoardAction extends Action {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		
 		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 		System.out.println("productDate: " + mainboard.getProductDate());
 		Date productDate_date = mainboard.getProductDate();
@@ -215,7 +216,7 @@ public class MainBoardAction extends Action {
 			String productDate = multi.getParameter("productDate").replaceAll("-", "").substring(4, 8);
 			String productCode = multi.getParameter("productCode");
 			String updateProductCode = productCode.replace(productCode.substring(0, 4), productDate);
-			
+
 			mainboard.setId(Integer.parseInt(multi.getParameter("id")));
 			mainboard.setProductCode(updateProductCode);
 			mainboard.setProductName(multi.getParameter("productName"));
@@ -228,7 +229,7 @@ public class MainBoardAction extends Action {
 			mainboard.setMemorySlot(Integer.parseInt(multi.getParameter("memorySlot")));
 			mainboard.setProductDate(transFormat.parse(multi.getParameter("productDate")));
 			mainboard.setPrice(Integer.parseInt(multi.getParameter("price")));
-			
+
 			if (file != null) {
 				mainboard.setFilename(filename);
 				filesize = (int) file.length();
@@ -239,11 +240,11 @@ public class MainBoardAction extends Action {
 					mainboard.setFilesize(oldfilesize);
 				}
 			}
-			
+
 			MainBoardDBBean dbPro = MainBoardDBBean.getInstance();
 			System.out.println("mainboard: " + mainboard);
 			dbPro.updateMainBoard(mainboard);
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -251,6 +252,7 @@ public class MainBoardAction extends Action {
 		return "/mainboard/admin/mainBoardUpdate.jsp";
 	}
 
+	// 상세보기
 	public String detailGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		int id = Integer.parseInt(request.getParameter("id"));
@@ -286,7 +288,23 @@ public class MainBoardAction extends Action {
 		request.setAttribute("price", mainboard.getPrice());
 		request.setAttribute("count", mainboard.getCount());
 		request.setAttribute("filename", mainboard.getFilename());
-		
+
 		return "/mainboard/admin/mainBoardDetailForm.jsp";
+	}
+
+	// 삭제
+	public String deleteGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+
+		int id = Integer.parseInt(request.getParameter("id"));
+
+		MainBoardDBBean dbPro = MainBoardDBBean.getInstance();
+
+		try {
+			dbPro.deleteMainBoard(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "/mainboard/admin/mainBoardDelete.jsp";
 	}
 }

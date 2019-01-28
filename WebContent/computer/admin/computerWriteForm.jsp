@@ -2,7 +2,6 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 <head>
   <title>Bootstrap Example</title>
@@ -18,10 +17,10 @@
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
   <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
   <script src="/final_project/js/datepicker.js"></script>
-  
+
   <!-- <script>
-	function checkMainBoard() {
-		var form = document.updateform;
+	function checkCpu() {
+		var form = document.createform;
 		if(!form.name.value) {
 			alert("name error");
 			return false;
@@ -44,7 +43,7 @@
 		}
 		return true;
 	}
-</script> -->
+  </script> -->
 
   <style>
     /* Remove the navbar's default margin-bottom and rounded borders */ 
@@ -85,8 +84,8 @@
     }
   </style>
 </head>
-<body>            
-     
+<body>
+  
 <div class="container-fluid text-center">    
   <div class="row content">
     <div class="col-sm-2 sidenav">
@@ -97,106 +96,75 @@
     
     <div class="col-sm-9 text-left"> 
     <center>
-	<form action="<%= request.getContextPath() %>/admin/mainboard/update" enctype="multipart/form-data" method="post" name="updateform" onsubmit="return checkMainBoard()">
-	<input type="hidden" name="id" value="${ no }">
-	<input type="hidden" name="productCode" value="${ mainboard.productCode }">
-	<input type="hidden" name="oldfilename" value="${ mainboard.filename }">
-	<input type="hidden" name="oldfilesize" value="${ mainboard.filesize }">
+	<form action="<%= request.getContextPath() %>/admin/cpu/write" enctype="multipart/form-data" method="post" name="createform" onsubmit="return checkCpu()">
 		<div class="w3-container">
-		<h2>MainBoard 수정</h2>	
+		<h2>Cpu 등록</h2>	
 			<table class="table table-bordered" style="width:80%;">
 				<tr>
 					<td>제품명</td>
-					<td><input type="text" name="productName" size="50" maxlength="50" value="${mainboard.productName}"></td>
+					<td><input type="text" name="productName" size="50" maxlength="50"></td>
 				</tr>
 				<tr>
 					<td>제조회사</td>
-					<td><input type="text" name="productCompany" size="50" maxlength="20" value="${mainboard.productCompany}"></td>
+					<td><input type="text" name="productCompany" size="50" maxlength="20"></td>
 				</tr>
 				<tr>
-					<td>CPU 소켓</td>
-					<td><input type="text" name="cpuSocket" size="50" maxlength="30" value="${mainboard.cpuSocket}"></td>
+					<td>브랜드분류</td>
+					<td><input type="text" name="brand" size="50" maxlength="30"></td>
 				</tr>
 				<tr>
-					<td>세부 칩셋</td>
-					<td><input type="text" name="chipSet" size="50" maxlength="30" value="${mainboard.chipSet}"></td>
+					<td>소켓구분</td>
+					<td><input type="text" name="socket" size="50" maxlength="30"></td>
 				</tr>
 				<tr>
-					<td>폼팩터</td>
-					<td><input type="text" name="formFactor" size="50" maxlength="20" value="${mainboard.formFactor}"></td>
+					<td>코어</td>
+					<td><input type="text" name="core" size="50" maxlength="10"> 코어</td>
 				</tr>
 				<tr>
-					<td>메모리 종류</td>
-					<td><input type="text" name="memoryType" size="50" maxlength="10" value="${mainboard.memoryType}"></td>
+					<td>쓰레드</td>
+					<td><input type="text" name="thread" size="50" maxlength="20"> 개</td>
 				</tr>
 				<tr>
-					<td>제품 분류</td>
-					<td><input type="text" name="productSort" size="50" maxlength="20" value="${mainboard.productSort}"></td>
+					<td>동작속도</td>
+					<td><input type="text" name="clockSpeed" size="50" maxlength="20"> GHz</td>
 				</tr>
 				<tr>
-					<td>메모리 슬롯 수</td>
-					<td><input type="text" name="memorySlot" size="50" maxlength="10" value="${mainboard.memorySlot}"> 개</td>
+					<td>설계전력(TDP)</td>
+					<td><input type="text" name="tdp" size="50" maxlength="20"> W</td>
 				</tr>
 				<tr>
 					<td>제품 등록일</td>
-					<td><input type="text" name="productDate" size="50" maxlength="20" class="datepicker" value="${productDate}"></td>
+					<td><input type="text" name="productDate" size="50" maxlength="20" class="datepicker"></td>
 				</tr>
 				<tr>
 					<td>가격</td>
-					<td><input type="text" name="price" size="50" maxlength="20" value="${mainboard.price}"> 원</td>
+					<td><input type="text" name="price" size="50" maxlength="20"> 원</td>
 				</tr>
 				<tr>
 					<td width="70" align="center">file</td>
 					<td width="330">
-						<input type="file" size="50" maxlength="30" name="uploadfile" value="${mainboard.filename}">
+						<input type="file" size="50" maxlength="30" name="uploadfile">
 					</td>
 				</tr>
 				<center>
 				<tr>
 					<td colspan="2">
-					<input type="submit" class="btn btn-default" value="Update"> 
+					<input type="submit" class="btn btn-default" value="Create"> 
 					<input type="reset" class="btn btn-default" value="Reset">
-					<!-- Button trigger modal -->
-					<button type="button" class="btn btn-default" data-toggle="modal" data-target="#mainBoardModal">
-					  Delete
-					</button>
-					<input type="button" class="btn btn-default" value="List" onclick="window.location='<%= request.getContextPath() %>/admin/mainboard/list'">
+					<input type="button" class="btn btn-default" value="List" onclick="window.location='<%= request.getContextPath() %>/admin/cpu/list'">
 					</td>
 				</tr>
 				</center>
 			</table>
 		</div>	
 	</form>
-	
 	</center>
-	</div>
-	
+	</div>	   
+
   </div>
 </div>
-
-<!-- Modal -->
-<div class="modal fade" id="mainBoardModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Delete Confirm</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Are you sure you want to delete?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" onclick="window.location='<%= request.getContextPath() %>/admin/mainboard/delete?id=${ no }'">Delete</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 </body>
 <!-- <footer class="container-fluid text-center">
-  <p>Footer Text</p>
+  <p>Just travel</p>
 </footer> -->
 </html>

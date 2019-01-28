@@ -20,7 +20,7 @@
   <script src="/final_project/js/datepicker.js"></script>
   
   <!-- <script>
-	function checkMainBoard() {
+	function checkCpu() {
 		var form = document.updateform;
 		if(!form.name.value) {
 			alert("name error");
@@ -97,45 +97,45 @@
     
     <div class="col-sm-9 text-left"> 
     <center>
-	<form action="<%= request.getContextPath() %>/admin/mainboard/update" enctype="multipart/form-data" method="post" name="updateform" onsubmit="return checkMainBoard()">
+	<form action="<%= request.getContextPath() %>/admin/cpu/update" enctype="multipart/form-data" method="post" name="updateform" onsubmit="return checkCpu()">
 	<input type="hidden" name="id" value="${ no }">
-	<input type="hidden" name="productCode" value="${ mainboard.productCode }">
-	<input type="hidden" name="oldfilename" value="${ mainboard.filename }">
-	<input type="hidden" name="oldfilesize" value="${ mainboard.filesize }">
+	<input type="hidden" name="productCode" value="${ cpu.productCode }">
+	<input type="hidden" name="oldfilename" value="${ cpu.filename }">
+	<input type="hidden" name="oldfilesize" value="${ cpu.filesize }">
 		<div class="w3-container">
-		<h2>MainBoard 수정</h2>	
+		<h2>Cpu 수정</h2>	
 			<table class="table table-bordered" style="width:80%;">
 				<tr>
 					<td>제품명</td>
-					<td><input type="text" name="productName" size="50" maxlength="50" value="${mainboard.productName}"></td>
+					<td><input type="text" name="productName" size="50" maxlength="50" value="${cpu.productName}"></td>
 				</tr>
 				<tr>
 					<td>제조회사</td>
-					<td><input type="text" name="productCompany" size="50" maxlength="20" value="${mainboard.productCompany}"></td>
+					<td><input type="text" name="productCompany" size="50" maxlength="20" value="${cpu.productCompany}"></td>
 				</tr>
 				<tr>
-					<td>CPU 소켓</td>
-					<td><input type="text" name="cpuSocket" size="50" maxlength="30" value="${mainboard.cpuSocket}"></td>
+					<td>브랜드분류</td>
+					<td><input type="text" name="brand" size="50" maxlength="30" value="${cpu.brand}"></td>
 				</tr>
 				<tr>
-					<td>세부 칩셋</td>
-					<td><input type="text" name="chipSet" size="50" maxlength="30" value="${mainboard.chipSet}"></td>
+					<td>소켓구분</td>
+					<td><input type="text" name="socket" size="50" maxlength="30" value="${cpu.socket}"></td>
 				</tr>
 				<tr>
-					<td>폼팩터</td>
-					<td><input type="text" name="formFactor" size="50" maxlength="20" value="${mainboard.formFactor}"></td>
+					<td>코어</td>
+					<td><input type="text" name="core" size="50" maxlength="10" value="${cpu.core}"> 코어</td>
 				</tr>
 				<tr>
-					<td>메모리 종류</td>
-					<td><input type="text" name="memoryType" size="50" maxlength="10" value="${mainboard.memoryType}"></td>
+					<td>쓰레드</td>
+					<td><input type="text" name="thread" size="50" maxlength="20" value="${cpu.thread}"> 개</td>
 				</tr>
 				<tr>
-					<td>제품 분류</td>
-					<td><input type="text" name="productSort" size="50" maxlength="20" value="${mainboard.productSort}"></td>
+					<td>동작속도</td>
+					<td><input type="text" name="clockSpeed" size="50" maxlength="20" value="${cpu.clockSpeed}"> GHz</td>
 				</tr>
 				<tr>
-					<td>메모리 슬롯 수</td>
-					<td><input type="text" name="memorySlot" size="50" maxlength="10" value="${mainboard.memorySlot}"> 개</td>
+					<td>설계전력(TDP)</td>
+					<td><input type="text" name="tdp" size="50" maxlength="20" value="${cpu.tdp}"> W</td>
 				</tr>
 				<tr>
 					<td>제품 등록일</td>
@@ -143,12 +143,12 @@
 				</tr>
 				<tr>
 					<td>가격</td>
-					<td><input type="text" name="price" size="50" maxlength="20" value="${mainboard.price}"> 원</td>
+					<td><input type="text" name="price" size="50" maxlength="20" value="${cpu.price}"> 원</td>
 				</tr>
 				<tr>
 					<td width="70" align="center">file</td>
 					<td width="330">
-						<input type="file" size="50" maxlength="30" name="uploadfile" value="${mainboard.filename}">
+						<input type="file" size="50" maxlength="30" name="uploadfile" value="${cpu.filename}">
 					</td>
 				</tr>
 				<center>
@@ -157,10 +157,10 @@
 					<input type="submit" class="btn btn-default" value="Update"> 
 					<input type="reset" class="btn btn-default" value="Reset">
 					<!-- Button trigger modal -->
-					<button type="button" class="btn btn-default" data-toggle="modal" data-target="#mainBoardModal">
+					<button type="button" class="btn btn-default" data-toggle="modal" data-target="#cpuModal">
 					  Delete
 					</button>
-					<input type="button" class="btn btn-default" value="List" onclick="window.location='<%= request.getContextPath() %>/admin/mainboard/list'">
+					<input type="button" class="btn btn-default" value="List" onclick="window.location='<%= request.getContextPath() %>/admin/cpu/list'">
 					</td>
 				</tr>
 				</center>
@@ -175,7 +175,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="mainBoardModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="cpuModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -189,7 +189,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" onclick="window.location='<%= request.getContextPath() %>/admin/mainboard/delete?id=${ no }'">Delete</button>
+        <button type="button" class="btn btn-primary" onclick="window.location='<%= request.getContextPath() %>/admin/cpu/delete?id=${ no }'">Delete</button>
       </div>
     </div>
   </div>

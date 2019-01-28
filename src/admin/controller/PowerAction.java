@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import cpu.CpuDBBean;
 import graphic.Graphic;
 import graphic.GraphicDBBean;
 import power.Power;
@@ -124,12 +125,12 @@ public class PowerAction extends Action {
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 
 			ProductCode productC = new ProductCode();
-			
+
 			String productDate = multi.getParameter("productDate");
 			String productNum = "07";
 			String productCode = productC.productCode(productDate, productNum);
-			
-//			power.setId(Integer.parseInt(multi.getParameter("id")));
+
+			// power.setId(Integer.parseInt(multi.getParameter("id")));
 			power.setProductCode(productCode);
 			power.setProductName(multi.getParameter("productName"));
 			power.setProductCompany(multi.getParameter("productCompany"));
@@ -146,7 +147,7 @@ public class PowerAction extends Action {
 
 			PowerDBBean dbPro = PowerDBBean.getInstance();
 			dbPro.insertPower(power);
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -154,7 +155,7 @@ public class PowerAction extends Action {
 		return "/power/admin/powerWrite.jsp";
 	}
 
-
+	// 수정
 	public String updateGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		int id = Integer.parseInt(request.getParameter("id"));
@@ -212,7 +213,7 @@ public class PowerAction extends Action {
 			String productDate = multi.getParameter("productDate").replaceAll("-", "").substring(4, 8);
 			String productCode = multi.getParameter("productCode");
 			String updateProductCode = productCode.replace(productCode.substring(0, 4), productDate);
-			
+
 			power.setId(Integer.parseInt(multi.getParameter("id")));
 			power.setProductCode(updateProductCode);
 			power.setProductName(multi.getParameter("productName"));
@@ -222,7 +223,7 @@ public class PowerAction extends Action {
 			power.setRatedOutput(Integer.parseInt(multi.getParameter("ratedOutput")));
 			power.setProductDate(transFormat.parse(multi.getParameter("productDate")));
 			power.setPrice(Integer.parseInt(multi.getParameter("price")));
-			
+
 			if (file != null) {
 				power.setFilename(filename);
 				filesize = (int) file.length();
@@ -233,11 +234,10 @@ public class PowerAction extends Action {
 					power.setFilesize(oldfilesize);
 				}
 			}
-			
+
 			PowerDBBean dbPro = PowerDBBean.getInstance();
 			System.out.println("power: " + power);
 			dbPro.updatePower(power);
-			
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -246,6 +246,7 @@ public class PowerAction extends Action {
 		return "/power/admin/powerUpdate.jsp";
 	}
 
+	// 상세보기
 	public String detailGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		int id = Integer.parseInt(request.getParameter("id"));
@@ -278,7 +279,23 @@ public class PowerAction extends Action {
 		request.setAttribute("price", power.getPrice());
 		request.setAttribute("count", power.getCount());
 		request.setAttribute("filename", power.getFilename());
-		
+
 		return "/power/admin/powerDetailForm.jsp";
+	}
+
+	// 삭제
+	public String deleteGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+
+		int id = Integer.parseInt(request.getParameter("id"));
+
+		PowerDBBean dbPro = PowerDBBean.getInstance();
+
+		try {
+			dbPro.deletePower(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "/power/admin/powerDelete.jsp";
 	}
 }

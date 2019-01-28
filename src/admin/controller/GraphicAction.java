@@ -14,14 +14,12 @@ import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import cpu.Cpu;
-import cpu.CpuDBBean;
 import graphic.Graphic;
 import graphic.GraphicDBBean;
 import product.ProductCode;
 
 public class GraphicAction extends Action {
-//
+	
 	// 리스트
 	public String listGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
@@ -58,7 +56,7 @@ public class GraphicAction extends Action {
 
 			if (count > 0) {
 				graphicList = dbPro.getGraphicList(start, end);
-				//graphicList = dbPro.getCpuList(start, end);
+				// graphicList = dbPro.getCpuList(start, end);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -125,12 +123,12 @@ public class GraphicAction extends Action {
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 
 			ProductCode productC = new ProductCode();
-			
+
 			String productDate = multi.getParameter("productDate");
 			String productNum = "04";
 			String productCode = productC.productCode(productDate, productNum);
-			
-//			graphic.setId(Integer.parseInt(multi.getParameter("id")));
+
+			// graphic.setId(Integer.parseInt(multi.getParameter("id")));
 			graphic.setProductCode(productCode);
 			graphic.setProductName(multi.getParameter("productName"));
 			graphic.setProductCompany(multi.getParameter("productCompany"));
@@ -151,7 +149,7 @@ public class GraphicAction extends Action {
 			graphic.setFilesize(filesize);
 			GraphicDBBean dbPro = GraphicDBBean.getInstance();
 			dbPro.insertGraphic(graphic);
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -159,6 +157,7 @@ public class GraphicAction extends Action {
 		return "/graphic/admin/graphicWrite.jsp";
 	}
 
+	// 수정
 	public String updateGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		int id = Integer.parseInt(request.getParameter("id"));
@@ -216,7 +215,7 @@ public class GraphicAction extends Action {
 			String productDate = multi.getParameter("productDate").replaceAll("-", "").substring(4, 8);
 			String productCode = multi.getParameter("productCode");
 			String updateProductCode = productCode.replace(productCode.substring(0, 4), productDate);
-			
+
 			graphic.setId(Integer.parseInt(multi.getParameter("id")));
 			graphic.setProductCode(updateProductCode);
 			graphic.setProductName(multi.getParameter("productName"));
@@ -231,8 +230,8 @@ public class GraphicAction extends Action {
 			graphic.setLength(Integer.parseInt(multi.getParameter("length")));
 			graphic.setProductDate(transFormat.parse(multi.getParameter("productDate")));
 			graphic.setPrice(Integer.parseInt(multi.getParameter("price")));
-			//graphic.setCount(Integer.parseInt(multi.getParameter("count")));
-			
+			// graphic.setCount(Integer.parseInt(multi.getParameter("count")));
+
 			if (file != null) {
 				graphic.setFilename(filename);
 				filesize = (int) file.length();
@@ -243,11 +242,10 @@ public class GraphicAction extends Action {
 					graphic.setFilesize(oldfilesize);
 				}
 			}
-			
+
 			GraphicDBBean dbPro = GraphicDBBean.getInstance();
 			System.out.println("grahpic: " + graphic);
 			dbPro.updateGraphic(graphic);
-			
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -256,6 +254,7 @@ public class GraphicAction extends Action {
 		return "/graphic/admin/graphicUpdate.jsp";
 	}
 
+	// 상세보기
 	public String detailGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		int id = Integer.parseInt(request.getParameter("id"));
@@ -293,7 +292,23 @@ public class GraphicAction extends Action {
 		request.setAttribute("price", graphic.getPrice());
 		request.setAttribute("count", graphic.getCount());
 		request.setAttribute("filename", graphic.getFilename());
-		
+
 		return "/graphic/admin/graphicDetailForm.jsp";
+	}
+
+	// 삭제
+	public String deleteGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+
+		int id = Integer.parseInt(request.getParameter("id"));
+
+		GraphicDBBean dbPro = GraphicDBBean.getInstance();
+
+		try {
+			dbPro.deleteGraphic(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "/graphic/admin/graphicDelete.jsp";
 	}
 }

@@ -11,6 +11,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import cpu.Cpu;
+
 public class ComputerDBBean {
 	
 	private static ComputerDBBean instance = new ComputerDBBean();
@@ -101,6 +103,19 @@ public class ComputerDBBean {
 		sqlSession.close();
 		return computer;
 	}
+	
+	// Computer 디테일 Get
+		public Computer getDetail(int id) {
+			SqlSession sqlSession = getSqlSessionFactory().openSession();
+
+			Map map = new HashMap();
+			map.put("id", id);
+
+			Computer computer = sqlSession.selectOne(namespace + ".getComputer", map);
+
+			sqlSession.close();
+			return computer;
+		}
 
 	// Computer 수정 Post
 	public void updateComputer(Computer computer) {

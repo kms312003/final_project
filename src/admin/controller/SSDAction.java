@@ -14,12 +14,9 @@ import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import graphic.Graphic;
-import graphic.GraphicDBBean;
 import product.ProductCode;
 import ssd.SSD;
 import ssd.SSDDBBean;
-
 
 public class SSDAction extends Action {
 
@@ -125,12 +122,12 @@ public class SSDAction extends Action {
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 
 			ProductCode productC = new ProductCode();
-			
+
 			String productDate = multi.getParameter("productDate");
 			String productNum = "06";
 			String productCode = productC.productCode(productDate, productNum);
-			
-//			ssd.setId(Integer.parseInt(multi.getParameter("id")));
+
+			// ssd.setId(Integer.parseInt(multi.getParameter("id")));
 			ssd.setProductCode(productCode);
 			ssd.setProductName(multi.getParameter("productName"));
 			ssd.setProductCompany(multi.getParameter("productCompany"));
@@ -150,7 +147,6 @@ public class SSDAction extends Action {
 
 			SSDDBBean dbPro = SSDDBBean.getInstance();
 			dbPro.insertSSD(ssd);
-			
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -159,6 +155,7 @@ public class SSDAction extends Action {
 		return "/ssd/admin/ssdWrite.jsp";
 	}
 
+	// 수정
 	public String updateGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		int id = Integer.parseInt(request.getParameter("id"));
@@ -216,7 +213,7 @@ public class SSDAction extends Action {
 			String productDate = multi.getParameter("productDate").replaceAll("-", "").substring(4, 8);
 			String productCode = multi.getParameter("productCode");
 			String updateProductCode = productCode.replace(productCode.substring(0, 4), productDate);
-			
+
 			ssd.setId(Integer.parseInt(multi.getParameter("id")));
 			ssd.setProductCode(updateProductCode);
 			ssd.setProductName(multi.getParameter("productName"));
@@ -229,7 +226,7 @@ public class SSDAction extends Action {
 			ssd.setWriteSpeed(Integer.parseInt(multi.getParameter("writeSpeed")));
 			ssd.setProductDate(transFormat.parse(multi.getParameter("productDate")));
 			ssd.setPrice(Integer.parseInt(multi.getParameter("price")));
-			
+
 			if (file != null) {
 				ssd.setFilename(filename);
 				filesize = (int) file.length();
@@ -240,11 +237,11 @@ public class SSDAction extends Action {
 					ssd.setFilesize(oldfilesize);
 				}
 			}
-			
+
 			SSDDBBean dbPro = SSDDBBean.getInstance();
 			System.out.println("ssd: " + ssd);
 			dbPro.updateSSD(ssd);
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -252,6 +249,7 @@ public class SSDAction extends Action {
 		return "/ssd/admin/ssdUpdate.jsp";
 	}
 
+	// 상세보기
 	public String detailGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		int id = Integer.parseInt(request.getParameter("id"));
@@ -287,7 +285,23 @@ public class SSDAction extends Action {
 		request.setAttribute("price", ssd.getPrice());
 		request.setAttribute("count", ssd.getCount());
 		request.setAttribute("filename", ssd.getFilename());
-		
+
 		return "/ssd/admin/ssdDetailForm.jsp";
+	}
+
+	// 삭제
+	public String deleteGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+
+		int id = Integer.parseInt(request.getParameter("id"));
+
+		SSDDBBean dbPro = SSDDBBean.getInstance();
+
+		try {
+			dbPro.deleteSSD(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "/ssd/admin/ssdDelete.jsp";
 	}
 }

@@ -14,10 +14,10 @@
      </select>
      
      <insert id="insert" parameterType="computer">
-        insert into computer(id, productName, productCompany, brand, socket,
-               core, thread, clockSpeed, tdp, productDate, regDate, price, count, filename, filesize) 
-               values(0, #{productName},#{productCompany},#{brand},#{socket},#{core}
-      ,#{thread},#{clockSpeed},#{tdp},#{productDate},curdate(),#{price},#{count}, #{filename},#{filesize})
+        insert into computer(id, category, productCompany, cpu, mainBoard,
+               ram, vga, hdd, ssd, tower, power, productDate, regDate, price, count, filename, filesize) 
+               values(0, #{category},#{productCompany},#{cpu},#{mainBoard},#{ram}
+      ,#{thread},#{vga},#{tdp},,#{hdd},#{ssd},#{tower},#{power},#{productDate},curdate(),#{price},#{count}, #{filename},#{filesize})
      </insert>
      
      <select id="getComputer" resultType="computer" parameterType="hashmap">
@@ -29,8 +29,8 @@
      </update>
      
      <update id="update" parameterType="computer">
-        update computer set productName=#{productName}, productCompany=#{productCompany}, brand=#{brand}, 
-        socket= #{socket}, core=#{core}, thread=#{thread}, clockSpeed=#{clockSpeed}, tdp=#{tdp}, productDate=#{productDate}, price=#{price}, filename=#{filename}, filesize=#{filesize} where id=#{id}
+        update computer set category=#{category}, productCompany=#{productCompany}, cpu=#{cpu}, 
+        mainBoard= #{mainBoard}, ram=#{ram}, vga=#{vga}, hdd=#{hdd}, tdp=#{tdp}, ssd=#{ssd}, tower=#{tower}, power=#{power}, productDate=#{productDate}, price=#{price}, filename=#{filename}, filesize=#{filesize} where id=#{id}
      </update>
      
      <delete id="deleteComputer" parameterType="hashmap">

@@ -153,21 +153,10 @@
 					<td>FILE</td>
 					<td align="center" width="330">${ filename}</td>
 				</tr>
-				<%-- <tr>
-					<td width="70" align="center">file</td>
-					<td width="330">
-						<input type="file" size="50" maxlength="30" name="uploadfile" value="${filename}">
-					</td>
-				</tr> --%>
 				<center>
 				<tr>
 					<td colspan="2">
-					<input type="button" class="btn btn-default" value="Update" onclick="window.location='<%= request.getContextPath() %>/admin/ram/update'"> 
-					<input type="reset" class="btn btn-default" value="Reset">
-					<!-- Button trigger modal -->
-					<!-- <button type="button" class="btn btn-default" data-toggle="modal" data-target="#cpuModal">
-					  Delete
-					</button> -->
+					<input type="button" class="btn btn-default" value="Update" onclick="window.location='<%= request.getContextPath() %>/admin/ram/update?id=${no}'"> 
 					<input type="button" class="btn btn-default" value="List" onclick="window.location='<%= request.getContextPath() %>/admin/ram/list'">
 					</td>
 				</tr>
@@ -182,29 +171,5 @@
   </div>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="cpuModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Delete Confirm</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Are you sure you want to delete?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" onclick="window.location='<%= request.getContextPath() %>/admin/ram/delete?id=${ no }'">Delete</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 </body>
-<!-- <footer class="container-fluid text-center">
-  <p>Footer Text</p>
-</footer> -->
 </html>

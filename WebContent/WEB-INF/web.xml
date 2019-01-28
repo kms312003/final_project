@@ -20,6 +20,14 @@
 			<include-prelude>/common/admin.jsp</include-prelude>
 		</jsp-property-group>
 	</jsp-config>
+	
+   <!-- 메인헤더 -->
+   <!-- <jsp-config>
+      <jsp-property-group>
+         <url-pattern>/user/*</url-pattern>
+         <include-prelude>/header/header.jsp</include-prelude>
+      </jsp-property-group>
+   </jsp-config> -->
 
 	<!-- 모델 2 -->
 	<!-- 메인 페이지 properties -->
@@ -66,7 +74,19 @@
 		<url-pattern>/admin/user/*</url-pattern>
 	</servlet-mapping>
 	
-	<!-- 제품 -->
+	<!-- 완성제품 -->
+	<servlet>
+		<servlet-name>AdminComputerController</servlet-name>
+		<servlet-class>admin.controller.ComputerAction</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>AdminComputerController</servlet-name>
+		<url-pattern>/admin/computer/*</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 제품부품 -->
 	<servlet>
 		<servlet-name>AdminCpuController</servlet-name>
 		<servlet-class>admin.controller.CpuAction</servlet-class>
@@ -201,5 +221,5 @@
 			<param-value>UTF-8</param-value>
 		</init-param>
 	</filter>
-
+   
 </web-app>

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import cpu.CpuDBBean;
 import graphic.Graphic;
 import graphic.GraphicDBBean;
 import product.ProductCode;
@@ -124,12 +125,12 @@ public class RamAction extends Action {
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 
 			ProductCode productC = new ProductCode();
-			
+
 			String productDate = multi.getParameter("productDate");
 			String productNum = "03";
 			String productCode = productC.productCode(productDate, productNum);
-			
-//			ram.setId(Integer.parseInt(multi.getParameter("id")));
+
+			// ram.setId(Integer.parseInt(multi.getParameter("id")));
 			ram.setProductCode(productCode);
 			ram.setProductName(multi.getParameter("productName"));
 			ram.setProductCompany(multi.getParameter("productCompany"));
@@ -147,7 +148,7 @@ public class RamAction extends Action {
 
 			RamDBBean dbPro = RamDBBean.getInstance();
 			dbPro.insertRam(ram);
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -155,7 +156,7 @@ public class RamAction extends Action {
 		return "/ram/admin/ramWrite.jsp";
 	}
 
-
+	// 수정
 	public String updateGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		int id = Integer.parseInt(request.getParameter("id"));
@@ -213,7 +214,7 @@ public class RamAction extends Action {
 			String productDate = multi.getParameter("productDate").replaceAll("-", "").substring(4, 8);
 			String productCode = multi.getParameter("productCode");
 			String updateProductCode = productCode.replace(productCode.substring(0, 4), productDate);
-			
+
 			ram.setId(Integer.parseInt(multi.getParameter("id")));
 			ram.setProductCode(updateProductCode);
 			ram.setProductName(multi.getParameter("productName"));
@@ -224,7 +225,7 @@ public class RamAction extends Action {
 			ram.setVoltage(Integer.parseInt(multi.getParameter("voltage")));
 			ram.setProductDate(transFormat.parse(multi.getParameter("productDate")));
 			ram.setPrice(Integer.parseInt(multi.getParameter("price")));
-			
+
 			if (file != null) {
 				ram.setFilename(filename);
 				filesize = (int) file.length();
@@ -235,7 +236,7 @@ public class RamAction extends Action {
 					ram.setFilesize(oldfilesize);
 				}
 			}
-			
+
 			RamDBBean dbPro = RamDBBean.getInstance();
 			System.out.println("ram: " + ram);
 			dbPro.updateRam(ram);
@@ -247,6 +248,7 @@ public class RamAction extends Action {
 		return "/ram/admin/ramUpdate.jsp";
 	}
 
+	// 상세보기
 	public String detailGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		int id = Integer.parseInt(request.getParameter("id"));
@@ -280,7 +282,23 @@ public class RamAction extends Action {
 		request.setAttribute("price", ram.getPrice());
 		request.setAttribute("count", ram.getCount());
 		request.setAttribute("filename", ram.getFilename());
-		
+
 		return "/ram/admin/ramDetailForm.jsp";
+	}
+
+	// 삭제
+	public String deleteGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+
+		int id = Integer.parseInt(request.getParameter("id"));
+
+		RamDBBean dbPro = RamDBBean.getInstance();
+
+		try {
+			dbPro.deleteRam(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "/ram/admin/ramDelete.jsp";
 	}
 }
