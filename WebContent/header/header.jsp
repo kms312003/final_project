@@ -8,13 +8,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="OneTech shop project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
-<link href="plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
-<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
-<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
-<link rel="stylesheet" type="text/css" href="styles/blog_styles.css">
-<link rel="stylesheet" type="text/css" href="styles/blog_responsive.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/header/styles/bootstrap4/bootstrap.min.css">
+<link href="<%=request.getContextPath() %>/header/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/header/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/header/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/header/plugins/OwlCarousel2-2.2.1/animate.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/header/styles/blog_styles.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/header/styles/blog_responsive.css">
 
 </head>
 <body>
@@ -29,8 +29,8 @@
 			<div class="container">
 				<div class="row">
 					<div class="col d-flex flex-row">
-						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="images/phone.png" alt=""></div>+38 068 005 3570</div>
-						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="images/mail.png" alt=""></div><a href="mailto:mailname@gmail.com">mailname@gmail.com</a></div>
+						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="<%=request.getContextPath() %>/header/images/phone.png" alt=""></div>+38 068 005 3570</div>
+						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="<%=request.getContextPath() %>/header/images/mail.png" alt=""></div><a href="mailto:mailname@gmail.com">mailname@gmail.com</a></div>
 						<div class="top_bar_content ml-auto">
 							<div class="top_bar_menu">
 								<ul class="standard_dropdown top_bar_dropdown">
@@ -53,7 +53,7 @@
 								</ul>
 							</div>
 							<div class="top_bar_user">
-								<div class="user_icon"><img src="images/user.svg" alt=""></div>
+								<div class="user_icon"><img src="<%=request.getContextPath() %>/header/images/user.svg" alt=""></div>
 								<div><a href="#">Register</a></div>
 								<div><a href="#">Sign in</a></div>
 							</div>
@@ -84,7 +84,7 @@
 									<form action="#" class="header_search_form clearfix">
 										<input type="search" required="required" class="header_search_input" placeholder="Search for products">
 										
-										<button type="submit" class="header_search_button trans_300" value="Submit"><img src="images/search.png" alt=""></button>
+										<button type="submit" class="header_search_button trans_300" value="Submit"><img src="<%=request.getContextPath() %>/header/images/search.png" alt=""></button>
 									</form>
 								</div>
 							</div>
@@ -95,7 +95,7 @@
 					<div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
 						<div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
 							<div class="wishlist d-flex flex-row align-items-center justify-content-end">
-								<div class="wishlist_icon"><img src="images/heart.png" alt=""></div>
+								<div class="wishlist_icon"><img src="<%=request.getContextPath() %>/header/images/heart.png" alt=""></div>
 								<div class="wishlist_content">
 									<div class="wishlist_text"><a href="#">Wishlist</a></div>
 									<div class="wishlist_count">115</div>
@@ -106,7 +106,7 @@
 							<div class="cart">
 								<div class="cart_container d-flex flex-row align-items-center justify-content-end">
 									<div class="cart_icon">
-										<img src="images/cart.png" alt="">
+										<img src="<%=request.getContextPath() %>/header/images/cart.png" alt="">
 										<div class="cart_count"><span>10</span></div>
 									</div>
 									<div class="cart_content">
