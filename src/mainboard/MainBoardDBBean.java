@@ -11,6 +11,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import hdd.HDD;
+
 public class MainBoardDBBean {
 
 	private static MainBoardDBBean instance = new MainBoardDBBean();
@@ -123,5 +125,18 @@ public class MainBoardDBBean {
 		sqlSession.commit();
 
 		sqlSession.close();
+	}
+	
+	// MainBoard 디테일 Get
+	public MainBoard getDetail(int id) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+
+		Map map = new HashMap();
+		map.put("id", id);
+
+		MainBoard mainboard = sqlSession.selectOne(namespace + ".getMainBoard", map);
+
+		sqlSession.close();
+		return mainboard;
 	}
 }

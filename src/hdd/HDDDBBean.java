@@ -10,6 +10,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import graphic.Graphic;
+
 public class HDDDBBean {
 
 	private static HDDDBBean instance = new HDDDBBean();
@@ -122,5 +124,18 @@ public class HDDDBBean {
 		sqlSession.commit();
 
 		sqlSession.close();
+	}
+	
+	// HDD 디테일 Get
+	public HDD getDetail(int id) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+
+		Map map = new HashMap();
+		map.put("id", id);
+
+		HDD hdd = sqlSession.selectOne(namespace + ".getHDD", map);
+
+		sqlSession.close();
+		return hdd;
 	}
 }

@@ -14,6 +14,8 @@ import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import graphic.Graphic;
+import graphic.GraphicDBBean;
 import product.ProductCode;
 import ssd.SSD;
 import ssd.SSDDBBean;
@@ -157,27 +159,6 @@ public class SSDAction extends Action {
 		return "/ssd/admin/ssdWrite.jsp";
 	}
 
-	public String detailGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-
-		String no = request.getParameter("id");
-		int id = Integer.parseInt(no);
-
-		SSDDBBean dbPro = SSDDBBean.getInstance();
-		SSD ssd = new SSD();
-
-		try {
-			ssd = dbPro.getSSD(id);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		request.setAttribute("no", no);
-		request.setAttribute("ssd", ssd);
-
-		return "/ssd/admin/ssdDetail.jsp";
-	}
-
 	public String updateGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		int id = Integer.parseInt(request.getParameter("id"));
@@ -271,18 +252,42 @@ public class SSDAction extends Action {
 		return "/ssd/admin/ssdUpdate.jsp";
 	}
 
-	public String deleteGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+	public String detailGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		int id = Integer.parseInt(request.getParameter("id"));
+		String no = String.valueOf(id);
 
 		SSDDBBean dbPro = SSDDBBean.getInstance();
-
+		SSD ssd = new SSD();
 		try {
-			dbPro.deleteSSD(id);
+			ssd = dbPro.getDetail(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return "/ssd/admin/ssdDelete.jsp";
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+		System.out.println("productDate: " + ssd.getProductDate());
+		Date productDate_date = ssd.getProductDate();
+		String productDate = transFormat.format(productDate_date);
+
+		System.out.println("ssd.getProductCode 확인");
+		System.out.println(ssd.getProductCode());
+		request.setAttribute("no", no);
+		request.setAttribute("productCode", ssd.getProductCode());
+		request.setAttribute("productName", ssd.getProductName());
+		request.setAttribute("productCompany", ssd.getProductCompany());
+		request.setAttribute("diskType", ssd.getDiskType());
+		request.setAttribute("diskCapacity", ssd.getDiskCapacity());
+		request.setAttribute("interFace", ssd.getInterFace());
+		request.setAttribute("memoryType", ssd.getMemoryType());
+		request.setAttribute("readSpeed", ssd.getReadSpeed());
+		request.setAttribute("writeSpeed", ssd.getWriteSpeed());
+		request.setAttribute("productDate", ssd.getProductDate());
+		request.setAttribute("regDate", ssd.getRegDate());
+		request.setAttribute("price", ssd.getPrice());
+		request.setAttribute("count", ssd.getCount());
+		request.setAttribute("filename", ssd.getFilename());
+		
+		return "/ssd/admin/ssdDetailForm.jsp";
 	}
 }

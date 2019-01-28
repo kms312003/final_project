@@ -130,6 +130,9 @@
 			        	<a href="<%= request.getContextPath() %>/admin/cpu/detail?id=${ cpu.id }" class="btn btn-sm btn-default" data-toggle="tooltip" data-placement="top" title="상세보기 ">
 			            	<em class="glyphicon glyphicon-list-alt"></em>
 			        	</a>
+			        	<a href="<%= request.getContextPath() %>/admin/cpu/detail?id=${ cpu.id }" class="btn btn-sm btn-default" data-toggle="tooltip" data-placement="top" title="상세보기 ">
+			            	<em class="glyphicon glyphicon-list-alt"></em>
+			        	</a>
 					</td>
 				</tr>
 				</c:forEach>

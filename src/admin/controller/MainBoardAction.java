@@ -14,6 +14,8 @@ import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import graphic.Graphic;
+import graphic.GraphicDBBean;
 import mainboard.MainBoard;
 import mainboard.MainBoardDBBean;
 import product.ProductCode;
@@ -156,27 +158,6 @@ public class MainBoardAction extends Action {
 		return "/mainboard/admin/mainBoardWrite.jsp";
 	}
 
-	public String detailGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-
-		String no = request.getParameter("id");
-		int id = Integer.parseInt(no);
-
-		MainBoardDBBean dbPro = MainBoardDBBean.getInstance();
-		MainBoard mainboard = new MainBoard();
-
-		try {
-			mainboard = dbPro.getMainBoard(id);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		request.setAttribute("no", no);
-		request.setAttribute("mainboard", mainboard);
-
-		return "/mainboard/admin/mainBoardDetail.jsp";
-	}
-
 	public String updateGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		int id = Integer.parseInt(request.getParameter("id"));
@@ -270,18 +251,42 @@ public class MainBoardAction extends Action {
 		return "/mainboard/admin/mainBoardUpdate.jsp";
 	}
 
-	public String deleteGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+	public String detailGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		int id = Integer.parseInt(request.getParameter("id"));
+		String no = String.valueOf(id);
 
 		MainBoardDBBean dbPro = MainBoardDBBean.getInstance();
-
+		MainBoard mainboard = new MainBoard();
 		try {
-			dbPro.deleteMainBoard(id);
+			mainboard = dbPro.getDetail(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return "/mainboard/admin/mainBoardDelete.jsp";
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+		System.out.println("productDate: " + mainboard.getProductDate());
+		Date productDate_date = mainboard.getProductDate();
+		String productDate = transFormat.format(productDate_date);
+
+		System.out.println("mainboard.getProductCode 확인");
+		System.out.println(mainboard.getProductCode());
+		request.setAttribute("no", no);
+		request.setAttribute("productCode", mainboard.getProductCode());
+		request.setAttribute("productName", mainboard.getProductName());
+		request.setAttribute("productCompany", mainboard.getProductCompany());
+		request.setAttribute("cpuSocket", mainboard.getCpuSocket());
+		request.setAttribute("chipSet", mainboard.getChipSet());
+		request.setAttribute("formFactor", mainboard.getFormFactor());
+		request.setAttribute("memoryType", mainboard.getMemoryType());
+		request.setAttribute("productSort", mainboard.getProductSort());
+		request.setAttribute("memorySlot", mainboard.getMemorySlot());
+		request.setAttribute("productDate", mainboard.getProductDate());
+		request.setAttribute("regDate", mainboard.getRegDate());
+		request.setAttribute("price", mainboard.getPrice());
+		request.setAttribute("count", mainboard.getCount());
+		request.setAttribute("filename", mainboard.getFilename());
+		
+		return "/mainboard/admin/mainBoardDetailForm.jsp";
 	}
 }

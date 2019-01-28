@@ -11,6 +11,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import ram.Ram;
+
 public class SSDDBBean {
 
 	private static SSDDBBean instance = new SSDDBBean();
@@ -123,5 +125,18 @@ public class SSDDBBean {
 		sqlSession.commit();
 
 		sqlSession.close();
+	}
+	
+	// SSD 디테일 Get
+	public SSD getDetail(int id) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+
+		Map map = new HashMap();
+		map.put("id", id);
+
+		SSD ssd = sqlSession.selectOne(namespace + ".getSSD", map);
+
+		sqlSession.close();
+		return ssd;
 	}
 }

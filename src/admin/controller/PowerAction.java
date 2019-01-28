@@ -14,6 +14,8 @@ import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import graphic.Graphic;
+import graphic.GraphicDBBean;
 import power.Power;
 import power.PowerDBBean;
 import product.ProductCode;
@@ -152,26 +154,6 @@ public class PowerAction extends Action {
 		return "/power/admin/powerWrite.jsp";
 	}
 
-	public String detailGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-
-		String no = request.getParameter("id");
-		int id = Integer.parseInt(no);
-
-		PowerDBBean dbPro = PowerDBBean.getInstance();
-		Power power = new Power();
-
-		try {
-			power = dbPro.getPower(id);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		request.setAttribute("no", no);
-		request.setAttribute("power", power);
-
-		return "/power/admin/powerDetail.jsp";
-	}
 
 	public String updateGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
@@ -264,18 +246,39 @@ public class PowerAction extends Action {
 		return "/power/admin/powerUpdate.jsp";
 	}
 
-	public String deleteGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+	public String detailGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		int id = Integer.parseInt(request.getParameter("id"));
+		String no = String.valueOf(id);
 
 		PowerDBBean dbPro = PowerDBBean.getInstance();
-
+		Power power = new Power();
 		try {
-			dbPro.deletePower(id);
+			power = dbPro.getDetail(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return "/power/admin/powerDelete.jsp";
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+		System.out.println("productDate: " + power.getProductDate());
+		Date productDate_date = power.getProductDate();
+		String productDate = transFormat.format(productDate_date);
+
+		System.out.println("power.getProductCode 확인");
+		System.out.println(power.getProductCode());
+		request.setAttribute("no", no);
+		request.setAttribute("productCode", power.getProductCode());
+		request.setAttribute("productName", power.getProductName());
+		request.setAttribute("productCompany", power.getProductCompany());
+		request.setAttribute("productSort", power.getProductSort());
+		request.setAttribute("nominalOutput", power.getNominalOutput());
+		request.setAttribute("ratedOutput", power.getRatedOutput());
+		request.setAttribute("productDate", power.getProductDate());
+		request.setAttribute("regDate", power.getRegDate());
+		request.setAttribute("price", power.getPrice());
+		request.setAttribute("count", power.getCount());
+		request.setAttribute("filename", power.getFilename());
+		
+		return "/power/admin/powerDetailForm.jsp";
 	}
 }

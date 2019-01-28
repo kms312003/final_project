@@ -14,6 +14,8 @@ import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import cpu.Cpu;
+import cpu.CpuDBBean;
 import graphic.Graphic;
 import graphic.GraphicDBBean;
 import product.ProductCode;
@@ -157,27 +159,6 @@ public class GraphicAction extends Action {
 		return "/graphic/admin/graphicWrite.jsp";
 	}
 
-	public String detailGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-
-		String no = request.getParameter("id");
-		int id = Integer.parseInt(no);
-
-		GraphicDBBean dbPro = GraphicDBBean.getInstance();
-		Graphic graphic = new Graphic();
-
-		try {
-			graphic = dbPro.getGraphic(id);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		request.setAttribute("no", no);
-		request.setAttribute("graphic", graphic);
-
-		return "/graphic/admin/graphicDetail.jsp";
-	}
-
 	public String updateGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		int id = Integer.parseInt(request.getParameter("id"));
@@ -275,18 +256,44 @@ public class GraphicAction extends Action {
 		return "/graphic/admin/graphicUpdate.jsp";
 	}
 
-	public String deleteGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+	public String detailGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		int id = Integer.parseInt(request.getParameter("id"));
+		String no = String.valueOf(id);
 
 		GraphicDBBean dbPro = GraphicDBBean.getInstance();
-		
+		Graphic graphic = new Graphic();
 		try {
-			dbPro.deleteGraphic(id);
+			graphic = dbPro.getDetail(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return "/graphic/admin/graphicDelete.jsp";
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+		System.out.println("productDate: " + graphic.getProductDate());
+		Date productDate_date = graphic.getProductDate();
+		String productDate = transFormat.format(productDate_date);
+
+		System.out.println("graphic.getProductCode 확인");
+		System.out.println(graphic.getProductCode());
+		request.setAttribute("no", no);
+		request.setAttribute("productCode", graphic.getProductCode());
+		request.setAttribute("productName", graphic.getProductName());
+		request.setAttribute("productCompany", graphic.getProductCompany());
+		request.setAttribute("chipSetGroup", graphic.getChipSetGroup());
+		request.setAttribute("interFace", graphic.getInterFace());
+		request.setAttribute("powerPort", graphic.getPowerPort());
+		request.setAttribute("memoryCapacity", graphic.getMemoryCapacity());
+		request.setAttribute("nvidiaChipSet", graphic.getNvidiaChipSet());
+		request.setAttribute("maxPower", graphic.getMaxPower());
+		request.setAttribute("maxMonitor", graphic.getMaxMonitor());
+		request.setAttribute("length", graphic.getLength());
+		request.setAttribute("productDate", graphic.getProductDate());
+		request.setAttribute("regDate", graphic.getRegDate());
+		request.setAttribute("price", graphic.getPrice());
+		request.setAttribute("count", graphic.getCount());
+		request.setAttribute("filename", graphic.getFilename());
+		
+		return "/graphic/admin/graphicDetailForm.jsp";
 	}
 }

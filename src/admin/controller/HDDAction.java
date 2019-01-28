@@ -14,6 +14,8 @@ import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import graphic.Graphic;
+import graphic.GraphicDBBean;
 import hdd.HDD;
 import hdd.HDDDBBean;
 import product.ProductCode;
@@ -154,27 +156,6 @@ public class HDDAction extends Action {
 		return "/hdd/admin/hddWrite.jsp";
 	}
 
-	public String detailGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-
-		String no = request.getParameter("id");
-		int id = Integer.parseInt(no);
-
-		HDDDBBean dbPro = HDDDBBean.getInstance();
-		HDD hdd = new HDD();
-
-		try {
-			hdd = dbPro.getHDD(id);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		request.setAttribute("no", no);
-		request.setAttribute("hdd", hdd);
-
-		return "/hdd/admin/hddDetail.jsp";
-	}
-
 	public String updateGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		int id = Integer.parseInt(request.getParameter("id"));
@@ -268,18 +249,41 @@ public class HDDAction extends Action {
 		return "/hdd/admin/hddUpdate.jsp";
 	}
 
-	public String deleteGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+	public String detailGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		int id = Integer.parseInt(request.getParameter("id"));
+		String no = String.valueOf(id);
 
 		HDDDBBean dbPro = HDDDBBean.getInstance();
-
+		HDD hdd = new HDD();
 		try {
-			dbPro.deleteHDD(id);
+			hdd = dbPro.getDetail(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return "/hdd/admin/hddDelete.jsp";
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+		System.out.println("productDate: " + hdd.getProductDate());
+		Date productDate_date = hdd.getProductDate();
+		String productDate = transFormat.format(productDate_date);
+
+		System.out.println("hdd.getProductCode 확인");
+		System.out.println(hdd.getProductCode());
+		request.setAttribute("no", no);
+		request.setAttribute("productCode", hdd.getProductCode());
+		request.setAttribute("productName", hdd.getProductName());
+		request.setAttribute("productCompany", hdd.getProductCompany());
+		request.setAttribute("interFace", hdd.getInterFace());
+		request.setAttribute("diskSize", hdd.getDiskSize());
+		request.setAttribute("diskCapacity", hdd.getDiskCapacity());
+		request.setAttribute("bufferCapacity", hdd.getBufferCapacity());
+		request.setAttribute("rotation", hdd.getRotation());
+		request.setAttribute("productDate", hdd.getProductDate());
+		request.setAttribute("regDate", hdd.getRegDate());
+		request.setAttribute("price", hdd.getPrice());
+		request.setAttribute("count", hdd.getCount());
+		request.setAttribute("filename", hdd.getFilename());
+		
+		return "/hdd/admin/hddDetailForm.jsp";
 	}
 }
