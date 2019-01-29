@@ -71,7 +71,7 @@ public class Information_action extends Action {
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("pageCount", pageCount);
 
-		return "/information/list.jsp";
+		return "/board/information/list.jsp";
 	}
 
 	public String writeGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -90,7 +90,7 @@ public class Information_action extends Action {
 		request.setAttribute("ref", ref);
 		request.setAttribute("re_step", re_step);
 		request.setAttribute("re_level", re_level);
-		return "/information/writeUploadForm.jsp";
+		return "/board/information/writeUploadForm.jsp";
 	}
 
 	public String writePOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -150,7 +150,7 @@ public class Information_action extends Action {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "/information/writePro.jsp";
+		return "/board/information/writePro.jsp";
 	}
 
 	public String contentGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -169,7 +169,7 @@ public class Information_action extends Action {
 
 		request.setAttribute("article", article);
 		request.setAttribute("no", no);
-		return "/information/content.jsp";
+		return "/board/information/content.jsp";
 	}
 
 	public String updateGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -185,7 +185,7 @@ public class Information_action extends Action {
 
 		request.setAttribute("article", article);
 
-		return "/information/updateForm.jsp";
+		return "/board/information/updateForm.jsp";
 	}
 
 	public String updatePOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -206,7 +206,7 @@ public class Information_action extends Action {
 			e.printStackTrace();
 		}
 		request.setAttribute("x", x);
-		return "/information/updatePro.jsp";
+		return "/board/information/updatePro.jsp";
 	}
 
 	public String deleteGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -222,7 +222,7 @@ public class Information_action extends Action {
 		}
 
 		request.setAttribute("article", article);
-		return "/information/deleteForm.jsp";
+		return "/board/information/deleteForm.jsp";
 	}
 
 	public String deletePOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -248,7 +248,7 @@ public class Information_action extends Action {
 			e.printStackTrace();
 		}
 		request.setAttribute("x", x);
-		return "/information/deletePro.jsp";
+		return "/board/information/deletePro.jsp";
 	}
 
 }
