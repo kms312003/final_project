@@ -24,9 +24,8 @@ public class Computer {
 	private int filesize;			// 파일 사이즈
 	
 	public enum Category {
-		OFFICE, GAME, MULTI_MEDIA, SPECIAL_EDITION;
+		OFFICE, GAME, DESIGN, BROADCASTING;
 	}
-	
 	
 	@Override
 	public String toString() {

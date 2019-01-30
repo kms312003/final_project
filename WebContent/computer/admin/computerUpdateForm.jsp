@@ -97,45 +97,58 @@
     
     <div class="col-sm-9 text-left"> 
     <center>
-	<form action="<%= request.getContextPath() %>/admin/cpu/update" enctype="multipart/form-data" method="post" name="updateform" onsubmit="return checkCpu()">
+	<form action="<%= request.getContextPath() %>/admin/computer/update" enctype="multipart/form-data" method="post" name="updateform" onsubmit="return checkComputer()">
 	<input type="hidden" name="id" value="${ no }">
-	<input type="hidden" name="productCode" value="${ cpu.productCode }">
-	<input type="hidden" name="oldfilename" value="${ cpu.filename }">
-	<input type="hidden" name="oldfilesize" value="${ cpu.filesize }">
+	<input type="hidden" name="productCode" value="${ computer.productCode }">
+	<input type="hidden" name="oldfilename" value="${ computer.filename }">
+	<input type="hidden" name="oldfilesize" value="${ computer.filesize }">
 		<div class="w3-container">
-		<h2>Cpu 수정</h2>	
+		<h2>Computer 수정</h2>	
 			<table class="table table-bordered" style="width:80%;">
 				<tr>
-					<td>제품명</td>
-					<td><input type="text" name="productName" size="50" maxlength="50" value="${cpu.productName}"></td>
+					<td>카테고리</td>
+					<td>
+						<input type=radio id="inputCategory" name="category" value="OFFICE" <c:if test="${computer.category == 'OFFICE'}">checked</c:if>>사무용
+						<input type=radio id="inputCategory" name="category" value="GAME" <c:if test="${computer.category == 'GAME'}">checked</c:if>>게임용
+						<input type=radio id="inputCategory" name="category" value="DESIGN" <c:if test="${computer.category == 'DESIGN'}">checked</c:if>>디자인용
+						<input type=radio id="inputCategory" name="category" value="BROADCASTING" <c:if test="${computer.category == 'BROADCASTING'}">checked</c:if>>방송용
+					</td>
 				</tr>
 				<tr>
 					<td>제조회사</td>
-					<td><input type="text" name="productCompany" size="50" maxlength="20" value="${cpu.productCompany}"></td>
+					<td><input type="text" name="productCompany" size="50" maxlength="20" value="${computer.productCompany}"></td>
 				</tr>
 				<tr>
-					<td>브랜드분류</td>
-					<td><input type="text" name="brand" size="50" maxlength="30" value="${cpu.brand}"></td>
+					<td>CPU</td>
+					<td><input type="text" name="cpu" size="50" maxlength="50" value="${computer.cpu}"></td>
 				</tr>
 				<tr>
-					<td>소켓구분</td>
-					<td><input type="text" name="socket" size="50" maxlength="30" value="${cpu.socket}"></td>
+					<td>메인보드</td>
+					<td><input type="text" name="mainBoard" size="50" maxlength="50" value="${computer.mainBoard}"></td>
 				</tr>
 				<tr>
-					<td>코어</td>
-					<td><input type="text" name="core" size="50" maxlength="10" value="${cpu.core}"> 코어</td>
+					<td>메모리(RAM)</td>
+					<td><input type="text" name="ram" size="50" maxlength="50" value="${computer.ram}"></td>
 				</tr>
 				<tr>
-					<td>쓰레드</td>
-					<td><input type="text" name="thread" size="50" maxlength="20" value="${cpu.thread}"> 개</td>
+					<td>그래픽카드</td>
+					<td><input type="text" name="vga" size="50" maxlength="50" value="${computer.vga}"></td>
 				</tr>
 				<tr>
-					<td>동작속도</td>
-					<td><input type="text" name="clockSpeed" size="50" maxlength="20" value="${cpu.clockSpeed}"> GHz</td>
+					<td>하드디스크(HDD)</td>
+					<td><input type="text" name="hdd" size="50" maxlength="50" value="${computer.hdd}"></td>
 				</tr>
 				<tr>
-					<td>설계전력(TDP)</td>
-					<td><input type="text" name="tdp" size="50" maxlength="20" value="${cpu.tdp}"> W</td>
+					<td>SSD</td>
+					<td><input type="text" name="ssd" size="50" maxlength="50" value="${computer.ssd}"></td>
+				</tr>
+				<tr>
+					<td>케이스</td>
+					<td><input type="text" name="tower" size="50" maxlength="50" value="${computer.tower}"></td>
+				</tr>
+				<tr>
+					<td>파워</td>
+					<td><input type="text" name="power" size="50" maxlength="50" value="${computer.power}"></td>
 				</tr>
 				<tr>
 					<td>제품 등록일</td>
@@ -143,12 +156,12 @@
 				</tr>
 				<tr>
 					<td>가격</td>
-					<td><input type="text" name="price" size="50" maxlength="20" value="${cpu.price}"> 원</td>
+					<td><input type="text" name="price" size="50" maxlength="20"> 원</td>
 				</tr>
 				<tr>
 					<td width="70" align="center">file</td>
 					<td width="330">
-						<input type="file" size="50" maxlength="30" name="uploadfile" value="${cpu.filename}">
+						<input type="file" size="50" maxlength="30" name="uploadfile">
 					</td>
 				</tr>
 				<center>

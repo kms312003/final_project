@@ -71,7 +71,7 @@ public class Qa_action extends Action {
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("pageCount", pageCount);
 
-		return "/qa/list.jsp";
+		return "/board/qa/list.jsp";
 	}
 
 	public String writeGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -90,7 +90,7 @@ public class Qa_action extends Action {
 		request.setAttribute("ref", ref);
 		request.setAttribute("re_step", re_step);
 		request.setAttribute("re_level", re_level);
-		return "/qa/writeUploadForm.jsp";
+		return "/board/qa/writeUploadForm.jsp";
 	}
 
 	public String writePOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -150,7 +150,7 @@ public class Qa_action extends Action {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "/qa/writePro.jsp";
+		return "/board/qa/writePro.jsp";
 	}
 
 	public String contentGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -171,7 +171,7 @@ public class Qa_action extends Action {
 		request.setAttribute("article", article);
 		request.setAttribute("no", no);
 
-		return "/qa/content.jsp";
+		return "/board/qa/content.jsp";
 	}
 
 	public String updateGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -187,7 +187,7 @@ public class Qa_action extends Action {
 
 		request.setAttribute("article", article);
 
-		return "/qa/updateForm.jsp";
+		return "/board/qa/updateForm.jsp";
 	}
 
 	public String updatePOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -210,7 +210,7 @@ public class Qa_action extends Action {
 			e.printStackTrace();
 		}
 		request.setAttribute("x", x);
-		return "/qa/updatePro.jsp";
+		return "/board/qa/updatePro.jsp";
 	}
 
 	public String deleteGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -226,7 +226,7 @@ public class Qa_action extends Action {
 		}
 
 		request.setAttribute("article", article);
-		return "/qa/deleteForm.jsp";
+		return "/board/qa/deleteForm.jsp";
 	}
 
 	public String deletePOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -252,7 +252,7 @@ public class Qa_action extends Action {
 			e.printStackTrace();
 		}
 		request.setAttribute("x", x);
-		return "/qa/deletePro.jsp";
+		return "/board/qa/deletePro.jsp";
 	}
 
 }

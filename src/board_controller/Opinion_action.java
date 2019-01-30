@@ -71,7 +71,7 @@ public class Opinion_action extends Action {
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("pageCount", pageCount);
 
-		return "/opinion/list.jsp";
+		return "/board/opinion/list.jsp";
 	}
 
 	public String writeGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -90,7 +90,7 @@ public class Opinion_action extends Action {
 		request.setAttribute("ref", ref);
 		request.setAttribute("re_step", re_step);
 		request.setAttribute("re_level", re_level);
-		return "/opinion/writeUploadForm.jsp";
+		return "/board/opinion/writeUploadForm.jsp";
 	}
 
 	public String writePOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -151,7 +151,7 @@ public class Opinion_action extends Action {
 			e.printStackTrace();
 		}
 
-		return "/opinion/writePro.jsp";
+		return "/board/opinion/writePro.jsp";
 	}
 
 	public String contentGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -171,7 +171,7 @@ public class Opinion_action extends Action {
 
 		request.setAttribute("article", article);
 		request.setAttribute("no", no);
-		return "/opinion/content.jsp";
+		return "/board/opinion/content.jsp";
 	}
 
 	public String updateGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -187,7 +187,7 @@ public class Opinion_action extends Action {
 
 		request.setAttribute("article", article);
 
-		return "/opinion/updateForm.jsp";
+		return "/board/opinion/updateForm.jsp";
 	}
 
 	public String updatePOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -209,7 +209,7 @@ public class Opinion_action extends Action {
 			e.printStackTrace();
 		}
 		request.setAttribute("x", x);
-		return "/opinion/updatePro.jsp";
+		return "/board/opinion/updatePro.jsp";
 	}
 
 	public String deleteGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -225,7 +225,7 @@ public class Opinion_action extends Action {
 		}
 
 		request.setAttribute("article", article);
-		return "/opinion/deleteForm.jsp";
+		return "/board/opinion/deleteForm.jsp";
 	}
 
 	public String deletePOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -251,7 +251,7 @@ public class Opinion_action extends Action {
 			e.printStackTrace();
 		}
 		request.setAttribute("x", x);
-		return "/opinion/deletePro.jsp";
+		return "/board/opinion/deletePro.jsp";
 	}
 
 }

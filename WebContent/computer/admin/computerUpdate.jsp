@@ -5,5 +5,5 @@
 <script>
 	alert("제품 수정을 완료하였습니다.");
 </script>
-<meta http-equiv="Refresh" content="0;url=<%= request.getContextPath() %>/admin/cpu/list">
+<meta http-equiv="Refresh" content="0;url=<%= request.getContextPath() %>/admin/computer/list">
 	

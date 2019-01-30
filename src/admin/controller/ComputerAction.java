@@ -21,7 +21,7 @@ import cpu.Cpu;
 import cpu.CpuDBBean;
 import product.ProductCode;
 
-public class ComputerAction {
+public class ComputerAction extends Action {
 
 	// 리스트
 	public String listGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -127,7 +127,7 @@ public class ComputerAction {
 			ProductCode productC = new ProductCode();
 
 			String productDate = multi.getParameter("productDate");
-			String productNum = "01";
+			String productNum = "00";
 			String productCode = productC.productCode(productDate, productNum);
 			System.out.println("productDate1: " + productDate);
 			System.out.println("productCode1: " + productCode);

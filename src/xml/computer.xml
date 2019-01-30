@@ -17,7 +17,7 @@
         insert into computer(id, category, productCompany, cpu, mainBoard,
                ram, vga, hdd, ssd, tower, power, productDate, regDate, price, count, filename, filesize) 
                values(0, #{category},#{productCompany},#{cpu},#{mainBoard},#{ram}
-      ,#{thread},#{vga},#{tdp},,#{hdd},#{ssd},#{tower},#{power},#{productDate},curdate(),#{price},#{count}, #{filename},#{filesize})
+      ,#{vga},#{hdd},#{ssd},#{tower},#{power},#{productDate},curdate(),#{price},#{count}, #{filename},#{filesize})
      </insert>
      
      <select id="getComputer" resultType="computer" parameterType="hashmap">

@@ -174,15 +174,15 @@
 									<li class="hassubs">
 										<a href="#">Community<i class="fas fa-chevron-down"></i></a>
 										<ul>
-											<li><a href="shop.html">Board<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="product.html">Assembling Pictures<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="blog.html">Assembling Video<i class="fas fa-chevron-down"></i></a></li>
+											<li><a href="<%= request.getContextPath() %>/board_notice/list">NOTICE<i class="fas fa-chevron-down"></i></a></li>
+											<li><a href="<%= request.getContextPath() %>/board_information/list">INFORMATION<i class="fas fa-chevron-down"></i></a></li>
+											<li><a href="<%= request.getContextPath() %>/board_opinion/list">OPINION<i class="fas fa-chevron-down"></i></a></li>
 											<li><a href="blog_single.html">Announcement<i class="fas fa-chevron-down"></i></a></li>
 											<li><a href="regular.html">Cafe<i class="fas fa-chevron-down"></i></a></li>
 											<li><a href="cart.html">Cart<i class="fas fa-chevron-down"></i></a></li>
 										</ul>
 									</li>
-									<li><a href="blog.html">Q&A<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="<%= request.getContextPath() %>/board_qa/list">Q&A<i class="fas fa-chevron-down"></i></a></li>
 									<li><a href="contact.html">Contact<i class="fas fa-chevron-down"></i></a></li>
 								</ul>
 							</div>
