@@ -171,7 +171,7 @@
 				<center>
 				<tr>
 					<td colspan="2">
-					<input type="button" class="btn btn-default" value="Update" onclick="window.location='<%= request.getContextPath() %>/admin/cpu/update'"> 
+					<input type="button" class="btn btn-default" value="Update" onclick="window.location='<%= request.getContextPath() %>/admin/cpu/update?id=${no}'"> 
 					<!-- Button trigger modal -->
 					<!-- <button type="button" class="btn btn-default" data-toggle="modal" data-target="#cpuModal">
 					  Delete

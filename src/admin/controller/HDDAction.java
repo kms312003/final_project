@@ -241,7 +241,7 @@ public class HDDAction extends Action {
 
 			HDDDBBean dbPro = HDDDBBean.getInstance();
 			System.out.println("hdd: " + hdd);
-			dbPro.insertHDD(hdd);
+			dbPro.updateHDD(hdd);
 
 		} catch (Exception e) {
 			e.printStackTrace();
