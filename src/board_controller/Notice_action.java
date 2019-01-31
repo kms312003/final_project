@@ -74,7 +74,7 @@ public class Notice_action extends Action {
 		request.setAttribute("pageCount", pageCount);
 		request.setAttribute("inform", inform);
 
-		return "/board/notice/list.jsp";
+		return "/view/board/notice/list.jsp";
 	}
 
 	public String writeGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -93,7 +93,7 @@ public class Notice_action extends Action {
 		request.setAttribute("ref", ref);
 		request.setAttribute("re_step", re_step);
 		request.setAttribute("re_level", re_level);
-		return "/board/notice/writeUploadForm.jsp";
+		return "/view/board/notice/writeUploadForm.jsp";
 	}
 
 	public String writePOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -155,7 +155,7 @@ public class Notice_action extends Action {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "/board/notice/writePro.jsp";
+		return "/view/board/notice/writePro.jsp";
 	}
 
 	public String contentGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -178,7 +178,7 @@ public class Notice_action extends Action {
 		request.setAttribute("no", no);
 		request.setAttribute("inform", inform);
 
-		return "/board/notice/content.jsp";
+		return "/view/board/notice/content.jsp";
 	}
 
 	public String updateGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -194,7 +194,7 @@ public class Notice_action extends Action {
 
 		request.setAttribute("article", article);
 
-		return "/board/notice/updateForm.jsp";
+		return "/view/board/notice/updateForm.jsp";
 	}
 
 	public String updatePOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -216,7 +216,7 @@ public class Notice_action extends Action {
 			e.printStackTrace();
 		}
 		request.setAttribute("x", x);
-		return "/board/notice/updatePro.jsp";
+		return "/view/board/notice/updatePro.jsp";
 	}
 
 	public String deleteGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -232,7 +232,7 @@ public class Notice_action extends Action {
 		}
 
 		request.setAttribute("article", article);
-		return "/board/notice/deleteForm.jsp";
+		return "/view/board/notice/deleteForm.jsp";
 	}
 
 	public String deletePOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -258,7 +258,7 @@ public class Notice_action extends Action {
 			e.printStackTrace();
 		}
 		request.setAttribute("x", x);
-		return "/board/notice/deletePro.jsp";
+		return "/view/board/notice/deletePro.jsp";
 	}
 
 }

@@ -14,9 +14,9 @@
      </select>
      
      <insert id="insert" parameterType="computer">
-        insert into computer(id, category, productCompany, cpu, mainBoard,
+        insert into computer(id, productCode, category, productCompany, cpu, mainBoard,
                ram, vga, hdd, ssd, tower, power, productDate, regDate, price, count, filename, filesize) 
-               values(0, #{category},#{productCompany},#{cpu},#{mainBoard},#{ram}
+               values(0, #{productCode},#{category},#{productCompany},#{cpu},#{mainBoard},#{ram}
       ,#{vga},#{hdd},#{ssd},#{tower},#{power},#{productDate},curdate(),#{price},#{count}, #{filename},#{filesize})
      </insert>
      
@@ -29,7 +29,7 @@
      </update>
      
      <update id="update" parameterType="computer">
-        update computer set category=#{category}, productCompany=#{productCompany}, cpu=#{cpu}, 
+        update computer set productCode=#{productCode}, category=#{category}, productCompany=#{productCompany}, cpu=#{cpu}, 
         mainBoard= #{mainBoard}, ram=#{ram}, vga=#{vga}, hdd=#{hdd}, tdp=#{tdp}, ssd=#{ssd}, tower=#{tower}, power=#{power}, productDate=#{productDate}, price=#{price}, filename=#{filename}, filesize=#{filesize} where id=#{id}
      </update>
      

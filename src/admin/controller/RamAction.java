@@ -84,7 +84,7 @@ public class RamAction extends Action {
 		request.setAttribute("pageCount", pageCount);
 		request.setAttribute("currentPage", currentPage);
 
-		return "/ram/admin/ramList.jsp";
+		return "/adminPage/ram/ramList.jsp";
 	}
 
 	// 입력
@@ -94,7 +94,7 @@ public class RamAction extends Action {
 
 		pageNum = request.getParameter("pageNum");
 
-		return "/ram/admin/ramWriteForm.jsp";
+		return "/adminPage/ram/ramWriteForm.jsp";
 	}
 
 	public String writePOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -130,7 +130,6 @@ public class RamAction extends Action {
 			String productNum = "03";
 			String productCode = productC.productCode(productDate, productNum);
 
-			// ram.setId(Integer.parseInt(multi.getParameter("id")));
 			ram.setProductCode(productCode);
 			ram.setProductName(multi.getParameter("productName"));
 			ram.setProductCompany(multi.getParameter("productCompany"));
@@ -153,7 +152,7 @@ public class RamAction extends Action {
 			e.printStackTrace();
 		}
 
-		return "/ram/admin/ramWrite.jsp";
+		return "/adminPage/ram/ramWrite.jsp";
 	}
 
 	// 수정
@@ -179,7 +178,7 @@ public class RamAction extends Action {
 		request.setAttribute("ram", ram);
 		request.setAttribute("productDate", productDate);
 
-		return "/ram/admin/ramUpdateForm.jsp";
+		return "/adminPage/ram/ramUpdateForm.jsp";
 	}
 
 	public String updatePOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -245,7 +244,7 @@ public class RamAction extends Action {
 			e.printStackTrace();
 		}
 
-		return "/ram/admin/ramUpdate.jsp";
+		return "/adminPage/ram/ramUpdate.jsp";
 	}
 
 	// 상세보기
@@ -283,7 +282,7 @@ public class RamAction extends Action {
 		request.setAttribute("count", ram.getCount());
 		request.setAttribute("filename", ram.getFilename());
 
-		return "/ram/admin/ramDetailForm.jsp";
+		return "/adminPage/ram/ramDetailForm.jsp";
 	}
 
 	// 삭제
@@ -299,6 +298,6 @@ public class RamAction extends Action {
 			e.printStackTrace();
 		}
 
-		return "/ram/admin/ramDelete.jsp";
+		return "/adminPage/ram/ramDelete.jsp";
 	}
 }

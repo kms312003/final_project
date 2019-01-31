@@ -84,7 +84,7 @@ public class ComputerAction extends Action {
 		request.setAttribute("pageCount", pageCount);
 		request.setAttribute("currentPage", currentPage);
 
-		return "/computer/admin/computerList.jsp";
+		return "/adminPage/computer/computerList.jsp";
 	}
 
 	// 입력
@@ -94,7 +94,7 @@ public class ComputerAction extends Action {
 
 		pageNum = request.getParameter("pageNum");
 
-		return "/computer/admin/computerWriteForm.jsp";
+		return "/adminPage/computer/computerWriteForm.jsp";
 	}
 
 	public String writePOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -158,7 +158,7 @@ public class ComputerAction extends Action {
 			e.printStackTrace();
 		}
 
-		return "/computer/admin/computerWrite.jsp";
+		return "/adminPage/computer/computerWrite.jsp";
 	}
 
 	// 상세보기
@@ -198,7 +198,7 @@ public class ComputerAction extends Action {
 		request.setAttribute("count", computer.getCount());
 		request.setAttribute("filename", computer.getFilename());
 
-		return "/computer/admin/computerDetailForm.jsp";
+		return "/adminPage/computer/computerDetailForm.jsp";
 	}
 
 	// 수정
@@ -224,7 +224,7 @@ public class ComputerAction extends Action {
 		request.setAttribute("computer", computer);
 		request.setAttribute("productDate", productDate);
 
-		return "/computer/admin/computerUpdateForm.jsp";
+		return "/adminPage/computer/computerUpdateForm.jsp";
 	}
 
 	public String updatePOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -297,7 +297,7 @@ public class ComputerAction extends Action {
 			e.printStackTrace();
 		}
 
-		return "/computer/admin/computerUpdate.jsp";
+		return "/adminPage/computer/computerUpdate.jsp";
 	}
 
 	// 삭제
@@ -313,7 +313,7 @@ public class ComputerAction extends Action {
 			e.printStackTrace();
 		}
 
-		return "/computer/admin/computerDelete.jsp";
+		return "/adminPage/computer/computerDelete.jsp";
 	}
 
 }

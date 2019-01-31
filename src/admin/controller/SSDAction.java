@@ -81,7 +81,7 @@ public class SSDAction extends Action {
 		request.setAttribute("pageCount", pageCount);
 		request.setAttribute("currentPage", currentPage);
 
-		return "/ssd/admin/ssdList.jsp";
+		return "/adminPage/ssd/ssdList.jsp";
 	}
 
 	// 입력
@@ -91,7 +91,7 @@ public class SSDAction extends Action {
 
 		pageNum = request.getParameter("pageNum");
 
-		return "/ssd/admin/ssdWriteForm.jsp";
+		return "/adminPage/ssd/ssdWriteForm.jsp";
 	}
 
 	public String writePOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -127,7 +127,6 @@ public class SSDAction extends Action {
 			String productNum = "06";
 			String productCode = productC.productCode(productDate, productNum);
 
-			// ssd.setId(Integer.parseInt(multi.getParameter("id")));
 			ssd.setProductCode(productCode);
 			ssd.setProductName(multi.getParameter("productName"));
 			ssd.setProductCompany(multi.getParameter("productCompany"));
@@ -152,7 +151,7 @@ public class SSDAction extends Action {
 			e.printStackTrace();
 		}
 
-		return "/ssd/admin/ssdWrite.jsp";
+		return "/adminPage/ssd/ssdWrite.jsp";
 	}
 
 	// 수정
@@ -178,7 +177,7 @@ public class SSDAction extends Action {
 		request.setAttribute("ssd", ssd);
 		request.setAttribute("productDate", productDate);
 
-		return "/ssd/admin/ssdUpdateForm.jsp";
+		return "/adminPage/ssd/ssdUpdateForm.jsp";
 	}
 
 	public String updatePOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -246,7 +245,7 @@ public class SSDAction extends Action {
 			e.printStackTrace();
 		}
 
-		return "/ssd/admin/ssdUpdate.jsp";
+		return "/adminPage/ssd/ssdUpdate.jsp";
 	}
 
 	// 상세보기
@@ -286,7 +285,7 @@ public class SSDAction extends Action {
 		request.setAttribute("count", ssd.getCount());
 		request.setAttribute("filename", ssd.getFilename());
 
-		return "/ssd/admin/ssdDetailForm.jsp";
+		return "/adminPage/ssd/ssdDetailForm.jsp";
 	}
 
 	// 삭제
@@ -302,6 +301,6 @@ public class SSDAction extends Action {
 			e.printStackTrace();
 		}
 
-		return "/ssd/admin/ssdDelete.jsp";
+		return "/adminPage/ssd/ssdDelete.jsp";
 	}
 }

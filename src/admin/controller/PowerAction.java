@@ -84,7 +84,7 @@ public class PowerAction extends Action {
 		request.setAttribute("pageCount", pageCount);
 		request.setAttribute("currentPage", currentPage);
 
-		return "/power/admin/powerList.jsp";
+		return "/adminPage/power/powerList.jsp";
 	}
 
 	// 입력
@@ -94,7 +94,7 @@ public class PowerAction extends Action {
 
 		pageNum = request.getParameter("pageNum");
 
-		return "/power/admin/powerWriteForm.jsp";
+		return "/adminPage/power/powerWriteForm.jsp";
 	}
 
 	public String writePOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -130,7 +130,6 @@ public class PowerAction extends Action {
 			String productNum = "07";
 			String productCode = productC.productCode(productDate, productNum);
 
-			// power.setId(Integer.parseInt(multi.getParameter("id")));
 			power.setProductCode(productCode);
 			power.setProductName(multi.getParameter("productName"));
 			power.setProductCompany(multi.getParameter("productCompany"));
@@ -152,7 +151,7 @@ public class PowerAction extends Action {
 			e.printStackTrace();
 		}
 
-		return "/power/admin/powerWrite.jsp";
+		return "/adminPage/power/powerWrite.jsp";
 	}
 
 	// 수정
@@ -178,7 +177,7 @@ public class PowerAction extends Action {
 		request.setAttribute("power", power);
 		request.setAttribute("productDate", productDate);
 
-		return "/power/admin/powerUpdateForm.jsp";
+		return "/adminPage/power/powerUpdateForm.jsp";
 	}
 
 	public String updatePOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -243,7 +242,7 @@ public class PowerAction extends Action {
 			e.printStackTrace();
 		}
 
-		return "/power/admin/powerUpdate.jsp";
+		return "/adminPage/power/powerUpdate.jsp";
 	}
 
 	// 상세보기
@@ -280,7 +279,7 @@ public class PowerAction extends Action {
 		request.setAttribute("count", power.getCount());
 		request.setAttribute("filename", power.getFilename());
 
-		return "/power/admin/powerDetailForm.jsp";
+		return "/adminPage/power/powerDetailForm.jsp";
 	}
 
 	// 삭제
@@ -296,6 +295,6 @@ public class PowerAction extends Action {
 			e.printStackTrace();
 		}
 
-		return "/power/admin/powerDelete.jsp";
+		return "/adminPage/power/powerDelete.jsp";
 	}
 }

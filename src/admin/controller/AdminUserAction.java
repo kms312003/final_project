@@ -82,7 +82,7 @@ public class AdminUserAction extends Action {
 		request.setAttribute("pageCount", pageCount);
 		request.setAttribute("currentPage", currentPage);
 
-		return "/user/admin/userList.jsp";
+		return "/adminPage/user/userList.jsp";
 	}
 
 	// 입력
@@ -92,7 +92,7 @@ public class AdminUserAction extends Action {
 
 		pageNum = request.getParameter("pageNum");
 
-		return "/user/admin/userWriteForm.jsp";
+		return "/adminPage/user/userWriteForm.jsp";
 	}
 
 	public String writePOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -136,7 +136,7 @@ public class AdminUserAction extends Action {
 			e.printStackTrace();
 		}
 
-		return "/user/admin/userWrite.jsp";
+		return "/adminPage/user/userWrite.jsp";
 	}
 
 	public String detailGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -156,7 +156,7 @@ public class AdminUserAction extends Action {
 		request.setAttribute("no", no);
 		request.setAttribute("user", user);
 
-		return "/user/admin/userDetail.jsp";
+		return "/adminPage/user/userDetail.jsp";
 	}
 
 	// 수정
@@ -176,7 +176,7 @@ public class AdminUserAction extends Action {
 		request.setAttribute("no", no);
 		request.setAttribute("user", user);
 
-		return "/user/admin/userUpdateForm.jsp";
+		return "/adminPage/user/userUpdateForm.jsp";
 	}
 
 	public String updatePOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -223,7 +223,7 @@ public class AdminUserAction extends Action {
 			e.printStackTrace();
 		}
 
-		return "/user/admin/userUpdate.jsp";
+		return "/adminPage/user/userUpdate.jsp";
 	}
 
 	// 삭제
@@ -239,7 +239,6 @@ public class AdminUserAction extends Action {
 			e.printStackTrace();
 		}
 
-		return "/user/admin/userDelete.jsp";
+		return "/adminPage/user/userDelete.jsp";
 	}
-
 }

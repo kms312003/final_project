@@ -84,7 +84,7 @@ public class MainBoardAction extends Action {
 		request.setAttribute("pageCount", pageCount);
 		request.setAttribute("currentPage", currentPage);
 
-		return "/mainboard/admin/mainBoardList.jsp";
+		return "/adminPage/mainboard/mainBoardList.jsp";
 	}
 
 	// 입력
@@ -94,7 +94,7 @@ public class MainBoardAction extends Action {
 
 		pageNum = request.getParameter("pageNum");
 
-		return "/mainboard/admin/mainBoardWriteForm.jsp";
+		return "/adminPage/mainboard/mainBoardWriteForm.jsp";
 	}
 
 	public String writePOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -130,7 +130,6 @@ public class MainBoardAction extends Action {
 			String productNum = "02";
 			String productCode = productC.productCode(productDate, productNum);
 
-			// mainboard.setId(Integer.parseInt(multi.getParameter("id")));
 			mainboard.setProductCode(productCode);
 			mainboard.setProductName(multi.getParameter("productName"));
 			mainboard.setProductCompany(multi.getParameter("productCompany"));
@@ -155,7 +154,7 @@ public class MainBoardAction extends Action {
 			e.printStackTrace();
 		}
 
-		return "/mainboard/admin/mainBoardWrite.jsp";
+		return "/adminPage/mainboard/mainBoardWrite.jsp";
 	}
 
 	// 수정
@@ -181,7 +180,7 @@ public class MainBoardAction extends Action {
 		request.setAttribute("mainboard", mainboard);
 		request.setAttribute("productDate", productDate);
 
-		return "/mainboard/admin/mainBoardUpdateForm.jsp";
+		return "/adminPage/mainboard/mainBoardUpdateForm.jsp";
 	}
 
 	public String updatePOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -249,7 +248,7 @@ public class MainBoardAction extends Action {
 			e.printStackTrace();
 		}
 
-		return "/mainboard/admin/mainBoardUpdate.jsp";
+		return "/adminPage/mainboard/mainBoardUpdate.jsp";
 	}
 
 	// 상세보기
@@ -289,7 +288,7 @@ public class MainBoardAction extends Action {
 		request.setAttribute("count", mainboard.getCount());
 		request.setAttribute("filename", mainboard.getFilename());
 
-		return "/mainboard/admin/mainBoardDetailForm.jsp";
+		return "/adminPage/mainboard/mainBoardDetailForm.jsp";
 	}
 
 	// 삭제
@@ -305,6 +304,6 @@ public class MainBoardAction extends Action {
 			e.printStackTrace();
 		}
 
-		return "/mainboard/admin/mainBoardDelete.jsp";
+		return "/adminPage/mainboard/mainBoardDelete.jsp";
 	}
 }

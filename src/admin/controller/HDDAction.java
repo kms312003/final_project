@@ -84,7 +84,7 @@ public class HDDAction extends Action {
 		request.setAttribute("pageCount", pageCount);
 		request.setAttribute("currentPage", currentPage);
 
-		return "/hdd/admin/hddList.jsp";
+		return "/adminPage/hdd/hddList.jsp";
 	}
 
 	// 입력
@@ -94,7 +94,7 @@ public class HDDAction extends Action {
 
 		pageNum = request.getParameter("pageNum");
 
-		return "/hdd/admin/hddWriteForm.jsp";
+		return "/adminPage/hdd/hddWriteForm.jsp";
 	}
 
 	public String writePOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -130,7 +130,6 @@ public class HDDAction extends Action {
 			String productNum = "05";
 			String productCode = productC.productCode(productDate, productNum);
 
-			// hdd.setId(Integer.parseInt(multi.getParameter("id")));
 			hdd.setProductCode(productCode);
 			hdd.setProductName(multi.getParameter("productName"));
 			hdd.setProductCompany(multi.getParameter("productCompany"));
@@ -154,7 +153,7 @@ public class HDDAction extends Action {
 			e.printStackTrace();
 		}
 
-		return "/hdd/admin/hddWrite.jsp";
+		return "/adminPage/hdd/hddWrite.jsp";
 	}
 
 	// 수정
@@ -180,7 +179,7 @@ public class HDDAction extends Action {
 		request.setAttribute("hdd", hdd);
 		request.setAttribute("productDate", productDate);
 
-		return "/hdd/admin/hddUpdateForm.jsp";
+		return "/adminPage/hdd/hddUpdateForm.jsp";
 	}
 
 	public String updatePOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -247,7 +246,7 @@ public class HDDAction extends Action {
 			e.printStackTrace();
 		}
 
-		return "/hdd/admin/hddUpdate.jsp";
+		return "/adminPage/hdd/hddUpdate.jsp";
 	}
 
 	// 상세보기
@@ -286,7 +285,7 @@ public class HDDAction extends Action {
 		request.setAttribute("count", hdd.getCount());
 		request.setAttribute("filename", hdd.getFilename());
 
-		return "/hdd/admin/hddDetailForm.jsp";
+		return "/adminPage/hdd/hddDetailForm.jsp";
 	}
 
 	// 삭제
@@ -302,6 +301,6 @@ public class HDDAction extends Action {
 			e.printStackTrace();
 		}
 
-		return "/hdd/admin/hddDelete.jsp";
+		return "/adminPage/hdd/hddDelete.jsp";
 	}
 }

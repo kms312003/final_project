@@ -81,7 +81,7 @@ public class CpuAction extends Action {
 		request.setAttribute("pageCount", pageCount);
 		request.setAttribute("currentPage", currentPage);
 
-		return "/cpu/admin/cpuList.jsp";
+		return "/adminPage/cpu/cpuList.jsp";
 	}
 
 	// 입력
@@ -91,7 +91,7 @@ public class CpuAction extends Action {
 
 		pageNum = request.getParameter("pageNum");
 
-		return "/cpu/admin/cpuWriteForm.jsp";
+		return "/adminPage/cpu/cpuWriteForm.jsp";
 	}
 
 	public String writePOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -129,7 +129,6 @@ public class CpuAction extends Action {
 			System.out.println("productDate1: " + productDate);
 			System.out.println("productCode1: " + productCode);
 			
-//			cpu.setId(Integer.parseInt(multi.getParameter("id")));
 			cpu.setProductCode(productCode);
 			cpu.setProductName(multi.getParameter("productName"));
 			cpu.setProductCompany(multi.getParameter("productCompany"));
@@ -154,7 +153,7 @@ public class CpuAction extends Action {
 			e.printStackTrace();
 		}
 
-		return "/cpu/admin/cpuWrite.jsp";
+		return "/adminPage/cpu/cpuWrite.jsp";
 	}
 
 	// 상세보기
@@ -194,7 +193,7 @@ public class CpuAction extends Action {
 		request.setAttribute("count", cpu.getCount());
 		request.setAttribute("filename", cpu.getFilename());
 		
-		return "/cpu/admin/cpuDetailForm.jsp";
+		return "/adminPage/cpu/cpuDetailForm.jsp";
 	}
 
 	// 수정
@@ -222,7 +221,7 @@ public class CpuAction extends Action {
 		
 		
 
-		return "/cpu/admin/cpuUpdateForm.jsp";
+		return "/adminPage/cpu/cpuUpdateForm.jsp";
 	}
 
 	public String updatePOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -293,7 +292,7 @@ public class CpuAction extends Action {
 			e.printStackTrace();
 		}
 
-		return "/cpu/admin/cpuUpdate.jsp";
+		return "/adminPage/cpu/cpuUpdate.jsp";
 	}
 
 	// 삭제
@@ -309,6 +308,6 @@ public class CpuAction extends Action {
 			e.printStackTrace();
 		}
 
-		return "/cpu/admin/cpuDelete.jsp";
+		return "/adminPage/cpu/cpuDelete.jsp";
 	}
 }

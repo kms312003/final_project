@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -177,9 +176,9 @@
 											<li><a href="<%= request.getContextPath() %>/board_notice/list">NOTICE<i class="fas fa-chevron-down"></i></a></li>
 											<li><a href="<%= request.getContextPath() %>/board_information/list">INFORMATION<i class="fas fa-chevron-down"></i></a></li>
 											<li><a href="<%= request.getContextPath() %>/board_opinion/list">OPINION<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="blog_single.html">Announcement<i class="fas fa-chevron-down"></i></a></li>
+											<!-- <li><a href="blog_single.html">Announcement<i class="fas fa-chevron-down"></i></a></li>
 											<li><a href="regular.html">Cafe<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="cart.html">Cart<i class="fas fa-chevron-down"></i></a></li>
+											<li><a href="cart.html">Cart<i class="fas fa-chevron-down"></i></a></li> -->
 										</ul>
 									</li>
 									<li><a href="<%= request.getContextPath() %>/board_qa/list">Q&A<i class="fas fa-chevron-down"></i></a></li>

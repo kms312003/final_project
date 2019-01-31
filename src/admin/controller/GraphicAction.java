@@ -82,7 +82,7 @@ public class GraphicAction extends Action {
 		request.setAttribute("pageCount", pageCount);
 		request.setAttribute("currentPage", currentPage);
 
-		return "/graphic/admin/graphicList.jsp";
+		return "/adminPage/graphic/graphicList.jsp";
 	}
 
 	// 입력
@@ -92,7 +92,7 @@ public class GraphicAction extends Action {
 
 		pageNum = request.getParameter("pageNum");
 
-		return "/graphic/admin/graphicWriteForm.jsp";
+		return "/adminPage/graphic/graphicWriteForm.jsp";
 	}
 
 	public String writePOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -128,7 +128,6 @@ public class GraphicAction extends Action {
 			String productNum = "04";
 			String productCode = productC.productCode(productDate, productNum);
 
-			// graphic.setId(Integer.parseInt(multi.getParameter("id")));
 			graphic.setProductCode(productCode);
 			graphic.setProductName(multi.getParameter("productName"));
 			graphic.setProductCompany(multi.getParameter("productCompany"));
@@ -154,7 +153,7 @@ public class GraphicAction extends Action {
 			e.printStackTrace();
 		}
 
-		return "/graphic/admin/graphicWrite.jsp";
+		return "/adminPage/graphic/graphicWrite.jsp";
 	}
 
 	// 수정
@@ -180,7 +179,7 @@ public class GraphicAction extends Action {
 		request.setAttribute("graphic", graphic);
 		request.setAttribute("productDate", productDate);
 
-		return "/graphic/admin/graphicUpdateForm.jsp";
+		return "/adminPage/graphic/graphicUpdateForm.jsp";
 	}
 
 	public String updatePOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -251,7 +250,7 @@ public class GraphicAction extends Action {
 			e.printStackTrace();
 		}
 
-		return "/graphic/admin/graphicUpdate.jsp";
+		return "/adminPage/graphic/graphicUpdate.jsp";
 	}
 
 	// 상세보기
@@ -293,7 +292,7 @@ public class GraphicAction extends Action {
 		request.setAttribute("count", graphic.getCount());
 		request.setAttribute("filename", graphic.getFilename());
 
-		return "/graphic/admin/graphicDetailForm.jsp";
+		return "/adminPage/graphic/graphicDetailForm.jsp";
 	}
 
 	// 삭제
@@ -309,6 +308,6 @@ public class GraphicAction extends Action {
 			e.printStackTrace();
 		}
 
-		return "/graphic/admin/graphicDelete.jsp";
+		return "/adminPage/graphic/graphicDelete.jsp";
 	}
 }

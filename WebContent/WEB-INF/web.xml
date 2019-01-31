@@ -16,20 +16,19 @@
    <!-- 관리자 페이지 전체 적용 -->
    <jsp-config>
       <jsp-property-group>
-         <url-pattern>/admin/*</url-pattern>
-         <include-prelude>/common/admin.jsp</include-prelude>
+      	<url-pattern>/adminPage/*</url-pattern>
+        <include-prelude>/common/admin.jsp</include-prelude>
+      </jsp-property-group>
+         
+      <jsp-property-group>
+        <url-pattern>/user/*</url-pattern>
+        <include-prelude>/header/header.jsp</include-prelude>
       </jsp-property-group>
       
-       <jsp-property-group>
-            <url-pattern>/user/*</url-pattern>
-            <include-prelude>/header/header.jsp</include-prelude>
-          </jsp-property-group>
-      
-         <jsp-property-group>
-            <url-pattern>/board/*</url-pattern>
-            <include-prelude>/header/header.jsp</include-prelude>
-        </jsp-property-group>
-      
+      <jsp-property-group>
+        <url-pattern>/view/board/*</url-pattern>
+        <include-prelude>/header/header.jsp</include-prelude>
+      </jsp-property-group>
    </jsp-config>
    
    
