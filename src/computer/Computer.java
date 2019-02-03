@@ -7,7 +7,7 @@ public class Computer {
 	private int id;					// PK
 	private String productCode;		// 제품코드
 	private Category category; // 컴퓨터 카테고리
-	private String productCompany;  // 제조회사
+	private String productName;  	// 상품명
 	private String cpu;				// cpu
 	private String mainBoard;		// 메인보드
 	private String ram;				// ram
@@ -29,8 +29,8 @@ public class Computer {
 	
 	@Override
 	public String toString() {
-		return "Computer [id=" + id + ", productCode=" + productCode + ", category=" + category + ", productCompany="
-				+ productCompany + ", cpu=" + cpu + ", mainBoard=" + mainBoard + ", ram=" + ram + ", vga=" + vga
+		return "Computer [id=" + id + ", productCode=" + productCode + ", category=" + category + ", productName="
+				+ productName + ", cpu=" + cpu + ", mainBoard=" + mainBoard + ", ram=" + ram + ", vga=" + vga
 				+ ", hdd=" + hdd + ", ssd=" + ssd + ", tower=" + tower + ", power=" + power + ", productDate="
 				+ productDate + ", regDate=" + regDate + ", price=" + price + ", count=" + count + ", filename="
 				+ filename + ", filesize=" + filesize + "]";
@@ -54,11 +54,11 @@ public class Computer {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
-	public String getProductCompany() {
-		return productCompany;
+	public String getProductName() {
+		return productName;
 	}
-	public void setProductCompany(String productCompany) {
-		this.productCompany = productCompany;
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 	public String getCpu() {
 		return cpu;

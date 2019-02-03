@@ -65,8 +65,8 @@
 					</td>
 				</tr>
 				<tr>
-					<td>제조회사</td>
-					<td align="center" width="330">${ productCompany}</td>
+					<td>제품명</td>
+					<td align="center" width="330">${ productName}</td>
 				</tr>
 				<tr>
 					<td>CPU</td>

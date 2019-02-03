@@ -134,7 +134,7 @@ public class ComputerAction extends Action {
 
 			computer.setProductCode(productCode);
 			computer.setCategory(Category.valueOf(multi.getParameter("category")));
-			computer.setProductCompany(multi.getParameter("productCompany"));
+			computer.setProductName(multi.getParameter("productName"));
 			computer.setCpu(multi.getParameter("cpu"));
 			computer.setMainBoard(multi.getParameter("mainBoard"));
 			computer.setRam(multi.getParameter("ram"));
@@ -183,7 +183,7 @@ public class ComputerAction extends Action {
 		request.setAttribute("no", no);
 		request.setAttribute("productCode", computer.getProductCode());
 		request.setAttribute("category", computer.getCategory());
-		request.setAttribute("productCompany", computer.getProductCompany());
+		request.setAttribute("productName", computer.getProductName());
 		request.setAttribute("cpu", computer.getCpu());
 		request.setAttribute("mainBoard", computer.getMainBoard());
 		request.setAttribute("ram", computer.getRam());
@@ -266,7 +266,7 @@ public class ComputerAction extends Action {
 			computer.setId(Integer.parseInt(multi.getParameter("id")));
 			computer.setProductCode(updateProductCode);
 			computer.setCategory(Category.valueOf(multi.getParameter("category")));
-			computer.setProductCompany(multi.getParameter("productCompany"));
+			computer.setProductName(multi.getParameter("productName"));
 			computer.setCpu(multi.getParameter("cpu"));
 			computer.setMainBoard(multi.getParameter("mainBoard"));
 			computer.setRam(multi.getParameter("ram"));

@@ -58,7 +58,7 @@
 				<td align="center" width="50">번호</td>
 				<td align="center" width="100">제품코드</td>
 				<td align="center" width="100">카테고리</td>
-				<td align="center" width="100">제조회사</td>
+				<td align="center" width="100">제품명</td>
 				<td align="center" width="120">CPU</td>
 				<td align="center" width="120">메인보드</td>
 				<td align="center" width="120">메모리</td>
@@ -93,7 +93,7 @@
 						<c:if test="${computer.category == 'DESIGN'}">디자인용</c:if>
 						<c:if test="${computer.category == 'BROADCASTING'}">방송용</c:if>
 					</td>
-					<td align="center" width="100">${ computer.productCompany }</td>
+					<td align="center" width="100">${ computer.productName }</td>
 					<td align="center" width="120">${ computer.cpu }</td>
 					<td align="center" width="120">${ computer.mainBoard }</td>
 					<td align="center" width="120">${ computer.ram }</td>

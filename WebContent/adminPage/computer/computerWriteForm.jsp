@@ -57,8 +57,8 @@
 					</td>
 				</tr>
 				<tr>
-					<td>제조회사</td>
-					<td><input type="text" name="productCompany" size="50" maxlength="20"></td>
+					<td>제품명</td>
+					<td><input type="text" name="productName" size="50" maxlength="20"></td>
 				</tr>
 				<tr>
 					<td>CPU</td>
