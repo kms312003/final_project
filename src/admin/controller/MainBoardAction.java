@@ -41,7 +41,7 @@ public class MainBoardAction extends Action {
 		int currentPage = Integer.parseInt(pageNum);
 		int pageSize = 5;
 		int start = (currentPage - 1) * pageSize;
-		int end = currentPage * pageSize - 1;
+		int end = currentPage * pageSize;
 
 		System.out.println("start: " + start);
 		System.out.println("end: " + end);

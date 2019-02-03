@@ -88,8 +88,10 @@
 					<td>설계전력(TDP)</td>
 					<td align="center" width="330">${ tdp} W</td>
 				</tr>
+				<fmt:formatDate var="productDate" value="${productDate}" pattern="yyyy.MM.dd" />
+				<fmt:formatDate var="regDate" value="${regDate}" pattern="yyyy.MM.dd" />
 				<tr>
-					<td>제품 등록일</td>
+					<td>생산일</td>
 					<td align="center" width="330">${ productDate}</td>
 				</tr>
 				<tr>

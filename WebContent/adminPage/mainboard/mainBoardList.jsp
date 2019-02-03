@@ -50,9 +50,7 @@
       <div class="w3-container">
       	<div style="text-align:right;">
 			<span class="w3-left"> (전체글 : ${ count }) </span>
-			<span class="w3-right">
-				<a href="<%= request.getContextPath() %>/admin/mainboard/write">제품등록</a>
-			</span>
+			<span class="w3-right"><input type="button" class="btn btn-default" value="Create" onclick="window.location='<%= request.getContextPath() %>/admin/mainboard/write'"></span>
 		</div>
 
 		<table class="table table-bordered table-hover" width="1200">
@@ -112,7 +110,7 @@
 			<c:forEach var="i" begin="${startPage}" end="${endPage}">
 				<a href="<%= request.getContextPath() %>/admin/mainboard/list?pageNum=${ i }">
 					<c:if test="${i == currentPage }">
-						<font color="red">${i}</font>
+						<font color="blue">${i}</font>
 					</c:if>
 					<c:if test="${i != currentPage }">
 				     	${i}

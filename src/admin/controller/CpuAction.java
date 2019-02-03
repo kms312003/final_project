@@ -38,7 +38,7 @@ public class CpuAction extends Action {
 		int currentPage = Integer.parseInt(pageNum);
 		int pageSize = 5;
 		int start = (currentPage - 1) * pageSize;
-		int end = currentPage * pageSize - 1;
+		int end = currentPage * pageSize;
 
 		System.out.println("start: " + start);
 		System.out.println("end: " + end);
@@ -46,7 +46,6 @@ public class CpuAction extends Action {
 		CpuDBBean dbPro = CpuDBBean.getInstance();
 
 		int count = 0;
-
 		int number = 0;
 
 		List cpuList = null;

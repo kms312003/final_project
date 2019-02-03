@@ -79,7 +79,7 @@
 	<form action="<%= request.getContextPath() %>/admin/user/update" enctype="multipart/form-data" method="post" name="updateform" onsubmit="return checkboard()">
 	<input type="hidden" name="id" value="${ no }">
 		<div class="w3-container">
-		<h2>Cpu 수정</h2>	
+		<h2>User 수정</h2>	
 			<table class="table table-bordered" style="width:80%;">
 				<tr>
 					<td>이메일</td>
@@ -100,8 +100,8 @@
 				<tr>
 					<td>성별</td>
 					<td>
-						<input type=radio id="inputGender" name="gender" value="MALE">남자
-						<input type=radio id="inputGender" name="gender" value="FEMALE">여자
+						<input type=radio id="inputGender" name="gender" value="MALE" <c:if test="${user.gender == 'MALE'}">checked</c:if>>남자
+						<input type=radio id="inputGender" name="gender" value="FEMALE" <c:if test="${user.gender == 'FEMALE'}">checked</c:if>>여자
 					</td>
 				</tr>
 				<tr>
@@ -111,10 +111,10 @@
 				<tr>
 					<td>직업</td>
 					<td>
-						<input type=radio id="inputJob" name="job" value="STUDENT">학생
-						<input type=radio id="inputJob" name="job" value="EMPLOYED">직장인
-						<input type=radio id="inputJob" name="job" value="UNEMPLOYED">무직
-						<input type=radio id="inputJob" name="job" value="ETC">기타
+						<input type=radio id="inputJob" name="job" value="STUDENT" <c:if test="${user.job == 'STUDENT'}">checked</c:if>>학생
+						<input type=radio id="inputJob" name="job" value="EMPLOYED" <c:if test="${user.job == 'EMPLOYED'}">checked</c:if>>직장인
+						<input type=radio id="inputJob" name="job" value="UNEMPLOYED" <c:if test="${user.job == 'UNEMPLOYED'}">checked</c:if>>무직
+						<input type=radio id="inputJob" name="job" value="ETC" <c:if test="${user.job == 'ETC'}">checked</c:if>>기타
 					</td>		
 				</tr>
 				<center>

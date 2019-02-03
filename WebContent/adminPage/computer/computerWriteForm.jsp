@@ -50,7 +50,7 @@
 				<tr>
 					<td>카테고리</td>
 					<td>
-						<input type=radio id="inputCategory" name="category" value="OFFICE" checked="checked">사무용
+						<input type=radio id="inputCategory" name="category" value="OFFICE" checked>사무용
 						<input type=radio id="inputCategory" name="category" value="GAME">게임용
 						<input type=radio id="inputCategory" name="category" value="DESIGN">디자인용
 						<input type=radio id="inputCategory" name="category" value="BROADCASTING">방송용

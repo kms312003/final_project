@@ -49,32 +49,59 @@
 	<input type="hidden" name="oldfilename" value="${ filename }">
 	<input type="hidden" name="oldfilesize" value="${ filesize }">
 		<div class="w3-container">
-		<h2>Cpu 상세보기</h2>	
+		<h2>Computer 상세보기</h2>	
 			<table class="table table-bordered" style="width:80%;">
 				<tr>
 					<td>제품코드</td>
 					<td align="center" width="330">${ productCode}</td>
 				</tr>
 				<tr>
+					<td>카테고리</td>
+					<td align="center" width="330">
+						<c:if test="${category == 'OFFICE'}">사무용 PC</c:if>
+						<c:if test="${category == 'GAME'}">게임용 PC</c:if>
+						<c:if test="${category == 'DESIGN'}">디자인용 PC</c:if>
+						<c:if test="${category == 'BROADCASTING'}">방송용 PC</c:if>
+					</td>
+				</tr>
+				<tr>
 					<td>제조회사</td>
 					<td align="center" width="330">${ productCompany}</td>
 				</tr>
 				<tr>
-					<td>코어</td>
-					<td align="center" width="330">${ core} 코어</td>
+					<td>CPU</td>
+					<td align="center" width="330">${ cpu} </td>
 				</tr>
 				<tr>
-					<td>쓰레드</td>
-					<td align="center" width="330">${ thread} 개</td>
+					<td>메인보드</td>
+					<td align="center" width="330">${ mainBoard} </td>
 				</tr>
 				<tr>
-					<td>동작속도</td>
-					<td align="center" width="330">${ clockSpeed} GHz</td>
+					<td>메모리</td>
+					<td align="center" width="330">${ ram} </td>
 				</tr>
 				<tr>
-					<td>설계전력(TDP)</td>
-					<td align="center" width="330">${ tdp} W</td>
+					<td>그래픽카드</td>
+					<td align="center" width="330">${ vga} </td>
 				</tr>
+				<tr>
+					<td>하드디스크</td>
+					<td align="center" width="330">${ hdd} </td>
+				</tr>
+				<tr>
+					<td>SSD</td>
+					<td align="center" width="330">${ ssd} </td>
+				</tr>
+				<tr>
+					<td>케이스</td>
+					<td align="center" width="330">${ tower} </td>
+				</tr>
+				<tr>
+					<td>파워</td>
+					<td align="center" width="330">${ power} </td>
+				</tr>
+				<fmt:formatDate var="productDate" value="${productDate}" pattern="yyyy.MM.dd" />
+				<fmt:formatDate var="regDate" value="${regDate}" pattern="yyyy.MM.dd" />
 				<tr>
 					<td>제품 등록일</td>
 					<td align="center" width="330">${ productDate}</td>

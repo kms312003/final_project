@@ -116,10 +116,10 @@
 					<input type="submit" class="btn btn-default" value="Update"> 
 					<input type="reset" class="btn btn-default" value="Reset">
 					<!-- Button trigger modal -->
-					<button type="button" class="btn btn-default" data-toggle="modal" data-target="#cpuModal">
+					<button type="button" class="btn btn-default" data-toggle="modal" data-target="#computerModal">
 					  Delete
 					</button>
-					<input type="button" class="btn btn-default" value="List" onclick="window.location='<%= request.getContextPath() %>/admin/cpu/list'">
+					<input type="button" class="btn btn-default" value="List" onclick="window.location='<%= request.getContextPath() %>/admin/computer/list'">
 					</td>
 				</tr>
 				</center>
@@ -134,7 +134,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="cpuModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="computerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">

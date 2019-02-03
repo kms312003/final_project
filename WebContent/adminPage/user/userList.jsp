@@ -49,9 +49,7 @@
       <div class="w3-container">
       	<div style="text-align:right;">
 			<span class="w3-left"> (전체글 : ${ count }) </span>
-			<span class="w3-right">
-				<a href="<%= request.getContextPath() %>/admin/user/write">유저등록</a>
-			</span>
+			<span class="w3-right"><input type="button" class="btn btn-default" value="Create" onclick="window.location='<%= request.getContextPath() %>/admin/user/write'"></span>
 		</div>
 
 		<table class="table table-bordered table-hover" width="1000">
@@ -84,9 +82,17 @@
 					<td align="center" width="150">${ user.email}</td>
 					<td align="center" width="150">${ user.name}</td>
 					<td align="center" width="100">${ user.password }</td>
-					<td align="center" width="100">${ user.gender }</td>
+					<td align="center" width="100">
+						<c:if test="${user.gender == 'MALE'}">남성</c:if>
+						<c:if test="${user.gender == 'FEMALE'}">여성</c:if>
+					</td>
 					<td align="center" width="150">${ user.birth }</td>
-					<td align="center" width="100">${ user.job }</td>
+					<td align="center" width="100">
+						<c:if test="${user.job == 'STUDENT'}">학생</c:if>
+						<c:if test="${user.job == 'EMPLOYED'}">직장인</c:if>
+						<c:if test="${user.job == 'UNEMPLOYED'}">무직</c:if>
+						<c:if test="${user.job == 'ETC'}">기타</c:if>
+					</td>
 					<td align="center" width="150">${ regDate }</td>
 					<td align="center" width="50">
 			        	<a href="<%= request.getContextPath() %>/admin/user/update?id=${ user.id }" class="btn btn-sm btn-default" data-toggle="tooltip" data-placement="top" title="상세보기 및 수정">
@@ -103,16 +109,20 @@
 				<a href="<%= request.getContextPath() %>/admin/user/list?pageNum=${  startPage - bottomLine }">[이전]</a>
 			</c:if>
 		
+			<ul class="pagination">
 			<c:forEach var="i" begin="${startPage}" end="${endPage}">
-				<a href="<%= request.getContextPath() %>/admin/user/list?pageNum=${ i }">
-					<c:if test="${i == currentPage }">
-						<font color="red">${i}</font>
-					</c:if>
-					<c:if test="${i != currentPage }">
-				     	${i}
-				     </c:if>
-				</a>
+				<li>
+					<a href="<%= request.getContextPath() %>/admin/user/list?pageNum=${ i }">
+						<c:if test="${i == currentPage }">
+							<font color="blue">${i}</font>
+						</c:if>
+						<c:if test="${i != currentPage }">
+					     	${i}
+					     </c:if>
+					</a>
+				</li>
 			</c:forEach>
+			</ul>
 		
 			<c:if test="${endPage < pageCount }">
 				<a href="<%= request.getContextPath() %>/admin/user/list?pageNum=${ startPage + bottomLine }">[다음]</a>

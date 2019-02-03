@@ -53,10 +53,8 @@ footer {
 			<hr />
 			<div class="w3-container">
 				<div style="text-align: right;">
-					<span class="w3-left"> (전체글 : ${ count }) </span> <span
-						class="w3-right"> <a
-						href="<%=request.getContextPath()%>/admin/cpu/write">제품등록</a>
-					</span>
+					<span class="w3-left"> (전체글 : ${ count }) </span>
+					<span class="w3-right"><input type="button" class="btn btn-default" value="Create" onclick="window.location='<%= request.getContextPath() %>/admin/cpu/write'"></span> 
 				</div>
 
 				<table class="table table-bordered table-hover" width="1200">
@@ -111,26 +109,28 @@ footer {
 				</table>
 
 				<div class="w3-center">
+					<ul class="pager">
 					<c:if test="${startPage > bottomLine }">
-						<a
-							href="<%= request.getContextPath() %>/admin/cpu/list?pageNum=${  startPage - bottomLine }">[이전]</a>
+						<li class="previous"><a href="<%= request.getContextPath() %>/admin/cpu/list?pageNum=${  startPage - bottomLine }">previous</a></li>
 					</c:if>
-
+					
 					<c:forEach var="i" begin="${startPage}" end="${endPage}">
-						<a
-							href="<%= request.getContextPath() %>/admin/cpu/list?pageNum=${ i }">
-							<c:if test="${i == currentPage }">
-								<font color="red">${i}</font>
-							</c:if> <c:if test="${i != currentPage }">
-			     	${i}
-			     </c:if>
-						</a>
+						<li>
+							<a href="<%= request.getContextPath() %>/admin/cpu/list?pageNum=${ i }">
+								<c:if test="${i == currentPage }">
+									<font color="blue">${i}</font>
+								</c:if> 
+								<c:if test="${i != currentPage }">
+				     				${i}
+				     			</c:if>
+							</a>
+						</li>		
 					</c:forEach>
-
+					
 					<c:if test="${endPage < pageCount }">
-						<a
-							href="<%= request.getContextPath() %>/admin/cpu/list?pageNum=${ startPage + bottomLine }">[다음]</a>
+						<li class="next"><a href="<%= request.getContextPath() %>/admin/cpu/list?pageNum=${ startPage + bottomLine }">next</a></li>
 					</c:if>
+					</ul>
 				</div>
 
 			</div>

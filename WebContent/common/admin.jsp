@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<% request.setCharacterEncoding("utf-8"); %>
+<% request.setCharacterEncoding("UTF-8"); %>
 <html>
 <head>
 <title>Main Head</title>
@@ -89,6 +89,11 @@
 <div class="container-fluid text-center">
 		<div class="row content">
 			<div class="col-sm-2 sidenav">
+			<%-- <div class="btn-group-vertical">
+			    <button style="width:200px;" type="button" class="btn btn-default" onclick="window.location='<%= request.getContextPath() %>/admin/cpu/write'">Apple</button>
+			    <button type="button" class="btn btn-primary">Samsung</button>
+			    <button type="button" class="btn btn-primary">Sony</button>
+			</div> --%>
 				<p><a href="<%=request.getContextPath()%>/admin/user/list">User</a></p>
 				<p><a href="<%=request.getContextPath()%>/admin/computer/list">Computer</a></p>
 				<p><a href="<%=request.getContextPath()%>/admin/cpu/list">Cpu</a></p>

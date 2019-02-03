@@ -99,18 +99,18 @@
 				<tr>
 					<td>성별</td>
 					<td>
-						<input type=radio id="inputGender" name="gender" value="MALE">남자
+						<input type=radio id="inputGender" name="gender" value="MALE" checked>남자
 						<input type=radio id="inputGender" name="gender" value="FEMALE">여자
 					</td>
 				</tr>
 				<tr>
 					<td>생년월일</td>
-					<td><input type="text" name="birth" size="50" maxlength="6" placeholder="생년월일"> 개</td>
+					<td><input type="text" name="birth" size="50" maxlength="6" placeholder="생년월일"></td>
 				</tr>
 				<tr>
 					<td>직업</td>
 					<td>
-						<input type=radio id="inputJob" name="job" value="STUDENT">학생
+						<input type=radio id="inputJob" name="job" value="STUDENT" checked>학생
 						<input type=radio id="inputJob" name="job" value="EMPLOYED">직장인
 						<input type=radio id="inputJob" name="job" value="UNEMPLOYED">무직
 						<input type=radio id="inputJob" name="job" value="ETC">기타

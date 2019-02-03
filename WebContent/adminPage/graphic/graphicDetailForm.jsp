@@ -41,15 +41,6 @@
   </style>
 </head>
 <body>            
-     
-<div class="container-fluid text-center">    
-  <div class="row content">
-    <div class="col-sm-2 sidenav">
-      <p><a href="<%= request.getContextPath() %>/houseModel2/list">숙소관리</a></p>
-      <p><a href="<%= request.getContextPath() %>/likeModel2/list">찜관리</a></p>
-      <p><a href="<%= request.getContextPath() %>/reservationModel2/list">예약관리</a></p>
-    </div>
-    
     <div class="col-sm-9 text-left"> 
     <center>
 	<%-- <form action="<%= request.getContextPath() %>/admin/cpu/update" enctype="multipart/form-data" method="post" name="updateform" onsubmit="return checkCpu()"> --%>
@@ -104,6 +95,8 @@
 					<td>길이</td>
 					<td align="center" width="330">${ length} mm</td>
 				</tr>
+				<fmt:formatDate var="productDate" value="${productDate}" pattern="yyyy.MM.dd" />
+				<fmt:formatDate var="regDate" value="${regDate}" pattern="yyyy.MM.dd" />
 				<tr>
 					<td>생산일</td>
 					<td align="center" width="330">${ productDate}</td>
