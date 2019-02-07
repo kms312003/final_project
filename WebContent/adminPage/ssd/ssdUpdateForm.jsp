@@ -57,7 +57,11 @@
 				</tr>
 				<tr>
 					<td>제조회사</td>
-					<td><input type="text" name="productCompany" size="50" maxlength="20" value="${ssd.productCompany}"></td>
+					<td>
+						<input type=radio name="productCompany" value="SAMSUNG" <c:if test="${ssd.productCompany == 'SAMSUNG'}">checked</c:if>>삼성
+						<input type=radio name="productCompany" value="MICRON" <c:if test="${ssd.productCompany == 'MICRON'}">checked</c:if>>마이크론
+						<input type=radio name="productCompany" value="ADATA" <c:if test="${ssd.productCompany == 'ADATA'}">checked</c:if>>ADATA
+					</td>
 				</tr>
 				<tr>
 					<td>디스크 타입</td>

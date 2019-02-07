@@ -53,7 +53,11 @@
 				</tr>
 				<tr>
 					<td>제조회사</td>
-					<td><input type="text" name="productCompany" size="50" maxlength="20"></td>
+					<td>
+						<input type=radio name="productCompany" value="MSI" checked>MSI
+						<input type=radio name="productCompany" value="GIGABYTE">기가바이트
+						<input type=radio name="productCompany" value="ZOTAC">조탁
+					</td>
 				</tr>
 				<tr>
 					<td>칩셋 그룹</td>

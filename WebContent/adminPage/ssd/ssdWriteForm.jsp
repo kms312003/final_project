@@ -53,7 +53,11 @@
 				</tr>
 				<tr>
 					<td>제조회사</td>
-					<td><input type="text" name="productCompany" size="50" maxlength="20"></td>
+					<td>
+						<input type=radio name="productCompany" value="SAMSUNG" checked>삼성
+						<input type=radio name="productCompany" value="MICRON">마이크론
+						<input type=radio name="productCompany" value="ADATA">ADATA
+					</td>
 				</tr>
 				<tr>
 					<td>디스크 타입</td>

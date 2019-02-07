@@ -7,7 +7,7 @@ public class Power {
 	private int id;					// PK
 	private String productCode;		// 제품코드
 	private String productName;     // 제품
-	private String productCompany;  // 제조회사
+	private ProductCompany productCompany;  // 제조회사
 	private String productSort;     // 제품 분류
 	private int nominalOutput;      // 표기 출력
 	private int ratedOutput;		// 정격 출력
@@ -17,6 +17,10 @@ public class Power {
 	private int count;				// 수량
 	private String filename;		// 파일 이름
 	private int filesize;			// 파일 사이즈
+	
+	public enum ProductCompany {
+		MICRONICS, ANTEC, ZALMAN;
+	}
 	
 	@Override
 	public String toString() {
@@ -44,10 +48,10 @@ public class Power {
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
-	public String getProductCompany() {
+	public ProductCompany getProductCompany() {
 		return productCompany;
 	}
-	public void setProductCompany(String productCompany) {
+	public void setProductCompany(ProductCompany productCompany) {
 		this.productCompany = productCompany;
 	}
 	public String getProductSort() {

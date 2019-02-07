@@ -7,7 +7,7 @@ public class HDD {
 	private int id;					// PK
 	private String productCode;		// 제품코드
 	private String productName;     // 제품
-	private String productCompany;  // 제조회사
+	private ProductCompany productCompany;  // 제조회사
 	private String interFace;		// 인터페이스
 	private String diskSize;		// 디스크 크기
 	private int diskCapacity;		// 디스크 용량
@@ -19,6 +19,10 @@ public class HDD {
 	private int count;				// 수량
 	private String filename;		// 파일 이름
 	private int filesize;			// 파일 사이즈
+	
+	public enum ProductCompany {
+		WD, SEAGATE, TOSHIBA;
+	}
 	
 	@Override
 	public String toString() {
@@ -47,10 +51,10 @@ public class HDD {
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
-	public String getProductCompany() {
+	public ProductCompany getProductCompany() {
 		return productCompany;
 	}
-	public void setProductCompany(String productCompany) {
+	public void setProductCompany(ProductCompany productCompany) {
 		this.productCompany = productCompany;
 	}
 	public String getInterFace() {

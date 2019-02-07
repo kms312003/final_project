@@ -15,6 +15,7 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import cpu.Cpu;
+import cpu.Cpu.ProductCompany;
 import cpu.CpuDBBean;
 import product.ProductCode;
 
@@ -130,7 +131,7 @@ public class CpuAction extends Action {
 			
 			cpu.setProductCode(productCode);
 			cpu.setProductName(multi.getParameter("productName"));
-			cpu.setProductCompany(multi.getParameter("productCompany"));
+			cpu.setProductCompany(ProductCompany.valueOf(multi.getParameter("productCompany")));
 			cpu.setBrand(multi.getParameter("brand"));
 			cpu.setSocket(multi.getParameter("socket"));
 			cpu.setCore(multi.getParameter("core"));
@@ -262,7 +263,7 @@ public class CpuAction extends Action {
 			cpu.setId(Integer.parseInt(multi.getParameter("id")));
 			cpu.setProductCode(updateProductCode);
 			cpu.setProductName(multi.getParameter("productName"));
-			cpu.setProductCompany(multi.getParameter("productCompany"));
+			cpu.setProductCompany(ProductCompany.valueOf(multi.getParameter("productCompany")));
 			cpu.setBrand(multi.getParameter("brand"));
 			cpu.setSocket(multi.getParameter("socket"));
 			cpu.setCore(multi.getParameter("core"));

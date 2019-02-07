@@ -53,7 +53,11 @@
 				</tr>
 				<tr>
 					<td>제조회사</td>
-					<td><input type="text" name="productCompany" size="50" maxlength="20"></td>
+					<td>
+						<input type=radio name="productCompany" value="WD" checked>WD
+						<input type=radio name="productCompany" value="SEAGATE">SEAGATE
+						<input type=radio name="productCompany" value="TOSHIBA">토시바
+					</td>
 				</tr>
 				<tr>
 					<td>인터페이스</td>

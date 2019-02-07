@@ -7,7 +7,7 @@ public class Cpu {
 	private int id;					// PK
 	private String productCode;		// 제품코드
 	private String productName;     // 제품명
-	private String productCompany;  // 제조회사
+	private ProductCompany productCompany;  		// 제조회사
 	private String brand;	        // 브랜드 분류
 	private String socket;          // 소켓 구분
 	private String core;            // 코어
@@ -21,6 +21,10 @@ public class Cpu {
 	private String filename;		// 파일 첨부
 	private int filesize;			// 파일 사이즈
 
+	public enum ProductCompany {
+		INTEL_7, INTEL_8, INTEL_9, RYZEN_5, RYZEN_7;
+	}
+	
 	@Override
 	public String toString() {
 		return "Cpu [id=" + id + ", productCode=" + productCode + ", productName=" + productName + ", productCompany="
@@ -49,10 +53,10 @@ public class Cpu {
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
-	public String getProductCompany() {
+	public ProductCompany getProductCompany() {
 		return productCompany;
 	}
-	public void setProductCompany(String productCompany) {
+	public void setProductCompany(ProductCompany productCompany) {
 		this.productCompany = productCompany;
 	}
 	public String getBrand() {

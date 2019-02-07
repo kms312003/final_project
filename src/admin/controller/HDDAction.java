@@ -18,6 +18,7 @@ import graphic.Graphic;
 import graphic.GraphicDBBean;
 import hdd.HDD;
 import hdd.HDDDBBean;
+import hdd.HDD.ProductCompany;
 import mainboard.MainBoardDBBean;
 import product.ProductCode;
 
@@ -132,7 +133,7 @@ public class HDDAction extends Action {
 
 			hdd.setProductCode(productCode);
 			hdd.setProductName(multi.getParameter("productName"));
-			hdd.setProductCompany(multi.getParameter("productCompany"));
+			hdd.setProductCompany(ProductCompany.valueOf(multi.getParameter("productCompany")));
 			hdd.setInterFace(multi.getParameter("interFace"));
 			hdd.setDiskSize(multi.getParameter("diskSize"));
 			hdd.setDiskCapacity(Integer.parseInt(multi.getParameter("diskCapacity")));
@@ -218,7 +219,7 @@ public class HDDAction extends Action {
 			hdd.setId(Integer.parseInt(multi.getParameter("id")));
 			hdd.setProductCode(updateProductCode);
 			hdd.setProductName(multi.getParameter("productName"));
-			hdd.setProductCompany(multi.getParameter("productCompany"));
+			hdd.setProductCompany(ProductCompany.valueOf(multi.getParameter("productCompany")));
 			hdd.setInterFace(multi.getParameter("interFace"));
 			hdd.setDiskSize(multi.getParameter("diskSize"));
 			hdd.setDiskCapacity(Integer.parseInt(multi.getParameter("diskCapacity")));

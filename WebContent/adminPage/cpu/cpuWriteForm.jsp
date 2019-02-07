@@ -53,7 +53,13 @@
 				</tr>
 				<tr>
 					<td>제조회사</td>
-					<td><input type="text" name="productCompany" size="50" maxlength="20"></td>
+					<td>
+						<input type=radio name="productCompany" value="INTEL_7" checked>인텔 7세대
+						<input type=radio name="productCompany" value="INTEL_8">인텔 8세대
+						<input type=radio name="productCompany" value="INTEL_9">인텔 9세대
+						<input type=radio name="productCompany" value="RYZEN_5">라이젠 5
+						<input type=radio name="productCompany" value="RYZEN_7">라이젠 7
+					</td>
 				</tr>
 				<tr>
 					<td>브랜드분류</td>

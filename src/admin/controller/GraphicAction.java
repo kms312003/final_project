@@ -15,6 +15,7 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import graphic.Graphic;
+import graphic.Graphic.ProductCompany;
 import graphic.GraphicDBBean;
 import product.ProductCode;
 
@@ -130,7 +131,7 @@ public class GraphicAction extends Action {
 
 			graphic.setProductCode(productCode);
 			graphic.setProductName(multi.getParameter("productName"));
-			graphic.setProductCompany(multi.getParameter("productCompany"));
+			graphic.setProductCompany(ProductCompany.valueOf(multi.getParameter("productCompany")));
 			graphic.setChipSetGroup(multi.getParameter("chipSetGroup"));
 			graphic.setInterFace(multi.getParameter("interFace"));
 			graphic.setPowerPort(multi.getParameter("powerPort"));
@@ -218,7 +219,7 @@ public class GraphicAction extends Action {
 			graphic.setId(Integer.parseInt(multi.getParameter("id")));
 			graphic.setProductCode(updateProductCode);
 			graphic.setProductName(multi.getParameter("productName"));
-			graphic.setProductCompany(multi.getParameter("productCompany"));
+			graphic.setProductCompany(ProductCompany.valueOf(multi.getParameter("productCompany")));
 			graphic.setChipSetGroup(multi.getParameter("chipSetGroup"));
 			graphic.setInterFace(multi.getParameter("interFace"));
 			graphic.setPowerPort(multi.getParameter("powerPort"));

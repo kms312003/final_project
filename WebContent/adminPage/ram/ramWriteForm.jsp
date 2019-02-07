@@ -53,7 +53,11 @@
 				</tr>
 				<tr>
 					<td>제조회사</td>
-					<td><input type="text" name="productCompany" size="50" maxlength="20"></td>
+					<td>
+						<input type=radio name="productCompany" value="SAMSUNG" checked>삼성
+						<input type=radio name="productCompany" value="GSKILL">G-SKILL
+						<input type=radio name="productCompany" value="GEIL">GEIL
+					</td>
 				</tr>
 				<tr>
 					<td>제품 분류</td>

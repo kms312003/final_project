@@ -17,6 +17,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import product.ProductCode;
 import ssd.SSD;
 import ssd.SSDDBBean;
+import ssd.SSD.ProductCompany;
 
 public class SSDAction extends Action {
 
@@ -129,7 +130,7 @@ public class SSDAction extends Action {
 
 			ssd.setProductCode(productCode);
 			ssd.setProductName(multi.getParameter("productName"));
-			ssd.setProductCompany(multi.getParameter("productCompany"));
+			ssd.setProductCompany(ProductCompany.valueOf(multi.getParameter("productCompany")));
 			ssd.setDiskType(multi.getParameter("diskType"));
 			ssd.setDiskCapacity(Integer.parseInt(multi.getParameter("diskCapacity")));
 			ssd.setInterFace(multi.getParameter("interFace"));
@@ -216,7 +217,7 @@ public class SSDAction extends Action {
 			ssd.setId(Integer.parseInt(multi.getParameter("id")));
 			ssd.setProductCode(updateProductCode);
 			ssd.setProductName(multi.getParameter("productName"));
-			ssd.setProductCompany(multi.getParameter("productCompany"));
+			ssd.setProductCompany(ProductCompany.valueOf(multi.getParameter("productCompany")));
 			ssd.setDiskType(multi.getParameter("diskType"));
 			ssd.setDiskCapacity(Integer.parseInt(multi.getParameter("diskCapacity")));
 			ssd.setInterFace(multi.getParameter("interFace"));

@@ -57,7 +57,11 @@
 				</tr>
 				<tr>
 					<td>제조회사</td>
-					<td><input type="text" name="productCompany" size="50" maxlength="20" value="${mainboard.productCompany}"></td>
+					<td>
+						<input type=radio name="productCompany" value="ASROCK" <c:if test="${mainboard.productCompany == 'ASROCK'}">checked</c:if>>ASROCK
+						<input type=radio name="productCompany" value="ASUS" <c:if test="${mainboard.productCompany == 'ASUS'}">checked</c:if>>ASUS
+						<input type=radio name="productCompany" value="MSI" <c:if test="${mainboard.productCompany == 'MSI'}">checked</c:if>>MSI
+					</td>
 				</tr>
 				<tr>
 					<td>CPU 소켓</td>

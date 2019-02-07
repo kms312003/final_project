@@ -20,6 +20,7 @@ import graphic.GraphicDBBean;
 import product.ProductCode;
 import ram.Ram;
 import ram.RamDBBean;
+import ram.Ram.ProductCompany;
 
 public class RamAction extends Action {
 
@@ -132,7 +133,7 @@ public class RamAction extends Action {
 
 			ram.setProductCode(productCode);
 			ram.setProductName(multi.getParameter("productName"));
-			ram.setProductCompany(multi.getParameter("productCompany"));
+			ram.setProductCompany(ProductCompany.valueOf(multi.getParameter("productCompany")));
 			ram.setProductSort(multi.getParameter("productSort"));
 			ram.setMemoryCapacity(Integer.parseInt(multi.getParameter("memoryCapacity")));
 			ram.setClock(Integer.parseInt(multi.getParameter("clock")));
@@ -217,7 +218,7 @@ public class RamAction extends Action {
 			ram.setId(Integer.parseInt(multi.getParameter("id")));
 			ram.setProductCode(updateProductCode);
 			ram.setProductName(multi.getParameter("productName"));
-			ram.setProductCompany(multi.getParameter("productCompany"));
+			ram.setProductCompany(ProductCompany.valueOf(multi.getParameter("productCompany")));
 			ram.setProductSort(multi.getParameter("productSort"));
 			ram.setMemoryCapacity(Integer.parseInt(multi.getParameter("memoryCapacity")));
 			ram.setClock(Integer.parseInt(multi.getParameter("clock")));

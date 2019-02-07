@@ -19,6 +19,7 @@ import graphic.Graphic;
 import graphic.GraphicDBBean;
 import power.Power;
 import power.PowerDBBean;
+import power.Power.ProductCompany;
 import product.ProductCode;
 
 public class PowerAction extends Action {
@@ -132,7 +133,7 @@ public class PowerAction extends Action {
 
 			power.setProductCode(productCode);
 			power.setProductName(multi.getParameter("productName"));
-			power.setProductCompany(multi.getParameter("productCompany"));
+			power.setProductCompany(ProductCompany.valueOf(multi.getParameter("productCompany")));
 			power.setProductSort(multi.getParameter("productSort"));
 			power.setNominalOutput(Integer.parseInt(multi.getParameter("nominalOutput")));
 			power.setRatedOutput(Integer.parseInt(multi.getParameter("ratedOutput")));
@@ -216,7 +217,7 @@ public class PowerAction extends Action {
 			power.setId(Integer.parseInt(multi.getParameter("id")));
 			power.setProductCode(updateProductCode);
 			power.setProductName(multi.getParameter("productName"));
-			power.setProductCompany(multi.getParameter("productCompany"));
+			power.setProductCompany(ProductCompany.valueOf(multi.getParameter("productCompany")));
 			power.setProductSort(multi.getParameter("productSort"));
 			power.setNominalOutput(Integer.parseInt(multi.getParameter("nominalOutput")));
 			power.setRatedOutput(Integer.parseInt(multi.getParameter("ratedOutput")));

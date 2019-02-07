@@ -57,7 +57,11 @@
 				</tr>
 				<tr>
 					<td>제조회사</td>
-					<td><input type="text" name="productCompany" size="50" maxlength="20" value="${power.productCompany}"></td>
+					<td>
+						<input type=radio name="productCompany" value="MICRONICS" <c:if test="${power.productCompany == 'MICRONICS'}">checked</c:if>>마이크로닉스
+						<input type=radio name="productCompany" value="ANTEC" <c:if test="${power.productCompany == 'ANTEC'}">checked</c:if>>안텍
+						<input type=radio name="productCompany" value="ZALMAN" <c:if test="${power.productCompany == 'ZALMAN'}">checked</c:if>>잘만
+					</td>
 				</tr>
 				<tr>
 					<td>제품 분류</td>

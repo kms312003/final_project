@@ -7,7 +7,7 @@ public class MainBoard {
 	private int id;					// PK
 	private String productCode;		// 제품코드
 	private String productName;     // 제품
-	private String productCompany;   // 제조회사
+	private ProductCompany productCompany;   // 제조회사
 	private String cpuSocket;		// cpu 소켓
 	private String chipSet;			// 세부 칩셋
 	private String formFactor;		// 폼팩터
@@ -20,6 +20,10 @@ public class MainBoard {
 	private int count;				// 수량
 	private String filename;		// 파일 이름
 	private int filesize;			// 파일 사이즈
+	
+	public enum ProductCompany {
+		ASROCK, ASUS, MSI;
+	}
 	
 	@Override
 	public String toString() {
@@ -49,10 +53,10 @@ public class MainBoard {
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
-	public String getProductCompany() {
+	public ProductCompany getProductCompany() {
 		return productCompany;
 	}
-	public void setProductCompany(String productCompany) {
+	public void setProductCompany(ProductCompany productCompany) {
 		this.productCompany = productCompany;
 	}
 	public String getCpuSocket() {

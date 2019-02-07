@@ -7,7 +7,7 @@ public class Ram {
 	private int id;					// PK
 	private String productCode;		// 제품코드
 	private String productName;     // 제품
-	private String productCompany;   // 제조회사
+	private ProductCompany productCompany;   // 제조회사
 	private String productSort;		// 제품 분류
 	private int memoryCapacity;		// 메모리 용량
 	private int clock;				// 동작쿨럭
@@ -18,6 +18,10 @@ public class Ram {
 	private int count;				// 수량
 	private String filename;		// 파일 이름
 	private int filesize;			// 파일 사이즈
+	
+	public enum ProductCompany {
+		SAMSUNG, GSKILL, GEIL;
+	}
 	
 	@Override
 	public String toString() {
@@ -45,10 +49,10 @@ public class Ram {
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
-	public String getProductCompany() {
+	public ProductCompany getProductCompany() {
 		return productCompany;
 	}
-	public void setProductCompany(String productCompany) {
+	public void setProductCompany(ProductCompany productCompany) {
 		this.productCompany = productCompany;
 	}
 	public String getProductSort() {

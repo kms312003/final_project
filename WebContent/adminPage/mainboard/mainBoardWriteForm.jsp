@@ -53,7 +53,11 @@
 				</tr>
 				<tr>
 					<td>제조회사</td>
-					<td><input type="text" name="productCompany" size="50" maxlength="20"></td>
+					<td>
+						<input type=radio name="productCompany" value="ASROCK" checked>ASROCK
+						<input type=radio name="productCompany" value="ASUS">ASUS
+						<input type=radio name="productCompany" value="MSI">MSI
+					</td>
 				</tr>
 				<tr>
 					<td>CPU 소켓</td>

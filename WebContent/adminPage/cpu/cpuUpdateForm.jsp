@@ -59,7 +59,13 @@
 				</tr>
 				<tr>
 					<td>제조회사</td>
-					<td><input type="text" name="productCompany" size="50" maxlength="20" value="${cpu.productCompany}"></td>
+					<td>
+						<input type=radio name="productCompany" value="INTEL_7" <c:if test="${cpu.productCompany == 'INTEL_7'}">checked</c:if>>인텔 7세대
+						<input type=radio name="productCompany" value="INTEL_8" <c:if test="${cpu.productCompany == 'INTEL_8'}">checked</c:if>>인텔 8세대
+						<input type=radio name="productCompany" value="INTEL_9" <c:if test="${cpu.productCompany == 'INTEL_9'}">checked</c:if>>인텔 9세대
+						<input type=radio name="productCompany" value="RYZEN_5" <c:if test="${cpu.productCompany == 'RYZEN_5'}">checked</c:if>>라이젠 5
+						<input type=radio name="productCompany" value="RYZEN_7" <c:if test="${cpu.productCompany == 'RYZEN_7'}">checked</c:if>>라이젠 7
+					</td>
 				</tr>
 				<tr>
 					<td>브랜드분류</td>

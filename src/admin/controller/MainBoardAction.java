@@ -18,6 +18,7 @@ import cpu.CpuDBBean;
 import graphic.Graphic;
 import graphic.GraphicDBBean;
 import mainboard.MainBoard;
+import mainboard.MainBoard.ProductCompany;
 import mainboard.MainBoardDBBean;
 import product.ProductCode;
 
@@ -132,7 +133,7 @@ public class MainBoardAction extends Action {
 
 			mainboard.setProductCode(productCode);
 			mainboard.setProductName(multi.getParameter("productName"));
-			mainboard.setProductCompany(multi.getParameter("productCompany"));
+			mainboard.setProductCompany(ProductCompany.valueOf(multi.getParameter("productCompany")));
 			mainboard.setCpuSocket(multi.getParameter("cpuSocket"));
 			mainboard.setChipSet(multi.getParameter("chipSet"));
 			mainboard.setFormFactor(multi.getParameter("formFactor"));
@@ -219,7 +220,7 @@ public class MainBoardAction extends Action {
 			mainboard.setId(Integer.parseInt(multi.getParameter("id")));
 			mainboard.setProductCode(updateProductCode);
 			mainboard.setProductName(multi.getParameter("productName"));
-			mainboard.setProductCompany(multi.getParameter("productCompany"));
+			mainboard.setProductCompany(ProductCompany.valueOf(multi.getParameter("productCompany")));
 			mainboard.setCpuSocket(multi.getParameter("cpuSocket"));
 			mainboard.setChipSet(multi.getParameter("chipSet"));
 			mainboard.setFormFactor(multi.getParameter("formFactor"));
