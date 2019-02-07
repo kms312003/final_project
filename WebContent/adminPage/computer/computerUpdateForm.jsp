@@ -62,39 +62,39 @@
 				</tr>
 				<tr>
 					<td>제품명</td>
-					<td><input type="text" name="productName" size="50" maxlength="20" value="${computer.productName}"></td>
+					<td><input type="text" name="productName" size="50" maxlength="100" value="${computer.productName}"></td>
 				</tr>
 				<tr>
 					<td>CPU</td>
-					<td><input type="text" name="cpu" size="50" maxlength="50" value="${computer.cpu}"></td>
+					<td><input type="text" name="cpu" size="50" maxlength="100" value="${computer.cpu}"></td>
 				</tr>
 				<tr>
 					<td>메인보드</td>
-					<td><input type="text" name="mainBoard" size="50" maxlength="50" value="${computer.mainBoard}"></td>
+					<td><input type="text" name="mainBoard" size="50" maxlength="100" value="${computer.mainBoard}"></td>
 				</tr>
 				<tr>
 					<td>메모리(RAM)</td>
-					<td><input type="text" name="ram" size="50" maxlength="50" value="${computer.ram}"></td>
+					<td><input type="text" name="ram" size="50" maxlength="100" value="${computer.ram}"></td>
 				</tr>
 				<tr>
 					<td>그래픽카드</td>
-					<td><input type="text" name="vga" size="50" maxlength="50" value="${computer.vga}"></td>
+					<td><input type="text" name="vga" size="50" maxlength="100" value="${computer.vga}"></td>
 				</tr>
 				<tr>
 					<td>하드디스크(HDD)</td>
-					<td><input type="text" name="hdd" size="50" maxlength="50" value="${computer.hdd}"></td>
+					<td><input type="text" name="hdd" size="50" maxlength="100" value="${computer.hdd}"></td>
 				</tr>
 				<tr>
 					<td>SSD</td>
-					<td><input type="text" name="ssd" size="50" maxlength="50" value="${computer.ssd}"></td>
+					<td><input type="text" name="ssd" size="50" maxlength="100" value="${computer.ssd}"></td>
 				</tr>
 				<tr>
 					<td>케이스</td>
-					<td><input type="text" name="tower" size="50" maxlength="50" value="${computer.tower}"></td>
+					<td><input type="text" name="tower" size="50" maxlength="100" value="${computer.tower}"></td>
 				</tr>
 				<tr>
 					<td>파워</td>
-					<td><input type="text" name="power" size="50" maxlength="50" value="${computer.power}"></td>
+					<td><input type="text" name="power" size="50" maxlength="100" value="${computer.power}"></td>
 				</tr>
 				<tr>
 					<td>제품 등록일</td>
@@ -102,7 +102,7 @@
 				</tr>
 				<tr>
 					<td>가격</td>
-					<td><input type="text" name="price" size="50" maxlength="20"> 원</td>
+					<td><input type="text" name="price" size="50" maxlength="20" value="${computer.price}"> 원</td>
 				</tr>
 				<tr>
 					<td width="70" align="center">file</td>

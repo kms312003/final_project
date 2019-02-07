@@ -14,7 +14,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import cpu.Cpu;
 
 public class ComputerDBBean {
-	
+
 	private static ComputerDBBean instance = new ComputerDBBean();
 
 	public static ComputerDBBean getInstance() {
@@ -49,6 +49,20 @@ public class ComputerDBBean {
 		}
 	}
 
+	// 카테고리별 Computer 갯수
+	public int getCategoryCount(int category) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+
+		Map map = new HashMap();
+		map.put("category", category);
+		
+		try {
+			return (int) sqlSession.selectOne(namespace + ".getCategoryCount", map);
+		} finally {
+			sqlSession.close();
+		}
+	}
+
 	// Computer 리스트 가저오기
 	public List getComputerList(int start, int end) throws Exception {
 
@@ -59,6 +73,23 @@ public class ComputerDBBean {
 		map.put("end", end);
 		try {
 			return sqlSession.selectList(namespace + ".getComputers", map);
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	// 카테고리별 Computer 리스트 가저오기
+	public List getCategoryList(int start, int end, int category) throws Exception {
+
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+
+		Map map = new HashMap();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("category", category);
+
+		try {
+			return sqlSession.selectList(namespace + ".getCategorys", map);
 		} finally {
 			sqlSession.close();
 		}
@@ -103,19 +134,19 @@ public class ComputerDBBean {
 		sqlSession.close();
 		return computer;
 	}
-	
+
 	// Computer 디테일 Get
-		public Computer getDetail(int id) {
-			SqlSession sqlSession = getSqlSessionFactory().openSession();
+	public Computer getDetail(int id) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
-			Map map = new HashMap();
-			map.put("id", id);
+		Map map = new HashMap();
+		map.put("id", id);
 
-			Computer computer = sqlSession.selectOne(namespace + ".getComputer", map);
+		Computer computer = sqlSession.selectOne(namespace + ".getComputer", map);
 
-			sqlSession.close();
-			return computer;
-		}
+		sqlSession.close();
+		return computer;
+	}
 
 	// Computer 수정 Post
 	public void updateComputer(Computer computer) {

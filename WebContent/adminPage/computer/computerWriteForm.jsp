@@ -58,39 +58,39 @@
 				</tr>
 				<tr>
 					<td>제품명</td>
-					<td><input type="text" name="productName" size="50" maxlength="20"></td>
+					<td><input type="text" name="productName" size="50" maxlength="100"></td>
 				</tr>
 				<tr>
 					<td>CPU</td>
-					<td><input type="text" name="cpu" size="50" maxlength="50"></td>
+					<td><input type="text" name="cpu" size="50" maxlength="100"></td>
 				</tr>
 				<tr>
 					<td>메인보드</td>
-					<td><input type="text" name="mainBoard" size="50" maxlength="50"></td>
+					<td><input type="text" name="mainBoard" size="50" maxlength="100"></td>
 				</tr>
 				<tr>
 					<td>메모리(RAM)</td>
-					<td><input type="text" name="ram" size="50" maxlength="50"></td>
+					<td><input type="text" name="ram" size="50" maxlength="100"></td>
 				</tr>
 				<tr>
 					<td>그래픽카드</td>
-					<td><input type="text" name="vga" size="50" maxlength="50"></td>
+					<td><input type="text" name="vga" size="50" maxlength="100"></td>
 				</tr>
 				<tr>
 					<td>하드디스크(HDD)</td>
-					<td><input type="text" name="hdd" size="50" maxlength="50"></td>
+					<td><input type="text" name="hdd" size="50" maxlength="100"></td>
 				</tr>
 				<tr>
 					<td>SSD</td>
-					<td><input type="text" name="ssd" size="50" maxlength="50"></td>
+					<td><input type="text" name="ssd" size="50" maxlength="100"></td>
 				</tr>
 				<tr>
 					<td>케이스</td>
-					<td><input type="text" name="tower" size="50" maxlength="50"></td>
+					<td><input type="text" name="tower" size="50" maxlength="100"></td>
 				</tr>
 				<tr>
 					<td>파워</td>
-					<td><input type="text" name="power" size="50" maxlength="50"></td>
+					<td><input type="text" name="power" size="50" maxlength="100"></td>
 				</tr>
 				<tr>
 					<td>제품 등록일</td>

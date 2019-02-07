@@ -9,8 +9,16 @@
         select ifnull(count(*),0) from computer
      </select>
      
+     <select id = "getCategoryCount" parameterType="hashmap" resultType="int">
+        select ifnull(count(*),0) from computer where category = #{category}
+     </select>
+     
      <select id = "getComputers" parameterType="hashmap" resultType="computer">
         select * from computer limit #{start}, #{end} 
+     </select>
+     
+     <select id = "getCategorys" parameterType="hashmap" resultType="computer">
+        select * from computer where category = #{category} limit #{start}, #{end} 
      </select>
      
      <insert id="insert" parameterType="computer">
@@ -30,7 +38,7 @@
      
      <update id="update" parameterType="computer">
         update computer set productCode=#{productCode}, category=#{category}, productName=#{productName}, cpu=#{cpu}, 
-        mainBoard= #{mainBoard}, ram=#{ram}, vga=#{vga}, hdd=#{hdd}, tdp=#{tdp}, ssd=#{ssd}, tower=#{tower}, power=#{power}, productDate=#{productDate}, price=#{price}, filename=#{filename}, filesize=#{filesize} where id=#{id}
+        mainBoard= #{mainBoard}, ram=#{ram}, vga=#{vga}, hdd=#{hdd}, ssd=#{ssd}, tower=#{tower}, power=#{power}, productDate=#{productDate}, price=#{price}, filename=#{filename}, filesize=#{filesize} where id=#{id}
      </update>
      
      <delete id="deleteComputer" parameterType="hashmap">

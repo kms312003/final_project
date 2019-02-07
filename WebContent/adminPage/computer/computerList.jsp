@@ -58,23 +58,23 @@
 				<td align="center" width="50">번호</td>
 				<td align="center" width="100">제품코드</td>
 				<td align="center" width="100">카테고리</td>
-				<td align="center" width="100">제품명</td>
+				<td align="center" width="150">제품명</td>
 				<td align="center" width="120">CPU</td>
 				<td align="center" width="120">메인보드</td>
 				<td align="center" width="120">메모리</td>
-				<td align="center" width="120">그래픽카드</td>
-				<td align="center" width="120">하드디스크</td>
+				<!-- <td align="center" width="120">그래픽카드</td>
+				<td align="center" width="120">하드디스크</td> -->
 				<td align="center" width="120">SSD</td>
-				<td align="center" width="120">케이스</td>
-				<td align="center" width="120">파워</td>
-				<td align="center" width="150">가격</td>
+				<!-- <td align="center" width="120">케이스</td>
+				<td align="center" width="120">파워</td> -->
+				<td align="center" width="100">가격</td>
 				<td align="center" width="150">제품 입력일</td>
 				<td align="center" width="50">Actions</td>
 			</tr>
 			
 			<c:if test="${computerList == null}">
 				<tr >
-					<td colspan="15" align="center">등록된 제품이 없습니다.</td>
+					<td colspan="11" align="center">등록된 제품이 없습니다.</td>
 				</tr>
 			</c:if>
 			
@@ -82,7 +82,7 @@
 			<c:if test="${computerList != null}">
 				<c:forEach var="computer" items="${computerList}">
 				<fmt:formatDate var="regDate" value="${computer.regDate}" pattern="yyyy.MM.dd"/>
-				
+
 				<tr>
 					<td align="center" width="50">${number}</td>
 					<c:set var="number" value="${number-1}"/>
@@ -93,16 +93,53 @@
 						<c:if test="${computer.category == 'DESIGN'}">디자인용</c:if>
 						<c:if test="${computer.category == 'BROADCASTING'}">방송용</c:if>
 					</td>
-					<td align="center" width="100">${ computer.productName }</td>
-					<td align="center" width="120">${ computer.cpu }</td>
-					<td align="center" width="120">${ computer.mainBoard }</td>
-					<td align="center" width="120">${ computer.ram }</td>
-					<td align="center" width="120">${ computer.vga }</td>
-					<td align="center" width="120">${ computer.hdd }</td>
-					<td align="center" width="120">${ computer.ssd }</td>
-					<td align="center" width="120">${ computer.tower }</td>
-					<td align="center" width="120">${ computer.power }</td>
-					<td align="center" width="150">${ computer.price }</td>
+					<td align="center" width="150">${ computer.productName }</td>
+					<td align="center" width="120">
+						<c:choose>
+				        	<c:when test="${fn:length(computer.cpu) > 10}">
+				            	<c:out value="${fn:substring(computer.cpu,0,10)}"/>....
+				            </c:when>
+			            	<c:otherwise>
+				            	<c:out value="${computer.cpu}"/>
+				            </c:otherwise> 
+			        	</c:choose>
+					</td>
+					<td align="center" width="120">
+						<c:choose>
+				        	<c:when test="${fn:length(computer.mainBoard) > 10}">
+				            	<c:out value="${fn:substring(computer.mainBoard,0,13)}"/>....
+				            </c:when>
+				            <c:otherwise>
+				            	<c:out value="${computer.mainBoard}"/>
+				            </c:otherwise> 
+				        </c:choose>
+					</td>
+					<td align="center" width="120">
+						<c:choose>
+				        	<c:when test="${fn:length(computer.ram) > 10}">
+				            	<c:out value="${fn:substring(computer.ram,0,13)}"/>....
+				            </c:when>
+				            <c:otherwise>
+				            	<c:out value="${computer.ram}"/>
+				            </c:otherwise> 
+				        </c:choose>
+					</td>
+					<%-- <td align="center" width="120">${ computer.vga }</td>
+					<td align="center" width="120">${ computer.hdd }</td> --%>
+					<td align="center" width="120">
+						<c:choose>
+				        	<c:when test="${fn:length(computer.ssd) > 10}">
+				            	<c:out value="${fn:substring(computer.ssd,0,13)}"/>....
+				            </c:when>
+				            <c:otherwise>
+				            	<c:out value="${computer.ssd}"/>
+				            </c:otherwise> 
+			        	</c:choose>
+					</td>
+					
+					<%-- <td align="center" width="120">${ computer.tower }</td>
+					<td align="center" width="120">${ computer.power }</td> --%>
+					<td align="center" width="100">${ computer.price }</td>
 					<td align="center" width="150">${ regDate }</td>
 					<td align="center" width="150">
 			        	<a href="<%= request.getContextPath() %>/admin/computer/update?id=${ computer.id }" class="btn btn-sm btn-default" data-toggle="tooltip" data-placement="top" title="수정">

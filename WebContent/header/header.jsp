@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -145,12 +148,13 @@
 									<li class="hassubs">
 										<a href="#">Computer parts<i class="fas fa-chevron-down"></i></a>
 										<ul>
-											<li><a href="#">CPU<i class="fas fa-chevron-down"></i></a>
-											<li><a href="#">MainBoard<i class="fas fa-chevron-down"></i></a>
-											<li><a href="#">RAM<i class="fas fa-chevron-down"></i></a>
-											<li><a href="#">Graphic Card<i class="fas fa-chevron-down"></i></a>
-											<li><a href="#">Power Supply<i class="fas fa-chevron-down"></i></a>
-											<li><a href="#">HDD<i class="fas fa-chevron-down"></i></a>
+											<li><a href="<%= request.getContextPath() %>/main/cpu/list">CPU<i class="fas fa-chevron-down"></i></a>
+											<li><a href="<%= request.getContextPath() %>/main/mainboard/list">MainBoard<i class="fas fa-chevron-down"></i></a>
+											<li><a href="<%= request.getContextPath() %>/main/ram/list">RAM<i class="fas fa-chevron-down"></i></a>
+											<li><a href="<%= request.getContextPath() %>/main/graphic/list">Graphic Card<i class="fas fa-chevron-down"></i></a>
+											<li><a href="<%= request.getContextPath() %>/main/power/list">Power Supply<i class="fas fa-chevron-down"></i></a>
+											<li><a href="<%= request.getContextPath() %>/main/hdd/list">HDD<i class="fas fa-chevron-down"></i></a>
+											<li><a href="<%= request.getContextPath() %>/main/ssd/list">SSD<i class="fas fa-chevron-down"></i></a>
 											<li><a href="#">Accessories<i class="fas fa-chevron-down"></i></a>
 										</ul>
 									</li>
@@ -158,16 +162,16 @@
 										<a href="#">Recommendations<i class="fas fa-chevron-down"></i></a>
 										<ul>
 											<li>
-												<a href="#">For Games<i class="fas fa-chevron-down"></i></a>
+												<a href="<%= request.getContextPath() %>/main/computer/list?category=2">For Games<i class="fas fa-chevron-down"></i></a>
 												<ul>
 													<li><a href="#">Battle Ground<i class="fas fa-chevron-down"></i></a></li>
 													<li><a href="#">Overwatch<i class="fas fa-chevron-down"></i></a></li>
 													<li><a href="#">League of Legend<i class="fas fa-chevron-down"></i></a></li>
 												</ul>
 											</li>
-											<li><a href="#">For Office<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="#">For Design<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="#">For Broadcast<i class="fas fa-chevron-down"></i></a></li>
+											<li><a href="<%= request.getContextPath() %>/main/computer/list?category=1">For Office<i class="fas fa-chevron-down"></i></a></li>
+											<li><a href="<%= request.getContextPath() %>/main/computer/list?category=3">For Design<i class="fas fa-chevron-down"></i></a></li>
+											<li><a href="<%= request.getContextPath() %>/main/computer/list?category=4">For Broadcast<i class="fas fa-chevron-down"></i></a></li>
 										</ul>
 									</li>
 									<li class="hassubs">

@@ -12,12 +12,34 @@
       <welcome-file>default.htm</welcome-file>
       <welcome-file>default.jsp</welcome-file>
    </welcome-file-list>
+   
+   <!-- 한글필터 -->
+   <filter>
+	   	<filter-name>encodingFilter</filter-name>
+	    <filter-class>util.CharacterEncodingFilter</filter-class>
+	
+	    <init-param>
+		    <param-name>encoding</param-name>
+		    <param-value>UTF-8</param-value>
+	    </init-param>
+   </filter>
+   
+   <filter-mapping>
+	   	<filter-name>encodingFilter</filter-name>
+	    <url-pattern>/*</url-pattern>
+   </filter-mapping>
 
    <!-- 관리자 페이지 전체 적용 -->
    <jsp-config>
       <jsp-property-group>
       	<url-pattern>/adminPage/*</url-pattern>
         <include-prelude>/common/admin.jsp</include-prelude>
+      </jsp-property-group>
+   
+   <!-- 메인 페이지 전체 적용 -->   
+      <jsp-property-group>
+        <url-pattern>/view/*</url-pattern>
+        <include-prelude>/header/header.jsp</include-prelude>
       </jsp-property-group>
          
       <jsp-property-group>
@@ -73,7 +95,6 @@
    </servlet-mapping> -->
 
    <!-- 관리자 페이지 properties -->
-   
    <!-- 유저 -->
    <servlet>
       <servlet-name>AdminUserController</servlet-name>
@@ -176,62 +197,64 @@
       <url-pattern>/admin/ssd/*</url-pattern>
    </servlet-mapping>
 
+   <!-- 관리자 페이지 properties -->
+   <!-- Computer -->
+   <servlet>
+      <servlet-name>ComputerController</servlet-name>
+      <servlet-class>computer.controller.ComputerAction</servlet-class>
+      <load-on-startup>1</load-on-startup>
+   </servlet>
+
+   <servlet-mapping>
+      <servlet-name>ComputerController</servlet-name>
+      <url-pattern>/main/computer/*</url-pattern>
+   </servlet-mapping>
+   
    <!-- 게시판 -->
    <servlet>
-            <servlet-name>boardController</servlet-name>
-            <servlet-class>board_controller.Notice_action</servlet-class>
-            <load-on-startup>1</load-on-startup>
-         </servlet>
-         
-         <servlet-mapping>
-            <servlet-name>boardController</servlet-name>
-            <url-pattern>/board_notice/*</url-pattern>
-         </servlet-mapping> 
-         
-         
-         <servlet>
-            <servlet-name>boardController2</servlet-name>
-            <servlet-class>board_controller.Information_action</servlet-class>
-            <load-on-startup>1</load-on-startup>
-         </servlet>
-         
-         <servlet-mapping>
-            <servlet-name>boardController2</servlet-name>
-            <url-pattern>/board_information/*</url-pattern>
-         </servlet-mapping> 
-               
-               
-            <servlet>
-            <servlet-name>boardController3</servlet-name>
-            <servlet-class>board_controller.Opinion_action</servlet-class>
-            <load-on-startup>1</load-on-startup>
-         </servlet>
-         
-         <servlet-mapping>
-            <servlet-name>boardController3</servlet-name>
-            <url-pattern>/board_opinion/*</url-pattern>
-         </servlet-mapping> 
-         
-         <servlet>
-            <servlet-name>boardController4</servlet-name>
-            <servlet-class>board_controller.Qa_action</servlet-class>
-            <load-on-startup>1</load-on-startup>
-         </servlet>
-         
-         <servlet-mapping>
-            <servlet-name>boardController4</servlet-name>
-            <url-pattern>/board_qa/*</url-pattern>
-         </servlet-mapping>
-
-   <!-- 한글필터 -->
-   <filter>
-      <filter-name>encodingFilter</filter-name>
-      <filter-class>util.CharacterEncodingFilter</filter-class>
-
-      <init-param>
-         <param-name>encoding</param-name>
-         <param-value>UTF-8</param-value>
-      </init-param>
-   </filter>
+      <servlet-name>boardController</servlet-name>
+      <servlet-class>board_controller.Notice_action</servlet-class>
+      <load-on-startup>1</load-on-startup>
+   </servlet>
+    
+   <servlet-mapping>
+      <servlet-name>boardController</servlet-name>
+      <url-pattern>/board_notice/*</url-pattern>
+   </servlet-mapping> 
+    
+    
+   <servlet>
+      <servlet-name>boardController2</servlet-name>
+      <servlet-class>board_controller.Information_action</servlet-class>
+      <load-on-startup>1</load-on-startup>
+   </servlet>
+    
+   <servlet-mapping>
+      <servlet-name>boardController2</servlet-name>
+      <url-pattern>/board_information/*</url-pattern>
+   </servlet-mapping> 
+          
+          
+   <servlet>
+      <servlet-name>boardController3</servlet-name>
+      <servlet-class>board_controller.Opinion_action</servlet-class>
+      <load-on-startup>1</load-on-startup>
+   </servlet>
+    
+   <servlet-mapping>
+      <servlet-name>boardController3</servlet-name>
+      <url-pattern>/board_opinion/*</url-pattern>
+   </servlet-mapping> 
+    
+   <servlet>
+      <servlet-name>boardController4</servlet-name>
+      <servlet-class>board_controller.Qa_action</servlet-class>
+      <load-on-startup>1</load-on-startup>
+   </servlet>
+    
+   <servlet-mapping>
+      <servlet-name>boardController4</servlet-name>
+      <url-pattern>/board_qa/*</url-pattern>
+   </servlet-mapping>
    
 </web-app>

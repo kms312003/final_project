@@ -278,6 +278,7 @@ public class ComputerAction extends Action {
 			computer.setProductDate(transFormat.parse(multi.getParameter("productDate")));
 			computer.setPrice(Integer.parseInt(multi.getParameter("price")));
 
+			System.out.println("file: " + file);
 			if (file != null) {
 				computer.setFilename(filename);
 				filesize = (int) file.length();
