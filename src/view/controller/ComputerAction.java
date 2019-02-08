@@ -1,24 +1,16 @@
-package computer.controller;
+package view.controller;
 
-import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Enumeration;
 import java.util.List;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-
 import admin.controller.Action;
 import computer.Computer;
-import computer.Computer.Category;
 import computer.ComputerDBBean;
-import product.ProductCode;
 
 public class ComputerAction extends Action {
 
@@ -31,10 +23,10 @@ public class ComputerAction extends Action {
 		if (pageNum != null) {
 			session.setAttribute("pageNum", pageNum);
 		}
-		
+
 		int category = Integer.parseInt(request.getParameter("category"));
 		System.out.println("category: " + category);
-		
+
 		pageNum = (String) session.getAttribute("pageNum");
 		if (pageNum == null) {
 			pageNum = "1";

@@ -52,16 +52,6 @@
         <include-prelude>/header/header.jsp</include-prelude>
       </jsp-property-group>
    </jsp-config>
-   
-   
-   
-   <!-- 메인헤더 -->
-<!--     <jsp-config>
-      <jsp-property-group>
-         <url-pattern>/user/*</url-pattern>
-         <include-prelude>/header/header.jsp</include-prelude>
-      </jsp-property-group>
-   </jsp-config>  -->
 
    <!-- 모델 2 -->
    <!-- 메인 페이지 properties -->
@@ -88,11 +78,6 @@
       <servlet-name>paymentController</servlet-name>
       <url-pattern>/payment/*</url-pattern>
    </servlet-mapping>
-   
-   <!-- <servlet-mapping>
-      <servlet-name>MainController</servlet-name>
-      <url-pattern>/main/*</url-pattern>
-   </servlet-mapping> -->
 
    <!-- 관리자 페이지 properties -->
    <!-- 유저 -->
@@ -197,11 +182,11 @@
       <url-pattern>/admin/ssd/*</url-pattern>
    </servlet-mapping>
 
-   <!-- 관리자 페이지 properties -->
+   <!-- 메인 페이지 properties -->
    <!-- Computer -->
    <servlet>
       <servlet-name>ComputerController</servlet-name>
-      <servlet-class>computer.controller.ComputerAction</servlet-class>
+      <servlet-class>view.controller.ComputerAction</servlet-class>
       <load-on-startup>1</load-on-startup>
    </servlet>
 
