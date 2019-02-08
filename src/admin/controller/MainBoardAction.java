@@ -131,6 +131,7 @@ public class MainBoardAction extends Action {
 			String productNum = "02";
 			String productCode = productC.productCode(productDate, productNum);
 
+			mainboard.setCode(multi.getParameter("code"));
 			mainboard.setProductCode(productCode);
 			mainboard.setProductName(multi.getParameter("productName"));
 			mainboard.setProductCompany(ProductCompany.valueOf(multi.getParameter("productCompany")));
@@ -218,6 +219,7 @@ public class MainBoardAction extends Action {
 			String updateProductCode = productCode.replace(productCode.substring(0, 4), productDate);
 
 			mainboard.setId(Integer.parseInt(multi.getParameter("id")));
+			mainboard.setCode(multi.getParameter("code"));
 			mainboard.setProductCode(updateProductCode);
 			mainboard.setProductName(multi.getParameter("productName"));
 			mainboard.setProductCompany(ProductCompany.valueOf(multi.getParameter("productCompany")));
@@ -271,9 +273,8 @@ public class MainBoardAction extends Action {
 		Date productDate_date = mainboard.getProductDate();
 		String productDate = transFormat.format(productDate_date);
 
-		System.out.println("mainboard.getProductCode 확인");
-		System.out.println(mainboard.getProductCode());
 		request.setAttribute("no", no);
+		request.setAttribute("code", mainboard.getCode());
 		request.setAttribute("productCode", mainboard.getProductCode());
 		request.setAttribute("productName", mainboard.getProductName());
 		request.setAttribute("productCompany", mainboard.getProductCompany());

@@ -56,6 +56,10 @@
 					<td><input type="text" name="productName" size="50" maxlength="50" value="${ram.productName}"></td>
 				</tr>
 				<tr>
+					<td>코드</td>
+					<td><input type="text" name="code" size="50" maxlength="6" value="${ram.code}"></td>
+				</tr>
+				<tr>
 					<td>제조회사</td>
 					<td>
 						<input type=radio name="productCompany" value="SAMSUNG" <c:if test="${ram.productCompany == 'SAMSUNG'}">checked</c:if>>삼성

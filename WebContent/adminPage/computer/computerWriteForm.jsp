@@ -61,6 +61,10 @@
 					<td><input type="text" name="productName" size="50" maxlength="100"></td>
 				</tr>
 				<tr>
+					<td>코드</td>
+					<td><input type="text" name="code" size="50" maxlength="6"></td>
+				</tr>
+				<tr>
 					<td>CPU</td>
 					<td><input type="text" name="cpu" size="50" maxlength="100"></td>
 				</tr>

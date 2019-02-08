@@ -131,6 +131,7 @@ public class HDDAction extends Action {
 			String productNum = "05";
 			String productCode = productC.productCode(productDate, productNum);
 
+			hdd.setCode(multi.getParameter("code"));
 			hdd.setProductCode(productCode);
 			hdd.setProductName(multi.getParameter("productName"));
 			hdd.setProductCompany(ProductCompany.valueOf(multi.getParameter("productCompany")));
@@ -217,6 +218,7 @@ public class HDDAction extends Action {
 			String updateProductCode = productCode.replace(productCode.substring(0, 4), productDate);
 
 			hdd.setId(Integer.parseInt(multi.getParameter("id")));
+			hdd.setCode(multi.getParameter("code"));
 			hdd.setProductCode(updateProductCode);
 			hdd.setProductName(multi.getParameter("productName"));
 			hdd.setProductCompany(ProductCompany.valueOf(multi.getParameter("productCompany")));
@@ -269,9 +271,8 @@ public class HDDAction extends Action {
 		Date productDate_date = hdd.getProductDate();
 		String productDate = transFormat.format(productDate_date);
 
-		System.out.println("hdd.getProductCode 확인");
-		System.out.println(hdd.getProductCode());
 		request.setAttribute("no", no);
+		request.setAttribute("code", hdd.getCode());
 		request.setAttribute("productCode", hdd.getProductCode());
 		request.setAttribute("productName", hdd.getProductName());
 		request.setAttribute("productCompany", hdd.getProductCompany());

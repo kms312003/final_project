@@ -8,6 +8,7 @@ import cpu.Cpu.ProductCompany;
 public class Graphic {
 
 	private int id;					// PK
+	private String code;			// 준시스템 크롤링 코드
 	private String productCode;		// 제품코드
 	private String productName;     // 제품
 	private ProductCompany productCompany;  		// 제조회사
@@ -32,19 +33,24 @@ public class Graphic {
 	
 	@Override
 	public String toString() {
-		return "Graphic [id=" + id + ", productCode=" + productCode + ", productName=" + productName
+		return "Graphic [id=" + id + ", code=" + code + ", productCode=" + productCode + ", productName=" + productName
 				+ ", productCompany=" + productCompany + ", chipSetGroup=" + chipSetGroup + ", interFace=" + interFace
 				+ ", powerPort=" + powerPort + ", memoryCapacity=" + memoryCapacity + ", nvidiaChipSet=" + nvidiaChipSet
 				+ ", maxPower=" + maxPower + ", maxMonitor=" + maxMonitor + ", length=" + length + ", productDate="
 				+ productDate + ", regDate=" + regDate + ", price=" + price + ", count=" + count + ", filename="
 				+ filename + ", filesize=" + filesize + "]";
 	}
-	
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
 	}
 	public String getProductCode() {
 		return productCode;

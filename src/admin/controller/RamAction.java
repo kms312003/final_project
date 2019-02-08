@@ -131,6 +131,7 @@ public class RamAction extends Action {
 			String productNum = "03";
 			String productCode = productC.productCode(productDate, productNum);
 
+			ram.setCode(multi.getParameter("code"));
 			ram.setProductCode(productCode);
 			ram.setProductName(multi.getParameter("productName"));
 			ram.setProductCompany(ProductCompany.valueOf(multi.getParameter("productCompany")));
@@ -216,6 +217,7 @@ public class RamAction extends Action {
 			String updateProductCode = productCode.replace(productCode.substring(0, 4), productDate);
 
 			ram.setId(Integer.parseInt(multi.getParameter("id")));
+			ram.setCode(multi.getParameter("code"));
 			ram.setProductCode(updateProductCode);
 			ram.setProductName(multi.getParameter("productName"));
 			ram.setProductCompany(ProductCompany.valueOf(multi.getParameter("productCompany")));
@@ -267,9 +269,8 @@ public class RamAction extends Action {
 		Date productDate_date = ram.getProductDate();
 		String productDate = transFormat.format(productDate_date);
 
-		System.out.println("ram.getProductCode 확인");
-		System.out.println(ram.getProductCode());
 		request.setAttribute("no", no);
+		request.setAttribute("code", ram.getCode());
 		request.setAttribute("productCode", ram.getProductCode());
 		request.setAttribute("productName", ram.getProductName());
 		request.setAttribute("productCompany", ram.getProductCompany());

@@ -129,6 +129,7 @@ public class GraphicAction extends Action {
 			String productNum = "04";
 			String productCode = productC.productCode(productDate, productNum);
 
+			graphic.setCode(multi.getParameter("code"));
 			graphic.setProductCode(productCode);
 			graphic.setProductName(multi.getParameter("productName"));
 			graphic.setProductCompany(ProductCompany.valueOf(multi.getParameter("productCompany")));
@@ -217,6 +218,7 @@ public class GraphicAction extends Action {
 			String updateProductCode = productCode.replace(productCode.substring(0, 4), productDate);
 
 			graphic.setId(Integer.parseInt(multi.getParameter("id")));
+			graphic.setCode(multi.getParameter("code"));
 			graphic.setProductCode(updateProductCode);
 			graphic.setProductName(multi.getParameter("productName"));
 			graphic.setProductCompany(ProductCompany.valueOf(multi.getParameter("productCompany")));
@@ -230,7 +232,6 @@ public class GraphicAction extends Action {
 			graphic.setLength(Integer.parseInt(multi.getParameter("length")));
 			graphic.setProductDate(transFormat.parse(multi.getParameter("productDate")));
 			graphic.setPrice(Integer.parseInt(multi.getParameter("price")));
-			// graphic.setCount(Integer.parseInt(multi.getParameter("count")));
 
 			if (file != null) {
 				graphic.setFilename(filename);
@@ -273,9 +274,8 @@ public class GraphicAction extends Action {
 		Date productDate_date = graphic.getProductDate();
 		String productDate = transFormat.format(productDate_date);
 
-		System.out.println("graphic.getProductCode 확인");
-		System.out.println(graphic.getProductCode());
 		request.setAttribute("no", no);
+		request.setAttribute("code", graphic.getCode());
 		request.setAttribute("productCode", graphic.getProductCode());
 		request.setAttribute("productName", graphic.getProductName());
 		request.setAttribute("productCompany", graphic.getProductCompany());

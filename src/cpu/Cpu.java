@@ -5,6 +5,7 @@ import java.util.Date;
 public class Cpu {
 	
 	private int id;					// PK
+	private String code;			// 준시스템 크롤링 코드
 	private String productCode;		// 제품코드
 	private String productName;     // 제품명
 	private ProductCompany productCompany;  		// 제조회사
@@ -27,18 +28,23 @@ public class Cpu {
 	
 	@Override
 	public String toString() {
-		return "Cpu [id=" + id + ", productCode=" + productCode + ", productName=" + productName + ", productCompany="
-				+ productCompany + ", brand=" + brand + ", socket=" + socket + ", core=" + core + ", thread=" + thread
-				+ ", clockSpeed=" + clockSpeed + ", tdp=" + tdp + ", productDate=" + productDate + ", regDate="
-				+ regDate + ", price=" + price + ", count=" + count + ", filename=" + filename + ", filesize="
-				+ filesize + "]";
+		return "Cpu [id=" + id + ", code=" + code + ", productCode=" + productCode + ", productName=" + productName
+				+ ", productCompany=" + productCompany + ", brand=" + brand + ", socket=" + socket + ", core=" + core
+				+ ", thread=" + thread + ", clockSpeed=" + clockSpeed + ", tdp=" + tdp + ", productDate=" + productDate
+				+ ", regDate=" + regDate + ", price=" + price + ", count=" + count + ", filename=" + filename
+				+ ", filesize=" + filesize + "]";
 	}
-	
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
 	}
 	public String getProductCode() {
 		return productCode;

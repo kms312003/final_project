@@ -5,6 +5,7 @@ import java.util.Date;
 public class Power {
 
 	private int id;					// PK
+	private String code;			// 준시스템 크롤링 코드
 	private String productCode;		// 제품코드
 	private String productName;     // 제품
 	private ProductCompany productCompany;  // 제조회사
@@ -24,17 +25,23 @@ public class Power {
 	
 	@Override
 	public String toString() {
-		return "Power [id=" + id + ", productCode=" + productCode + ", productName=" + productName + ", productCompany="
-				+ productCompany + ", productSort=" + productSort + ", nominalOutput=" + nominalOutput
-				+ ", ratedOutput=" + ratedOutput + ", productDate=" + productDate + ", regDate=" + regDate + ", price="
-				+ price + ", count=" + count + ", filename=" + filename + ", filesize=" + filesize + "]";
+		return "Power [id=" + id + ", code=" + code + ", productCode=" + productCode + ", productName=" + productName
+				+ ", productCompany=" + productCompany + ", productSort=" + productSort + ", nominalOutput="
+				+ nominalOutput + ", ratedOutput=" + ratedOutput + ", productDate=" + productDate + ", regDate="
+				+ regDate + ", price=" + price + ", count=" + count + ", filename=" + filename + ", filesize="
+				+ filesize + "]";
 	}
-	
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
 	}
 	public String getProductCode() {
 		return productCode;

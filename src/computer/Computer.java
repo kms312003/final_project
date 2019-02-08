@@ -5,6 +5,7 @@ import java.util.Date;
 public class Computer {
 
 	private int id;					// PK
+	private String code;			// 준시스템 크롤링 코드
 	private String productCode;		// 제품코드
 	private Category category; // 컴퓨터 카테고리
 	private String productName;  	// 상품명
@@ -29,18 +30,23 @@ public class Computer {
 	
 	@Override
 	public String toString() {
-		return "Computer [id=" + id + ", productCode=" + productCode + ", category=" + category + ", productName="
-				+ productName + ", cpu=" + cpu + ", mainBoard=" + mainBoard + ", ram=" + ram + ", vga=" + vga
-				+ ", hdd=" + hdd + ", ssd=" + ssd + ", tower=" + tower + ", power=" + power + ", productDate="
-				+ productDate + ", regDate=" + regDate + ", price=" + price + ", count=" + count + ", filename="
-				+ filename + ", filesize=" + filesize + "]";
+		return "Computer [id=" + id + ", code=" + code + ", productCode=" + productCode + ", category=" + category
+				+ ", productName=" + productName + ", cpu=" + cpu + ", mainBoard=" + mainBoard + ", ram=" + ram
+				+ ", vga=" + vga + ", hdd=" + hdd + ", ssd=" + ssd + ", tower=" + tower + ", power=" + power
+				+ ", productDate=" + productDate + ", regDate=" + regDate + ", price=" + price + ", count=" + count
+				+ ", filename=" + filename + ", filesize=" + filesize + "]";
 	}
-	
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
 	}
 	public String getProductCode() {
 		return productCode;

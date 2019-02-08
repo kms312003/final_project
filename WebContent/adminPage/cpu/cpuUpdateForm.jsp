@@ -58,6 +58,10 @@
 					<td><input type="text" name="productName" size="50" maxlength="50" value="${cpu.productName}"></td>
 				</tr>
 				<tr>
+					<td>코드</td>
+					<td><input type="text" name="code" size="50" maxlength="6" value="${cpu.code}"></td>
+				</tr>
+				<tr>
 					<td>제조회사</td>
 					<td>
 						<input type=radio name="productCompany" value="INTEL_7" <c:if test="${cpu.productCompany == 'INTEL_7'}">checked</c:if>>인텔 7세대

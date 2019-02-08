@@ -131,6 +131,7 @@ public class PowerAction extends Action {
 			String productNum = "07";
 			String productCode = productC.productCode(productDate, productNum);
 
+			power.setCode(multi.getParameter("code"));
 			power.setProductCode(productCode);
 			power.setProductName(multi.getParameter("productName"));
 			power.setProductCompany(ProductCompany.valueOf(multi.getParameter("productCompany")));
@@ -215,6 +216,7 @@ public class PowerAction extends Action {
 			String updateProductCode = productCode.replace(productCode.substring(0, 4), productDate);
 
 			power.setId(Integer.parseInt(multi.getParameter("id")));
+			power.setCode(multi.getParameter("code"));
 			power.setProductCode(updateProductCode);
 			power.setProductName(multi.getParameter("productName"));
 			power.setProductCompany(ProductCompany.valueOf(multi.getParameter("productCompany")));
@@ -265,9 +267,8 @@ public class PowerAction extends Action {
 		Date productDate_date = power.getProductDate();
 		String productDate = transFormat.format(productDate_date);
 
-		System.out.println("power.getProductCode 확인");
-		System.out.println(power.getProductCode());
 		request.setAttribute("no", no);
+		request.setAttribute("code", power.getCode());
 		request.setAttribute("productCode", power.getProductCode());
 		request.setAttribute("productName", power.getProductName());
 		request.setAttribute("productCompany", power.getProductCompany());

@@ -65,6 +65,10 @@
 					<td><input type="text" name="productName" size="50" maxlength="100" value="${computer.productName}"></td>
 				</tr>
 				<tr>
+					<td>코드</td>
+					<td><input type="text" name="code" size="50" maxlength="6" value="${computer.code}"></td>
+				</tr>
+				<tr>
 					<td>CPU</td>
 					<td><input type="text" name="cpu" size="50" maxlength="100" value="${computer.cpu}"></td>
 				</tr>

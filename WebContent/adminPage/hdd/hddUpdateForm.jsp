@@ -56,6 +56,10 @@
 					<td><input type="text" name="productName" size="50" maxlength="50" value="${hdd.productName}"></td>
 				</tr>
 				<tr>
+					<td>코드</td>
+					<td><input type="text" name="code" size="50" maxlength="6" value="${hdd.code}"></td>
+				</tr>
+				<tr>
 					<td>제조회사</td>
 					<td>
 						<input type=radio name="productCompany" value="WD" <c:if test="${hdd.productCompany == 'WD'}">checked</c:if>>WD

@@ -132,6 +132,7 @@ public class ComputerAction extends Action {
 			System.out.println("productDate1: " + productDate);
 			System.out.println("productCode1: " + productCode);
 
+			computer.setCode(multi.getParameter("code"));
 			computer.setProductCode(productCode);
 			computer.setCategory(Category.valueOf(multi.getParameter("category")));
 			computer.setProductName(multi.getParameter("productName"));
@@ -181,6 +182,7 @@ public class ComputerAction extends Action {
 		String productDate = transFormat.format(productDate_date);
 
 		request.setAttribute("no", no);
+		request.setAttribute("code", computer.getCode());
 		request.setAttribute("productCode", computer.getProductCode());
 		request.setAttribute("category", computer.getCategory());
 		request.setAttribute("productName", computer.getProductName());
@@ -264,6 +266,7 @@ public class ComputerAction extends Action {
 			System.out.println("updateProductCode: " + updateProductCode);
 
 			computer.setId(Integer.parseInt(multi.getParameter("id")));
+			computer.setCode(multi.getParameter("code"));
 			computer.setProductCode(updateProductCode);
 			computer.setCategory(Category.valueOf(multi.getParameter("category")));
 			computer.setProductName(multi.getParameter("productName"));

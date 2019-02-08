@@ -129,6 +129,7 @@ public class CpuAction extends Action {
 			System.out.println("productDate1: " + productDate);
 			System.out.println("productCode1: " + productCode);
 			
+			cpu.setCode(multi.getParameter("code"));
 			cpu.setProductCode(productCode);
 			cpu.setProductName(multi.getParameter("productName"));
 			cpu.setProductCompany(ProductCompany.valueOf(multi.getParameter("productCompany")));
@@ -175,9 +176,8 @@ public class CpuAction extends Action {
 		Date productDate_date = cpu.getProductDate();
 		String productDate = transFormat.format(productDate_date);
 
-		System.out.println("cpu.getProductCode 확인");
-		System.out.println(cpu.getProductCode());
 		request.setAttribute("no", no);
+		request.setAttribute("code", cpu.getCode());
 		request.setAttribute("productCode", cpu.getProductCode());
 		request.setAttribute("productName", cpu.getProductName());
 		request.setAttribute("productCompany", cpu.getProductCompany());
@@ -261,6 +261,7 @@ public class CpuAction extends Action {
 			System.out.println("updateProductCode: " + updateProductCode);
 			
 			cpu.setId(Integer.parseInt(multi.getParameter("id")));
+			cpu.setCode(multi.getParameter("code"));
 			cpu.setProductCode(updateProductCode);
 			cpu.setProductName(multi.getParameter("productName"));
 			cpu.setProductCompany(ProductCompany.valueOf(multi.getParameter("productCompany")));

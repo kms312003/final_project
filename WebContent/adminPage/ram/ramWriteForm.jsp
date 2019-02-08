@@ -52,6 +52,10 @@
 					<td><input type="text" name="productName" size="50" maxlength="50"></td>
 				</tr>
 				<tr>
+					<td>코드</td>
+					<td><input type="text" name="code" size="50" maxlength="6"></td>
+				</tr>
+				<tr>
 					<td>제조회사</td>
 					<td>
 						<input type=radio name="productCompany" value="SAMSUNG" checked>삼성

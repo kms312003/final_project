@@ -128,6 +128,7 @@ public class SSDAction extends Action {
 			String productNum = "06";
 			String productCode = productC.productCode(productDate, productNum);
 
+			ssd.setCode(multi.getParameter("code"));
 			ssd.setProductCode(productCode);
 			ssd.setProductName(multi.getParameter("productName"));
 			ssd.setProductCompany(ProductCompany.valueOf(multi.getParameter("productCompany")));
@@ -215,6 +216,7 @@ public class SSDAction extends Action {
 			String updateProductCode = productCode.replace(productCode.substring(0, 4), productDate);
 
 			ssd.setId(Integer.parseInt(multi.getParameter("id")));
+			ssd.setCode(multi.getParameter("code"));
 			ssd.setProductCode(updateProductCode);
 			ssd.setProductName(multi.getParameter("productName"));
 			ssd.setProductCompany(ProductCompany.valueOf(multi.getParameter("productCompany")));
@@ -268,9 +270,8 @@ public class SSDAction extends Action {
 		Date productDate_date = ssd.getProductDate();
 		String productDate = transFormat.format(productDate_date);
 
-		System.out.println("ssd.getProductCode 확인");
-		System.out.println(ssd.getProductCode());
 		request.setAttribute("no", no);
+		request.setAttribute("code", ssd.getCode());
 		request.setAttribute("productCode", ssd.getProductCode());
 		request.setAttribute("productName", ssd.getProductName());
 		request.setAttribute("productCompany", ssd.getProductCompany());
