@@ -13,7 +13,7 @@ public class Cpu {
 	private String socket;          // 소켓 구분
 	private String core;            // 코어
 	private int thread;             // 쓰레드 형태
-	private int clockSpeed;         // 동작속도
+	private String clockSpeed;         // 동작속도
 	private int tdp;				// 설계전력
 	private Date productDate;  		// 제품 등록일
 	private Date regDate;			// 데이터 등록일
@@ -89,10 +89,10 @@ public class Cpu {
 	public void setThread(int thread) {
 		this.thread = thread;
 	}
-	public int getClockSpeed() {
+	public String getClockSpeed() {
 		return clockSpeed;
 	}
-	public void setClockSpeed(int clockSpeed) {
+	public void setClockSpeed(String clockSpeed) {
 		this.clockSpeed = clockSpeed;
 	}
 	public int getTdp() {

@@ -137,7 +137,7 @@ public class CpuAction extends Action {
 			cpu.setSocket(multi.getParameter("socket"));
 			cpu.setCore(multi.getParameter("core"));
 			cpu.setThread(Integer.parseInt(multi.getParameter("thread")));
-			cpu.setClockSpeed(Integer.parseInt(multi.getParameter("clockSpeed")));
+			cpu.setClockSpeed(multi.getParameter("clockSpeed"));
 			cpu.setTdp(Integer.parseInt(multi.getParameter("tdp")));
 			cpu.setProductDate(transFormat.parse(multi.getParameter("productDate")));
 			cpu.setPrice(Integer.parseInt(multi.getParameter("price")));
@@ -269,7 +269,7 @@ public class CpuAction extends Action {
 			cpu.setSocket(multi.getParameter("socket"));
 			cpu.setCore(multi.getParameter("core"));
 			cpu.setThread(Integer.parseInt(multi.getParameter("thread")));
-			cpu.setClockSpeed(Integer.parseInt(multi.getParameter("clockSpeed")));
+			cpu.setClockSpeed(multi.getParameter("clockSpeed"));
 			cpu.setTdp(Integer.parseInt(multi.getParameter("tdp")));
 			cpu.setProductDate(transFormat.parse(multi.getParameter("productDate")));
 			cpu.setPrice(Integer.parseInt(multi.getParameter("price")));
