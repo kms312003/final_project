@@ -1,7 +1,7 @@
 package cpu;
 
 import java.util.Date;
-
+ 
 public class Cpu {
 	
 	private int id;					// PK
