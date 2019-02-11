@@ -37,7 +37,7 @@
       </jsp-property-group>
    
    <!-- 메인 페이지 전체 적용 -->   
-      <jsp-property-group>
+         <jsp-property-group>
         <url-pattern>/view/*</url-pattern>
         <include-prelude>/header/header.jsp</include-prelude>
       </jsp-property-group>
@@ -46,12 +46,8 @@
         <url-pattern>/user/*</url-pattern>
         <include-prelude>/header/header.jsp</include-prelude>
       </jsp-property-group>
-      
-      <jsp-property-group>
-        <url-pattern>/view/board/*</url-pattern>
-        <include-prelude>/header/header.jsp</include-prelude>
-      </jsp-property-group>
-   </jsp-config>
+
+   </jsp-config> 
 
    <!-- 모델 2 -->
    <!-- 메인 페이지 properties -->

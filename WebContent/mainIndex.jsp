@@ -9,3 +9,5 @@
 <% response.sendRedirect(request.getContextPath()+"/main/computer/list?category=1"); %>
 </body>
 </html>
+
+
