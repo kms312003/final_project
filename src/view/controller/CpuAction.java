@@ -18,8 +18,8 @@ import cpu.CpuDBBean;
 
 public class CpuAction extends Action {
 
-	// 리스트
-	public String listGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+	// 제품 리스트(높은 가격순)
+	public String prolistGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		HttpSession session = request.getSession();
 
@@ -32,6 +32,31 @@ public class CpuAction extends Action {
 		if (pageNum == null) {
 			pageNum = "1";
 		}
+
+		String productCompany = request.getParameter("productCompany");
+		
+		
+		String brand = request.getParameter("brand");
+		String socket = request.getParameter("socket");
+		String core = request.getParameter("core");
+		String orderby = request.getParameter("orderby");
+		
+		if(orderby.equals("1")) {
+			orderby = "regDate desc";
+		} else if(orderby.equals("2")) {
+			orderby = "price";
+		} else if(orderby.equals("3")) {
+			orderby = "price desc";
+		} else if(orderby.equals("4")) {
+			orderby = "productName";
+		} else if(orderby.equals("5")) {
+			orderby = "productCompany asc";
+		} else {
+			orderby = "regDate desc";
+		}
+		
+		System.out.println("orderby: " + orderby);
+		
 		
 		List<ProductCompany> productCompanys = new ArrayList<ProductCompany>(Arrays.asList(ProductCompany.values()));
 		System.out.println("productCompanys " + productCompanys);
@@ -55,7 +80,7 @@ public class CpuAction extends Action {
 			number = count - ((currentPage - 1) * pageSize);
 
 			if (count > 0) {
-				cpuList = dbPro.getCpuList(start, end);
+				cpuList = dbPro.getProductList(start, end, orderby);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -68,10 +93,8 @@ public class CpuAction extends Action {
 		if (endPage > pageCount)
 			endPage = pageCount;
 
-		System.out.println("count: " + count);
-		System.out.println("number: " + number);
-		System.out.println("cpuList: " + cpuList);
-
+		System.out.println("cpuList"+ cpuList);
+		
 		request.setAttribute("count", count);
 		request.setAttribute("cpuList", cpuList);
 		request.setAttribute("productCompanys", ProductCompany.values());
@@ -81,6 +104,73 @@ public class CpuAction extends Action {
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("pageCount", pageCount);
 		request.setAttribute("currentPage", currentPage);
+
+		return "/product/productList.jsp";
+	}
+
+	// 리스트
+	public String listGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+
+//		HttpSession session = request.getSession();
+//
+//		String pageNum = request.getParameter("pageNum");
+//		if (pageNum != null) {
+//			session.setAttribute("pageNum", pageNum);
+//		}
+//
+//		pageNum = (String) session.getAttribute("pageNum");
+//		if (pageNum == null) {
+//			pageNum = "1";
+//		}
+//
+//		List<ProductCompany> productCompanys = new ArrayList<ProductCompany>(Arrays.asList(ProductCompany.values()));
+//		System.out.println("productCompanys " + productCompanys);
+//
+//		int currentPage = Integer.parseInt(pageNum);
+//		int pageSize = 5;
+//		int start = (currentPage - 1) * pageSize;
+//		int end = currentPage * pageSize;
+//
+//		System.out.println("start: " + start);
+//		System.out.println("end: " + end);
+//
+//		CpuDBBean dbPro = CpuDBBean.getInstance();
+//
+//		int count = 0;
+//		int number = 0;
+//
+//		List cpuList = null;
+//		try {
+//			count = dbPro.getCpuCount();
+//			number = count - ((currentPage - 1) * pageSize);
+//
+//			if (count > 0) {
+//				cpuList = dbPro.getCpuList(start, end);
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//
+//		int bottomLine = 5;
+//		int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
+//		int startPage = 1 + (currentPage - 1) / bottomLine * bottomLine;
+//		int endPage = startPage + bottomLine - 1;
+//		if (endPage > pageCount)
+//			endPage = pageCount;
+//
+//		System.out.println("count: " + count);
+//		System.out.println("number: " + number);
+//		System.out.println("cpuList: " + cpuList);
+//
+//		request.setAttribute("count", count);
+//		request.setAttribute("cpuList", cpuList);
+//		request.setAttribute("productCompanys", ProductCompany.values());
+//		request.setAttribute("number", number);
+//		request.setAttribute("startPage", startPage);
+//		request.setAttribute("bottomLine", bottomLine);
+//		request.setAttribute("endPage", endPage);
+//		request.setAttribute("pageCount", pageCount);
+//		request.setAttribute("currentPage", currentPage);
 
 		return "/view/cpu/list.jsp";
 	}

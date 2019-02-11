@@ -64,11 +64,28 @@ public class CpuDBBean {
 		}
 	}
 
+	// Cpu 제품리스트 가져오기
+	public List getProductList(int start, int end, String orderby) throws Exception {
+
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+
+		Map map = new HashMap();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("orderby", orderby);
+		System.out.println("map: " + map);
+		try {
+			return sqlSession.selectList(namespace + ".getProducts", map);
+		} finally {
+			sqlSession.close();
+		}
+	}
+
 	// Cpu 등록
 	public void insertCpu(Cpu cpu) throws Exception {
 
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		
+
 		Map map = new HashMap();
 
 		int result = sqlSession.insert(namespace + ".insert", cpu);
@@ -102,7 +119,7 @@ public class CpuDBBean {
 		sqlSession.close();
 		return cpu;
 	}
-	
+
 	// Cpu 디테일 Get
 	public Cpu getDetail(int id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();

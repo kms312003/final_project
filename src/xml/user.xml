@@ -14,10 +14,8 @@
 	</select>
 
 	<insert id="insert" parameterType="user">
-		insert into
-		user (id, email, name, password, gender, birth, job, reg_date)
-		values
-		(0, #{email}, #{name}, #{password}, #{gender}, #{birth},#{job},curdate())
+		insert into	user (id, email, name, password, gender, birth, job, reg_date)
+		values (0, #{email}, #{name}, #{password}, #{gender}, #{birth},#{job},curdate())
 	</insert>
 
 	<select id="getUser" resultType="user" parameterType="hashmap">
@@ -34,8 +32,7 @@
 
 	<update id="update" parameterType="user">
 		update user set email=#{email}, name=#{name}, password=#{password},
-		gender=#{gender},
-		birth= #{birth}, job=#{job}, reg_date=#{reg_date} where id=#{id}
+		gender=#{gender}, birth= #{birth}, job=#{job}, reg_date=#{reg_date} where id=#{id}
 	</update>
 
 	<delete id="deleteUser" parameterType="hashmap">
@@ -49,7 +46,6 @@
 	</select>
 
 	<select id="getEmail" parameterType="hashmap" resultType="String">
-		select
-		email from user where email = #{email}
+		select email from user where email = #{email}
 	</select>
 </mapper>
