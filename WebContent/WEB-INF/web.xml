@@ -191,6 +191,18 @@
       <url-pattern>/main/computer/*</url-pattern>
    </servlet-mapping>
    
+   <!-- Computer -->
+   <servlet>
+      <servlet-name>CpuController</servlet-name>
+      <servlet-class>view.controller.CpuAction</servlet-class>
+      <load-on-startup>1</load-on-startup>
+   </servlet>
+
+   <servlet-mapping>
+      <servlet-name>CpuController</servlet-name>
+      <url-pattern>/main/cpu/*</url-pattern>
+   </servlet-mapping>
+   
    <!-- 게시판 -->
    <servlet>
       <servlet-name>boardController</servlet-name>

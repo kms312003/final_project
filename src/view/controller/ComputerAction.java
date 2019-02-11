@@ -1,6 +1,7 @@
 package view.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import admin.controller.Action;
 import computer.Computer;
+import computer.Computer.Category;
 import computer.ComputerDBBean;
 
 public class ComputerAction extends Action {
@@ -25,8 +27,7 @@ public class ComputerAction extends Action {
 		}
 
 		int category = Integer.parseInt(request.getParameter("category"));
-		System.out.println("category: " + category);
-
+		
 		pageNum = (String) session.getAttribute("pageNum");
 		if (pageNum == null) {
 			pageNum = "1";

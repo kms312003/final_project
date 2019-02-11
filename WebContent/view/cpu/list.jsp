@@ -18,13 +18,24 @@
 				<tbody>
 					<tr>
 						<td width="20%">제조사</td>
-						
-							<td width="80%">
-								<c:forEach var="computer" items="${computerList}">
-									<label class="checkbox-inline"><input type="checkbox" value=""></label>
-								</c:forEach>
-							</td>
-						
+						<td width="80%">
+							<%-- <c:forEach var="productCompanys" items="${productCompanys}">
+								<label class="checkbox-inline"><input type="checkbox" value="${productCompanys}">${productCompanys}</label>
+							</c:forEach> --%>
+							<label class="checkbox-inline"><input type="checkbox" value="INTEL_7">인텔 7세대</label>
+							<label class="checkbox-inline"><input type="checkbox" value="INTEL_8">인텔 8세대</label>
+							<label class="checkbox-inline"><input type="checkbox" value="INTEL_9">인텔 9세대</label>
+							<label class="checkbox-inline"><input type="checkbox" value="RYZEN_5">인텔 5</label>
+							<label class="checkbox-inline"><input type="checkbox" value="RYZEN_7">인텔 7</label>
+						</td>
+					</tr>
+					<tr>
+						<td width="20%">소켓 검색</td>
+						<td width="80%"><input type="text" value="" size="100" maxlength="50"></td>
+					</tr>
+					<tr>
+						<td width="20%">코어 검색</td>
+						<td width="80%"><input type="text" value="" size="100" maxlength="50"></td>
 					</tr>
 					<tr>
 						<td width="20%">키워드 검색</td>
@@ -45,14 +56,14 @@
 	<div class="container">
 		<!-- 리스트 목록 sorting -->
 		<div class="row">
-			<table class="table table-bordered" style="cursor:pointer;" onclick="location.href=''">
+			<table id="sorting" class="table table-bordered" style="cursor:pointer;" onclick="location.href=''">
 				<tbody>
 					<tr>
-						<td class="active">신제품순</td>
-						<td>낮은가격순</td>
-						<td>높은가격순</td>
-						<td>상품명순</td>
-						<td>제조사순</td>
+						<td id="date" class="active">신제품순</td>
+						<td id="lowprice" class="active">낮은가격순</td>
+						<td id="highprice"class="active">높은가격순</td>
+						<td id="productName"class="active">상품명순</td>
+						<td id="productComany" class="active">제조사순</td>
 					</tr>
 				</tbody>
 			</table>
@@ -65,14 +76,16 @@
 			</c:if>
 
 			<c:if test="${count != 0}">
-				<c:forEach var="computer" items="${computerList}">
+				<c:forEach var="cpu" items="${cpuList}">
 					<div class="col-sm-3" style="padding:20px; border:solid 1px lightgray;">
 						<div class="advert_content">
 							<div class="panel-header">
 								<a href=""><img src="<%=request.getContextPath()%>/fileSave/AMD 라이젠 5 2600(피나클 릿지).jpg" class="img-responsive" style="width: 100%" alt="Image"></a>
 							</div>
-							<div class="" style="text-align: center;">${computer.productName}</div>
-							<div class="">${computer.price} 원</div>
+							<div class="" style="text-align: center;">${cpu.productName}</div>
+							<br/>
+							<div class="">${cpu.price} 원</div>
+							<br/>
 							<div class="center">
 								<button	type="button" class="btn btn-primary" onclick="location.href='<%=request.getContextPath()%>/'">
 									장바구니
