@@ -3,9 +3,9 @@ package user;
 import java.sql.Timestamp;
 
 public class User {
-	private int id; 	  	 // PK
-	private String email; 	 // email
-	private String name; 	 // 이름
+	private int id; // PK
+	private String email; // email(아이디로 사용)
+	private String name; // 이름
 	private String password; // 비밀번호
 
 	public enum Gender {
@@ -13,13 +13,13 @@ public class User {
 	};
 
 	private Gender gender; // 성별 (enum -'m','f')
-	private int birth;     // 생년월일(6자리)
+	private int birth; // 생년월일(6자리)
 
 	public enum Job {
 		STUDENT, EMPLOYED, UNEMPLOYED, ETC;
 	};
 
-	private Job job; 			// 직업(enum -'student' 'employed' 'unemployed', 'etc')
+	private Job job; // 직업(enum -'student' 'employed' 'unemployed', 'etc')
 	private Timestamp reg_date; // 등록일
 
 	@Override

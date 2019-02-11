@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
@@ -11,7 +11,7 @@
 	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<title>·Î±×ÀÎÆäÀÌÁö</title>
+<title>ë¡œê·¸ì¸í˜ì´ì§€</title>
 <style>
 button {
 	background-color: #4d90fe;
@@ -153,7 +153,7 @@ button:hover {
 					<h2>Login to Your Account</h2>
 					<p>Please enter your UserID and password</p>
 				</div>
-				<form id="Login" name="loginForm" action="<%=request.getContextPath()%>/user/login" method="post" onsubmit="return checkboard()">
+				<form id="Login" name="loginForm" action="<%=request.getContextPath()%>/main/user/login" method="post" onsubmit="return checkboard()">
 			
 					<div class="form-group">
 							<input type="email" class="form-control" id="inputemail" name="email" placeholder="User Email">
@@ -166,7 +166,7 @@ button:hover {
 					<button type="submit">Login</button>
 					<div>
 						<button type="button" class="registerbtn"
-							Onclick="window.location='<%=request.getContextPath()%>/user/register'">Register</button>
+							Onclick="window.location='<%=request.getContextPath()%>/main/user/register'">Register</button>
 					</div>
 				</form>
 			</div>

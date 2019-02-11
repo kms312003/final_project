@@ -1,9 +1,7 @@
 package user.controller;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
 import java.util.Enumeration;
-import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -29,7 +27,6 @@ public class UserAction extends Action {
 		User user = new User();
 		user.setEmail(request.getParameter("email"));
 		user.setPassword(request.getParameter("password"));
-
 		UserDBBean dbPro = UserDBBean.getInstance();
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
@@ -46,7 +43,7 @@ public class UserAction extends Action {
 		}
 		request.setAttribute("check", check);
 		System.out.println("check:" + check);
-		return "/user/loginPro.jsp";
+		return "/user/login.jsp";
 	}
 
 	public String registerGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -80,228 +77,68 @@ public class UserAction extends Action {
 		}
 		request.setAttribute("check", check);
 		System.out.println("email check:" + check);
-		return "/user/registerPro.jsp";
+		return "/user/register.jsp";
 	}
 
-	// 관리자 페이지
-	// 리스트
-	public String listGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-
+	public String userInfoGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+		UserDBBean dbPro = UserDBBean.getInstance();
 		HttpSession session = request.getSession();
-
-		String pageNum = request.getParameter("pageNum");
-		if (pageNum != null) {
-			session.setAttribute("pageNum", pageNum);
-		}
-
-		pageNum = (String) session.getAttribute("pageNum");
-		if (pageNum == null) {
-			pageNum = "1";
-		}
-
-		int currentPage = Integer.parseInt(pageNum);
-		int pageSize = 5;
-		int start = (currentPage - 1) * pageSize;
-		int end = currentPage * pageSize - 1;
-
-		System.out.println("start: " + start);
-		System.out.println("end: " + end);
-
-		UserDBBean dbPro = UserDBBean.getInstance();
-
-		int count = 0;
-
-		int number = 0;
-
-		List userList = null;
-		try {
-			count = dbPro.getUserCount();
-			number = count - ((currentPage - 1) * pageSize);
-
-			if (count > 0) {
-				userList = dbPro.getUserList(start, end);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		int bottomLine = 5;
-		int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
-		int startPage = 1 + (currentPage - 1) / bottomLine * bottomLine;
-		int endPage = startPage + bottomLine - 1;
-		if (endPage > pageCount)
-			endPage = pageCount;
-
-		System.out.println("count: " + count);
-		System.out.println("number: " + number);
-		System.out.println("userList: " + userList);
-
-		request.setAttribute("count", count);
-		request.setAttribute("userList", userList);
-		request.setAttribute("number", number);
-		request.setAttribute("startPage", startPage);
-		request.setAttribute("bottomLine", bottomLine);
-		request.setAttribute("endPage", endPage);
-		request.setAttribute("pageCount", pageCount);
-		request.setAttribute("currentPage", currentPage);
-
-		return "/user/userList.jsp";
-	}
-
-	// 입력
-	public String writeGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-
-		String pageNum = "";
-
-		pageNum = request.getParameter("pageNum");
-
-		return "/user/userWriteForm.jsp";
-	}
-
-	public String writePOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-
-		String realFolder = "";
-		String encType = "utf-8";
-		int maxSize = 5 * 1024 * 1024;
-		ServletContext context = request.getServletContext();
-		realFolder = context.getRealPath("fileSave");
-
-		MultipartRequest multi = null;
-
-		try {
-			multi = new MultipartRequest(request, realFolder, maxSize, encType, new DefaultFileRenamePolicy());
-
-			Enumeration files = multi.getFileNames();
-			String filename = "";
-			int filesize = 0;
-			File file = null;
-
-			if (files.hasMoreElements()) {
-				String name = (String) files.nextElement();
-				filename = multi.getFilesystemName(name);
-				file = multi.getFile(name);
-			}
-
-			User user = new User();
-			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
-
-			user.setEmail(multi.getParameter("email"));
-			user.setName(multi.getParameter("name"));
-			user.setPassword(multi.getParameter("password"));
-			user.setGender(Gender.valueOf(multi.getParameter("gender")));
-			user.setBirth(Integer.parseInt(multi.getParameter("birth")));
-			user.setJob(Job.valueOf(multi.getParameter("job")));
-
-			UserDBBean dbPro = UserDBBean.getInstance();
-			dbPro.insertUser(user);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return "/user/userWrite.jsp";
-	}
-
-	public String detailGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-
-		String no = request.getParameter("id");
-		int id = Integer.parseInt(no);
-
-		UserDBBean dbPro = UserDBBean.getInstance();
-		User user = new User();
-
-		try {
-			user = dbPro.getUser(id);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		request.setAttribute("no", no);
+		User user = dbPro.getUserE((String) session.getAttribute("email"));
 		request.setAttribute("user", user);
-
-		return "/user/userDetail.jsp";
+		System.out.println("user:" + user);
+		return "/user/userInfoForm.jsp";
 	}
 
-	// 수정
 	public String updateGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-
-		int id = Integer.parseInt(request.getParameter("id"));
-		String no = String.valueOf(id);
-
 		UserDBBean dbPro = UserDBBean.getInstance();
-		User user = new User();
-		try {
-			user = dbPro.getUpdate(id);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		request.setAttribute("no", no);
+		HttpSession session = request.getSession();
+		User user = dbPro.getUserE((String) session.getAttribute("email"));
 		request.setAttribute("user", user);
-
-		return "/user/userUpdateForm.jsp";
+		System.out.println("user:" + user);
+		return "/user/updateForm.jsp";
 	}
 
 	public String updatePOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-
-		String realFolder = "";
-		String encType = "utf-8";
-		int maxSize = 5 * 1024 * 1024;
-		ServletContext context = request.getServletContext();
-		realFolder = context.getRealPath("fileSave");
-
-		MultipartRequest multi = null;
-
-		try {
-			multi = new MultipartRequest(request, realFolder, maxSize, encType, new DefaultFileRenamePolicy());
-			String oldfilename = multi.getParameter("oldfilename");
-			int oldfilesize = Integer.parseInt(multi.getParameter("oldfilesize"));
-
-			Enumeration files = multi.getFileNames();
-			String filename = "";
-			int filesize = 0;
-			File file = null;
-
-			if (files.hasMoreElements()) {
-				String name = (String) files.nextElement();
-				filename = multi.getFilesystemName(name);
-				file = multi.getFile(name);
-			}
-
-			User user = new User();
-
-			user.setId(Integer.parseInt(multi.getParameter("id")));
-			user.setEmail(request.getParameter("email"));
-			user.setName(request.getParameter("name"));
-			user.setPassword(request.getParameter("password"));
-			user.setGender(Gender.valueOf(request.getParameter("gender")));
-			user.setBirth(Integer.parseInt(request.getParameter("birth")));
-			user.setJob(Job.valueOf(request.getParameter("job")));
-
-			UserDBBean dbPro = UserDBBean.getInstance();
-
-			dbPro.updateUser(user);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return "/user/userUpdate.jsp";
+		UserDBBean dbPro = UserDBBean.getInstance();
+		HttpSession session = request.getSession();
+		User user = dbPro.getUserE((String) session.getAttribute("email"));
+		System.out.println("update user:"+user);
+		
+		/*user.setEmail(request.getParameter("email"));*/
+		user.setName(request.getParameter("name"));
+		user.setPassword(request.getParameter("password"));
+		user.setGender(Gender.valueOf(request.getParameter("gender")));
+		user.setBirth(Integer.parseInt(request.getParameter("birth")));
+		user.setJob(Job.valueOf(request.getParameter("job")));	
+		dbPro.updateUser(user);
+		return "/user/update.jsp";
 	}
 
-	// 삭제
 	public String deleteGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-
-		int id = Integer.parseInt(request.getParameter("id"));
-
 		UserDBBean dbPro = UserDBBean.getInstance();
+		HttpSession session = request.getSession();
+		User user = dbPro.getUserE((String) session.getAttribute("email"));
+		int id = user.getId();
+		String dbPassword = user.getPassword();
+		System.out.println("deleteUser:" + user);
+		System.out.println("deleteId:" + id);
+		System.out.println("deletePw:" + dbPassword);
+		return "/user/deleteForm.jsp";
+	}
 
+	public String deletePOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+		UserDBBean dbPro = UserDBBean.getInstance();
+		HttpSession session = request.getSession();
+		User user = dbPro.getUserE((String) session.getAttribute("email"));
+		int id = user.getId();
+		String dbpassword = user.getPassword();
+		String password = request.getParameter("password");
 		try {
-			dbPro.deleteUser(id);
+			if (dbpassword.equals(password))
+				dbPro.deleteUser(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		return "/user/userDelete.jsp";
+		return "/user/delete.jsp";
 	}
 }

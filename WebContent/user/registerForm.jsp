@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
@@ -12,7 +12,7 @@
 	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<title>È¸¿ø°¡ÀÔ ÆäÀÌÁö</title>
+<title>íšŒì›ê°€ì… í˜ì´ì§€</title>
 <style>
 button {
 	background-color: #4d90fe;
@@ -135,7 +135,7 @@ button:hover {
 	function checkboard() {
 		var form = document.registerForm;
 		if (!form.email.value) {
-			alert("ÀÌ¸ŞÀÏÀ» Àû¾îÁÖ¼¼¿ä.");
+			alert("ì´ë©”ì¼ì„ ì ì–´ì£¼ì„¸ìš”.");
 			return false;
 		}
 		if (!form.name.value) {
@@ -143,12 +143,12 @@ button:hover {
 			return false;
 		}
 		if (!form.password.value) {
-			alert("ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+			alert("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.");
 			return false;
 		}
 		
 		if (!form.birth.value){
-			alert("»ı³â¿ùÀÏÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+			alert("ìƒë…„ì›”ì¼ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.");
 			return false;
 		}
 		return true;
@@ -173,49 +173,65 @@ button:hover {
 					<h2>Register</h2>
 					
 				</div>
-				<form id="Register" name="registerForm" method="post" action="<%=request.getContextPath()%>/user/register" onsubmit="return checkboard()">
+				<form id="Register" name="registerForm" method="post" action="<%=request.getContextPath()%>/main/user/register" onsubmit="return checkboard()">
+		
+					<div class="form-group">
+
 
 					<div class="form-group">
-						<input type="email" class="form-control" id="inputEmail" name="email" placeholder="ÀÌ¸ŞÀÏ">
+
+
+						<input type="email" class="form-control" id="inputEmail" name="email" placeholder="ì´ë©”ì¼">
+
 					</div>
 					
 					<div class="form-group">
-						<input type="name" class="form-control" id="inputname" name="name" placeholder="ÀÌ¸§">
+
+						<input type="name" class="form-control" id="inputname" name="name" placeholder="ì´ë¦„">
+
 					</div>
 					
 					<div class="form-group">
-						<input type="password" class="form-control" id="inputPassword" name="password" placeholder="ºñ¹Ğ¹øÈ£" onkeyup='check();'>
+
+						<input type="password" class="form-control" id="inputPassword" name="password" placeholder="ë¹„ë°€ë²ˆí˜¸" onkeyup='check();'>
+	
 					</div>
 					
 					<!-- confirm password -->
 					<div class="form-group">
-						<input type="password" class="form-control" id="confirmPassword" name="confirm_password" placeholder="ºñ¹Ğ¹øÈ£ È®ÀÎ" onkeyup='check();'>
+
+						<input type="password" class="form-control" id="confirmPassword" name="confirm_password" placeholder="ë¹„ë°€ë²ˆí˜¸ í™•ì¸" onkeyup='check();'>
 						<span id='message'></span>
 					</div>
 					
 					<div class="form-group">
-						<input type=radio id="inputGender" name="gender" value="MALE">³²ÀÚ
-						<input type=radio id="inputGender" name="gender" value="FEMALE">¿©ÀÚ
+
+						<input type=radio id="inputGender" name="gender" value="MALE">ë‚¨ì
+						<input type=radio id="inputGender" name="gender" value="FEMALE">ì—¬ì
+
 					</div>
 					
 					<div class="form-group">
-						<input type="text" class="form-control" id="inputBirth" name="birth" placeholder="»ı³â¿ùÀÏ">
+
+						<input type="text" class="form-control" id="inputBirth" name="birth" placeholder="ìƒë…„ì›”ì¼">
+
 					</div>
-					
 					<div class="form-group">
-						<input type=radio id="inputJob" name="job" value="STUDENT">ÇĞ»ı
-						<input type=radio id="inputJob" name="job" value="EMPLOYED">Á÷ÀåÀÎ
-						<input type=radio id="inputJob" name="job" value="UNEMPLOYED">¹«Á÷
-						<input type=radio id="inputJob" name="job" value="ETC">±âÅ¸
+
+						<input type=radio id="inputJob" name="job" value="STUDENT">í•™ìƒ
+						<input type=radio id="inputJob" name="job" value="EMPLOYED">ì§ì¥ì¸
+						<input type=radio id="inputJob" name="job" value="UNEMPLOYED">ë¬´ì§
+						<input type=radio id="inputJob" name="job" value="ETC">ê¸°íƒ€
+
 					</div>
 					
 					<div>
 						<button type="submit" class="registerbtn">Register</button>
-						<c:if test=""></c:if>
 					</div>
 				</form>
 			</div>
 		</div>
+	</div>
 	</div>
 </body>
 </html>
