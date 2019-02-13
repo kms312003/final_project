@@ -128,7 +128,15 @@ public class AdminUserAction extends Action {
 			user.setGender(Gender.valueOf(multi.getParameter("gender")));
 			user.setBirth(Integer.parseInt(multi.getParameter("birth")));
 			user.setJob(Job.valueOf(multi.getParameter("job")));
-
+			
+			//주소입력 추가분 시작
+			user.setPostcode(request.getParameter("postcode"));
+			user.setRoadAddress(request.getParameter("roadAddress"));
+			user.setJibunAddress(request.getParameter("jibunAddress"));
+			user.setDetailAddress(request.getParameter("detailAddress"));
+			user.setExtraAddress(request.getParameter("extraAddress"));
+			//주소입력 추가분 끝
+			
 			UserDBBean dbPro = UserDBBean.getInstance();
 			dbPro.insertUser(user);
 
@@ -214,7 +222,15 @@ public class AdminUserAction extends Action {
 			user.setGender(Gender.valueOf(request.getParameter("gender")));
 			user.setBirth(Integer.parseInt(request.getParameter("birth")));
 			user.setJob(Job.valueOf(request.getParameter("job")));	
-
+			
+			//주소입력 추가분 시작
+			user.setPostcode(request.getParameter("postcode"));
+			user.setRoadAddress(request.getParameter("roadAddress"));
+			user.setJibunAddress(request.getParameter("jibunAddress"));
+			user.setDetailAddress(request.getParameter("detailAddress"));
+			user.setExtraAddress(request.getParameter("extraAddress"));
+			//주소입력 추가분 끝
+			
 			UserDBBean dbPro = UserDBBean.getInstance();
 			
 			dbPro.updateUser(user);

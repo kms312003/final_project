@@ -5,129 +5,56 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 <title>회원가입 페이지</title>
+
 <style>
-button {
-	background-color: #4d90fe;
-	color: white;
-	padding: 14px 20px;
-	margin: 8px 0;
-	border: none;
-	cursor: pointer;
-	width: 100%;
-}
-
-button:hover {
-	opacity: 0.8;
-	color: white;
-}
-
-.registerbtn {
-	background-color: #4CAF50;
-	color: white;
-	padding: 14px 20px;
-	margin: 8px 0;
-	border: none;
-	cursor: pointer;
-	width: 100%;
-	opacity: 0.9;
-}
-
-.registerbtn:hover {
-	opacity: 1;
-}
-
-.form-heading {
-	color: #fff;
-	font-size: 23px;
-}
-
-.panel h2 {
-	color: #444444;
-	font-size: 18px;
-	margin: 0 0 8px 0;
-}
-
-.panel p {
-	color: #777777;
-	font-size: 14px;
-	margin-bottom: 30px;
-	line-height: 24px;
-}
-
-.register-form .form-control {
-	background: #f7f7f7 none repeat scroll 0 0;
-	border: 1px solid #d4d4d4;
+input[type=email] {
+	width: 250px;
+	box-sizing: border-box;
+	border: 2px solid #ccc;
 	border-radius: 4px;
-	font-size: 14px;
-	height: 50px;
-	line-height: 50px;
+	font-size: 16px;
+	background-color: white;
+	background-position: 10px 10px;
+	background-repeat: no-repeat;
+	padding: 4px 4px 4px 4px;
 }
 
-.main-div {
-	background: #ffffff none repeat scroll 0 0;
-	border-radius: 2px;
-	margin: 10px auto 30px;
-	max-width: 38%;
-	padding: 50px 70px 70px 71px;
+input[type=name] {
+	width: 250px;
+	box-sizing: border-box;
+	border: 2px solid #ccc;
+	border-radius: 4px;
+	font-size: 16px;
+	background-color: white;
+	background-position: 10px 10px;
+	background-repeat: no-repeat;
+	padding: 4px 4px 4px 4px;
 }
 
-.register-form .form-group {
-	margin-bottom: 10px;
+input[type=password] {
+	width: 250px;
+	box-sizing: border-box;
+	border: 2px solid #ccc;
+	border-radius: 4px;
+	font-size: 16px;
+	background-color: white;
+	background-position: 10px 10px;
+	background-repeat: no-repeat;
+	padding: 4px 4px 4px 4px;
 }
 
-.register-form {
-	text-align: center;
-}
-
-.forgot a {
-	color: #777777;
-	font-size: 14px;
-	text-decoration: underline;
-}
-
-.register-form  .btn.btn-primary {
-	background: #f0ad4e none repeat scroll 0 0;
-	border-color: #f0ad4e;
-	color: #ffffff;
-	font-size: 14px;
-	width: 100%;
-	height: 50px;
-	line-height: 50px;
-	padding: 0;
-}
-
-.forgot {
-	text-align: left;
-	margin-bottom: 30px;
-}
-
-.botto-text {
-	color: #ffffff;
-	font-size: 14px;
-	margin: auto;
-}
-
-.register-form .btn.btn-primary.reset {
-	background: #ff9900 none repeat scroll 0 0;
-}
-
-.back {
-	text-align: left;
-	margin-top: 10px;
-}
-
-.back a {
-	color: #444444;
-	font-size: 13px;
-	text-decoration: none;
+input[type=text] {
+	width: 250px;
+	box-sizing: border-box;
+	border: 2px solid #ccc;
+	border-radius: 4px;
+	font-size: 16px;
+	background-color: white;
+	background-position: 10px 10px;
+	background-repeat: no-repeat;
+	padding: 4px 4px 4px 4px;
 }
 </style>
 </head>
@@ -135,103 +62,109 @@ button:hover {
 	function checkboard() {
 		var form = document.registerForm;
 		if (!form.email.value) {
-			alert("이메일을 적어주세요.");
+			alert("이메일을 입력해주세요.");
 			return false;
 		}
 		if (!form.name.value) {
-			alert("name error");
+			alert("이름을 입력해주세요.");
 			return false;
 		}
 		if (!form.password.value) {
 			alert("비밀번호를 입력해주세요.");
 			return false;
 		}
-		
-		if (!form.birth.value){
+
+		if (!form.birth.value) {
 			alert("생년월일을 입력해주세요.");
 			return false;
 		}
 		return true;
 	}
-	
-	var check = function(){
-		if(document.getElementById('inputPassword').value==document.getElementById('confirmPassword').value){
+
+	var check = function() {
+		if (document.getElementById('inputPassword').value == document
+				.getElementById('confirmPassword').value) {
 			document.getElementById('message').style.color = 'green';
-			document.getElementById('message').innerHTML ='matching';
-		}else{
+			document.getElementById('message').innerHTML = 'matching';
+		} else {
 			document.getElementById('message').style.color = 'red';
-			document.getElementById('message').innerHTML ='not matching';
+			document.getElementById('message').innerHTML = 'not matching';
 		}
 	}
 </script>
 <body>
-	<div class="container">
-		<h1 class="form-heading">register Form</h1>
-		<div class="register-form">
-			<div class="main-div">
-				<div class="panel">
-					<h2>Register</h2>
-					
-				</div>
-				<form id="Register" name="registerForm" method="post" action="<%=request.getContextPath()%>/main/user/register" onsubmit="return checkboard()">
-		
-					<div class="form-group">
+
+	<div class="container" style="margin-top: 10px; margin-bottom: 10px;">
+		<center>
+			<br> <br>
+			<h1>회원 가입</h1>
+		</center>
+		<form id="Register" name="registerForm" method="post"
+			action="<%=request.getContextPath()%>/main/user/register"
+			onsubmit="return checkboard()">
+			<table class="table table-bordered">
+
+				<center>
+					<p>
+						<input type="email" id="inputEmail" name="email" placeholder="이메일">
+					</p>
+				</center>
+
+				<center>
+					<p>
+						<input type="name" id="inputname" name="name" placeholder="이름">
+					</p>
+				</center>
+
+				<center>
+					<p>
+						<input type="password" id="inputPassword" name="password"
+							placeholder="비밀번호" onkeyup='check();'>
+					</p>
+				</center>
 
 
-					<div class="form-group">
+				<center>
+					<p>
+						<input type="password" id="confirmPassword"
+							name="confirm_password" placeholder="비밀번호 확인 " onkeyup='check();'>
+					<p id='message'></p>
+					</p>
+				</center>
 
-
-						<input type="email" class="form-control" id="inputEmail" name="email" placeholder="이메일">
-
-					</div>
-					
-					<div class="form-group">
-
-						<input type="name" class="form-control" id="inputname" name="name" placeholder="이름">
-
-					</div>
-					
-					<div class="form-group">
-
-						<input type="password" class="form-control" id="inputPassword" name="password" placeholder="비밀번호" onkeyup='check();'>
-	
-					</div>
-					
-					<!-- confirm password -->
-					<div class="form-group">
-
-						<input type="password" class="form-control" id="confirmPassword" name="confirm_password" placeholder="비밀번호 확인" onkeyup='check();'>
-						<span id='message'></span>
-					</div>
-					
-					<div class="form-group">
-
+				<center>
+					<p>
 						<input type=radio id="inputGender" name="gender" value="MALE">남자
 						<input type=radio id="inputGender" name="gender" value="FEMALE">여자
+					</p>
+				</center>
 
-					</div>
-					
-					<div class="form-group">
+				<center>
+					<p>
+						<input type="text" id="inputBirth" name="birth"
+							placeholder="생년월일(ex:YYMMDD)">
+					</p>
+				</center>
 
-						<input type="text" class="form-control" id="inputBirth" name="birth" placeholder="생년월일">
-
-					</div>
-					<div class="form-group">
-
+				<center>
+					<p>
 						<input type=radio id="inputJob" name="job" value="STUDENT">학생
 						<input type=radio id="inputJob" name="job" value="EMPLOYED">직장인
 						<input type=radio id="inputJob" name="job" value="UNEMPLOYED">무직
 						<input type=radio id="inputJob" name="job" value="ETC">기타
+					</p>
+				</center>
 
-					</div>
-					
-					<div>
-						<button type="submit" class="registerbtn">Register</button>
-					</div>
-				</form>
-			</div>
-		</div>
+				<center>
+					<p>
+						<button style="margin: 20px; width: 200px;"
+							class="btn btn-primary" type="submit">회원 가입</button>
+					</p>
+				</center>
+			</table>
+		</form>
 	</div>
-	</div>
+
+
 </body>
 </html>

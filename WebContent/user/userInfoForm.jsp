@@ -5,118 +5,112 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <title>회원정보</title>
 <style>
-/* Remove the navbar's default margin-bottom and rounded borders */
-.navbar {
-	margin-bottom: 0;
-	border-radius: 0;
+body{
+	margin: 0;
+	padding: 0;
 }
-
-table {
-	margin-left: auto;
-	margin-right: auto;
+.box{
+	width:450px;
+	background:rgba(33,150,243,100);
+	padding:40px;
+	text-align:center;
+	margin:auto;
+	margin-top: 5%;
+	color:white;
+	font-family: 'Century Gothic', sans-serif;
 }
-
-/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-.row.content {
-	height: 700px
+.box-img{
+	border-radius:50%;
+	width:200px;
+	height: 200px;
 }
-
-/* Set gray background color and 100% height */
-.sidenav {
-	padding-top: 20px;
-	background-color: #f1f1f1;
-	height: 100%;
+.box h1{
+	font-size:40px;
+	letter-spacing: 4px;
+	font-weight: 250;
 }
-
-/* Set black background color, white text and some padding */
-footer {
-	background-color: #555;
-	color: white;
-	padding: 15px;
+.box h5{
+	font-size: 20px;
+	letter-spacing: 3px;
+	font-weight: 100;
+	text-align: justify;
 }
-
-/* On small screens, set height to 'auto' for sidenav and grid */
-@media screen and (max-width: 767px) {
-	.sidenav {
-		height: auto;
-		padding: 15px;
-	}
-	.row.content {
-		height: auto;
-	}
+.box h6{
+	font-size: 15px;
+	letter-spacing: 1px;
+	font-weight: 100;
+	text-align: justify;
+}
+ul{
+margin:0;
+padding:0;
+}
+.box li{
+	display:inline-block;
+	margin:6px;
+	list-style:none;
+}
+.box li a{
+	color:white;
+	text-decoration:none;
+	font-size:60px;
+	transition: all ease-in-out 250ms;
+}
+.box li a:hover{
+	color:#b9b9b9;
 }
 </style>
 </head>
 <body>
-	<div class="col-sm-9 text-left">
-		<center>
-			<div class="w3-container">
-				<h2>User 정보</h2>
-				<table class="table table-bordered" style="width: 80%;">
-					<tr>
-						<td>이메일</td>
-						<td>${user.email }</td>
-					</tr>
 
-					<tr>
-						<td>이름</td>
-						<td>${user.name }</td>
-					</tr>
+<!-- Sidebar -->
+<div class="w3-sidebar w3-light-grey w3-bar-block" style="width:15%">
+  <h3 class="w3-bar-item">My page Menu</h3>
+  <a href="<%=request.getContextPath()%>/main/user/update" class="w3-bar-item w3-button">회원정보 수정</a>
+  <a href="<%=request.getContextPath()%>/main/user/delete" class="w3-bar-item w3-button">회원 탈퇴</a>
+</div>
 
-					<tr>
-						<td>성별</td>
-						<c:if test="${user.gender=='MALE' }">
-							<td>남자</td>
-						</c:if>
-
-						<c:if test="${user.gender=='FEMALE' }">
-							<td>여자</td>
-						</c:if>
-
-					</tr>
-
-					<tr>
-						<td>생년월일</td>
-						<td>${user.birth }</td>
-					</tr>
-
-					<tr>
-						<td>직업</td>
-						<c:if test="${user.job=='STUDENT' }">
-							<td>학생</td>
-						</c:if>
-
-						<c:if test="${user.job=='EMPLOYED' }">
-							<td>직장인</td>
-						</c:if>
-
-						<c:if test="${user.job=='UNEMPLOYED' }">
-							<td>무직</td>
-						</c:if>
-
-						<c:if test="${user.job=='ETC' }">
-							<td>기타</td>
-						</c:if>
-					</tr>
-						<tr>
-							<td colspan="2"><input type="button" value="회원정보 변경" class="btn btn-default"
-								Onclick="window.location='<%=request.getContextPath()%>/main/user/update'">
-								<input type="button" value="회원탈퇴" class="btn btn-default"
-								Onclick="window.location='<%=request.getContextPath()%>/main/user/delete'">
-							</td>
-						</tr>
-				</table>
-			</div>
-		</center>
+<div class="box">
+		<img src="" alt="" class="box-img">
+	
+		<h1>My Page</h1>
+		<h5>Email</h5>
+		<h6>${user.email }</h6>
+		<h5>Name</h5>
+		<h6>${user.name }</h6>
+		<h5>Gender</h5>
+		<c:if test="${user.gender=='MALE' }">
+		<h6>Male</h6>
+		</c:if>
+		<c:if test="${user.gender=='FEMALE' }">
+		<h6>Female</h6>
+		</c:if>
+		
+		<h5>Birth</h5>
+		<h6>${user.birth}</h6>
+		
+		<h5>Job</h5>
+		<c:if test="${user.job=='STUDENT' }">
+		<h6>학생</h6>
+		</c:if>
+		<c:if test="${user.job=='EMPLOYED' }">
+		<h6>직장인</h6>
+		</c:if>
+		<c:if test="${user.job=='UNEMPLOYED' }">
+		<h6>무직</h6>
+		</c:if>
+		<c:if test="${user.job=='ETC' }">
+		<h6>기타</h6>
+		</c:if>
+		<h5>Address</h5>
+		<h6>${user.roadAddress } ${user.detailAddress} ${user.extraAddress }</h6>
+		
 	</div>
+
+
 </body>
 </html>

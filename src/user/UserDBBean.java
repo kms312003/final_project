@@ -36,7 +36,7 @@ public class UserDBBean {
 		return new SqlSessionFactoryBuilder().build(inputStream);
 	}
 
-	// 占쎌�占쏙옙 �룯占� 燁삳똻�뒲占쎈뱜
+	// 유저수 카운팅
 	public int getUserCount() {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
@@ -47,7 +47,7 @@ public class UserDBBean {
 		}
 	}
 
-	// 占쎌�占쏙옙 �뵳�딅뮞占쎈뱜 揶쏉옙占쎌죬占쎌궎疫뀐옙
+	// 유저 전체 리스트 보기
 	public List getUserList(int start, int end) throws Exception {
 
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
@@ -63,7 +63,7 @@ public class UserDBBean {
 		}
 	}
 
-	// 占쎌�占쏙옙 揶쏉옙占쎌죬占쎌궎疫뀐옙
+	// 해당 id 유저 정보 가져오기
 	public User getUser(int id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
@@ -74,7 +74,7 @@ public class UserDBBean {
 		sqlSession.close();
 		return user;
 	}
-	//占쎌돳占쎌뜚占쎌젟癰귨옙 揶쏉옙占쎌죬占쎌궎疫뀐옙
+	//해당 이메일 유저 정보 가져오기
 	public User getUserE(String email) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
@@ -86,7 +86,7 @@ public class UserDBBean {
 		sqlSession.close();
 		return user;
 	}
-	// 占쎌�占쏙옙 占쎈땾占쎌젟 Get
+	// 해당 id 유저 정보 업데이트
 	public User getUpdate(int id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
@@ -99,7 +99,7 @@ public class UserDBBean {
 		return user;
 	}
 
-	// 占쎌�占쏙옙 占쎈땾占쎌젟 Post
+	// 유저 정보 업데이트
 	public void updateUser(User user) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
@@ -109,7 +109,7 @@ public class UserDBBean {
 		sqlSession.close();
 	}
 
-	// 占쎌�占쏙옙 占쎄텣占쎌젫
+	// 해당 id 유저 정보 삭제
 	public void deleteUser(int id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
@@ -122,7 +122,7 @@ public class UserDBBean {
 		sqlSession.close();
 	}
 
-	// 占쎌�占쏙옙 占쎈쾻嚥∽옙
+	// 유저 정보 넣기
 	public void insertUser(User user) throws Exception {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		Map map = new HashMap();
@@ -132,7 +132,7 @@ public class UserDBBean {
 		sqlSession.close();
 	}
 
-	// 嚥≪뮄�젃占쎌뵥 筌ｋ똾寃�
+	// 해당 이메일에 해당하는 비밀번호 체크
 	public int loginCheck(String email, String password) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
@@ -153,7 +153,7 @@ public class UserDBBean {
 		return x;
 	}
 
-	// 占쎌뵠筌롫뗄�뵬 餓λ쵎�궗 筌ｋ똾寃�
+	// 이메일 중복 체크
 	public int emailCheck(String email) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		Map map = new HashMap();
@@ -165,9 +165,9 @@ public class UserDBBean {
 		if (dbEmail == null) {
 			x = 1;
 		} else if (dbEmail.equals(email)) {
-			x = 0; // �뜝�뙥釉앹삕email o = �쉶�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕
+			x = 0; // 이메일이 중복될 때
 		} else if (!dbEmail.equals(email)) {
-			x = 1; // �뜝�뙥釉앹삕email x = �쉶�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕
+			x = 1; // 이메일이 중복되지 않을 때
 		}
 		System.out.println("check: " + x);
 		return x;

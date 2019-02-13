@@ -59,7 +59,13 @@ public class UserAction extends Action {
 		user.setGender(Gender.valueOf(request.getParameter("gender")));
 		user.setBirth(Integer.parseInt(request.getParameter("birth")));
 		user.setJob(Job.valueOf(request.getParameter("job")));
-
+		//주소입력 추가분 시작
+		user.setPostcode(request.getParameter("postcode"));
+		user.setRoadAddress(request.getParameter("roadAddress"));
+		user.setJibunAddress(request.getParameter("jibunAddress"));
+		user.setDetailAddress(request.getParameter("detailAddress"));
+		user.setExtraAddress(request.getParameter("extraAddress"));
+		//주소입력 추가분 끝
 		UserDBBean dbPro = UserDBBean.getInstance();
 		String email = request.getParameter("email");
 		int check = 0;
@@ -110,6 +116,13 @@ public class UserAction extends Action {
 		user.setGender(Gender.valueOf(request.getParameter("gender")));
 		user.setBirth(Integer.parseInt(request.getParameter("birth")));
 		user.setJob(Job.valueOf(request.getParameter("job")));	
+		//주소입력 추가분 시작
+		user.setPostcode(request.getParameter("postcode"));
+		user.setRoadAddress(request.getParameter("roadAddress"));
+		user.setJibunAddress(request.getParameter("jibunAddress"));
+		user.setDetailAddress(request.getParameter("detailAddress"));
+		user.setExtraAddress(request.getParameter("extraAddress"));
+		//주소입력 추가분 끝
 		dbPro.updateUser(user);
 		return "/user/update.jsp";
 	}
