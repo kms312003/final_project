@@ -19,7 +19,7 @@ BoardDBBean dbPro = BoardDBBean.getInstance();
 BoardDataBean article = dbPro.getUpdate(num);
 %> --%>
 
-<form method="post" name="writeform" action="<%=request.getContextPath() %>/board_notice/update"
+<form method="post" name="writeform" action="<%=request.getContextPath() %>/notice/updatePro"
 onsubmit="return checkboard()">
 <input type="hidden" name="num" value="${article.num}">
 <%-- <input type="hidden" name="pageNum" value="<%=pageNum%>"> --%>
@@ -62,7 +62,7 @@ onsubmit="return checkboard()">
    <input type="submit" value="글쓰기">
    <input type="reset" value="다시작성">
    <input type="button" value="목록보기"
-   OnClick = "window.location='<%=request.getContextPath() %>/board_notice/list'">
+   OnClick = "window.location='<%=request.getContextPath() %>/notice/list'">
    </td>
    </tr>
 </table>

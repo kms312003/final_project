@@ -56,8 +56,8 @@
 							</div>
 							<div class="top_bar_user">
 								<div class="user_icon"><img src="<%=request.getContextPath() %>/header/images/user.svg" alt=""></div>
-								<div><a href="<%= request.getContextPath() %>/main/user/register">Register</a></div>
-								<div><a href="<%= request.getContextPath() %>/main/user/login">Sign in</a></div>
+								<div><a href="#">Register</a></div>
+								<div><a href="#">Sign in</a></div>
 							</div>
 						</div>
 					</div>
@@ -144,7 +144,7 @@
 
 							<div class="main_nav_menu ml-auto">
 								<ul class="standard_dropdown main_nav_dropdown">
-									<li><a href="<%= request.getContextPath() %>/main/main">Home<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="index.html">Home<i class="fas fa-chevron-down"></i></a></li>
 									<li class="hassubs">
 										<a href="#">Computer parts<i class="fas fa-chevron-down"></i></a>
 										<ul>
@@ -177,15 +177,15 @@
 									<li class="hassubs">
 										<a href="#">Community<i class="fas fa-chevron-down"></i></a>
 										<ul>
-											<li><a href="<%= request.getContextPath() %>/board_notice/list">NOTICE<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="<%= request.getContextPath() %>/board_information/list">INFORMATION<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="<%= request.getContextPath() %>/board_opinion/list">OPINION<i class="fas fa-chevron-down"></i></a></li>
+											<li><a href="<%= request.getContextPath() %>/notice/list">NOTICE<i class="fas fa-chevron-down"></i></a></li>
+											<li><a href="<%= request.getContextPath() %>/information/list">INFORMATION<i class="fas fa-chevron-down"></i></a></li>
+											<li><a href="<%= request.getContextPath() %>/opinion/list">OPINION<i class="fas fa-chevron-down"></i></a></li>
 											<!-- <li><a href="blog_single.html">Announcement<i class="fas fa-chevron-down"></i></a></li>
 											<li><a href="regular.html">Cafe<i class="fas fa-chevron-down"></i></a></li>
 											<li><a href="cart.html">Cart<i class="fas fa-chevron-down"></i></a></li> -->
 										</ul>
 									</li>
-									<li><a href="<%= request.getContextPath() %>/board_qa/list">Q&A<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="<%= request.getContextPath() %>/qa/list">Q&A<i class="fas fa-chevron-down"></i></a></li>
 									<li><a href="contact.html">Contact<i class="fas fa-chevron-down"></i></a></li>
 								</ul>
 							</div>

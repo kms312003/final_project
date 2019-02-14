@@ -40,7 +40,7 @@ function checkboard(){
 
 </script>
 <body>
-<form method="post" name="writeform" enctype="multipart/form-data" action="<%=request.getContextPath() %>/board_notice/write"
+<form method="post" name="writeform" enctype="multipart/form-data" action="<%=request.getContextPath() %>/notice/writePro"
 onsubmit="return checkboard()">
 <input type="hidden" name="num" value='${num }'>
 <input type="hidden" name="ref" value='${ref }'>
@@ -95,7 +95,7 @@ onsubmit="return checkboard()">
    <input type="submit" value="글쓰기">
    <input type="reset" value="다시작성">
    <input type="button" value="목록보기"
-   OnClick = "window.location='<%=request.getContextPath() %>/board_notice/list'">
+   OnClick = "window.location='<%=request.getContextPath() %>/notice/list'">
    </td>
    </tr>
 </table>

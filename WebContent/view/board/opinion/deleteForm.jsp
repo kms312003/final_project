@@ -18,8 +18,8 @@
 <div class="w3-container">
 	<b>±€ªË¡¶</b><br>
 	<form method="post" name="delForm"
-	action="<%=request.getContextPath() %>/board_opinion/delete">
-	<input type="hidden" name="num" value="${article.num}">
+	action="<%=request.getContextPath() %>/opinion/deletePro">
+	<input type="hidden" name="num" value="${num}">
 	<input type="hidden" name="pageNum" value="<%=pageNum %>">
 	<table class="table-bordered" width="360">
 		<tr height="30">

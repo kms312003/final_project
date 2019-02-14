@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="javax.websocket.Session"%>
 <%@ page import="board_information.BoardDataBean" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.util.List" %>
@@ -14,11 +15,12 @@
 <body>
 <%
 %>
+   <h2 align="center">Information</h2>
    
    <div class="w3-container">
    <span class="w3-center w3-large"> </span>
    <span class="w3-right w3-padding-right-large"> (전체글 : ${count })
-   <a href="<%=request.getContextPath() %>/board_information/write">글쓰기</a></span>
+   <a href="<%=request.getContextPath() %>/information/write">글쓰기</a></span>
    
    <c:if test="${count==0 }">
    <table class="table-bordered" width="700">
@@ -49,7 +51,7 @@
     
          <img src="<%=request.getContextPath()%>/images/re.gif">
     </c:if>         
-         <a href="<%=request.getContextPath() %>/board_information/content?num=${article.num }&no=${number}">${article.subject }</a></td>         
+         <a href="<%=request.getContextPath() %>/information/content?num=${article.num }&no=${number}">${article.subject }</a></td>         
          
          <td align="center" width="100">${article.writer }</td>
          <td align="center" width="150">${article.reg_date }</td>
@@ -61,11 +63,11 @@
        
             <div class="w3-center">
             <c:if test="${startPage > bottomLine }">
-                  <a href="<%=request.getContextPath() %>/board_information/list?pageNum=${startPage - bottomLine}">[이전]</a>
+                  <a href="<%=request.getContextPath() %>/information/list?pageNum=${startPage - bottomLine}">[이전]</a>
             </c:if>
             
             <c:forEach var="i" begin="${startPage }" end="${endPage }">
-               <a href="<%=request.getContextPath() %>/board_information/list?pageNum=${i}">
+               <a href="<%=request.getContextPath() %>/information/list?pageNum=${i}">
                <c:if test="${i==currentPage }">
                <font color="red">${i }</font>
                </c:if>
@@ -76,7 +78,7 @@
             </c:forEach>
             
             <c:if test="${endPage < pageCount }">
-                  <a href="<%=request.getContextPath() %>/board_information/list?pageNum=${endPage+1}">[다음]</a>
+                  <a href="<%=request.getContextPath() %>/information/list?pageNum=${endPage+1}">[다음]</a>
             </c:if>
             </div>
    </c:if>

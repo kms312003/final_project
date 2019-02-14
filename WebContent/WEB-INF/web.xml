@@ -13,6 +13,19 @@
       <welcome-file>default.jsp</welcome-file>
    </welcome-file-list>
    
+   <!-- Spring -->
+    <servlet>
+		<servlet-name>springMybatis</servlet-name>
+		<servlet-class>
+			org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>springMybatis</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+   
    <!-- 한글필터 -->
    <filter>
 	   	<filter-name>encodingFilter</filter-name>
@@ -64,7 +77,7 @@
 	</servlet-mapping>
    
    <!-- 결제 -->
-   <servlet>
+<!--    <servlet>
       <servlet-name>paymentController</servlet-name>
       <servlet-class>payment.controller.PaymentAction</servlet-class>
       <load-on-startup>1</load-on-startup>
@@ -73,7 +86,7 @@
    <servlet-mapping>
       <servlet-name>paymentController</servlet-name>
       <url-pattern>/payment/*</url-pattern>
-   </servlet-mapping>
+   </servlet-mapping> -->
 
    <!-- 관리자 페이지 properties -->
    <!-- 유저 -->
@@ -180,7 +193,7 @@
 
    <!-- 메인 페이지 properties -->
    <!-- Computer -->
-   <servlet>
+  <servlet>
       <servlet-name>ComputerController</servlet-name>
       <servlet-class>view.controller.ComputerAction</servlet-class>
       <load-on-startup>1</load-on-startup>
@@ -189,10 +202,10 @@
    <servlet-mapping>
       <servlet-name>ComputerController</servlet-name>
       <url-pattern>/main/computer/*</url-pattern>
-   </servlet-mapping>
+   </servlet-mapping> 
    
    <!-- Computer -->
-   <servlet>
+<!--    <servlet>
       <servlet-name>CpuController</servlet-name>
       <servlet-class>view.controller.CpuAction</servlet-class>
       <load-on-startup>1</load-on-startup>
@@ -201,10 +214,10 @@
    <servlet-mapping>
       <servlet-name>CpuController</servlet-name>
       <url-pattern>/main/cpu/*</url-pattern>
-   </servlet-mapping>
+   </servlet-mapping> -->
    
    <!-- 게시판 -->
-   <servlet>
+  <!--  <servlet>
       <servlet-name>boardController</servlet-name>
       <servlet-class>board_controller.Notice_action</servlet-class>
       <load-on-startup>1</load-on-startup>
@@ -248,7 +261,7 @@
    <servlet-mapping>
       <servlet-name>boardController4</servlet-name>
       <url-pattern>/board_qa/*</url-pattern>
-   </servlet-mapping>
+   </servlet-mapping> -->
    
    <servlet-mapping>
      <servlet-name>default</servlet-name>

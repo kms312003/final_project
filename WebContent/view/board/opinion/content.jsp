@@ -43,10 +43,10 @@
 <tr>
 	
 	<td class="w3-center" colspan="4">
-	<input type="button" value="글수정"  OnClick = "location.href='<%=request.getContextPath() %>/board_opinion/update?num=${article.num }&pageNum=${article.num }'">
-	<input type="button" value="글삭제"  OnClick = "location.href='<%=request.getContextPath() %>/board_opinion/delete?num=${article.num }&pageNum=${article.num }'">
-	<input type="button" value="답글쓰기" OnClick = "location.href='<%=request.getContextPath() %>/board_opinion/write?num=${article.num }&ref=${article.ref }&re_step=${article.re_step }&re_level=${article.re_level }'">
-	<input type="button" value="글목록" OnClick = "location.href='<%=request.getContextPath() %>/board_opinion/list?num=${article.num }'">
+	<input type="button" value="글수정"  OnClick = "location.href='<%=request.getContextPath() %>/opinion/update?num=${article.num }&pageNum=${article.num }'">
+	<input type="button" value="글삭제"  OnClick = "location.href='<%=request.getContextPath() %>/opinion/delete?num=${article.num }&pageNum=${article.num }'">
+	<input type="button" value="답글쓰기" OnClick = "location.href='<%=request.getContextPath() %>/opinion/write?num=${article.num }&ref=${article.ref }&re_step=${article.re_step }&re_level=${article.re_level }'">
+	<input type="button" value="글목록" OnClick = "location.href='<%=request.getContextPath() %>/opinion/list?num=${article.num }'">
 	</td>
 </tr>
 

@@ -1,25 +1,200 @@
 package board_controller;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import admin.controller.Action;
-import board_qa.BoardDBBeanMybatis;
-import board_qa.BoardDataBean;
+import board_opinion.BoardDBBeanMybatis;
+import board_opinion.BoardDataBean;
 
-public class Qa_action extends Action {
+@Controller
+public class OpinionController extends HttpServlet {
 
-	public String listGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+	HttpSession session;
+	ModelAndView mv = new ModelAndView();
+	
+	@Autowired
+	BoardDBBeanMybatis dbPro;
+	
+	@ModelAttribute
+	public void addAttributes(
+			@RequestParam(value="pageNum", defaultValue="0") int pageNum,
+			@RequestParam(value="boardid", defaultValue="") String boardid,
+			HttpServletRequest req){
+		this.session = req.getSession();
+		
+		if(pageNum!=0)session.setAttribute("pageNum", pageNum);
+		if(!boardid.equals(""))session.setAttribute("boardid", boardid);
+		
+		if(session.getAttribute("pageNum")==null)session.setAttribute("pageNum", 1);	
+		if(session.getAttribute("boardid")==null)session.setAttribute("boardid", "1");
+	}
+	
+	@RequestMapping(value="list")
+	public ModelAndView list() throws Exception {
+		
+		int pageNum = (int) session.getAttribute("pageNum");
+		String boardid = (String) session.getAttribute("boardid");
+		int currentPage = pageNum;
+		int pageSize = 10;
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		
+		int startRow = (currentPage - 1) * pageSize + 1;
+		int endRow = currentPage * pageSize;
+		int count = 0;
+		int number = 0;
+		List articleList = null;
+		
+		BoardDBBeanMybatis dbPro = BoardDBBeanMybatis.getInstance();
+		
+		count = dbPro.getArticleCount(boardid);
+		
+		if (count > 0) { articleList = dbPro.getArticleList(startRow, endRow, boardid); }
+		
+		number = count - (currentPage - 1) * pageSize;
+		
+		int bottomLine = 3;
+		int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
+		int startPage = 1 + (currentPage - 1) / bottomLine * bottomLine;
+		int endPage = startPage + bottomLine - 1;
+		
+		if (endPage > pageCount) { endPage = pageCount; }
+		
+		mv.addObject("startPage", startPage);
+		mv.addObject("endPage", endPage);
+		mv.addObject("pageCount", pageCount);
+		mv.addObject("bottomLine", bottomLine);	
+		mv.addObject("count", count);
+		mv.addObject("currentPage", currentPage);
+		mv.addObject("pageSize", pageSize);
+		mv.addObject("number", number);
+		mv.addObject("articleList", articleList);
+		mv.setViewName("opinion/list");
+		return mv;
+	}
+	
+	@RequestMapping(value="write")
+	public ModelAndView writeForm(BoardDataBean article) throws Exception { 
+		
+		mv.clear();
+		
+		mv.addObject("num", article.getNum());
+		mv.addObject("ref", article.getRef());
+		mv.addObject("re_step", article.getRe_step());
+		mv.addObject("re_level", article.getRe_level());
+		mv.setViewName("opinion/writeUploadForm");
+		
+		return mv;
+	}
+	
+	@RequestMapping(value="writePro")
+	public String writePro(MultipartHttpServletRequest multipart, BoardDataBean article) throws Exception {
+		
+		String uploadPath = multipart.getServletContext().getRealPath("/fileSave");
+		
+		MultipartFile multi = multipart.getFile("uploadfile");
+		String boardid = (String) session.getAttribute("boardid");
+		String filename = multi.getOriginalFilename();
+		
+		if(filename != null && !filename.equals("")){
+			FileCopyUtils.copy(multi.getInputStream(), new FileOutputStream(uploadPath + "/" + multi.getOriginalFilename()));
+			article.setFilename(filename);
+			article.setFilesize((int)multi.getSize());
+		} else {
+			article.setFilename("");
+			article.setFilesize(0);
+		}
+		
+		article.setIp(multipart.getRemoteAddr());
+		article.setBoardid(boardid);
+		System.out.println(article);
+
+		BoardDBBeanMybatis dbPro = BoardDBBeanMybatis.getInstance();
+		dbPro.insertArticle(article, boardid);
+		
+		return "redirect:list";
+	}
+
+	
+	@RequestMapping(value="content")
+	public ModelAndView content(int num) throws Exception {
+
+		BoardDataBean article = dbPro.getArticle(num);
+		
+		mv.addObject("article", article); 
+		mv.setViewName("opinion/content");
+		
+		return mv;
+	}
+	
+	@RequestMapping(value="update")
+	public ModelAndView updateForm(int num) throws Exception {
+		
+		BoardDataBean article = dbPro.getArticle(num);
+		
+		mv.addObject("article", article);
+		mv.setViewName("opinion/updateForm");
+		
+		return mv;
+	}
+	
+	@RequestMapping(value="updatePro")
+	public ModelAndView updatePro(BoardDataBean article) throws Exception {
+
+		int x = dbPro.updateArticle(article);
+		
+		mv.addObject("x", x);
+		mv.setViewName("opinion/updatePro");
+		
+		return mv;
+	}
+/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡdeleteㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+	@RequestMapping(value="delete")
+	public ModelAndView deleteForm(int num) throws Exception {
+		mv.clear();
+		
+		mv.addObject("num", num);
+		mv.setViewName("opinion/deleteForm");
+		
+		return mv;
+	}
+	
+	@RequestMapping(value="deletePro")
+	public ModelAndView deletePro(int num, String passwd) throws Exception {
+		mv.clear();
+		
+		int x = dbPro.deleteArticle(num, passwd);
+		
+		mv.addObject("x", x);
+		mv.setViewName("opinion/deletePro");
+		
+		return mv;
+	}
+	
+	/*public String listGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		String boardid = "1";
 		HttpSession session = request.getSession();
@@ -71,7 +246,7 @@ public class Qa_action extends Action {
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("pageCount", pageCount);
 
-		return "/view/board/qa/list.jsp";
+		return "/view/board/opinion/list.jsp";
 	}
 
 	public String writeGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -90,22 +265,23 @@ public class Qa_action extends Action {
 		request.setAttribute("ref", ref);
 		request.setAttribute("re_step", re_step);
 		request.setAttribute("re_level", re_level);
-		return "/view/board/qa/writeUploadForm.jsp";
+		return "/view/board/opinion/writeUploadForm.jsp";
 	}
 
 	public String writePOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-
+		
 		String realFolder = "";
 		String encType = "euc-kr";
 		int maxSize = 5 * 1024 * 1024;
 		ServletContext context = request.getServletContext();
 		realFolder = context.getRealPath("fileSave");
-
+		
 		MultipartRequest multi = null;
 
 		try {
 
 			multi = new MultipartRequest(request, realFolder, maxSize, encType, new DefaultFileRenamePolicy());
+
 			Enumeration files = multi.getFileNames();
 			String filename = "";
 			int filesize = 0;
@@ -130,8 +306,6 @@ public class Qa_action extends Action {
 			article.setContent(multi.getParameter("content"));
 			article.setBoardid("1");
 			article.setIp(request.getRemoteAddr());
-			article.setPrice(multi.getParameter("price"));
-			article.setPurpose(multi.getParameter("purpose"));
 
 			if (file != null) {
 				filesize = (int) file.length();
@@ -139,6 +313,7 @@ public class Qa_action extends Action {
 				filesize = 0;
 				filename = "";
 			}
+
 			article.setFilename(filename);
 			article.setFilesize(filesize);
 			System.out.println(article);
@@ -150,7 +325,8 @@ public class Qa_action extends Action {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "/view/board/qa/writePro.jsp";
+
+		return "/view/board/opinion/writePro.jsp";
 	}
 
 	public String contentGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -160,9 +336,9 @@ public class Qa_action extends Action {
 
 		BoardDBBeanMybatis dbPro = BoardDBBeanMybatis.getInstance();
 		BoardDataBean article = new BoardDataBean();
+		
 		try {
 			article = dbPro.getArticle(num);
-
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -170,8 +346,7 @@ public class Qa_action extends Action {
 
 		request.setAttribute("article", article);
 		request.setAttribute("no", no);
-
-		return "/view/board/qa/content.jsp";
+		return "/view/board/opinion/content.jsp";
 	}
 
 	public String updateGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -187,10 +362,11 @@ public class Qa_action extends Action {
 
 		request.setAttribute("article", article);
 
-		return "/view/board/qa/updateForm.jsp";
+		return "/view/board/opinion/updateForm.jsp";
 	}
 
 	public String updatePOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+		
 		BoardDataBean article = new BoardDataBean();
 		article.setNum(Integer.parseInt(request.getParameter("num")));
 		article.setWriter(request.getParameter("writer"));
@@ -198,8 +374,6 @@ public class Qa_action extends Action {
 		article.setSubject(request.getParameter("subject"));
 		article.setContent(request.getParameter("content"));
 		article.setPasswd(request.getParameter("passwd"));
-		article.setPrice(request.getParameter("price"));
-		article.setPurpose(request.getParameter("purpose"));
 
 		BoardDBBeanMybatis dbPro = BoardDBBeanMybatis.getInstance();
 		int x = 0;
@@ -210,7 +384,7 @@ public class Qa_action extends Action {
 			e.printStackTrace();
 		}
 		request.setAttribute("x", x);
-		return "/view/board/qa/updatePro.jsp";
+		return "/view/board/opinion/updatePro.jsp";
 	}
 
 	public String deleteGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -226,7 +400,7 @@ public class Qa_action extends Action {
 		}
 
 		request.setAttribute("article", article);
-		return "/view/board/qa/deleteForm.jsp";
+		return "/view/board/opinion/deleteForm.jsp";
 	}
 
 	public String deletePOST(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -252,7 +426,7 @@ public class Qa_action extends Action {
 			e.printStackTrace();
 		}
 		request.setAttribute("x", x);
-		return "/view/board/qa/deletePro.jsp";
-	}
+		return "/view/board/opinion/deletePro.jsp";
+	}*/
 
 }

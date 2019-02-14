@@ -31,7 +31,7 @@
 			<transactionManager type="JDBC" />
 			<dataSource type="POOLED">
 				<property name="driver" value="com.mysql.jdbc.Driver" />
-				<property name="url" value="jdbc:mysql://localhost:3306/final_project?characterEncoding=utf8"/>
+				<property name="url" value="jdbc:mysql://localhost:3306/final_project?serverTimezone=UTC"/>
 				<!-- ?serverTimezone=UTC -->
 				<property name="username" value="root" />
 				<property name="password" value="1111" />
@@ -44,7 +44,7 @@
 		<mapper resource="xml/user.xml"/>
 		
 		<!-- 제품 -->
-		<mapper resource="xml/computer.xml" />
+		 <mapper resource="xml/computer.xml" />
 		<mapper resource="xml/cpu.xml" />
 		<mapper resource="xml/graphic.xml" />
 		<mapper resource="xml/hdd.xml" />
