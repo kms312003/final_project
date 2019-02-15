@@ -51,7 +51,7 @@ input[type=password] {
 		<center>
 			<br> <br>
 			<h2>Login to Your Account</h2>
-			<p>Please enter your UserID and password</p>
+			<p>Please enter your Email and password</p>
 		</center>
 		<form id="Login" name="loginForm"
 			action="<%=request.getContextPath()%>/main/user/login" method="post"

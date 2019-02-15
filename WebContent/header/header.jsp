@@ -56,8 +56,8 @@
 							</div>
 							<div class="top_bar_user">
 								<div class="user_icon"><img src="<%=request.getContextPath() %>/header/images/user.svg" alt=""></div>
-								<div><a href="#">Register</a></div>
-								<div><a href="#">Sign in</a></div>
+								<div><a href="<%= request.getContextPath() %>/main/user/register">Register</a></div>
+								<div><a href="<%= request.getContextPath() %>/main/user/login">Sign in</a></div>
 							</div>
 						</div>
 					</div>
