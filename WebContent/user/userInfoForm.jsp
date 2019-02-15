@@ -63,6 +63,29 @@ padding:0;
 .box li a:hover{
 	color:#b9b9b9;
 }
+
+/* .side{
+	position: absolute;
+	top:50%;
+	transform:tarnslateY(-50%);
+}
+.side a{
+	background: #e74c3c;
+	color:white;
+	font-size: 22px;
+	display:block;
+	width:130px;
+	padding: 12px;
+	text-decoration: none;
+	margin:8px;
+	color:white;
+	border-radius: 6px;
+	margin-left:-100px;
+	transition: 0.6s all;
+}
+.side a:hover{
+	margin-left:0;
+} */
 </style>
 </head>
 <body>
@@ -72,8 +95,16 @@ padding:0;
   <h3 class="w3-bar-item">My page Menu</h3>
   <a href="<%=request.getContextPath()%>/main/user/update" class="w3-bar-item w3-button">회원정보 수정</a>
   <a href="<%=request.getContextPath()%>/main/user/delete" class="w3-bar-item w3-button">회원 탈퇴</a>
+  <a href="<%=request.getContextPath()%>/main/user/cart" class="w3-bar-item w3-button">내 장바구니</a>
+  <a href="<%=request.getContextPath()%>/main/user/like" class="w3-bar-item w3-button">관심 상품</a>
 </div>
-
+<%-- <div class="side">
+<h3 class="w3-bar-item">　　Menu</h3>
+	<a href="<%=request.getContextPath()%>/main/user/update" style="background:#c0392b;">Update</a>
+	<a href="<%=request.getContextPath()%>/main/user/delete" style="background:#2c3e50;">Delete</a>
+	<a href="<%=request.getContextPath()%>/main/user/cart" style="background:#27ae60;">Cart</a>
+	<a href="<%=request.getContextPath()%>/main/user/like" style="background:#2980b9;">like</a>
+</div> --%>
 <div class="box">
 		<img src="" alt="" class="box-img">
 	
