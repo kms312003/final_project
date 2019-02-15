@@ -112,7 +112,7 @@
 										<div class="cart_count"><span>10</span></div>
 									</div>
 									<div class="cart_content">
-										<div class="cart_text"><a href="#">Cart</a></div>
+										<div class="cart_text"><a href="<%= request.getContextPath() %>/basket/list">Cart</a></div>
 										<div class="cart_price">$85</div>
 									</div>
 								</div>
@@ -148,13 +148,13 @@
 									<li class="hassubs">
 										<a href="#">Computer parts<i class="fas fa-chevron-down"></i></a>
 										<ul>
-											<li><a href="<%= request.getContextPath() %>/main/cpu/list">CPU<i class="fas fa-chevron-down"></i></a>
-											<li><a href="<%= request.getContextPath() %>/main/mainboard/list">MainBoard<i class="fas fa-chevron-down"></i></a>
-											<li><a href="<%= request.getContextPath() %>/main/ram/list">RAM<i class="fas fa-chevron-down"></i></a>
-											<li><a href="<%= request.getContextPath() %>/main/graphic/list">Graphic Card<i class="fas fa-chevron-down"></i></a>
-											<li><a href="<%= request.getContextPath() %>/main/power/list">Power Supply<i class="fas fa-chevron-down"></i></a>
-											<li><a href="<%= request.getContextPath() %>/main/hdd/list">HDD<i class="fas fa-chevron-down"></i></a>
-											<li><a href="<%= request.getContextPath() %>/main/ssd/list">SSD<i class="fas fa-chevron-down"></i></a>
+											<li><a href="<%= request.getContextPath() %>/cpu/list">CPU<i class="fas fa-chevron-down"></i></a>
+											<li><a href="<%= request.getContextPath() %>/mainboard/list">MainBoard<i class="fas fa-chevron-down"></i></a>
+											<li><a href="<%= request.getContextPath() %>/ram/list">RAM<i class="fas fa-chevron-down"></i></a>
+											<li><a href="<%= request.getContextPath() %>/graphic/list">Graphic Card<i class="fas fa-chevron-down"></i></a>
+											<li><a href="<%= request.getContextPath() %>/power/list">Power Supply<i class="fas fa-chevron-down"></i></a>
+											<li><a href="<%= request.getContextPath() %>/hdd/list">HDD<i class="fas fa-chevron-down"></i></a>
+											<li><a href="<%= request.getContextPath() %>/ssd/list">SSD<i class="fas fa-chevron-down"></i></a>
 											<li><a href="#">Accessories<i class="fas fa-chevron-down"></i></a>
 										</ul>
 									</li>
@@ -169,9 +169,9 @@
 													<li><a href="#">League of Legend<i class="fas fa-chevron-down"></i></a></li>
 												</ul>
 											</li>
-											<li><a href="<%= request.getContextPath() %>/main/computer/list?category=1">For Office<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="<%= request.getContextPath() %>/main/computer/list?category=3">For Design<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="<%= request.getContextPath() %>/main/computer/list?category=4">For Broadcast<i class="fas fa-chevron-down"></i></a></li>
+											<li><a href="<%= request.getContextPath() %>/computer/list?category=1">For Office<i class="fas fa-chevron-down"></i></a></li>
+											<li><a href="<%= request.getContextPath() %>/computer/list?category=3">For Design<i class="fas fa-chevron-down"></i></a></li>
+											<li><a href="<%= request.getContextPath() %>/computer/list?category=4">For Broadcast<i class="fas fa-chevron-down"></i></a></li>
 										</ul>
 									</li>
 									<li class="hassubs">
@@ -180,9 +180,6 @@
 											<li><a href="<%= request.getContextPath() %>/notice/list">NOTICE<i class="fas fa-chevron-down"></i></a></li>
 											<li><a href="<%= request.getContextPath() %>/information/list">INFORMATION<i class="fas fa-chevron-down"></i></a></li>
 											<li><a href="<%= request.getContextPath() %>/opinion/list">OPINION<i class="fas fa-chevron-down"></i></a></li>
-											<!-- <li><a href="blog_single.html">Announcement<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="regular.html">Cafe<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="cart.html">Cart<i class="fas fa-chevron-down"></i></a></li> -->
 										</ul>
 									</li>
 									<li><a href="<%= request.getContextPath() %>/qa/list">Q&A<i class="fas fa-chevron-down"></i></a></li>
