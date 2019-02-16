@@ -14,10 +14,11 @@
      </select>
      
      <insert id="insert" parameterType="power">
-        insert into power(id, code, productCode, productName, productCompany, productSort, nominalOutput,
-               ratedOutput, productDate, regDate, price, count, filename, filesize) 
-               values(0, #{code}, #{productCode}, #{productName},#{productCompany},#{productSort},#{nominalOutput},#{ratedOutput}
-      ,#{productDate},curdate(),#{price},#{count}, #{filename},#{filesize})
+        insert into  power (id, code, productCode, productName, productCompany, productSort, 
+                nominalOutput,ratedOutput, productDate, 
+                regDate, price, count, filename, filesize) 
+               values(0, #{code}, #{productCode}, #{productName},#{productCompany},#{productSort},#{nominalOutput}
+               ,#{ratedOutput},#{productDate},curdate(),#{price},#{count}, #{filename},#{filesize})
      </insert>
      
      <select id="getPower" resultType="power" parameterType="hashmap">

@@ -145,7 +145,6 @@ public class PowerAction extends Action {
 				filesize = (int) file.length();
 			}
 			power.setFilesize(filesize);
-
 			PowerDBBean dbPro = PowerDBBean.getInstance();
 			dbPro.insertPower(power);
 
