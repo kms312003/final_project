@@ -6,6 +6,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<% response.sendRedirect(request.getContextPath()+"/admin/cpu/list"); %>
+<% response.sendRedirect(request.getContextPath()+"/admincpu/list"); %>
 </body>
 </html>

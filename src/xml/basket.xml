@@ -5,31 +5,32 @@
 
   <mapper namespace="mapper.basket">
      
-     <select id = "getBaskets" parameterType="hashmap" resultType="basket">
-        select * from basket where userId = #{userId} limit #{start}, #{end}
+     <select id = "getBasketCount" parameterType="hashmap" resultType="int">
+        select ifnull(count(*),0) from basket where email = #{email}
      </select>
      
-     <insert id="insert" parameterType="ssd">
-        insert into ssd(id, productName, productCompany, diskType, diskCapacity,
-               interFace, memoryType, readSpeed, writeSpeed, productDate, regDate, price, count, filename, filesize) 
-               values(0, #{productName},#{productCompany},#{diskType},#{diskCapacity},#{interFace}
-      ,#{memoryType},#{readSpeed},#{writeSpeed},#{productDate},curdate(),#{price},#{count}, #{filename},#{filesize})
+     <select id = "getBaskets" parameterType="hashmap" resultType="basket">
+        select * from basket where email = #{email} limit #{start}, #{end}
+     </select>
+     
+     <insert id="insert" parameterType="hashmap">
+        insert into basket(id, email, productCode, productName, price, count, total) 
+               values(0, #{email},#{productCode},#{productName},#{price},#{count},#{total})
      </insert>
      
-     <select id="getSSD" resultType="ssd" parameterType="hashmap">
-        select * from ssd where id = #{id}
+     <select id="getBasket" parameterType="hashmap" resultType="basket">
+        select * from basket where id = #{id}
      </select>
      
      <update id="readCount" parameterType="hashmap">
-        update ssd set readcount = readcount + 1 where id = #{id}
+        update basket set readcount = readcount + 1 where id = #{id}
      </update>
      
-     <update id="update" parameterType="ssd">
-        update ssd set productName=#{productName}, productCompany=#{productCompany}, diskType=#{diskType}, 
-        diskCapacity= #{diskCapacity}, interFace=#{interFace}, memoryType=#{memoryType}, readSpeed=#{readSpeed}, writeSpeed=#{writeSpeed}, productDate=#{productDate}, price=#{price}, filename=#{filename}, filesize=#{filesize} where id=#{id}
+     <update id="update" parameterType="hashmap">
+        update basket set count=#{count}, #{total} where id=#{id}
      </update>
      
-     <delete id="deleteSSD" parameterType="hashmap">
-        delete from ssd where id=#{id}
+     <delete id="deleteBasket" parameterType="hashmap">
+        delete from basket where id=#{id}
      </delete>
   </mapper>

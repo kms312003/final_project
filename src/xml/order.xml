@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+  <mapper namespace="mapper.order">
+     
+     <select id = "getOrderCount" parameterType="hashmap" resultType="int">
+        select ifnull(count(*),0) from order where email = #{email}
+     </select>
+     
+     <select id = "getOrders" parameterType="hashmap" resultType="basket">
+        select * from order where email = #{email} limit #{start}, #{end}
+     </select>
+     
+     <insert id="insert" parameterType="hashmap">
+        insert into order(id, email, productCode, productName, price, count, total) 
+               values(0, #{email},#{productCode},#{productName},#{price},#{count},#{total})
+     </insert>
+     
+     <select id="getOrder" parameterType="hashmap" resultType="order">
+        select * from order where id = #{id}
+     </select>
+     
+     <update id="readCount" parameterType="hashmap">
+        update order set readcount = readcount + 1 where id = #{id}
+     </update>
+     
+     <delete id="deleteOrder" parameterType="hashmap">
+        delete from order where id=#{id}
+     </delete>
+  </mapper>

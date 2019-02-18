@@ -1,4 +1,4 @@
-package shop.basket;
+package basket;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -39,15 +39,29 @@ public class BasketDBBean {
 		return new SqlSessionFactoryBuilder().build(inputStream);
 	}
 
-	// 로그인한 유저 장바구니 상품 갯수
-	public List getBaskets(int userId, int start, int end) {
+	// Basket 갯수
+	public int getBasketCount(String email) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
 		Map map = new HashMap();
-		map.put("userId", userId);
+		map.put("email", email);
+		
+		try {
+			return (int) sqlSession.selectOne(namespace + ".getBasketCount", map);
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	// 로그인한 유저 장바구니 상품 리스트
+	public List getBaskets(String email, int start, int end) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+
+		Map map = new HashMap();
+		map.put("email", email);
 		map.put("start", start);
 		map.put("end", end);
-		
+
 		try {
 			return sqlSession.selectList(namespace + ".getBaskets", map);
 		} finally {
@@ -55,64 +69,63 @@ public class BasketDBBean {
 		}
 	}
 
-	// Cpu 등록
-	public void insertCpu(Cpu cpu) throws Exception {
+	// Basket 등록
+	public void insertBasket(Basket basket)	throws Exception {
 
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
-		Map map = new HashMap();
+//		int total = basket.getPrice() * basket.getCount();
 
-		int result = sqlSession.insert(namespace + ".insert", cpu);
+		Map map = new HashMap();
+		map.put("basket", basket);
+		map.put("email", basket.getEmail());
+		map.put("productCode", basket.getProductCode());
+		map.put("productName", basket.getProductName());
+		map.put("price", basket.getPrice());
+		map.put("count", basket.getCount());
+		map.put("total", basket.getTotal());
+
+		int result = sqlSession.insert(namespace + ".insert", map);
 		sqlSession.commit();
 		sqlSession.close();
 		System.out.println(result);
 	}
 
-	// Cpu 가져오기
-	public Cpu getCpu(int id) {
+	// Basket 수정 Get
+	public Basket getUpdate(int id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
 		Map map = new HashMap();
 		map.put("id", id);
 
-		sqlSession.update(namespace + ".readCount", map);
-		Cpu cpu = sqlSession.selectOne(namespace + ".getCpu", map);
+		Basket basket = sqlSession.selectOne(namespace + ".getBasket", map);
 
 		sqlSession.close();
-		return cpu;
+		return basket;
 	}
 
-	// Cpu 수정 Get
-	public Cpu getUpdate(int id) {
+	// Basket 수정 Post
+	public void updateBasket(Basket basket, int count, int total) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
 		Map map = new HashMap();
-		map.put("id", id);
+		map.put("basket", basket);
+		map.put("count", count);
+		map.put("total", total);
 
-		Cpu cpu = sqlSession.selectOne(namespace + ".getCpu", map);
-
-		sqlSession.close();
-		return cpu;
-	}
-
-	// Cpu 수정 Post
-	public void updateCpu(Cpu cpu) {
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
-
-		sqlSession.update(namespace + ".update", cpu);
+		sqlSession.update(namespace + ".update", map);
 		sqlSession.commit();
-
 		sqlSession.close();
 	}
 
-	// Cpu 삭제
-	public void deleteCpu(int id) {
+	// Basket 삭제
+	public void deleteBasket(int id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
 		Map map = new HashMap();
 		map.put("id", id);
 
-		sqlSession.update(namespace + ".deleteCpu", map);
+		sqlSession.update(namespace + ".deleteBasket", map);
 		sqlSession.commit();
 
 		sqlSession.close();
