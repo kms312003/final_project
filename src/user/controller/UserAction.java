@@ -66,6 +66,7 @@ public class UserAction extends Action {
 		user.setDetailAddress(request.getParameter("detailAddress"));
 		user.setExtraAddress(request.getParameter("extraAddress"));
 		//주소입력 추가분 끝
+		user.setPhoneNum(request.getParameter("phoneNum"));
 		UserDBBean dbPro = UserDBBean.getInstance();
 		String email = request.getParameter("email");
 		int check = 0;
@@ -123,6 +124,7 @@ public class UserAction extends Action {
 		user.setDetailAddress(request.getParameter("detailAddress"));
 		user.setExtraAddress(request.getParameter("extraAddress"));
 		//주소입력 추가분 끝
+		user.setPhoneNum(request.getParameter("phoneNum"));
 		dbPro.updateUser(user);
 		return "/user/update.jsp";
 	}

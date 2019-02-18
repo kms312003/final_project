@@ -50,26 +50,5 @@ input[type=password] {
 	</center>
 </div>
 
-<%-- 	<div class="col-sm-9 text-left">
-		<center>
-			<form id="Delete" name="deleteForm" method="post" action="<%=request.getContextPath()%>/main/user/delete" onsubmit="return checkboard()">
-				<div class="w3-container">
-					<h2>User 탈퇴</h2>
-					<table class="table table-bordered" style="width: 80%;">
-						<tr>
-							<td>비밀번호</td>
-							<td><input type="password" name="password"></td>
-						</tr>
-
-						<tr>
-							<td colspan="2">
-							<input type="button" value="취소" class="btn btn-default" Onclick="window.location='<%=request.getContextPath()%>/main/user/userInfo'">
-							<input type="submit" value="탈퇴" class="btn btn-default" /></td>
-						</tr>
-					</table>
-				</div>
-			</form>
-		</center>
-	</div> --%>
 </body>
 </html>

@@ -14,8 +14,8 @@
 	</select>
 
 	<insert id="insert" parameterType="user">
-		insert into	user (id, email, name, password, gender, birth, job, reg_date, postcode, roadAddress, jibunAddress, detailAddress, extraAddress)
-		values (0, #{email}, #{name}, #{password}, #{gender}, #{birth},#{job},curdate(), #{postcode}, #{roadAddress}, #{jibunAddress}, #{detailAddress}, #{extraAddress})
+		insert into	user (id, email, name, password, gender, birth, job, reg_date, postcode, roadAddress, jibunAddress, detailAddress, extraAddress, phoneNum)
+		values (0, #{email}, #{name}, #{password}, #{gender}, #{birth},#{job},curdate(), #{postcode}, #{roadAddress}, #{jibunAddress}, #{detailAddress}, #{extraAddress}, #{phoneNum})
 	</insert>
 
 	<select id="getUser" resultType="user" parameterType="hashmap">
@@ -32,7 +32,7 @@
 
 	<update id="update" parameterType="user">
 		update user set email=#{email}, name=#{name}, password=#{password},
-		gender=#{gender}, birth= #{birth}, job=#{job}, reg_date=#{reg_date}, postcode=#{postcode}, roadAddress=#{roadAddress}, jibunAddress=#{jibunAddress}, detailAddress=#{detailAddress}, extraAddress=#{extraAddress} where id=#{id}
+		gender=#{gender}, birth= #{birth}, job=#{job}, reg_date=#{reg_date}, postcode=#{postcode}, roadAddress=#{roadAddress}, jibunAddress=#{jibunAddress}, detailAddress=#{detailAddress}, extraAddress=#{extraAddress}, phoneNum=#{phoneNum} where id=#{id}
 	</update>
 
 	<delete id="deleteUser" parameterType="hashmap">

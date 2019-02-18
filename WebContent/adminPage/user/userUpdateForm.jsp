@@ -61,6 +61,10 @@
 			alert("생년월일을 입력해주세요.");
 			return false;
 		}
+		if(!form.phoneNum.value){
+			alert("전화번호를 입력해주세요.");
+			return false;
+		}
 		return true;
 	}
 	
@@ -135,10 +139,14 @@
     <div class="col-sm-9 text-left"> 
     <center>
 	<form action="<%= request.getContextPath() %>/admin/user/update" enctype="multipart/form-data" method="post" name="updateform" onsubmit="return checkboard()">
-	<input type="hidden" name="id" value="${ no }">
+	<input type="hidden" name="id" value="${id }" />
 		<div class="w3-container">
 		<h2>User 수정</h2>	
 			<table class="table table-bordered" style="width:80%;">
+				<tr>
+					<td>아이디 확인</td>
+					<td>${id }</td>
+				</tr>
 				<tr>
 					<td>이메일</td>
 					<td><input type="email" name="email" size="50" maxlength="50" value="${user.email}" placeholder="email"></td>
@@ -164,7 +172,11 @@
 				</tr>
 				<tr>
 					<td>생년월일</td>
-					<td><input type="text" name="birth" size="50" maxlength="6" value="${user.birth}" placeholder="생년월일"> 개</td>
+					<td><input type="text" name="birth" size="50" maxlength="6" value="${user.birth}" placeholder="생년월일"></td>
+				</tr>
+				<tr>
+					<td>전화번호</td>
+					<td><input type="text" name="phoneNum" size="50" maxlength="6" value="${user.phoneNum }" placeholder="전화번호"></td>
 				</tr>
 				<tr>
 					<td>직업</td>

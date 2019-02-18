@@ -130,13 +130,13 @@ public class AdminUserAction extends Action {
 			user.setJob(Job.valueOf(multi.getParameter("job")));
 			
 			//주소입력 추가분 시작
-			user.setPostcode(request.getParameter("postcode"));
-			user.setRoadAddress(request.getParameter("roadAddress"));
-			user.setJibunAddress(request.getParameter("jibunAddress"));
-			user.setDetailAddress(request.getParameter("detailAddress"));
-			user.setExtraAddress(request.getParameter("extraAddress"));
+			user.setPostcode(multi.getParameter("postcode"));
+			user.setRoadAddress(multi.getParameter("roadAddress"));
+			user.setJibunAddress(multi.getParameter("jibunAddress"));
+			user.setDetailAddress(multi.getParameter("detailAddress"));
+			user.setExtraAddress(multi.getParameter("extraAddress"));
 			//주소입력 추가분 끝
-			
+			user.setPhoneNum(multi.getParameter("phoneNum"));
 			UserDBBean dbPro = UserDBBean.getInstance();
 			dbPro.insertUser(user);
 
@@ -171,7 +171,9 @@ public class AdminUserAction extends Action {
 	public String updateGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 
 		int id = Integer.parseInt(request.getParameter("id"));
-		String no = String.valueOf(id);
+/*		System.out.println("updateGet id check : " + id);
+		String no = String.valueOf(id);*/
+		System.out.println("updateGet no check : " + id);
 
 		UserDBBean dbPro = UserDBBean.getInstance();
 		User user = new User();
@@ -181,7 +183,7 @@ public class AdminUserAction extends Action {
 			e.printStackTrace();
 		}
 	
-		request.setAttribute("no", no);
+		request.setAttribute("id", id);
 		request.setAttribute("user", user);
 
 		return "/adminPage/user/userUpdateForm.jsp";
@@ -196,11 +198,11 @@ public class AdminUserAction extends Action {
 		realFolder = context.getRealPath("fileSave");
 
 		MultipartRequest multi = null;
-
+		
 		try {
 			multi = new MultipartRequest(request, realFolder, maxSize, encType, new DefaultFileRenamePolicy());
-			String oldfilename = multi.getParameter("oldfilename");
-			int oldfilesize = Integer.parseInt(multi.getParameter("oldfilesize"));
+			/*String oldfilename = multi.getParameter("oldfilename");
+			int oldfilesize = Integer.parseInt(multi.getParameter("oldfilesize"));*/
 
 			Enumeration files = multi.getFileNames();
 			String filename = "";
@@ -212,27 +214,27 @@ public class AdminUserAction extends Action {
 				filename = multi.getFilesystemName(name);
 				file = multi.getFile(name);
 			}
-
+			
 			User user = new User();
 
 			user.setId(Integer.parseInt(multi.getParameter("id")));
-			user.setEmail(request.getParameter("email"));
-			user.setName(request.getParameter("name"));
-			user.setPassword(request.getParameter("password"));
-			user.setGender(Gender.valueOf(request.getParameter("gender")));
-			user.setBirth(Integer.parseInt(request.getParameter("birth")));
-			user.setJob(Job.valueOf(request.getParameter("job")));	
+			user.setEmail(multi.getParameter("email"));
+			user.setName(multi.getParameter("name"));
+			user.setPassword(multi.getParameter("password"));
+			user.setGender(Gender.valueOf(multi.getParameter("gender")));
+			user.setBirth(Integer.parseInt(multi.getParameter("birth")));
+			user.setJob(Job.valueOf(multi.getParameter("job")));	
 			
 			//주소입력 추가분 시작
-			user.setPostcode(request.getParameter("postcode"));
-			user.setRoadAddress(request.getParameter("roadAddress"));
-			user.setJibunAddress(request.getParameter("jibunAddress"));
-			user.setDetailAddress(request.getParameter("detailAddress"));
-			user.setExtraAddress(request.getParameter("extraAddress"));
+			user.setPostcode(multi.getParameter("postcode"));
+			user.setRoadAddress(multi.getParameter("roadAddress"));
+			user.setJibunAddress(multi.getParameter("jibunAddress"));
+			user.setDetailAddress(multi.getParameter("detailAddress"));
+			user.setExtraAddress(multi.getParameter("extraAddress"));
 			//주소입력 추가분 끝
+			user.setPhoneNum(multi.getParameter("phoneNum"));
 			
 			UserDBBean dbPro = UserDBBean.getInstance();
-			
 			dbPro.updateUser(user);
 
 		} catch (Exception e) {

@@ -110,7 +110,8 @@ padding:0;
 		</c:if>
 		<h5>Address</h5>
 		<h6>${user.roadAddress } ${user.detailAddress} ${user.extraAddress }</h6>
-		
+		<h5>Phone Number</h5>
+		<h6>${user.phoneNum }</h6>
 	</div>
 
 

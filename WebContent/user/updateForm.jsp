@@ -77,6 +77,10 @@ input[type=text] {
 			alert("생년월일을 입력해주세요.");
 			return false;
 		}
+		if(!form.phoneNum.value){
+			alert("전화번호를 입력해주세요.");
+			return false;
+		}
 		return true;
 	}
 
@@ -158,47 +162,30 @@ input[type=text] {
 		<center>
 			<br> <br>
 			<h2>회원정보 수정</h2>
-		</center>
-		<form id="Update" name="updateForm" method="post" action="<%=request.getContextPath()%>/main/user/update"
-			onsubmit="return checkboard()">
-			<table class="table table-bordered">
-				<center>
-					<p>
-					 ${user.email }
-					</p>
-				</center>
-
-				<center>
+			<form id="Update" name="updateForm" method="post"
+				action="<%=request.getContextPath()%>/main/user/update"
+				onsubmit="return checkboard()">
+				<table class="table table-bordered">
+					<p>${user.email }</p>
 					<p>
 						<input type="name" id="inputname" name="name" placeholder="이름">
 					</p>
-				</center>
-
-				<center>
 					<p>
 						<input type="password" id="inputPassword" name="password"
 							placeholder="비밀번호" onkeyup='check();'>
 					</p>
-				</center>
-
-
-				<center>
 					<p>
 						<input type="password" id="confirmPassword"
 							name="confirm_password" placeholder="비밀번호 확인 " onkeyup='check();'>
 					<p id='message'></p>
 					</p>
-				</center>
-
-
-
-				<center>
 					<p>
 						<input type="text" id="inputBirth" name="birth"
 							placeholder="생년월일(ex:YYMMDD)">
 					</p>
-				</center>
-				<center>
+					<p>
+						<input type="text" id="inputPhoneNum" name="phoneNum" placeholder="전화번호(ex:01012341234)">
+					</p>
 					<p>
 						<input type="text" id="sample4_postcode" name="postcode"
 							placeholder="우편번호"> <input type="button"
@@ -213,30 +200,31 @@ input[type=text] {
 							placeholder="상세주소"> <input type="text"
 							id="sample4_extraAddress" name="extraAddress" placeholder="참고항목">
 					</p>
-				</center>
-				<center>
 					<p>
-						성별 : <input type=radio id="inputGender" name="gender" value="MALE">남자
-						<input type=radio id="inputGender" name="gender" value="FEMALE">여자
+						성별 : <input type=radio id="inputGender" name="gender" value="MALE"
+							<c:if test="${user.gender == 'MALE'}">checked</c:if>>남자 <input
+							type=radio id="inputGender" name="gender" value="FEMALE"
+							<c:if test="${user.gender == 'FEMALE'}">checked</c:if>>여자
 					</p>
-				</center>
-				<center>
 					<p>
-						직업 : <input type=radio id="inputJob" name="job" value="STUDENT">학생
-						<input type=radio id="inputJob" name="job" value="EMPLOYED">직장인
-						<input type=radio id="inputJob" name="job" value="UNEMPLOYED">무직
-						<input type=radio id="inputJob" name="job" value="ETC">기타
+						직업 : <input type=radio id="inputJob" name="job" value="STUDENT"
+							<c:if test="${user.job == 'STUDENT'}">checked</c:if>>학생 <input
+							type=radio id="inputJob" name="job" value="EMPLOYED"
+							<c:if test="${user.job == 'EMPLOYED'}">checked</c:if>>직장인
+						<input type=radio id="inputJob" name="job" value="UNEMPLOYED"
+							<c:if test="${user.job == 'UNEMPLOYED'}">checked</c:if>>무직
+						<input type=radio id="inputJob" name="job" value="ETC"
+							<c:if test="${user.job == 'ETC'}">checked</c:if>>기타
 					</p>
-				</center>
+					<p>
+						<input class="btn btn-primary" type="submit" value="변경"> <input
+							class="btn btn-default" type="reset" value="다시 쓰기"> <input
+							class="btn btn-default" type="button" value="취소"
+							Onclick="window.location='<%=request.getContextPath()%>/main/user/userInfo'">
+					</p>
 
-				<center>
-					<p>
-						<input class="btn btn-primary" type="submit" value="변경"> 
-						<input class="btn btn-default" type="reset" value="다시 쓰기">
-						<input class="btn btn-default" type="button" value="취소"  Onclick="window.location='<%=request.getContextPath()%>/main/user/userInfo'">
-					</p>
-				</center>
-		</form>
+				</table>
+			</form>
 	</div>
 
 </body>

@@ -52,34 +52,26 @@ input[type=password] {
 			<br> <br>
 			<h2>Login to Your Account</h2>
 			<p>Please enter your Email and password</p>
-		</center>
 		<form id="Login" name="loginForm"
 			action="<%=request.getContextPath()%>/main/user/login" method="post"
 			onsubmit="return checkboard()">
 			<table class="table table-bordered">
-				<center>
 					<p>
 
 						<input type="email" class="input_field" id="inputemail"
 							name="email" placeholder="Email" size="50">
 					</p>
-				</center>
-
-				<center>
 					<p>
 						<input type="password" class="input_field" id="inputPassword"
 							name="password" placeholder="Password" size="50">
 					</p>
-				</center>
-
-				<center>
 					<p>
 						<button style="margin: 20px; width: 200px;"
 							class="btn btn-primary" type="submit">로그인</button>
 					</p>
-				</center>
 			</table>
 		</form>
+		</center>
 	</div>
 </body>
 </html>

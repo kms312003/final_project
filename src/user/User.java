@@ -27,7 +27,7 @@ public class User {
 	private String jibunAddress; //지번 주소
 	private String detailAddress; //상세주소
 	private String extraAddress; //참고사항 (ex: ~동, 빌라이름...)
-	
+	private String phoneNum; //전화번호
 	public int getId() {
 		return id;
 	}
@@ -130,12 +130,22 @@ public class User {
 	public void setExtraAddress(String extraAddress) {
 		this.extraAddress = extraAddress;
 	}
+	
+	public String getPhoneNum() {
+		return phoneNum;
+	}
+
+	public void setPhoneNum(String phoneNum) {
+		this.phoneNum = phoneNum;
+	}
 
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", email=" + email + ", name=" + name + ", password=" + password + ", gender="
 				+ gender + ", birth=" + birth + ", job=" + job + ", reg_date=" + reg_date + ", postcode=" + postcode
 				+ ", roadAddress=" + roadAddress + ", jibunAddress=" + jibunAddress + ", detailAddress=" + detailAddress
-				+ ", extraAddress=" + extraAddress + "]";
+				+ ", extraAddress=" + extraAddress + ", phoneNum=" + phoneNum + "]";
 	}
+
+	
 }

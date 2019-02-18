@@ -61,6 +61,10 @@
 			alert("생년월일을 입력해주세요.");
 			return false;
 		}
+		if(!form.phoneNum.value){
+			alert("전화번호를 입력해주세요.");
+			return false;
+		}
 		return true;
 	}
 	
@@ -164,6 +168,10 @@
 				<tr>
 					<td>생년월일</td>
 					<td><input type="text" name="birth" size="50" maxlength="6" placeholder="생년월일"></td>
+				</tr>
+				<tr>
+					<td>전화번호</td>
+					<td><input type="text" name="phoneNum" size="50" maxlength="6" value="${user.phoneNum }" placeholder="전화번호"></td>
 				</tr>
 				<tr>
 					<td>직업</td>
