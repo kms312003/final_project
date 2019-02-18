@@ -10,26 +10,44 @@
 		http://www.springframework.org/schema/mvc
 		http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 	
-	<context:component-scan base-package="board_controller" />
+	<context:component-scan base-package="view.controller" />
+	<context:component-scan base-package="admin.controller" />
 	
 	
 	<bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping" />
 	
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+
+	<!-- 유저 -->
+	<bean id="user" class="user.UserDBBean"/>
+	
+	<!-- 제품 -->
+	<bean id="computer" class="computer.ComputerDBBean"/>
+	<bean id="cpu" class="cpu.CpuDBBean"/>
+	<bean id="mainboard" class="mainboard.MainBoardDBBean"/>
+	<bean id="ram" class="ram.RamDBBean"/>
+	<bean id="graphic" class="graphic.GraphicDBBean"/>
+	<bean id="hdd" class="hdd.HDDDBBean"/>
+	<bean id="ssd" class="ssd.SSDDBBean"/>
+	<bean id="power" class="power.PowerDBBean"/>
 	
 	
+	<!-- 장바구니 -->
+	<bean id="basket" class="basket.BasketDBBean"/>
+	
+	<!-- 주문 -->
+	<bean id="order" class="order.OrderDBBean"/>
+	
+	<!-- 게시판 -->
 	<bean id ="notice" class="board_notice.BoardDBBeanMybatis"/>
- 	
  	<bean id="information" class="board_information.BoardDBBeanMybatis"/>
- 	
  	<bean id="opinion" class="board_opinion.BoardDBBeanMybatis"/>
- 	
  	<bean id="qa" class="board_qa.BoardDBBeanMybatis"/>
 
 	<bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 	
 		<property name="prefix">
-			<value>/view/board/</value>
+			<value>/view/</value>
 		</property>
 		<property name="suffix">
 			<value>.jsp</value>

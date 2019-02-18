@@ -45,13 +45,13 @@
    <!-- 관리자 페이지 전체 적용 -->
    <jsp-config>
       <jsp-property-group>
-      	<url-pattern>/adminPage/*</url-pattern>
+      	<url-pattern>/view/adminPage/*</url-pattern>
         <include-prelude>/common/admin.jsp</include-prelude>
       </jsp-property-group>
    
    <!-- 메인 페이지 전체 적용 -->   
-         <jsp-property-group>
-        <url-pattern>/view/*</url-pattern>
+      <jsp-property-group>
+        <url-pattern>/view/config/*</url-pattern>
         <include-prelude>/header/header.jsp</include-prelude>
       </jsp-property-group>
          
@@ -75,18 +75,6 @@
 		<servlet-name>userController</servlet-name>
 		<url-pattern>/main/user/*</url-pattern>
 	</servlet-mapping>
-   
-   <!-- 결제 -->
-<!--    <servlet>
-      <servlet-name>paymentController</servlet-name>
-      <servlet-class>payment.controller.PaymentAction</servlet-class>
-      <load-on-startup>1</load-on-startup>
-   </servlet>
-
-   <servlet-mapping>
-      <servlet-name>paymentController</servlet-name>
-      <url-pattern>/payment/*</url-pattern>
-   </servlet-mapping> -->
 
    <!-- 관리자 페이지 properties -->
    <!-- 유저 -->
@@ -102,7 +90,7 @@
    </servlet-mapping>
    
    <!-- 완성제품 -->
-   <servlet>
+   <!-- <servlet>
       <servlet-name>AdminComputerController</servlet-name>
       <servlet-class>admin.controller.ComputerAction</servlet-class>
       <load-on-startup>1</load-on-startup>
@@ -113,7 +101,7 @@
       <url-pattern>/admin/computer/*</url-pattern>
    </servlet-mapping>
    
-   <!-- 제품부품 -->
+   제품부품
    <servlet>
       <servlet-name>AdminCpuController</servlet-name>
       <servlet-class>admin.controller.CpuAction</servlet-class>
@@ -124,7 +112,7 @@
       <servlet-name>AdminCpuController</servlet-name>
       <url-pattern>/admin/cpu/*</url-pattern>
    </servlet-mapping>
-
+   
    <servlet>
       <servlet-name>AdminGraphicController</servlet-name>
       <servlet-class>admin.controller.GraphicAction</servlet-class>
@@ -189,11 +177,11 @@
    <servlet-mapping>
       <servlet-name>AdminSSDController</servlet-name>
       <url-pattern>/admin/ssd/*</url-pattern>
-   </servlet-mapping>
+   </servlet-mapping> -->
 
    <!-- 메인 페이지 properties -->
    <!-- Computer -->
-  <servlet>
+  <!-- <servlet>
       <servlet-name>ComputerController</servlet-name>
       <servlet-class>view.controller.ComputerAction</servlet-class>
       <load-on-startup>1</load-on-startup>
@@ -202,10 +190,10 @@
    <servlet-mapping>
       <servlet-name>ComputerController</servlet-name>
       <url-pattern>/main/computer/*</url-pattern>
-   </servlet-mapping> 
+   </servlet-mapping> -->
    
    <!-- Computer -->
-<!--    <servlet>
+	<!-- <servlet>
       <servlet-name>CpuController</servlet-name>
       <servlet-class>view.controller.CpuAction</servlet-class>
       <load-on-startup>1</load-on-startup>
@@ -274,5 +262,9 @@
      <url-pattern>*.swf</url-pattern>
      <url-pattern>*.jpg</url-pattern>
      <url-pattern>*.jpeg</url-pattern>
+     <url-pattern>*.svg</url-pattern>
+     <url-pattern>*.ttf</url-pattern>
+     <url-pattern>*.woff</url-pattern>
+     <url-pattern>*.woff2</url-pattern>
   </servlet-mapping>
 </web-app>

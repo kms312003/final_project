@@ -12,12 +12,17 @@
 		<!-- 제품 -->
 		<typeAlias type="computer.Computer" alias="computer" />
 		<typeAlias type="cpu.Cpu" alias="cpu" />
+		<typeAlias type="mainboard.MainBoard" alias="mainboard" />
+		<typeAlias type="ram.Ram" alias="ram" />
 		<typeAlias type="graphic.Graphic" alias="graphic" />
 		<typeAlias type="hdd.HDD" alias="hdd" />
-		<typeAlias type="mainboard.MainBoard" alias="mainboard" />
-		<typeAlias type="power.Power" alias="power" />
-		<typeAlias type="ram.Ram" alias="ram" />
 		<typeAlias type="ssd.SSD" alias="ssd" />
+		<typeAlias type="power.Power" alias="power" />
+		
+		<!-- 장바구니 -->
+		<typeAlias type="basket.Basket" alias="basket" />
+		<!-- 주문 -->
+		<typeAlias type="order.Order" alias="order" />
 		
 		<!-- 게시판 -->
 		<typeAlias type="board_notice.BoardDataBean" alias="board_notice"/>
@@ -31,7 +36,7 @@
 			<transactionManager type="JDBC" />
 			<dataSource type="POOLED">
 				<property name="driver" value="com.mysql.jdbc.Driver" />
-				<property name="url" value="jdbc:mysql://localhost:3306/final_project?serverTimezone=UTC"/>
+				<property name="url" value="jdbc:mysql://localhost:3306/final_project?characterEncoding=utf8"/>
 				<!-- ?serverTimezone=UTC -->
 				<property name="username" value="root" />
 				<property name="password" value="1111" />
@@ -44,7 +49,7 @@
 		<mapper resource="xml/user.xml"/>
 		
 		<!-- 제품 -->
-		 <mapper resource="xml/computer.xml" />
+		<mapper resource="xml/computer.xml" />
 		<mapper resource="xml/cpu.xml" />
 		<mapper resource="xml/graphic.xml" />
 		<mapper resource="xml/hdd.xml" />
@@ -52,6 +57,12 @@
 		<mapper resource="xml/power.xml" />
 		<mapper resource="xml/ram.xml" />
 		<mapper resource="xml/ssd.xml" />
+		
+		<!-- 장바구니 -->
+		<mapper resource="xml/basket.xml" />
+		
+		<!-- 주문 -->
+		<mapper resource="xml/order.xml" />
 		
 		<!-- 게시판 -->
 		<mapper resource="xml/board_notice.xml"/>
