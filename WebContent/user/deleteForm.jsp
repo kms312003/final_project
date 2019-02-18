@@ -4,54 +4,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>회원탈퇴 페이지</title>
 <style>
-/* Remove the navbar's default margin-bottom and rounded borders */
-.navbar {
-	margin-bottom: 0;
-	border-radius: 0;
-}
-
-table {
-	margin-left: auto;
-	margin-right: auto;
-}
-
-/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-.row.content {
-	height: 700px
-}
-
-/* Set gray background color and 100% height */
-.sidenav {
-	padding-top: 20px;
-	background-color: #f1f1f1;
-	height: 100%;
-}
-
-/* Set black background color, white text and some padding */
-footer {
-	background-color: #555;
-	color: white;
-	padding: 15px;
-}
-
-/* On small screens, set height to 'auto' for sidenav and grid */
-@media screen and (max-width: 767px) {
-	.sidenav {
-		height: auto;
-		padding: 15px;
-	}
-	.row.content {
-		height: auto;
-	}
+input[type=password] {
+	width: 250px;
+	box-sizing: border-box;
+	border: 2px solid #ccc;
+	border-radius: 4px;
+	font-size: 16px;
+	background-color: white;
+	background-position: 10px 10px;
+	background-repeat: no-repeat;
+	padding: 4px 4px 4px 4px;
 }
 </style>
 </head>
@@ -66,8 +30,27 @@ footer {
 	}
 </script>
 <body>
+<div class="container" style="margin-top: 10px; margin-bottom: 10px;">
+	<center>
+		<br><br>
+		<h2>회원 탈퇴</h2>
+	
+	<form id="Delete" name="deleteForm" method="post" action="<%=request.getContextPath()%>/main/user/delete" onsubmit="return checkboard()">
+	<table class="table table-bordered">
+		<p><input type="password" id="inputPassword" name="password"
+							placeholder="비밀번호를 입력해주세요." onkeyup='check();'></p>
+		
+		<p>
+		<input type="submit" value="탈퇴" class="btn btn-primary" />
+		<input type="button" value="취소" class="btn btn-default" Onclick="window.location='<%=request.getContextPath()%>/main/user/userInfo'">
+							
+		</p>
+	</table>
+	</form>
+	</center>
+</div>
 
-	<div class="col-sm-9 text-left">
+<%-- 	<div class="col-sm-9 text-left">
 		<center>
 			<form id="Delete" name="deleteForm" method="post" action="<%=request.getContextPath()%>/main/user/delete" onsubmit="return checkboard()">
 				<div class="w3-container">
@@ -87,6 +70,6 @@ footer {
 				</div>
 			</form>
 		</center>
-	</div>
+	</div> --%>
 </body>
 </html>
