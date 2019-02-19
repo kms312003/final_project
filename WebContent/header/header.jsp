@@ -57,11 +57,11 @@
 							<div class="top_bar_user">
 								<div class="user_icon"><img src="<%=request.getContextPath() %>/header/images/user.svg" alt=""></div>
 								
-								<div><a href="<%= request.getContextPath() %>/main/user/register">Register</a></div>
+								<div><a href="<%= request.getContextPath() %>/user/register">Register</a></div>
 								<c:if test="${email == null }">
-								<div><a href="<%= request.getContextPath() %>/main/user/login">Log in</a></div></c:if>
+								<div><a href="<%= request.getContextPath() %>/user/login">Log in</a></div></c:if>
 								<c:if test="${email != null }">
-								<div><a href="<%= request.getContextPath() %>/main/user/logout">Log out</a></div></c:if>
+								<div><a href="<%= request.getContextPath() %>/user/logout">Log out</a></div></c:if>
 							</div>
 						</div>
 					</div>

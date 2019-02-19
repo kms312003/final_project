@@ -142,14 +142,14 @@ public class UserDBBean {
 		int x = -1;
 		String dbPassword = sqlSession.selectOne(namespace + ".getPassword", map);
 
-		if (dbPassword.equals(password)) {
+		if (dbPassword == null) {
+			x = -1;
+		} else if (dbPassword.equals(password)) {
 			x = 1;
 		} else if (!dbPassword.equals(password)) {
 			x = 0;
-		} else {
-			x = -1;
 		}
-
+		
 		return x;
 	}
 
