@@ -45,7 +45,12 @@ public class UserAction extends Action {
 		System.out.println("check:" + check);
 		return "/user/login.jsp";
 	}
-
+	public String logoutGET(HttpServletRequest request,
+			 HttpServletResponse response)  throws Throwable {
+		HttpSession session = request.getSession();
+		session.invalidate();
+			 return  "/user/loginForm.jsp"; 
+			} 
 	public String registerGET(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		return "/user/registerForm.jsp";
 	}
