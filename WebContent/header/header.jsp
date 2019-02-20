@@ -56,8 +56,14 @@
 							</div>
 							<div class="top_bar_user">
 								<div class="user_icon"><img src="<%=request.getContextPath() %>/header/images/user.svg" alt=""></div>
+								
 								<div><a href="<%= request.getContextPath() %>/main/user/register">Register</a></div>
-								<div><a href="<%= request.getContextPath() %>/main/user/login">Sign in</a></div>
+								<c:if test="${email == null }">
+									<div><a href="<%= request.getContextPath() %>/main/user/login">Log in</a></div>
+								</c:if>
+								<c:if test="${email != null }">
+									<div><a href="<%= request.getContextPath() %>/main/user/logout">Log out</a></div>
+								</c:if>
 							</div>
 						</div>
 					</div>
@@ -124,7 +130,6 @@
 		</div>
 		
 		<!-- Main Navigation -->
-
 		<nav class="main_nav">
 			<div class="container">
 				<div class="row">
@@ -148,13 +153,13 @@
 									<li class="hassubs">
 										<a href="#">Computer parts<i class="fas fa-chevron-down"></i></a>
 										<ul>
-											<li><a href="<%= request.getContextPath() %>/cpu/list">CPU<i class="fas fa-chevron-down"></i></a>
-											<li><a href="<%= request.getContextPath() %>/mainboard/list">MainBoard<i class="fas fa-chevron-down"></i></a>
-											<li><a href="<%= request.getContextPath() %>/ram/list">RAM<i class="fas fa-chevron-down"></i></a>
-											<li><a href="<%= request.getContextPath() %>/graphic/list">Graphic Card<i class="fas fa-chevron-down"></i></a>
-											<li><a href="<%= request.getContextPath() %>/power/list">Power Supply<i class="fas fa-chevron-down"></i></a>
-											<li><a href="<%= request.getContextPath() %>/hdd/list">HDD<i class="fas fa-chevron-down"></i></a>
-											<li><a href="<%= request.getContextPath() %>/ssd/list">SSD<i class="fas fa-chevron-down"></i></a>
+											<li><a href="<%= request.getContextPath() %>/cpu/listPost">CPU<i class="fas fa-chevron-down"></i></a>
+											<li><a href="<%= request.getContextPath() %>/mainboard/listPost">MainBoard<i class="fas fa-chevron-down"></i></a>
+											<li><a href="<%= request.getContextPath() %>/ram/listPost">RAM<i class="fas fa-chevron-down"></i></a>
+											<li><a href="<%= request.getContextPath() %>/graphic/listPost">Graphic Card<i class="fas fa-chevron-down"></i></a>
+											<li><a href="<%= request.getContextPath() %>/power/listPost">Power Supply<i class="fas fa-chevron-down"></i></a>
+											<li><a href="<%= request.getContextPath() %>/hdd/listPost">HDD<i class="fas fa-chevron-down"></i></a>
+											<li><a href="<%= request.getContextPath() %>/ssd/listPost">SSD<i class="fas fa-chevron-down"></i></a>
 											<li><a href="#">Accessories<i class="fas fa-chevron-down"></i></a>
 										</ul>
 									</li>
@@ -162,16 +167,16 @@
 										<a href="#">Recommendations<i class="fas fa-chevron-down"></i></a>
 										<ul>
 											<li>
-												<a href="<%= request.getContextPath() %>/main/computer/list?category=2">For Games<i class="fas fa-chevron-down"></i></a>
-												<ul>
+												<a href="<%= request.getContextPath() %>/main/computer/listPost?category=2">For Games<i class="fas fa-chevron-down"></i></a>
+												<!-- <ul>
 													<li><a href="#">Battle Ground<i class="fas fa-chevron-down"></i></a></li>
 													<li><a href="#">Overwatch<i class="fas fa-chevron-down"></i></a></li>
 													<li><a href="#">League of Legend<i class="fas fa-chevron-down"></i></a></li>
-												</ul>
+												</ul> -->
 											</li>
-											<li><a href="<%= request.getContextPath() %>/computer/list?category=1">For Office<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="<%= request.getContextPath() %>/computer/list?category=3">For Design<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="<%= request.getContextPath() %>/computer/list?category=4">For Broadcast<i class="fas fa-chevron-down"></i></a></li>
+											<li><a href="<%= request.getContextPath() %>/computer/listPost?category=1">For Office<i class="fas fa-chevron-down"></i></a></li>
+											<li><a href="<%= request.getContextPath() %>/computer/listPost?category=3">For Design<i class="fas fa-chevron-down"></i></a></li>
+											<li><a href="<%= request.getContextPath() %>/computer/listPost?category=4">For Broadcast<i class="fas fa-chevron-down"></i></a></li>
 										</ul>
 									</li>
 									<li class="hassubs">
