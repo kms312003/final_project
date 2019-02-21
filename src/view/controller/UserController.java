@@ -27,7 +27,7 @@ public class UserController {
 	//1.회원가입 화면
 	@RequestMapping(value="register")
 	public String registerForm() throws Exception{
-		return "user/registerForm";
+		return "mainView/user/registerForm";
 	}
 	//2. 회원가입 처리
 	@RequestMapping(value="registerPro")
@@ -39,13 +39,13 @@ public class UserController {
 			dbPro.insertUser(user);
 		}
 		mv.addObject("check", check);
-		mv.setViewName("user/register");
+		mv.setViewName("mainView/user/register");
 		return mv;
 	}
 	//3.로그인 화면
 	@RequestMapping(value="login")
 	public String loginForm() throws Exception{
-		return "user/loginForm";
+		return "mainView/user/loginForm";
 	}
 	//4.로그인 처리
 	@RequestMapping(value="loginPro")
@@ -59,7 +59,7 @@ public class UserController {
 			session.setAttribute("email", email);
 		}
 		mv.addObject("check", check);
-		mv.setViewName("user/login");
+		mv.setViewName("mainView/user/login");
 		return mv;
 		
 	}
@@ -69,7 +69,7 @@ public class UserController {
 		HttpSession session = request.getSession();
 		User user = dbPro.getUserE((String)session.getAttribute("email"));
 		request.setAttribute("user", user);
-		return "user/userInfoForm";
+		return "mainView/user/userInfoForm";
 	}
 	//6.유저 정보 수정 화면
 	@RequestMapping(value="update")
@@ -78,7 +78,7 @@ public class UserController {
 		User user = dbPro.getUserE((String) session.getAttribute("email"));
 		request.setAttribute("user", user);
 		mv.addObject("user",user);
-		mv.setViewName("user/updateForm");
+		mv.setViewName("mainView/user/updateForm");
 		return mv;
 		
 	}
@@ -92,14 +92,14 @@ public class UserController {
 		user.setEmail(user2.getEmail());
 		dbPro.updateUser(user);
 		mv.addObject("user", user);
-		mv.setViewName("user/userInfoForm");
+		mv.setViewName("mainView/user/userInfoForm");
 		return mv;
 	}
 	
 	//8.유저 정보 삭제 화면
 	@RequestMapping(value="delete")
 	public String deleteForm() {
-		return "user/deleteForm";
+		return "mainView/user/deleteForm";
 		
 	}
 	//9.유저 정보 삭제 처리
@@ -114,7 +114,7 @@ public class UserController {
 		if(dbPassword.equals(password)){
 			dbPro.deleteUser(id);
 		}
-		return "user/delete";
+		return "mainView/user/delete";
 	}
 
 }

@@ -109,7 +109,7 @@ public class PowerController extends HttpServlet {
 		mv.addObject("endPage", endPage);
 		mv.addObject("pageCount", pageCount);
 		mv.addObject("currentPage", currentPage);
-		mv.setViewName("nohead/productList");
+		mv.setViewName("nohead/powerList");
 
 		return mv;
 	}
