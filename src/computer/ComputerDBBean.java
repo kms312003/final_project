@@ -55,7 +55,7 @@ public class ComputerDBBean {
 
 		Map map = new HashMap();
 		map.put("category", category);
-		
+
 		try {
 			return (int) sqlSession.selectOne(namespace + ".getCategoryCount", map);
 		} finally {
@@ -95,6 +95,48 @@ public class ComputerDBBean {
 		}
 	}
 
+	// Computer 제품리스트 가져오기
+	public List getProductList(int start, int end, String orderby, String sql) throws Exception {
+
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+
+		Map map = new HashMap();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("orderby", orderby);
+		map.put("sql", sql);
+
+		try {
+			return sqlSession.selectList(namespace + ".getProducts", map);
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	// Computer 제품리스트 가져오기
+	public List getSearchProductList(int start, int end, String category, String cpu, String mainBoard,
+			String ram, String vga, String hdd) throws Exception {
+
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+
+		Map map = new HashMap();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("category", category);
+		map.put("cpu", cpu);
+		map.put("mainBoard", mainBoard);
+		map.put("ram", ram);
+		map.put("vga", vga);
+		map.put("hdd", hdd);
+		
+		System.out.println("map: " + map);
+		try {
+			return sqlSession.selectList(namespace + ".getSearchProducts", map);
+		} finally {
+			sqlSession.close();
+		}
+	}
+
 	// Computer 등록
 	public void insertComputer(Computer computer) throws Exception {
 
@@ -115,7 +157,7 @@ public class ComputerDBBean {
 		Map map = new HashMap();
 		map.put("id", id);
 
-		sqlSession.update(namespace + ".readCount", map);
+		// sqlSession.update(namespace + ".readCount", map);
 		Computer computer = sqlSession.selectOne(namespace + ".getComputer", map);
 
 		sqlSession.close();

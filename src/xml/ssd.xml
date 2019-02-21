@@ -13,6 +13,43 @@
         select * from ssd limit #{start}, #{end} 
      </select>
      
+     <!-- 제품 조건 검색 -->
+     <select id = "getSearchProducts" parameterType="hashmap" resultType="ssd">
+        select * from ssd
+     <where>
+     <if test="productCompanys != null">
+     <choose>
+     	<when test="productCompanys.length == 0">
+     	</when>
+     	<when test="productCompanys.length == 1">
+     		productCompany = #{productCompanys[0]} and
+     	</when>
+     	<when test="productCompanys.length == 2">
+     		(productCompany = #{productCompanys[0]} or productCompany = #{productCompanys[1]}) and 
+     	</when>
+     	<when test="productCompanys.length == 3">
+     		(productCompany = #{productCompanys[0]} or productCompany = #{productCompanys[1]} or productCompany = #{productCompanys[2]}) and
+     	</when>
+     </choose>
+     </if>
+     <if test="productName != null">
+     	productName like CONCAT('%', #{productName}, '%')
+     </if>
+     <if test="interFace != null">
+     	and interFace like CONCAT('%', #{interFace}, '%')
+     </if>
+     <if test="diskType != null">
+     	and diskType like CONCAT('%', #{diskType}, '%')
+     </if>
+     </where> 
+     	limit #{start}, #{end}
+     </select>
+     
+     <!-- 제품 순서별 리스트 -->
+     <select id = "getProducts" parameterType="hashmap" resultType="ssd">
+        select * from ssd ${sql} order by ${orderby} limit #{start}, #{end}
+     </select>
+     
      <insert id="insert" parameterType="ssd">
         insert into ssd(id, code, productCode, productName, productCompany, diskType, diskCapacity,
                interFace, memoryType, readSpeed, writeSpeed, productDate, regDate, price, count, filename, filesize) 

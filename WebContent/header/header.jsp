@@ -57,12 +57,12 @@
 							<div class="top_bar_user">
 								<div class="user_icon"><img src="<%=request.getContextPath() %>/header/images/user.svg" alt=""></div>
 								
-								<div><a href="<%= request.getContextPath() %>/main/user/register">Register</a></div>
+								<div><a href="<%= request.getContextPath() %>/user/register">Register</a></div>
 								<c:if test="${email == null }">
-									<div><a href="<%= request.getContextPath() %>/main/user/login">Log in</a></div>
+									<div><a href="<%= request.getContextPath() %>/user/login">Log in</a></div>
 								</c:if>
 								<c:if test="${email != null }">
-									<div><a href="<%= request.getContextPath() %>/main/user/logout">Log out</a></div>
+									<div><a href="<%= request.getContextPath() %>/user/logout">Log out</a></div>
 								</c:if>
 							</div>
 						</div>
@@ -167,7 +167,7 @@
 										<a href="#">Recommendations<i class="fas fa-chevron-down"></i></a>
 										<ul>
 											<li>
-												<a href="<%= request.getContextPath() %>/main/computer/listPost?category=2">For Games<i class="fas fa-chevron-down"></i></a>
+												<a href="<%= request.getContextPath() %>/computer/listPost?category=2">For Games<i class="fas fa-chevron-down"></i></a>
 												<!-- <ul>
 													<li><a href="#">Battle Ground<i class="fas fa-chevron-down"></i></a></li>
 													<li><a href="#">Overwatch<i class="fas fa-chevron-down"></i></a></li>

@@ -21,6 +21,35 @@
         select * from computer where category = #{category} limit #{start}, #{end} 
      </select>
      
+     <!-- 제품 조건 검색 -->
+     <select id = "getSearchProducts" parameterType="hashmap" resultType="computer">
+        select * from computer
+     <where>
+     	category = #{category}
+     <if test="cpu != null">
+     	and cpu like CONCAT('%', #{cpu}, '%')
+     </if>
+     <if test="mainBoard != null">
+     	and mainBoard like CONCAT('%', #{mainBoard}, '%')
+     </if>
+     <if test="ram != null">
+     	and ram like CONCAT('%', #{ram}, '%')
+     </if>
+     <if test="vga != null">
+     	and vga like CONCAT('%', #{vga}, '%')
+     </if>
+     <if test="hdd != null">
+     	and hdd like CONCAT('%', #{hdd}, '%')
+     </if>
+     </where>
+     	limit #{start}, #{end}
+     </select>
+     
+     <!-- 제품 순서별 리스트 -->
+     <select id = "getProducts" parameterType="hashmap" resultType="computer">
+        select * from computer ${sql} order by ${orderby} limit #{start}, #{end}
+     </select>
+     
      <insert id="insert" parameterType="computer">
         insert into computer(id, code, productCode, category, productName, cpu, mainBoard,
                ram, vga, hdd, ssd, tower, power, productDate, regDate, price, count, filename, filesize) 

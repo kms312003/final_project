@@ -22,10 +22,6 @@
         select * from order where id = #{id}
      </select>
      
-     <update id="readCount" parameterType="hashmap">
-        update order set readcount = readcount + 1 where id = #{id}
-     </update>
-     
      <delete id="deleteOrder" parameterType="hashmap">
         delete from order where id=#{id}
      </delete>

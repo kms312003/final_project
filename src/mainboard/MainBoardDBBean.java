@@ -64,6 +64,46 @@ public class MainBoardDBBean {
 		}
 	}
 
+	// MainBoard 제품리스트 가져오기
+	public List getProductList(int start, int end, String orderby, String sql) throws Exception {
+
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+
+		Map map = new HashMap();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("orderby", orderby);
+		map.put("sql", sql);
+
+		try {
+			return sqlSession.selectList(namespace + ".getProducts", map);
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	// MainBoard 제품리스트 가져오기
+	public List getSearchProductList(int start, int end, String[] productCompanys, String productName,
+			String memoryType, String productSort) throws Exception {
+
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+
+		Map map = new HashMap();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("productCompanys", productCompanys);
+		map.put("productName", productName);
+		map.put("memoryType", memoryType);
+		map.put("productSort", productSort);
+
+		System.out.println("map: " + map);
+		try {
+			return sqlSession.selectList(namespace + ".getSearchProducts", map);
+		} finally {
+			sqlSession.close();
+		}
+	}
+
 	// MainBoard 등록
 	public void insertMainBoard(MainBoard mainboard) throws Exception {
 
@@ -84,7 +124,7 @@ public class MainBoardDBBean {
 		Map map = new HashMap();
 		map.put("id", id);
 
-		sqlSession.update(namespace + ".readCount", map);
+		// sqlSession.update(namespace + ".readCount", map);
 		MainBoard mainboard = sqlSession.selectOne(namespace + ".getMainBoard", map);
 
 		sqlSession.close();
@@ -126,7 +166,7 @@ public class MainBoardDBBean {
 
 		sqlSession.close();
 	}
-	
+
 	// MainBoard 디테일 Get
 	public MainBoard getDetail(int id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();

@@ -92,7 +92,7 @@
 						<tr>
 							<td align="center" width="40%">휴대전화</td>
 							<td align="left" width="60%">
-								<input type="text" name="phoneNumber" value="${user.phoneNumber}" size="30">
+								<input type="text" name="phoneNum" value="${user.phoneNum}" size="30">
 							</td>
 						</tr>
 					</tbody>

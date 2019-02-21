@@ -64,6 +64,44 @@ public class PowerDBBean {
 		}
 	}
 
+	// Power 제품리스트 가져오기
+	public List getProductList(int start, int end, String orderby, String sql) throws Exception {
+
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+
+		Map map = new HashMap();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("orderby", orderby);
+		map.put("sql", sql);
+
+		try {
+			return sqlSession.selectList(namespace + ".getProducts", map);
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	// Power 제품리스트 가져오기
+	public List getSearchProductList(int start, int end, String[] productCompanys, String productName, String productSort) throws Exception {
+
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+
+		Map map = new HashMap();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("productCompanys", productCompanys);
+		map.put("productName", productName);
+		map.put("productSort", productSort);
+
+		System.out.println("map: " + map);
+		try {
+			return sqlSession.selectList(namespace + ".getSearchProducts", map);
+		} finally {
+			sqlSession.close();
+		}
+	}
+
 	// Power 등록
 	public void insertPower(Power power) throws Exception {
 
@@ -84,7 +122,7 @@ public class PowerDBBean {
 		Map map = new HashMap();
 		map.put("id", id);
 
-		sqlSession.update(namespace + ".readCount", map);
+		// sqlSession.update(namespace + ".readCount", map);
 		Power power = sqlSession.selectOne(namespace + ".getPower", map);
 
 		sqlSession.close();
@@ -126,7 +164,7 @@ public class PowerDBBean {
 
 		sqlSession.close();
 	}
-	
+
 	// Power 디테일 Get
 	public Power getDetail(int id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();

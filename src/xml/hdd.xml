@@ -13,6 +13,43 @@
         select * from hdd limit #{start}, #{end} 
      </select>
      
+     <!-- 제품 조건 검색 -->
+     <select id = "getSearchProducts" parameterType="hashmap" resultType="hdd">
+        select * from hdd
+     <where>
+     <if test="productCompanys != null">
+     <choose>
+     	<when test="productCompanys.length == 0">
+     	</when>
+     	<when test="productCompanys.length == 1">
+     		productCompany = #{productCompanys[0]} and
+     	</when>
+     	<when test="productCompanys.length == 2">
+     		(productCompany = #{productCompanys[0]} or productCompany = #{productCompanys[1]}) and 
+     	</when>
+     	<when test="productCompanys.length == 3">
+     		(productCompany = #{productCompanys[0]} or productCompany = #{productCompanys[1]} or productCompany = #{productCompanys[2]}) and
+     	</when>
+     </choose>
+     </if>
+     <if test="productName != null">
+     	productName like CONCAT('%', #{productName}, '%')
+     </if>
+     <if test="interFace != null">
+     	and interFace like CONCAT('%', #{interFace}, '%')
+     </if>
+     <if test="diskSize != null">
+     	and diskSize like CONCAT('%', #{diskSize}, '%')
+     </if>
+     </where> 
+     	limit #{start}, #{end}
+     </select>
+     
+     <!-- 제품 순서별 리스트 -->
+     <select id = "getProducts" parameterType="hashmap" resultType="hdd">
+        select * from hdd ${sql} order by ${orderby} limit #{start}, #{end}
+     </select>
+     
      <insert id="insert" parameterType="hdd">
         insert into hdd(id, code, productCode, productName, productCompany, interFace, diskSize,
                diskCapacity, bufferCapacity, rotation, productDate, regDate, price, count, filename, filesize) 

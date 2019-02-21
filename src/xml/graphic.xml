@@ -13,6 +13,43 @@
         select * from graphic limit #{start}, #{end} 
      </select>
      
+     <!-- 제품 조건 검색 -->
+     <select id = "getSearchProducts" parameterType="hashmap" resultType="graphic">
+        select * from graphic
+     <where>
+     <if test="productCompanys != null">
+     <choose>
+     	<when test="productCompanys.length == 0">
+     	</when>
+     	<when test="productCompanys.length == 1">
+     		productCompany = #{productCompanys[0]} and
+     	</when>
+     	<when test="productCompanys.length == 2">
+     		(productCompany = #{productCompanys[0]} or productCompany = #{productCompanys[1]}) and 
+     	</when>
+     	<when test="productCompanys.length == 3">
+     		(productCompany = #{productCompanys[0]} or productCompany = #{productCompanys[1]} or productCompany = #{productCompanys[2]}) and
+     	</when>
+     </choose>
+     </if>
+     <if test="productName != null">
+     	productName like CONCAT('%', #{productName}, '%')
+     </if>
+     <if test="chipSetGroup != null">
+     	and chipSetGroup like CONCAT('%', #{chipSetGroup}, '%')
+     </if>
+     <if test="interFace != null">
+     	and interFace like CONCAT('%', #{interFace}, '%')
+     </if>
+     </where> 
+     	limit #{start}, #{end}
+     </select>
+     
+     <!-- 제품 순서별 리스트 -->
+     <select id = "getProducts" parameterType="hashmap" resultType="graphic">
+        select * from graphic ${sql} order by ${orderby} limit #{start}, #{end}
+     </select>
+     
      <insert id="insert" parameterType="graphic">
         insert into graphic(id, code, productCode, productName, productCompany, chipSetGroup, interFace, powerPort,
          memoryCapacity, nvidiaChipSet, maxPower, maxMonitor, length, productDate, regDate, price, count, filename, filesize) 

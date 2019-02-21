@@ -113,20 +113,21 @@ public class OrderController {
 		mv.addObject("pageCount", pageCount);
 		mv.addObject("currentPage", currentPage);
 		
-		mv.setViewName("order/list");
+		mv.setViewName("mainView/order/list");
 
 		return mv;
 	}
 	// 주문 결제 대기 페이지
 	@RequestMapping("/order")
 	public ModelAndView order(
-			@RequestParam(value = "productId", defaultValue = "") int productId,
+			@RequestParam(value = "productId", defaultValue = "0") int productId,
 			@RequestParam(value = "productName", defaultValue = "") String productName,
 			@RequestParam(value = "price", defaultValue = "0") int price,
 			@RequestParam(value = "count", defaultValue = "0") int productCount,
 			@RequestParam(value = "productCode", defaultValue = "") String productCode,
-			@RequestParam(value = "basketIds", defaultValue = "") List<Integer> basketIds) throws Exception {
+			@RequestParam(value = "basketIds", defaultValue = "0") List<Integer> basketIds) throws Exception {
 
+		System.out.println("basketIds:::" + basketIds);
 		String email = (String) session.getAttribute("email");
 
 		// 세션 유저 아이디
@@ -139,7 +140,7 @@ public class OrderController {
 
 		dbProOrder = OrderDBBean.getInstance();
 		BasketDBBean dbProBasket = BasketDBBean.getInstance();
-		UserDBBean dbProUser = UserDBBean.getInstance();
+		dbProUser = UserDBBean.getInstance();
 
 		// 제픔 디비 정보
 		ComputerDBBean dbProComputer = ComputerDBBean.getInstance();
@@ -181,9 +182,11 @@ public class OrderController {
 			orderWaitProduct = dbProPower.getPower(productId);
 		}
 		
+		System.out.println("email:::" + email);
 		// 이메일로 유저 get(주문자 정보, 받는 사람 정보 이용하기 위함)
 		User user = dbProUser.getUserE(email);
 
+		System.out.println("user:::" + user);
 		int count = 0;
 		int number = 0;
 
@@ -221,7 +224,7 @@ public class OrderController {
 		mv.addObject("endPage", endPage);
 		mv.addObject("pageCount", pageCount);
 		mv.addObject("currentPage", currentPage);
-		mv.setViewName("order/order");
+		mv.setViewName("mainView/order/order");
 
 		return mv;
 	}

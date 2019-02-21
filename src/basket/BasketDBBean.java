@@ -45,7 +45,7 @@ public class BasketDBBean {
 
 		Map map = new HashMap();
 		map.put("email", email);
-		
+
 		try {
 			return (int) sqlSession.selectOne(namespace + ".getBasketCount", map);
 		} finally {
@@ -70,15 +70,16 @@ public class BasketDBBean {
 	}
 
 	// Basket 등록
-	public void insertBasket(Basket basket)	throws Exception {
+	public void insertBasket(Basket basket) throws Exception {
 
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
-//		int total = basket.getPrice() * basket.getCount();
+		// int total = basket.getPrice() * basket.getCount();
 
 		Map map = new HashMap();
 		map.put("basket", basket);
 		map.put("email", basket.getEmail());
+		map.put("productCategory", basket.getProductCategory());
 		map.put("productCode", basket.getProductCode());
 		map.put("productName", basket.getProductName());
 		map.put("price", basket.getPrice());
@@ -126,6 +127,19 @@ public class BasketDBBean {
 		map.put("id", id);
 
 		sqlSession.update(namespace + ".deleteBasket", map);
+		sqlSession.commit();
+
+		sqlSession.close();
+	}
+
+	// Basket 삭제
+	public void deleteAllBasket(String email) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+
+		Map map = new HashMap();
+		map.put("email", email);
+
+		sqlSession.update(namespace + ".deleteAllBasket", map);
 		sqlSession.commit();
 
 		sqlSession.close();

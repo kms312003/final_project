@@ -27,7 +27,7 @@ public class BasketController extends HttpServlet {
 	BasketDBBean dbPro;
 
 	@ModelAttribute
-	public void addAttributes(@RequestParam(value = "pageNum", defaultValue = "0") int pageNum,
+	public void addAttributes(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
 			HttpServletRequest req) {
 		this.session = req.getSession();
 
@@ -42,7 +42,7 @@ public class BasketController extends HttpServlet {
 
 	// 리스트
 	@RequestMapping("/list")
-	public ModelAndView list() throws Exception {
+	public ModelAndView list(@RequestParam(value = "id", defaultValue = "0") int id) throws Exception {
 
 		String email = (String) session.getAttribute("email");
 
@@ -51,7 +51,7 @@ public class BasketController extends HttpServlet {
 		int currentPage = pageNum;
 		int pageSize = 5;
 
-		int start = (currentPage - 1) * pageSize + 1;
+		int start = (currentPage - 1) * pageSize;
 		int end = currentPage * pageSize;
 
 		BasketDBBean dbPro = BasketDBBean.getInstance();
@@ -79,6 +79,8 @@ public class BasketController extends HttpServlet {
 		System.out.println("number: " + number);
 		System.out.println("basketList: " + basketList);
 
+		mv.addObject("id", id);
+		mv.addObject("email", email);
 		mv.addObject("count", count);
 		mv.addObject("basketList", basketList);
 		mv.addObject("number", number);
@@ -87,24 +89,24 @@ public class BasketController extends HttpServlet {
 		mv.addObject("endPage", endPage);
 		mv.addObject("pageCount", pageCount);
 		mv.addObject("currentPage", currentPage);
-		mv.setViewName("basket/list");
-		
+		mv.setViewName("mainView/basket/list");
+
 		return mv;
 	}
 
 	// 입력 post
 	@RequestMapping("/write")
-	public String write(
-			@RequestParam(value="productName", defaultValue="") String productName,
-			@RequestParam(value="price", defaultValue="0") int price,
-			@RequestParam(value="amount", defaultValue="0") int amount,
-			@RequestParam(value="productCode", defaultValue="") String productCode) throws Exception {
+	public String write(@RequestParam(value = "productName", defaultValue = "") String productName,
+			@RequestParam(value = "price", defaultValue = "0") int price,
+			@RequestParam(value = "amount", defaultValue = "0") int amount,
+			@RequestParam(value = "productCode", defaultValue = "") String productCode) throws Exception {
 
 		String email = (String) session.getAttribute("email");
-		
+
 		int total = price * amount;
 
 		String productNumber = productCode.substring(4, 6);
+		System.out.println("productNumber" + productNumber);
 		String productCategory = "";
 
 		if (productNumber.equals("00")) {
@@ -125,6 +127,8 @@ public class BasketController extends HttpServlet {
 			productCategory = "power";
 		}
 
+		System.out.println("productCategory" + productCategory);
+
 		Basket basket = new Basket();
 		BasketDBBean dbPro = BasketDBBean.getInstance();
 
@@ -143,10 +147,22 @@ public class BasketController extends HttpServlet {
 
 	// 삭제
 	@RequestMapping("/delete")
-	public String delete(@RequestParam(value="id", defaultValue="0") int id) throws Exception {
-		
+	public String delete(@RequestParam(value = "id", defaultValue = "0") int id) throws Exception {
+
 		BasketDBBean dbPro = BasketDBBean.getInstance();
 		dbPro.deleteBasket(id);
+
+		return "redirect:list";
+	}
+
+	// 전체삭제
+	@RequestMapping("/deleteAll")
+	public String deleteAll() throws Exception {
+
+		String email = (String) session.getAttribute("email");
+		
+		BasketDBBean dbPro = BasketDBBean.getInstance();
+		dbPro.deleteAllBasket(email);
 		
 		return "redirect:list";
 	}

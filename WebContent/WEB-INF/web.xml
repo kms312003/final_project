@@ -51,7 +51,12 @@
    
    <!-- 메인 페이지 전체 적용 -->   
       <jsp-property-group>
-        <url-pattern>/view/config/*</url-pattern>
+        <url-pattern>/view/mainView/*</url-pattern>
+        <include-prelude>/header/header.jsp</include-prelude>
+      </jsp-property-group>
+      
+      <jsp-property-group>
+        <url-pattern>/view/board/*</url-pattern>
         <include-prelude>/header/header.jsp</include-prelude>
       </jsp-property-group>
          

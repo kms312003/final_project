@@ -64,6 +64,45 @@ public class RamDBBean {
 		}
 	}
 
+	// Ram 제품리스트 가져오기
+	public List getProductList(int start, int end, String orderby, String sql) throws Exception {
+
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+
+		Map map = new HashMap();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("orderby", orderby);
+		map.put("sql", sql);
+
+		try {
+			return sqlSession.selectList(namespace + ".getProducts", map);
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	// Ram 제품리스트 가져오기
+	public List getSearchProductList(int start, int end, String[] productCompanys, String productName,
+			String productSort) throws Exception {
+
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+
+		Map map = new HashMap();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("productCompanys", productCompanys);
+		map.put("productName", productName);
+		map.put("productSort", productSort);
+
+		System.out.println("map: " + map);
+		try {
+			return sqlSession.selectList(namespace + ".getSearchProducts", map);
+		} finally {
+			sqlSession.close();
+		}
+	}
+
 	// Ram 등록
 	public void insertRam(Ram ram) throws Exception {
 
@@ -84,7 +123,7 @@ public class RamDBBean {
 		Map map = new HashMap();
 		map.put("id", id);
 
-		sqlSession.update(namespace + ".readCount", map);
+		// sqlSession.update(namespace + ".readCount", map);
 		Ram ram = sqlSession.selectOne(namespace + ".getRam", map);
 
 		sqlSession.close();
@@ -126,7 +165,7 @@ public class RamDBBean {
 
 		sqlSession.close();
 	}
-	
+
 	// Ram 디테일 Get
 	public Ram getDetail(int id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();

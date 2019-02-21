@@ -24,6 +24,12 @@ import cpu.Cpu;
 import cpu.CpuDBBean;
 import cpu.Cpu.ProductCompany;
 
+import java.io.IOException;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
 @Controller
 public class CpuController extends HttpServlet {
 
@@ -75,7 +81,7 @@ public class CpuController extends HttpServlet {
 		int start = (currentPage - 1) * pageSize;
 		int end = currentPage * pageSize;
 
-		CpuDBBean dbPro = CpuDBBean.getInstance();
+		dbPro = CpuDBBean.getInstance();
 
 		int count = 0;
 		int number = 0;
@@ -87,7 +93,7 @@ public class CpuController extends HttpServlet {
 
 		System.out.println("orderby:::::::" + orderby);
 		System.out.println("sqlsql:::::::" + sql);
-		
+
 		if (count > 0) {
 			cpuList = dbPro.getProductList(start, end, orderby, sql);
 		}
@@ -101,7 +107,7 @@ public class CpuController extends HttpServlet {
 		}
 
 		System.out.println("cpuList:::" + cpuList);
-		
+
 		mv.addObject("count", count);
 		mv.addObject("cpuList", cpuList);
 		mv.addObject("number", number);
@@ -110,7 +116,7 @@ public class CpuController extends HttpServlet {
 		mv.addObject("endPage", endPage);
 		mv.addObject("pageCount", pageCount);
 		mv.addObject("currentPage", currentPage);
-		mv.setViewName("nohead/productList");
+		mv.setViewName("nohead/cpuList");
 
 		return mv;
 	}
@@ -122,9 +128,6 @@ public class CpuController extends HttpServlet {
 			@RequestParam(value = "socket", defaultValue = "") String socket,
 			@RequestParam(value = "core", defaultValue = "") String core) throws Exception {
 
-		// String[] productCompanys =
-		// request.getParameterValues("productCompany");
-		System.out.println("listPost");
 		String line = ".";
 
 		if (productCompanys != null) {
@@ -142,7 +145,7 @@ public class CpuController extends HttpServlet {
 		int start = (currentPage - 1) * pageSize + 1;
 		int end = currentPage * pageSize;
 
-		CpuDBBean dbPro = CpuDBBean.getInstance();
+		dbPro = CpuDBBean.getInstance();
 
 		int count = 0;
 		int number = 0;
@@ -150,7 +153,7 @@ public class CpuController extends HttpServlet {
 		List cpuList = null;
 		count = dbPro.getCpuCount();
 		number = count - (currentPage - 1) * pageSize;
-		
+
 		if (count > 0) {
 			cpuList = dbPro.getSearchProductList(start, end, productCompanys, brand, socket, core);
 		}
@@ -170,15 +173,15 @@ public class CpuController extends HttpServlet {
 		if (brand != null) {
 			brandSql = " brand like concat('%" + brand + "%')";
 		}
-		
-		if (brand != null) {
+
+		if (socket != null) {
 			socketSql = " and socket like concat('%" + socket + "%')";
 		}
-		
-		if (brand != null) {
+
+		if (core != null) {
 			coreSql = " and core like concat('%" + core + "%')";
 		}
-		
+
 		System.out.println("productCompanys:::::" + productCompanys[0]);
 		System.out.println("productCompany size:::::" + productCompanys.length);
 
@@ -206,11 +209,7 @@ public class CpuController extends HttpServlet {
 			}
 		}
 
-//		String sql = "where " + productCompany + " brand like concat('%" + brand + "%')" + " and socket like concat('%"
-//				+ socket + "%')" + " and core like concat('%" + core + "%')";
-		
 		String sql = "where " + productCompany + brandSql + socketSql + coreSql;
-		System.out.println("sql:::" + sql);
 
 		mv.addObject("sql", sql);
 		mv.addObject("count", count);
@@ -224,15 +223,7 @@ public class CpuController extends HttpServlet {
 		mv.addObject("endPage", endPage);
 		mv.addObject("pageCount", pageCount);
 		mv.addObject("currentPage", currentPage);
-		mv.setViewName("config/cpu/list");
-
-		return mv;
-	}
-
-	// 리스트
-	@RequestMapping("/list")
-	public ModelAndView list() throws Exception {
-		mv.setViewName("cpu/list");
+		mv.setViewName("mainView/cpu/list");
 
 		return mv;
 	}
@@ -243,20 +234,17 @@ public class CpuController extends HttpServlet {
 
 		String no = String.valueOf(id);
 
-		CpuDBBean dbPro = CpuDBBean.getInstance();
+		dbPro = CpuDBBean.getInstance();
 		Cpu cpu = new Cpu();
-		try {
-			cpu = dbPro.getDetail(id);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+
+		cpu = dbPro.getDetail(id);
 
 		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 		System.out.println("productDate: " + cpu.getProductDate());
 		Date productDate_date = cpu.getProductDate();
 		String productDate = transFormat.format(productDate_date);
 
-		mv.addObject("no", no);
+		mv.addObject("id", no);
 		mv.addObject("code", cpu.getCode());
 		mv.addObject("productCode", cpu.getProductCode());
 		mv.addObject("productName", cpu.getProductName());
@@ -272,7 +260,30 @@ public class CpuController extends HttpServlet {
 		mv.addObject("price", cpu.getPrice());
 		mv.addObject("count", cpu.getCount());
 		mv.addObject("filename", cpu.getFilename());
-		mv.setViewName("cpu/detail");
+		mv.setViewName("mainView/cpu/detail");
+
+		// 상세 내용 크롤링
+
+		String url = "http://joon-system.co.kr/shop/product_detail.html?pd_no=" + cpu.getCode();
+		String detailPic1 = "";
+
+		try {
+
+			Document doc;
+			doc = Jsoup.connect(url).get();
+
+			Elements media4 = doc.select("td.gray_6 ");
+
+			for (int i = 0; i < media4.size(); i++) {
+				Element src1 = media4.get(i);
+				String templine = src1.toString();
+				detailPic1 += templine;
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		mv.addObject("detailPic1", detailPic1);
 
 		return mv;
 	}

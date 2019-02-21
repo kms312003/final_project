@@ -14,17 +14,13 @@
      </select>
      
      <insert id="insert" parameterType="hashmap">
-        insert into basket(id, email, productCode, productName, price, count, total) 
-               values(0, #{email},#{productCode},#{productName},#{price},#{count},#{total})
+        insert into basket(id, email, productCategory, productCode, productName, price, count, total) 
+               values(0, #{email},#{productCategory},#{productCode},#{productName},#{price},#{count},#{total})
      </insert>
      
      <select id="getBasket" parameterType="hashmap" resultType="basket">
         select * from basket where id = #{id}
      </select>
-     
-     <update id="readCount" parameterType="hashmap">
-        update basket set readcount = readcount + 1 where id = #{id}
-     </update>
      
      <update id="update" parameterType="hashmap">
         update basket set count=#{count}, #{total} where id=#{id}
@@ -32,5 +28,9 @@
      
      <delete id="deleteBasket" parameterType="hashmap">
         delete from basket where id=#{id}
+     </delete>
+     
+     <delete id="deleteAllBasket" parameterType="hashmap">
+        delete from basket where email=#{email}
      </delete>
   </mapper>

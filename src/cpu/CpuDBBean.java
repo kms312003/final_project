@@ -65,7 +65,7 @@ public class CpuDBBean {
 	}
 
 	// Cpu 제품리스트 가져오기
-	public List getProductList(int start, int end, String orderby) throws Exception {
+	public List getProductList(int start, int end, String orderby, String sql) throws Exception {
 
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
@@ -73,9 +73,32 @@ public class CpuDBBean {
 		map.put("start", start);
 		map.put("end", end);
 		map.put("orderby", orderby);
-		System.out.println("map: " + map);
+		map.put("sql", sql);
+		
 		try {
 			return sqlSession.selectList(namespace + ".getProducts", map);
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	// Cpu 제품리스트 가져오기
+	public List getSearchProductList(int start, int end, String[] productCompanys, String brand, String socket, String core)
+			throws Exception {
+		
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+
+		Map map = new HashMap();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("productCompanys", productCompanys);
+		map.put("brand", brand);
+		map.put("socket", socket);
+		map.put("core", core);
+
+		System.out.println("map: " + map);
+		try {
+			return sqlSession.selectList(namespace + ".getSearchProducts", map);
 		} finally {
 			sqlSession.close();
 		}
@@ -100,7 +123,7 @@ public class CpuDBBean {
 
 		Map map = new HashMap();
 
-		sqlSession.update(namespace + ".readCount", map);
+//		sqlSession.update(namespace + ".readCount", map);
 		Cpu cpu = sqlSession.selectOne(namespace + ".getCpu", map);
 
 		sqlSession.close();

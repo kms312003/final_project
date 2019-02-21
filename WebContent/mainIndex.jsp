@@ -9,6 +9,3 @@
 <% response.sendRedirect(request.getContextPath()+"/cpu/listPost"); %>
 </body>
 </html>
-
-
-

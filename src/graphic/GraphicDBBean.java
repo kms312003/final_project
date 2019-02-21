@@ -64,6 +64,46 @@ public class GraphicDBBean {
 		}
 	}
 
+	// Graphic 제품리스트 가져오기
+	public List getProductList(int start, int end, String orderby, String sql) throws Exception {
+
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+
+		Map map = new HashMap();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("orderby", orderby);
+		map.put("sql", sql);
+
+		try {
+			return sqlSession.selectList(namespace + ".getProducts", map);
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	// Graphic 제품리스트 가져오기
+	public List getSearchProductList(int start, int end, String[] productCompanys, String productName, String chipSetGroup,
+			String interFace) throws Exception {
+
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+
+		Map map = new HashMap();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("productCompanys", productCompanys);
+		map.put("productName", productName);
+		map.put("chipSetGroup", chipSetGroup);
+		map.put("interFace", interFace);
+
+		System.out.println("map: " + map);
+		try {
+			return sqlSession.selectList(namespace + ".getSearchProducts", map);
+		} finally {
+			sqlSession.close();
+		}
+	}
+
 	// Graphic 등록
 	public void insertGraphic(Graphic graphic) throws Exception {
 
@@ -84,7 +124,7 @@ public class GraphicDBBean {
 		Map map = new HashMap();
 		map.put("id", id);
 
-		sqlSession.update(namespace + ".readCount", map);
+		// sqlSession.update(namespace + ".readCount", map);
 		Graphic graphic = sqlSession.selectOne(namespace + ".getGraphic", map);
 
 		sqlSession.close();
@@ -126,7 +166,7 @@ public class GraphicDBBean {
 
 		sqlSession.close();
 	}
-	
+
 	// Graphic 디테일 Get
 	public Graphic getDetail(int id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();

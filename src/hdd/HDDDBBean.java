@@ -63,6 +63,46 @@ public class HDDDBBean {
 		}
 	}
 
+	// HDD 제품리스트 가져오기
+	public List getProductList(int start, int end, String orderby, String sql) throws Exception {
+
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+
+		Map map = new HashMap();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("orderby", orderby);
+		map.put("sql", sql);
+
+		try {
+			return sqlSession.selectList(namespace + ".getProducts", map);
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	// HDD 제품리스트 가져오기
+	public List getSearchProductList(int start, int end, String[] productCompanys, String productName, String interFace,
+			String diskSize) throws Exception {
+
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+
+		Map map = new HashMap();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("productCompanys", productCompanys);
+		map.put("productName", productName);
+		map.put("interFace", interFace);
+		map.put("diskSize", diskSize);
+
+		System.out.println("map: " + map);
+		try {
+			return sqlSession.selectList(namespace + ".getSearchProducts", map);
+		} finally {
+			sqlSession.close();
+		}
+	}
+
 	// HDD 등록
 	public void insertHDD(HDD hdd) throws Exception {
 
@@ -83,7 +123,7 @@ public class HDDDBBean {
 		Map map = new HashMap();
 		map.put("id", id);
 
-		sqlSession.update(namespace + ".readCount", map);
+		// sqlSession.update(namespace + ".readCount", map);
 		HDD hdd = sqlSession.selectOne(namespace + ".getHDD", map);
 
 		sqlSession.close();
@@ -125,7 +165,7 @@ public class HDDDBBean {
 
 		sqlSession.close();
 	}
-	
+
 	// HDD 디테일 Get
 	public HDD getDetail(int id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();

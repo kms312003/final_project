@@ -17,22 +17,44 @@
      <select id = "getSearchProducts" parameterType="hashmap" resultType="cpu">
         select * from cpu
      <where>
+     <if test="productCompanys != null">
+     <choose>
+     	<when test="productCompanys.length == 0">
+     	</when>
+     	<when test="productCompanys.length == 1">
+     		productCompany = #{productCompanys[0]} and
+     	</when>
+     	<when test="productCompanys.length == 2">
+     		(productCompany = #{productCompanys[0]} or productCompany = #{productCompanys[1]}) and 
+     	</when>
+     	<when test="productCompanys.length == 3">
+     		(productCompany = #{productCompanys[0]} or productCompany = #{productCompanys[1]} or productCompany = #{productCompanys[2]}) and
+     	</when>
+     	<when test="productCompanys.length == 4">
+     		(productCompany = #{productCompanys[0]} or productCompany = #{productCompanys[1]} or productCompany = #{productCompanys[2]} or productCompany = #{productCompanys[3]}) and
+     	</when>
+     	<when test="productCompanys.length == 5">
+     		(productCompany = #{productCompanys[0]} or productCompany = #{productCompanys[1]} or productCompany = #{productCompanys[2]} or productCompany = #{productCompanys[3]} or productCompany = #{productCompanys[4]}) and 
+     	</when>
+     </choose>
+     </if>
      <if test="brand != null">
-     	brand like #{brand}
+     	brand like CONCAT('%', #{brand}, '%')
      </if>
      <if test="socket != null">
-     	and socket like #{socket}
+     	and socket like CONCAT('%', #{socket}, '%')
      </if>
      <if test="core != null">
-     	and core like #{core}
+     	and core like CONCAT('%', #{core}, '%')
      </if>
      </where> 
-     	order by ${orderby} limit #{start}, #{end}
+     	limit #{start}, #{end}
      </select>
      
      <!-- 제품 순서별 리스트 -->
      <select id = "getProducts" parameterType="hashmap" resultType="cpu">
-        select * from cpu order by ${orderby} limit #{start}, #{end}
+        select * from cpu ${sql} order by ${orderby} limit #{start}, #{end}
+        <!-- <![CDATA[ ]]> -->
      </select>
      
      <insert id="insert" parameterType="cpu">

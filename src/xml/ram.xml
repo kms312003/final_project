@@ -13,6 +13,40 @@
         select * from ram limit #{start}, #{end} 
      </select>
      
+     <!-- 제품 조건 검색 -->
+     <select id = "getSearchProducts" parameterType="hashmap" resultType="ram">
+        select * from ram
+     <where>
+     <if test="productCompanys != null">
+     <choose>
+     	<when test="productCompanys.length == 0">
+     	</when>
+     	<when test="productCompanys.length == 1">
+     		productCompany = #{productCompanys[0]} and
+     	</when>
+     	<when test="productCompanys.length == 2">
+     		(productCompany = #{productCompanys[0]} or productCompany = #{productCompanys[1]}) and 
+     	</when>
+     	<when test="productCompanys.length == 3">
+     		(productCompany = #{productCompanys[0]} or productCompany = #{productCompanys[1]} or productCompany = #{productCompanys[2]}) and
+     	</when>
+     </choose>
+     </if>
+     <if test="productName != null">
+     	productName like CONCAT('%', #{productName}, '%')
+     </if>
+     <if test="productSort != null">
+     	and productSort like CONCAT('%', #{productSort}, '%')
+     </if>
+     </where> 
+     	limit #{start}, #{end}
+     </select>
+     
+     <!-- 제품 순서별 리스트 -->
+     <select id = "getProducts" parameterType="hashmap" resultType="ram">
+        select * from ram ${sql} order by ${orderby} limit #{start}, #{end}
+     </select>
+     
      <insert id="insert" parameterType="ram">
         insert into ram(id, code, productCode, productName, productCompany, productSort, memoryCapacity,
                clock, voltage, productDate, regDate, price, count, filename, filesize) 
