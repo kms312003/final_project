@@ -186,7 +186,7 @@ public class MainController extends HttpServlet {
 		mv.addObject("countCpu", countCpu);
 		mv.addObject("cpuList", cpuList);
 		
-		mv.setViewName("main/main");
+		mv.setViewName("mainView/main/main");
 
 
 		return mv;
@@ -348,7 +348,7 @@ public class MainController extends HttpServlet {
 		mv.addObject("countSSD", countSSD);
 		mv.addObject("computerList", computerList);
 		mv.addObject("countComputer", countComputer);
-		mv.setViewName("main/searchList");
+		mv.setViewName("mainView/main/searchList");
 
 		return mv;
 	}
@@ -356,7 +356,7 @@ public class MainController extends HttpServlet {
 	//main
 	@RequestMapping("/diy")
 	public ModelAndView diy() throws Exception {
-		mv.setViewName("main/diy");
+		mv.setViewName("mainView/main/diy");
 		
 		return mv;
 	}
