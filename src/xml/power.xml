@@ -71,4 +71,14 @@
      <delete id="deletePower" parameterType="hashmap">
         delete from power where id=#{id}
      </delete>
+     
+     <!-- 제품 검색창 검색 -->
+     <select id = "getSearchedPowers" parameterType = "hashmap" resultType = "power">
+     	select * from power
+     <where>
+     	<if test="keyword != null">
+     		productName like CONCAT('%', #{keyword}, '%')
+     	</if>
+     </where>
+     </select>
   </mapper>

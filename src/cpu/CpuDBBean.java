@@ -178,4 +178,19 @@ public class CpuDBBean {
 
 		sqlSession.close();
 	}
+	
+	// 검색된 Cpu 리스트 가져오기
+	public List getSearchedCpuList(String keyword) throws Exception {
+
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+
+		Map map = new HashMap();
+		map.put("keyword", keyword);
+
+		try {
+			return sqlSession.selectList(namespace + ".getSearchedCpus", map);
+		} finally {
+			sqlSession.close();
+		}
+	}
 }

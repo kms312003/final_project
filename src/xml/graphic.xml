@@ -73,4 +73,14 @@
      <delete id="deleteGraphic" parameterType="hashmap">
         delete from graphic where id=#{id}
      </delete>
+     
+     <!-- 제품 검색창 검색 -->
+     <select id = "getSearchedGraphics" parameterType = "hashmap" resultType = "graphic">
+     	select * from graphic
+     <where>
+     	<if test="keyword != null">
+     		productName like CONCAT('%', #{keyword}, '%')
+     	</if>
+     </where>
+     </select>
   </mapper>

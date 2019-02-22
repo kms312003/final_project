@@ -179,4 +179,19 @@ public class GraphicDBBean {
 		sqlSession.close();
 		return graphic;
 	}
+	
+	// 검색된 Graphic 리스트 가져오기
+	public List getSearchedGraphicList(String keyword) throws Exception {
+
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+
+		Map map = new HashMap();
+		map.put("keyword", keyword);
+
+		try {
+			return sqlSession.selectList(namespace + ".getSearchedGraphics", map);
+		} finally {
+			sqlSession.close();
+		}
+	}
 }

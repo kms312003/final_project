@@ -178,4 +178,19 @@ public class RamDBBean {
 		sqlSession.close();
 		return ram;
 	}
+	
+	// 검색된 Ram 리스트 가져오기
+	public List getSearchedRamList(String keyword) throws Exception {
+
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+
+		Map map = new HashMap();
+		map.put("keyword", keyword);
+		
+		try {
+			return sqlSession.selectList(namespace + ".getSearchedRams", map);
+		} finally {
+			sqlSession.close();
+		}
+	}
 }

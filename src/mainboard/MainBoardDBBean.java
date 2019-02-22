@@ -179,4 +179,19 @@ public class MainBoardDBBean {
 		sqlSession.close();
 		return mainboard;
 	}
+	
+	// 검색된 MainBoard 리스트 가져오기
+	public List getSearchedMainBoardList(String keyword) throws Exception {
+
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+
+		Map map = new HashMap();
+		map.put("keyword", keyword);
+
+		try {
+			return sqlSession.selectList(namespace + ".getSearchedMainBoards", map);
+		} finally {
+			sqlSession.close();
+		}
+	}
 }

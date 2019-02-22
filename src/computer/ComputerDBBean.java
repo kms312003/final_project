@@ -212,4 +212,19 @@ public class ComputerDBBean {
 
 		sqlSession.close();
 	}
+	
+	// 검색된 Computer 리스트 가져오기
+	public List getSearchedComputerList(String keyword) throws Exception {
+
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+
+		Map map = new HashMap();
+		map.put("keyword", keyword);
+
+		try {
+			return sqlSession.selectList(namespace + ".getSearchedComputers", map);
+		} finally {
+			sqlSession.close();
+		}
+	}
 }

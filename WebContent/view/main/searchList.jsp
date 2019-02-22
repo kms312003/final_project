@@ -12,7 +12,7 @@
 		<!-- Logo cpu -->
 		<div class="col-lg-2 col-sm-3 col-3 order-1">
 			<div class="logo_container">
-				<div class="logo_strapline"><a href="<%= request.getContextPath() %>/main/main">CPU</a></div>
+				<div class="logo_strapline"><a href="<%= request.getContextPath() %>/main/main">Result of CPU</a></div>
 			</div>
 		</div>
 		
@@ -22,7 +22,7 @@
 		<!-- 리스트 목록 보기 -->
 		<div class="row">
 			<c:if test="${countCpu == 0}">
-				<div style="border: 1px solid #f5f5f5; text-align:center;">등록된 제품이 없습니다.</div>
+				<div style="border: 1px solid #f5f5f5; text-align:center;">검색된 제품이 없습니다.</div>
 			</c:if>
 
 			<c:if test="${countCpu != 0}">
@@ -59,70 +59,21 @@
 	
 	<br/>
 	
-		<!-- Logo mainboard -->
+
+		<!-- Logo graphic -->
 		<div class="col-lg-2 col-sm-3 col-3 order-1">
 			<div class="logo_container">
-				<div class="logo_strapline"><a href="<%= request.getContextPath() %>/main/main">MAIN BOARD</a></div>
+				<div class="logo_strapline"><a href="<%= request.getContextPath() %>/main/main">Result of GRAPHIC</a></div>
 			</div>
-		</div>
-	
-		<!-- mainboard list -->
-		<div class="container">
-	
-		<!-- 리스트 목록 보기 -->
-		<div class="row">
-			<c:if test="${countMainBoard == 0}">
-				<div style="border: 1px solid #f5f5f5; text-align:center;">등록된 제품이 없습니다.</div>
-			</c:if>
-
-			<c:if test="${countMainBoard != 0}">
-				<c:forEach var="mainboard" items="${mainboardList}">
-					<div class="col-sm-3" style="padding:20px; border:solid 1px lightgray;">
-						<div class="advert_content">
-							<div class="panel-header">
-								<a href=""><img src="<%=request.getContextPath()%>/fileSave/${mainboard.filename}" class="img-responsive" style="width: 100%" alt="Image"></a>
-							</div>
-							<div class="" style="text-align: center;">${mainboard.productName}</div>
-							<br/>
-							<div class="">${mainboard.price} 원</div>
-							<br/>
-							<div class="center">
-								<button	type="button" class="btn btn-primary" onclick="location.href='<%=request.getContextPath()%>/'">
-									장바구니
-								</button>
-								<button	type="button" class="btn btn-primary" onclick="location.href='<%=request.getContextPath()%>/'">
-									관심상품
-								</button>
-								<button	type="button" class="btn btn-primary" onclick="location.href='<%=request.getContextPath()%>/'">
-									결제하기
-								</button>
-							</div>
-						</div>
-					</div>
-				</c:forEach>
-			</c:if>
 		</div>
 		
-	</div>
-	<!-- mainboard list 끝-->
-	
-	
-	<br/>
-	
-		<!-- Logo graphic card -->
-		<div class="col-lg-2 col-sm-3 col-3 order-1">
-			<div class="logo_container">
-				<div class="logo_strapline"><a href="<%= request.getContextPath() %>/main/main">GRAPHIC CARD</a></div>
-			</div>
-		</div>
-	
 		<!-- graphic list -->
 		<div class="container">
 	
 		<!-- 리스트 목록 보기 -->
 		<div class="row">
 			<c:if test="${countGraphic == 0}">
-				<div style="border: 1px solid #f5f5f5; text-align:center;">등록된 제품이 없습니다.</div>
+				<div style="border: 1px solid #f5f5f5; text-align:center;">검색된 제품이 없습니다.</div>
 			</c:if>
 
 			<c:if test="${countGraphic != 0}">
@@ -154,23 +105,25 @@
 		</div>
 		
 	</div>
+	
 	<!-- graphic list 끝-->
 	
 	<br/>
 	
-		<!-- Logo HDD -->
+	<!-- Logo hdd -->
 		<div class="col-lg-2 col-sm-3 col-3 order-1">
 			<div class="logo_container">
-				<div class="logo_strapline"><a href="<%= request.getContextPath() %>/main/main">HARD DISC</a></div>
+				<div class="logo_strapline"><a href="<%= request.getContextPath() %>/main/main">Result of HDD</a></div>
 			</div>
 		</div>
-	
+		
 		<!-- hdd list -->
 		<div class="container">
+	
 		<!-- 리스트 목록 보기 -->
 		<div class="row">
 			<c:if test="${countHDD == 0}">
-				<div style="border: 1px solid #f5f5f5; text-align:center;">등록된 제품이 없습니다.</div>
+				<div style="border: 1px solid #f5f5f5; text-align:center;">검색된 제품이 없습니다.</div>
 			</c:if>
 
 			<c:if test="${countHDD != 0}">
@@ -201,15 +154,76 @@
 			</c:if>
 		</div>
 		
+	</div>
+	
+	<!-- hdd list 끝-->
+	
+	<br/>
+	
+	<!-- Logo mainboard -->
+		<div class="col-lg-2 col-sm-3 col-3 order-1">
+			<div class="logo_container">
+				<div class="logo_strapline"><a href="<%= request.getContextPath() %>/main/main">Result of MAINBOARD</a></div>
+			</div>
 		</div>
-		<!-- hdd list 끝-->
+		
+		<!-- mainboard list -->
+		<div class="container">
+	
+		<!-- 리스트 목록 보기 -->
+		<div class="row">
+			<c:if test="${countMainBoard == 0}">
+				<div style="border: 1px solid #f5f5f5; text-align:center;">검색된 제품이 없습니다.</div>
+			</c:if>
+
+			<c:if test="${countMainBoard != 0}">
+				<c:forEach var="mainboard" items="${mainboardList}">
+					<div class="col-sm-3" style="padding:20px; border:solid 1px lightgray;">
+						<div class="advert_content">
+							<div class="panel-header">
+								<a href=""><img src="<%=request.getContextPath()%>/fileSave/${mainboard.filename}" class="img-responsive" style="width: 100%" alt="Image"></a>
+							</div>
+							<div class="" style="text-align: center;">${mainboard.productName}</div>
+							<br/>
+							<div class="">${mainboard.price} 원</div>
+							<br/>
+							<div class="center">
+								<button	type="button" class="btn btn-primary" onclick="location.href='<%=request.getContextPath()%>/'">
+									장바구니
+								</button>
+								<button	type="button" class="btn btn-primary" onclick="location.href='<%=request.getContextPath()%>/'">
+									관심상품
+								</button>
+								<button	type="button" class="btn btn-primary" onclick="location.href='<%=request.getContextPath()%>/'">
+									결제하기
+								</button>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
+			</c:if>
+		</div>
+		
+	</div>
+	
+	<!-- mainboard list 끝-->
+	
+	<br/>
+	
+	<!-- Logo power -->
+		<div class="col-lg-2 col-sm-3 col-3 order-1">
+			<div class="logo_container">
+				<div class="logo_strapline"><a href="<%= request.getContextPath() %>/main/main">Result of POWER</a></div>
+			</div>
+		</div>
 		
 		<!-- power list -->
 		<div class="container">
+	
 		<!-- 리스트 목록 보기 -->
 		<div class="row">
 			<c:if test="${countPower == 0}">
-				<div style="border: 1px solid #f5f5f5; text-align:center;">등록된 제품이 없습니다.</div>
+				<div style="border: 1px solid #f5f5f5; text-align:center;">검색된 제품이 없습니다.</div>
 			</c:if>
 
 			<c:if test="${countPower != 0}">
@@ -240,54 +254,26 @@
 			</c:if>
 		</div>
 		
+	</div>
+	
+	<!-- power list 끝-->
+	
+	<br/>
+	
+	<!-- Logo ram -->
+		<div class="col-lg-2 col-sm-3 col-3 order-1">
+			<div class="logo_container">
+				<div class="logo_strapline"><a href="<%= request.getContextPath() %>/main/main">Result of RAM</a></div>
+			</div>
 		</div>
-		<!-- power list 끝-->
-		
-		<!-- ssd list -->
-		<div class="container">
-		<!-- 리스트 목록 보기 -->
-		<div class="row">
-			<c:if test="${countSSD == 0}">
-				<div style="border: 1px solid #f5f5f5; text-align:center;">등록된 제품이 없습니다.</div>
-			</c:if>
-
-			<c:if test="${countSSD != 0}">
-				<c:forEach var="ssd" items="${ssdList}">
-					<div class="col-sm-3" style="padding:20px; border:solid 1px lightgray;">
-						<div class="advert_content">
-							<div class="panel-header">
-								<a href=""><img src="<%=request.getContextPath()%>/fileSave/${ssd.filename}" class="img-responsive" style="width: 100%" alt="Image"></a>
-							</div>
-							<div class="" style="text-align: center;">${ssd.productName}</div>
-							<br/>
-							<div class="">${ssd.price} 원</div>
-							<br/>
-							<div class="center">
-								<button	type="button" class="btn btn-primary" onclick="location.href='<%=request.getContextPath()%>/'">
-									장바구니
-								</button>
-								<button	type="button" class="btn btn-primary" onclick="location.href='<%=request.getContextPath()%>/'">
-									관심상품
-								</button>
-								<button	type="button" class="btn btn-primary" onclick="location.href='<%=request.getContextPath()%>/'">
-									결제하기
-								</button>
-							</div>
-						</div>
-					</div>
-				</c:forEach>
-			</c:if>
-		</div>
-		
-		</div>
-		<!-- ssd list 끝-->
 		
 		<!-- ram list -->
 		<div class="container">
+
 		<!-- 리스트 목록 보기 -->
 		<div class="row">
 			<c:if test="${countRam == 0}">
-				<div style="border: 1px solid #f5f5f5; text-align:center;">등록된 제품이 없습니다.</div>
+				<div style="border: 1px solid #f5f5f5; text-align:center;">검색된 제품이 없습니다.</div>
 			</c:if>
 
 			<c:if test="${countRam != 0}">
@@ -318,11 +304,111 @@
 			</c:if>
 		</div>
 		
+	</div>
+	
+	<!-- ram list 끝-->
+	
+	<br/>
+	
+	<!-- Logo ssd -->
+		<div class="col-lg-2 col-sm-3 col-3 order-1">
+			<div class="logo_container">
+				<div class="logo_strapline"><a href="<%= request.getContextPath() %>/main/main">Result of SSD</a></div>
+			</div>
 		</div>
-		<!-- ram list 끝-->
 		
+		<!-- ssd list -->
+		<div class="container">
+	
+		<!-- 리스트 목록 보기 -->
+		<div class="row">
+			<c:if test="${countSSD == 0}">
+				<div style="border: 1px solid #f5f5f5; text-align:center;">검색된 제품이 없습니다.</div>
+			</c:if>
+
+			<c:if test="${countSSD != 0}">
+				<c:forEach var="ssd" items="${ssdList}">
+					<div class="col-sm-3" style="padding:20px; border:solid 1px lightgray;">
+						<div class="advert_content">
+							<div class="panel-header">
+								<a href=""><img src="<%=request.getContextPath()%>/fileSave/${ssd.filename}" class="img-responsive" style="width: 100%" alt="Image"></a>
+							</div>
+							<div class="" style="text-align: center;">${ssd.productName}</div>
+							<br/>
+							<div class="">${ssd.price} 원</div>
+							<br/>
+							<div class="center">
+								<button	type="button" class="btn btn-primary" onclick="location.href='<%=request.getContextPath()%>/'">
+									장바구니
+								</button>
+								<button	type="button" class="btn btn-primary" onclick="location.href='<%=request.getContextPath()%>/'">
+									관심상품
+								</button>
+								<button	type="button" class="btn btn-primary" onclick="location.href='<%=request.getContextPath()%>/'">
+									결제하기
+								</button>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
+			</c:if>
+		</div>
 		
+	</div>
+	
+	<!-- ssd list 끝-->
+	
+	<br/>
+	
+	<!-- Logo computer -->
+		<div class="col-lg-2 col-sm-3 col-3 order-1">
+			<div class="logo_container">
+				<div class="logo_strapline"><a href="<%= request.getContextPath() %>/main/main">Result of COMPUTER</a></div>
+			</div>
+		</div>
 		
+		<!-- computer list -->
+		<div class="container">
+	
+		<!-- 리스트 목록 보기 -->
+		<div class="row">
+			<c:if test="${countComputer == 0}">
+				<div style="border: 1px solid #f5f5f5; text-align:center;">검색된 제품이 없습니다.</div>
+			</c:if>
+
+			<c:if test="${countComputer != 0}">
+				<c:forEach var="computer" items="${computerList}">
+					<div class="col-sm-3" style="padding:20px; border:solid 1px lightgray;">
+						<div class="advert_content">
+							<div class="panel-header">
+								<a href=""><img src="<%=request.getContextPath()%>/fileSave/${computer.filename}" class="img-responsive" style="width: 100%" alt="Image"></a>
+							</div>
+							<div class="" style="text-align: center;">${computer.productName}</div>
+							<br/>
+							<div class="">${computer.price} 원</div>
+							<br/>
+							<div class="center">
+								<button	type="button" class="btn btn-primary" onclick="location.href='<%=request.getContextPath()%>/'">
+									장바구니
+								</button>
+								<button	type="button" class="btn btn-primary" onclick="location.href='<%=request.getContextPath()%>/'">
+									관심상품
+								</button>
+								<button	type="button" class="btn btn-primary" onclick="location.href='<%=request.getContextPath()%>/'">
+									결제하기
+								</button>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
+			</c:if>
+		</div>
+		
+	</div>
+	
+	<!-- computer list 끝-->
+	
+	<br/>
 	</div>
 
 </body>

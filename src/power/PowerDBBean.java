@@ -177,4 +177,19 @@ public class PowerDBBean {
 		sqlSession.close();
 		return power;
 	}
+	
+	// 검색된 Power 리스트 가져오기
+	public List getSearchedPowerList(String keyword) throws Exception {
+
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+
+		Map map = new HashMap();
+		map.put("keyword", keyword);
+
+		try {
+			return sqlSession.selectList(namespace + ".getSearchedPowers", map);
+		} finally {
+			sqlSession.close();
+		}
+	}
 }

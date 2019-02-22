@@ -80,7 +80,7 @@
 					<!-- Logo -->
 					<div class="col-lg-2 col-sm-3 col-3 order-1">
 						<div class="logo_container">
-							<div class="logo"><a href="#">TeamPro</a></div>
+							<div class="logo"><a href="<%= request.getContextPath() %>/main/main">TeamPro</a></div>
 						</div>
 					</div>
 
@@ -89,7 +89,7 @@
 						<div class="header_search">
 							<div class="header_search_content">
 								<div class="header_search_form_container">
-									<form action="#" class="header_search_form clearfix">
+									<form action="<%= request.getContextPath() %>/main/search" class="header_search_form clearfix">
 										<input type="search" required="required" class="header_search_input" placeholder="Search for products">
 										
 										<button type="submit" class="header_search_button trans_300" value="Submit"><img src="<%=request.getContextPath() %>/header/images/search.png" alt=""></button>
@@ -141,7 +141,7 @@
 
 							<div class="cat_menu_container">
 								<div class="cat_menu_title d-flex flex-row align-items-center justify-content-start">
-									<div class="cat_menu_text">DIY PC</div>
+									<div class="cat_menu_text"><a href="<%= request.getContextPath() %>/main/diy">DIY PC</a></div>
 								</div>
 							</div>
 
