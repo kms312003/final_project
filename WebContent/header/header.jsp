@@ -141,7 +141,7 @@
 
 							<div class="cat_menu_container">
 								<div class="cat_menu_title d-flex flex-row align-items-center justify-content-start">
-									<div class="cat_menu_text"><a href="<%= request.getContextPath() %>/main/diy">DIY PC</a></div>
+									<div class="cat_menu_text"><a href="<%= request.getContextPath() %>/main/diy"><font color="white">DIY PC</font></a></div>
 								</div>
 							</div>
 
