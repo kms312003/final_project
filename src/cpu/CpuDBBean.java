@@ -123,9 +123,8 @@ public class CpuDBBean {
 
 		Map map = new HashMap();
 
-//		sqlSession.update(namespace + ".readCount", map);
 		Cpu cpu = sqlSession.selectOne(namespace + ".getCpu", map);
-
+		
 		sqlSession.close();
 		return cpu;
 	}
