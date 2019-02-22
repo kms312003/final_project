@@ -179,4 +179,19 @@ public class SSDDBBean {
 		sqlSession.close();
 		return ssd;
 	}
+	
+	// 검색된 SSD 리스트 가져오기
+	public List getSearchedSSDList(String keyword) throws Exception {
+
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+
+		Map map = new HashMap();
+		map.put("keyword", keyword);
+
+		try {
+			return sqlSession.selectList(namespace + ".getSearchedSSDs", map);
+		} finally {
+			sqlSession.close();
+		}
+	}
 }

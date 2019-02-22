@@ -63,6 +63,14 @@ public class UserController {
 		return mv;
 		
 	}
+	//로그아웃
+		@RequestMapping(value="logout")
+		public ModelAndView logout(HttpServletRequest request) throws Exception{
+			HttpSession session = request.getSession();
+			session.invalidate();
+			mv.setViewName("user/logout");
+			return mv;
+		}
 	//5.유저 정보 화면
 	@RequestMapping(value="userInfo")
 	public String userInfoForm(HttpServletRequest request) throws Exception{

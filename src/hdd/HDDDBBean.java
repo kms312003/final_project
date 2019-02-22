@@ -178,4 +178,19 @@ public class HDDDBBean {
 		sqlSession.close();
 		return hdd;
 	}
+	
+	// 검색된 HDD 리스트 가져오기
+	public List getSearchedHDDList(String keyword) throws Exception {
+
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+
+		Map map = new HashMap();
+		map.put("keyword", keyword);
+
+		try {
+			return sqlSession.selectList(namespace + ".getSearchedHDDs", map);
+		} finally {
+			sqlSession.close();
+		}
+	}
 }

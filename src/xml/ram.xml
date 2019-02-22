@@ -70,4 +70,14 @@
      <delete id="deleteRam" parameterType="hashmap">
         delete from ram where id=#{id}
      </delete>
+     
+     <!-- 제품 검색창 검색 -->
+     <select id = "getSearchedRams" parameterType = "hashmap" resultType = "ram">
+     	select * from ram
+     <where>
+     	<if test="keyword != null">
+     		productName like CONCAT('%', #{keyword}, '%')
+     	</if>
+     </where>
+     </select>
   </mapper>

@@ -3,4 +3,4 @@
 <script>
 	alert("유저가 삭제 되었습니다.");
 </script>
-<meta http-equiv="Refresh" content="0;url=<%= request.getContextPath() %>/admin/user/list">
+<meta http-equiv="Refresh" content="0;url=<%= request.getContextPath() %>/adminuser/list">

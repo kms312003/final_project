@@ -82,7 +82,6 @@ public class UserDBBean {
 		map.put("email", email);
 	
 		User user = sqlSession.selectOne(namespace + ".getUserEmail", map);
-		System.out.println("method user:"+user);
 		sqlSession.close();
 		return user;
 	}

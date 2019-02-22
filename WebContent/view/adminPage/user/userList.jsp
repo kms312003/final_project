@@ -49,7 +49,7 @@
       <div class="w3-container">
       	<div style="text-align:right;">
 			<span class="w3-left"> (전체글 : ${ count }) </span>
-			<span class="w3-right"><input type="button" class="btn btn-default" value="Create" onclick="window.location='<%= request.getContextPath() %>/admin/user/write'"></span>
+			<span class="w3-right"><input type="button" class="btn btn-default" value="Create" onclick="window.location='<%= request.getContextPath() %>/adminuser/write'"></span>
 		</div>
 
 		<table class="table table-bordered table-hover" width="1000">
@@ -95,7 +95,7 @@
 					</td>
 					<td align="center" width="150">${ regDate }</td>
 					<td align="center" width="50">
-			        	<a href="<%= request.getContextPath() %>/admin/user/update?id=${ user.id }" class="btn btn-sm btn-default" data-toggle="tooltip" data-placement="top" title="상세보기 및 수정">
+			        	<a href="<%= request.getContextPath() %>/adminuser/update?id=${ user.id }" class="btn btn-sm btn-default" data-toggle="tooltip" data-placement="top" title="상세보기 및 수정">
 			            	<em class="fa fa-pencil"></em>
 			        	</a>
 					</td>
@@ -106,13 +106,13 @@
 
 		<div class="w3-center">
 			<c:if test="${startPage > bottomLine }">
-				<a href="<%= request.getContextPath() %>/admin/user/list?pageNum=${  startPage - bottomLine }">[이전]</a>
+				<a href="<%= request.getContextPath() %>/adminuser/list?pageNum=${  startPage - bottomLine }">[이전]</a>
 			</c:if>
 		
 			<ul class="pagination">
 			<c:forEach var="i" begin="${startPage}" end="${endPage}">
 				<li>
-					<a href="<%= request.getContextPath() %>/admin/user/list?pageNum=${ i }">
+					<a href="<%= request.getContextPath() %>/adminuser/list?pageNum=${ i }">
 						<c:if test="${i == currentPage }">
 							<font color="blue">${i}</font>
 						</c:if>
@@ -125,7 +125,7 @@
 			</ul>
 		
 			<c:if test="${endPage < pageCount }">
-				<a href="<%= request.getContextPath() %>/admin/user/list?pageNum=${ startPage + bottomLine }">[다음]</a>
+				<a href="<%= request.getContextPath() %>/adminuser/list?pageNum=${ startPage + bottomLine }">[다음]</a>
 			</c:if>
 		</div>
 
