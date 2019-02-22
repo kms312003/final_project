@@ -61,6 +61,10 @@
 			alert("생년월일을 입력해주세요.");
 			return false;
 		}
+		if(!form.phoneNum.value){
+			alert("전화번호를 입력해주세요.");
+			return false;
+		}
 		return true;
 	}
 	
@@ -134,7 +138,7 @@
 <body>   
     <div class="col-sm-9 text-left"> 
     <center>
-	<form action="<%= request.getContextPath() %>/admin/user/update" enctype="multipart/form-data" method="post" name="updateform" onsubmit="return checkboard()">
+	<form action="<%= request.getContextPath() %>/adminuser/updatePro" enctype="multipart/form-data" method="post" name="updateform" onsubmit="return checkboard()">
 	<input type="hidden" name="id" value="${ no }">
 		<div class="w3-container">
 		<h2>User 수정</h2>	
@@ -164,7 +168,11 @@
 				</tr>
 				<tr>
 					<td>생년월일</td>
-					<td><input type="text" name="birth" size="50" maxlength="6" value="${user.birth}" placeholder="생년월일"> 개</td>
+					<td><input type="text" name="birth" size="50" maxlength="6" value="${user.birth}" placeholder="생년월일"> </td>
+				</tr>
+				<tr>
+					<td>전화번호</td>
+					<td><input type="text" name="phoneNum" size="50" maxlength="6" value="${user.phoneNum}" placeholder="전화번호"> </td>
 				</tr>
 				<tr>
 					<td>직업</td>
@@ -202,7 +210,7 @@
 					<button type="button" class="btn btn-default" data-toggle="modal" data-target="#userModal">
 					  Delete
 					</button>
-					<input type="button" class="btn btn-default" value="List" onclick="window.location='<%= request.getContextPath() %>/admin/user/list'">
+					<input type="button" class="btn btn-default" value="List" onclick="window.location='<%= request.getContextPath() %>/adminuser/list'">
 					</td>
 				</tr>
 				</center>
@@ -231,7 +239,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" onclick="window.location='<%= request.getContextPath() %>/admin/user/delete?id=${ no }'">Delete</button>
+        <button type="button" class="btn btn-primary" onclick="window.location='<%= request.getContextPath() %>/adminuser/delete?id=${ no }'">Delete</button>
       </div>
     </div>
   </div>
