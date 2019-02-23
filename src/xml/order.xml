@@ -9,13 +9,13 @@
         select ifnull(count(*),0) from order where email = #{email}
      </select>
      
-     <select id = "getOrders" parameterType="hashmap" resultType="basket">
+     <select id = "getOrders" parameterType="hashmap" resultType="order">
         select * from order where email = #{email} limit #{start}, #{end}
      </select>
      
-     <insert id="insert" parameterType="hashmap">
-        insert into order(id, email, productCode, productName, price, count, total) 
-               values(0, #{email},#{productCode},#{productName},#{price},#{count},#{total})
+     <insert id="insertOrder" parameterType="order">
+     	insert into order(id, productCategory, email, productCode, productName, orderDate, price, orderstatus)
+     		values(0, #{productCategory}, #{email}, #{productCode}, #{productName}, curdate(), #{price}, #{status})
      </insert>
      
      <select id="getOrder" parameterType="hashmap" resultType="order">

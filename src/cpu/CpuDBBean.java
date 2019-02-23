@@ -122,7 +122,8 @@ public class CpuDBBean {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
 		Map map = new HashMap();
-
+		map.put("id", id);
+		
 		Cpu cpu = sqlSession.selectOne(namespace + ".getCpu", map);
 		
 		sqlSession.close();

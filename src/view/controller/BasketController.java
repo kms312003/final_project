@@ -42,10 +42,15 @@ public class BasketController extends HttpServlet {
 
 	// 리스트
 	@RequestMapping("/list")
-	public ModelAndView list(@RequestParam(value = "id", defaultValue = "0") int id) throws Exception {
+	public ModelAndView list(
+			@RequestParam(value = "id", defaultValue = "0") int id,
+			@RequestParam(value = "count", defaultValue = "1") int productCount,
+			@RequestParam(value = "price", defaultValue = "0") int price) throws Exception {
 
 		String email = (String) session.getAttribute("email");
 
+		int total = productCount*price;
+		
 		// 세션 유저 아이디
 		int pageNum = (int) session.getAttribute("pageNum");
 		int currentPage = pageNum;
@@ -81,6 +86,8 @@ public class BasketController extends HttpServlet {
 
 		mv.addObject("id", id);
 		mv.addObject("email", email);
+		mv.addObject("count", productCount);
+		mv.addObject("total", total);
 		mv.addObject("count", count);
 		mv.addObject("basketList", basketList);
 		mv.addObject("number", number);
@@ -98,7 +105,7 @@ public class BasketController extends HttpServlet {
 	@RequestMapping("/write")
 	public String write(@RequestParam(value = "productName", defaultValue = "") String productName,
 			@RequestParam(value = "price", defaultValue = "0") int price,
-			@RequestParam(value = "amount", defaultValue = "0") int amount,
+			@RequestParam(value = "count", defaultValue = "0") int amount,
 			@RequestParam(value = "productCode", defaultValue = "") String productCode) throws Exception {
 
 		String email = (String) session.getAttribute("email");

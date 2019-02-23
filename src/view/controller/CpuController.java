@@ -76,7 +76,7 @@ public class CpuController extends HttpServlet {
 
 		int pageNum = (int) session.getAttribute("pageNum");
 		int currentPage = pageNum;
-		int pageSize = 5;
+		int pageSize = 12;
 
 		int start = (currentPage - 1) * pageSize;
 		int end = currentPage * pageSize;
@@ -141,7 +141,7 @@ public class CpuController extends HttpServlet {
 		int pageNum = (int) session.getAttribute("pageNum");
 		int currentPage = pageNum;
 
-		int pageSize = 5;
+		int pageSize = 12;
 		int start = (currentPage - 1) * pageSize + 1;
 		int end = currentPage * pageSize;
 

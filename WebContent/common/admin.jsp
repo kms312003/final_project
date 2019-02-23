@@ -22,6 +22,7 @@
   <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
   <script src="/final_project/js/datepicker.js"></script>
   
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style>
 	.navbar {
       margin-bottom: 0;
@@ -65,7 +66,7 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-      	<li style="color:white; padding:15px;">${ userId }(${ type })님 환영합니다.</li>
+      	<li style="color:white; padding:15px;"> admin(관리자)님 환영합니다.</li>
       	<li><a href="<%= request.getContextPath() %>/userModel2/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
       </ul> 
     </div>
@@ -85,9 +86,9 @@
 				<p><a href="<%=request.getContextPath()%>/adminhdd/list">하드디스크(HDD)</a></p>
 				<p><a href="<%=request.getContextPath()%>/adminssd/list">SSD</a></p>
 				<p><a href="<%=request.getContextPath()%>/adminpower/list">파워</a></p>
-				<%-- <p><a href="<%=request.getContextPath()%>/board_notice/list">공지사항/이벤트</a></p>
+				<p><a href="<%=request.getContextPath()%>/board_notice/list">공지사항/이벤트</a></p>
 				<p><a href="<%=request.getContextPath()%>/board_information/list">정보자료실</a></p>
 				<p><a href="<%=request.getContextPath()%>/board_opinion/list">구매후기</a>	</p>
-				<p><a href="<%=request.getContextPath()%>/board_qa/list">견적문의</a></p> --%>
+				<p><a href="<%=request.getContextPath()%>/board_qa/list">견적문의</a></p>
 			</div>
 </body>

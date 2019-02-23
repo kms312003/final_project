@@ -22,18 +22,16 @@
 						<div class="panel-header">
 							<a href="<%=request.getContextPath()%>/computer/detail?id=${computer.id}"><img src="<%=request.getContextPath()%>/fileSave/AMD 라이젠 5 2600(피나클 릿지).jpg" class="img-responsive" style="width: 100%" alt="Image"></a>
 						</div>
-						<div class="" style="text-align: center;">${computer.productName}</div>
-						<br/>
-						<div class="">${computer.price} 원</div>
-						<br/>
+						<hr/>
+						<div style="text-align: center;"><strong>${computer.productName}</strong></div>
+						<hr/>
+						<div style="text-align:right;">판매가격:   ${computer.price} 원</div>
+						<hr/>
 						<div class="center">
-							<button	type="button" class="btn btn-primary" onclick="location.href='<%=request.getContextPath()%>/basket/write?id=${computer.id}&productCode=${computer.productCode }&price=${computer.price }&productName=${computer.productName }&amount=1'">
+							<button	style="float:left; width:40%; border:1px solid black" type="button" class="btn btn-default" onclick="location.href='<%=request.getContextPath()%>/basket/write?productId=${computer.id}&productCode=${computer.productCode }&price=${computer.price }&productName=${computer.productName }&count=1'">
 								장바구니
 							</button>
-							<button	type="button" class="btn btn-primary" onclick="location.href='<%=request.getContextPath()%>/'">
-								관심상품
-							</button>
-							<button	type="button" class="btn btn-primary" onclick="location.href='<%=request.getContextPath()%>/order/order?id=${computer.id}&productCode=${computer.productCode }&price=${computer.price }&productName=${computer.productName }&amount=1'">
+							<button	style="float:right; width:40%" type="button" class="btn btn-primary" onclick="location.href='<%=request.getContextPath()%>/order/order?productId=${computer.id}&productCode=${computer.productCode }&price=${computer.price }&productName=${computer.productName }&count=1'">
 								결제하기
 							</button>
 						</div>

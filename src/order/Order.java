@@ -1,9 +1,6 @@
 package order;
 
 import java.util.Date;
-import java.util.List;
-
-import payment.Payment;
 
 public class Order {
 
@@ -13,16 +10,16 @@ public class Order {
 	private String productName;		 // 제품이름
 	private String productCode;		 // 제품코드
 	private Date orderDate;		 	 // 주문시간
-	private List<Integer> basketIds; // 주문상품 리스트	
+//	private List<Integer> basketIds; // 주문상품 리스트	
 	private int price;		  	 	 // 총 주문금액
 	private Status status;	  	 	 // 주문상태
-	private Payment payment;		 // 결제정보
+//	private Payment payment;		 // 결제정보
 
 	@Override
 	public String toString() {
 		return "Order [id=" + id + ", email=" + email + ", productCategory=" + productCategory + ", productName="
-				+ productName + ", productCode=" + productCode + ", orderDate=" + orderDate + ", basketIds=" + basketIds
-				+ ", price=" + price + ", status=" + status + ", payment=" + payment + "]";
+				+ productName + ", productCode=" + productCode + ", orderDate=" + orderDate + ", price=" + price
+				+ ", status=" + status + "]";
 	}
 	
 	public enum Status {
@@ -59,12 +56,12 @@ public class Order {
 	public void setProductCode(String productCode) {
 		this.productCode = productCode;
 	}
-	public List<Integer> getBasketIds() {
-		return basketIds;
-	}
-	public void setBasketIds(List<Integer> basketIds) {
-		this.basketIds = basketIds;
-	}
+//	public List<Integer> getBasketIds() {
+//		return basketIds;
+//	}
+//	public void setBasketIds(List<Integer> basketIds) {
+//		this.basketIds = basketIds;
+//	}
 	public Date getOrderDate() {
 		return orderDate;
 	}
@@ -84,10 +81,4 @@ public class Order {
 	public void setStatus(Status status) {
 		this.status = status;
 	}
-	public Payment getPayment() {
-		return payment;
-	}
-	public void setPayment(Payment payment) {
-		this.payment = payment;
-	};
 }

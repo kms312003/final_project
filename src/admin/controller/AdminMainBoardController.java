@@ -131,7 +131,7 @@ public class AdminMainBoardController {
 		ProductCode productC = new ProductCode();
 
 		String productDate = multipart.getParameter("productDate");
-		String productNum = "01";
+		String productNum = "02";
 		String productCode = productC.productCode(productDate, productNum);
 		System.out.println("productDate1: " + productDate);
 		System.out.println("productCode1: " + productCode);
