@@ -1,10 +1,16 @@
 package view.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -49,7 +55,7 @@ public class OrderController {
 	OrderDBBean dbProOrder;
 
 	@ModelAttribute
-	public void addAttributes(@RequestParam(value = "pageNum", defaultValue = "0") int pageNum,
+	public void addAttributes(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
 			HttpServletRequest req) {
 		this.session = req.getSession();
 
@@ -127,8 +133,15 @@ public class OrderController {
 			@RequestParam(value = "productCode", defaultValue = "") String productCode,
 			@RequestParam(value = "basketIds", defaultValue = "0") List<Integer> basketIds) throws Exception {
 
-		System.out.println("basketIds:::" + basketIds);
+		System.out.println("productId:::" + productId);
+		System.out.println("productName:::" + productName);
+		System.out.println("price:::" + price);
+		System.out.println("count:::" + productCount);
+		System.out.println("productCode:::" + productCode);
+		System.out.println("basketIds:::" + basketIds.size());
+		
 		String email = (String) session.getAttribute("email");
+		int total = price * productCount;
 
 		// 세션 유저 아이디
 		int pageNum = (int) session.getAttribute("pageNum");
@@ -154,39 +167,58 @@ public class OrderController {
 				
 		String productNumber = productCode.substring(4, 6);
 		String productCategory = "";
+		
 		Object orderWaitProduct = new Object();
+		
+		System.out.println("productNumber:::" + productNumber);
 		
 		if (productNumber.equals("00")) {
 			productCategory = "computer";
-			orderWaitProduct = dbProComputer.getComputer(productId);
+			Computer computer = dbProComputer.getComputer(productId); 
+			orderWaitProduct = computer; 
+			System.out.println("orderWaitProduct0000: " + orderWaitProduct);
 		} else if (productNumber.equals("01")) {
 			productCategory = "cpu";
-			orderWaitProduct = dbProCpu.getCpu(productId);
+			Cpu cpu = dbProCpu.getCpu(productId);
+			orderWaitProduct = cpu; 
+			System.out.println("orderWaitProduct1111: " + orderWaitProduct);
 		} else if (productNumber.equals("02")) {
 			productCategory = "mainboard";
-			orderWaitProduct = dbProMainboard.getMainBoard(productId);
+			MainBoard mainboard = dbProMainboard.getMainBoard(productId); 
+			orderWaitProduct = mainboard;
+			System.out.println("orderWaitProduct2222: " + orderWaitProduct);
 		} else if (productNumber.equals("03")) {
 			productCategory = "ram";
-			orderWaitProduct = dbProRam.getRam(productId);
+			Ram ram = dbProRam.getRam(productId);
+			orderWaitProduct = ram;
+			System.out.println("orderWaitProduct3333: " + orderWaitProduct);
 		} else if (productNumber.equals("04")) {
 			productCategory = "graphic";
-			orderWaitProduct = dbProGraphic.getGraphic(productId);
+			Graphic graphic = dbProGraphic.getGraphic(productId);;
+			orderWaitProduct = graphic;
+			System.out.println("orderWaitProduct4444: " + orderWaitProduct);
 		} else if (productNumber.equals("05")) {
 			productCategory = "hdd";
-			orderWaitProduct = dbProHDD.getHDD(productId);
+			HDD hdd = dbProHDD.getHDD(productId);
+			orderWaitProduct = hdd;
+			System.out.println("orderWaitProduct5555: " + orderWaitProduct);
 		} else if (productNumber.equals("06")) {
 			productCategory = "ssd";
-			orderWaitProduct = dbProSSD.getSSD(productId);
+			SSD ssd = dbProSSD.getSSD(productId);
+			orderWaitProduct = ssd;
+			System.out.println("orderWaitProduct6666: " + orderWaitProduct);
 		} else if (productNumber.equals("07")) {
 			productCategory = "power";
-			orderWaitProduct = dbProPower.getPower(productId);
+			Power power = dbProPower.getPower(productId);
+			orderWaitProduct = power; 
+			System.out.println("orderWaitProduct7777: " + orderWaitProduct);
 		}
 		
-		System.out.println("email:::" + email);
+		System.out.println("orderWaitProduct8888: " + orderWaitProduct);
+		
 		// 이메일로 유저 get(주문자 정보, 받는 사람 정보 이용하기 위함)
 		User user = dbProUser.getUserE(email);
 
-		System.out.println("user:::" + user);
 		int count = 0;
 		int number = 0;
 
@@ -211,8 +243,10 @@ public class OrderController {
 		System.out.println("number: " + number);
 		System.out.println("orderWaitList: " + orderWaitList);
 
+		mv.addObject("email", email);
 		mv.addObject("user", user);
 		mv.addObject("count", count);
+		mv.addObject("total", total);
 		mv.addObject("productCategory", productCategory);
 		// 장바구니 리스트에서 주문 창으로 넘어왔을 경우
 		mv.addObject("orderWaitList", orderWaitList);
@@ -231,59 +265,59 @@ public class OrderController {
 
 	// 결제 결과 받아서 처리 컨트롤러
 	@RequestMapping("/payment")
-	public void payment(@RequestParam(value = "json", defaultValue = "") String result) throws Exception {
-
-		System.out.println("result:::" + result);
-
-	}
-
-	// 주문하기 결제버튼 post
-	@RequestMapping("/write")
-	public String write(@RequestParam(value = "productName", defaultValue = "") String productName,
-			@RequestParam(value = "price", defaultValue = "0") int price,
-			@RequestParam(value = "count", defaultValue = "0") int count,
+	public void payment(@RequestParam(value = "json", defaultValue = "") String result,
+			@RequestParam(value = "category", defaultValue = "") String productCategory,
+			@RequestParam(value = "productName", defaultValue = "") String productName,
 			@RequestParam(value = "productCode", defaultValue = "") String productCode,
-			@RequestParam(value = "basketIds", defaultValue = "") List<Integer> basketIds) throws Exception {
-
-		String email = (String) session.getAttribute("email");
-
-		int total = price * count;
-
-		String productNumber = productCode.substring(4, 6);
-		String productCategory = "";
-
-		if (productNumber.equals("00")) {
-			productCategory = "computer";
-		} else if (productNumber.equals("01")) {
-			productCategory = "cpu";
-		} else if (productNumber.equals("02")) {
-			productCategory = "mainboard";
-		} else if (productNumber.equals("03")) {
-			productCategory = "ram";
-		} else if (productNumber.equals("04")) {
-			productCategory = "graphic";
-		} else if (productNumber.equals("05")) {
-			productCategory = "hdd";
-		} else if (productNumber.equals("06")) {
-			productCategory = "ssd";
-		} else if (productNumber.equals("07")) {
-			productCategory = "power";
-		}
+			@RequestParam(value = "total", defaultValue = "0") int total) throws Exception {
 
 		Order order = new Order();
 		dbProOrder = OrderDBBean.getInstance();
-
+		
+		String email = (String) session.getAttribute("email");
+		
+		HashMap map = new HashMap();
+		
+		JSONObject jObject = new JSONObject(result);
+		Iterator<?> keys = jObject.keys();
+		while (keys.hasNext()) {
+			String key = (String) keys.next();
+			if (!key.equals("success")) {
+				String value = jObject.getString(key);
+				map.put(key, value);
+			}
+		}
+		
+		System.out.println("json : " + jObject);
+		System.out.println("map : " + map);
+		
+		System.out.println("email:" + map.get("email"));
+		System.out.println("imp_uid:" + map.get("imp_uid"));
+		System.out.println("name:" + map.get("name"));
+		System.out.println("paymethod:" + map.get("pay_method"));
+		System.out.println("merchant_uid:" + map.get("merchant_uid"));
+		System.out.println("status:" + map.get("status"));
+		System.out.println("total:" + total);
+		
+		Object status = map.get("status");
+		
+		System.out.println("productCategory:" + productCategory);
+		System.out.println("productName:" + productName);
+		System.out.println("productCode:" + productCode);
+		System.out.println("total:" + total);
+		
 		order.setEmail(email);
 		order.setProductCategory(productCategory);
-		order.setBasketIds(basketIds);
 		order.setProductName(productName);
 		order.setProductCode(productCode);
 		order.setPrice(total);
-		order.setStatus(Status.FAIL);
+		if(status.equals("paid")) {
+			System.out.println("true");
+			order.setStatus(Status.SUCCESS);	
+		}
 
 		dbProOrder.insertOrder(order);
-
-		return "redirect:list";
+		
 	}
 
 	// 주문 내역 삭제

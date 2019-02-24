@@ -7,8 +7,23 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <title>Insert title here</title>
 </head>
+<script>	
+
+	function sortItem(orderby, sql) {
+		
+		console.log(sql);
+		
+		$.ajax({
+			url:"/final_project/mainboard/prolist?orderby="+orderby+"&sql="+encodeURI(sql),
+			type: "GET"
+		}).done(function(data){
+			$("#productList").html(data);
+		})
+	}
+</script>
 <body>
 		<!-- 리스트 목록 보기 -->
 		<div class="row">
@@ -20,20 +35,18 @@
 				<div class="col-sm-3" style="padding:20px; border:solid 1px lightgray;">
 					<div class="advert_content">
 						<div class="panel-header">
-							<a href="<%=request.getContextPath()%>/graphic/detail?id=${graphic.id}"><img src="<%=request.getContextPath()%>/fileSave/AMD 라이젠 5 2600(피나클 릿지).jpg" class="img-responsive" style="width: 100%" alt="Image"></a>
+							<a href="<%=request.getContextPath()%>/graphic/detail?id=${graphic.id}"><img src="<%=request.getContextPath()%>/fileSave/${graphic.filename}" class="img-responsive" style="width: 100%" alt="Image"></a>
 						</div>
-						<div class="" style="text-align: center;">${graphic.productName}</div>
-						<br/>
-						<div class="">${graphic.price} 원</div>
-						<br/>
+						<hr/>
+						<div style="text-align: center;"><strong>${graphic.productName}</strong></div>
+						<hr/>
+						<div style="text-align:right;">판매가격:   ${graphic.price} 원</div>
+						<hr/>
 						<div class="center">
-							<button	type="button" class="btn btn-primary" onclick="location.href='<%=request.getContextPath()%>/basket/write?id=${graphic.id}&productCode=${graphic.productCode }&price=${graphic.price }&productName=${graphic.productName }&amount=1'">
+							<button	style="float:left; width:40%; border:1px solid black" type="button" class="btn btn-default" onclick="location.href='<%=request.getContextPath()%>/basket/write?productId=${graphic.id}&productCode=${graphic.productCode }&price=${graphic.price }&productName=${graphic.productName }&count=1'">
 								장바구니
 							</button>
-							<button	type="button" class="btn btn-primary" onclick="location.href='<%=request.getContextPath()%>/'">
-								관심상품
-							</button>
-							<button	type="button" class="btn btn-primary" onclick="location.href='<%=request.getContextPath()%>/order/write?id=${graphic.id}&productCode=${graphic.productCode }&price=${graphic.price }&productName=${graphic.productName }&amount=1'">
+							<button	style="float:right; width:40%" type="button" class="btn btn-primary" onclick="location.href='<%=request.getContextPath()%>/order/order?productId=${graphic.id}&productCode=${graphic.productCode }&price=${graphic.price }&productName=${graphic.productName }&count=1'">
 								결제하기
 							</button>
 						</div>

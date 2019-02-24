@@ -10,14 +10,6 @@
   <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> -->
 <script>	
 
-	<%-- function toBasket() {
-	   location.href='<%=request.getContextPath()%>/basket/write?id=${id}&productCode=${productCode }&price=${price }&productName=${productName }&amount=1';  
-	}
-
-	function toPayment() {
-	   location.href='<%=request.getContextPath()%>/order/write?id=${id}&productCode=${productCode }&price=${price }&productName=${productName }&amount=1';
-	} --%>
-	
 	function sortItem(orderby, sql) {
 		
 		console.log(sql);

@@ -31,8 +31,8 @@
 			<div class="container">
 				<div class="row">
 					<div class="col d-flex flex-row">
-						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="<%=request.getContextPath() %>/header/images/phone.png" alt=""></div>+38 068 005 3570</div>
-						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="<%=request.getContextPath() %>/header/images/mail.png" alt=""></div><a href="mailto:mailname@gmail.com">mailname@gmail.com</a></div>
+						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="<%=request.getContextPath() %>/header/images/phone.png" alt=""></div>+38 070 005 3570</div>
+						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="<%=request.getContextPath() %>/header/images/mail.png" alt=""></div><a href="mailto:admin@gmail.com">admin@gmail.com</a></div>
 						<div class="top_bar_content ml-auto">
 							<div class="top_bar_menu">
 								<ul class="standard_dropdown top_bar_dropdown">
@@ -57,13 +57,15 @@
 							<div class="top_bar_user">
 								<div class="user_icon"><img src="<%=request.getContextPath() %>/header/images/user.svg" alt=""></div>
 								
-								<div><a href="<%= request.getContextPath() %>/user/register">Register</a></div>
-								<c:if test="${email == null }">
-									<div><a href="<%= request.getContextPath() %>/user/login">Log in</a></div>
-								</c:if>
 								<c:if test="${email != null }">
+									<div><a href="<%= request.getContextPath() %>/user/userInfo">UserInfo</a></div>
 									<div><a href="<%= request.getContextPath() %>/user/logout">Log out</a></div>
 								</c:if>
+								<c:if test="${email == null }">
+									<div><a href="<%= request.getContextPath() %>/user/register">Register</a></div>
+									<div><a href="<%= request.getContextPath() %>/user/login">Log in</a></div>
+								</c:if>
+								
 							</div>
 						</div>
 					</div>
@@ -141,7 +143,7 @@
 
 							<div class="cat_menu_container">
 								<div class="cat_menu_title d-flex flex-row align-items-center justify-content-start">
-									<div class="cat_menu_text"><a href="<%= request.getContextPath() %>/main/diy">DIY PC</a></div>
+									<div class="cat_menu_text"><a href="<%= request.getContextPath() %>/main/diy"><font color="white">DIY PC</font></a></div>
 								</div>
 							</div>
 
@@ -149,7 +151,7 @@
 
 							<div class="main_nav_menu ml-auto">
 								<ul class="standard_dropdown main_nav_dropdown">
-									<li><a href="index.html">Home<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="<%= request.getContextPath() %>/main/main">Home<i class="fas fa-chevron-down"></i></a></li>
 									<li class="hassubs">
 										<a href="#">Computer parts<i class="fas fa-chevron-down"></i></a>
 										<ul>

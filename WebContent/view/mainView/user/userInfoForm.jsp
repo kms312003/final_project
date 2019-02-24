@@ -73,8 +73,8 @@ padding:0;
   <h3 class="w3-bar-item">My page Menu</h3>
   <a href="<%=request.getContextPath()%>/user/update" class="w3-bar-item w3-button">회원정보 수정</a>
   <a href="<%=request.getContextPath()%>/user/delete" class="w3-bar-item w3-button">회원 탈퇴</a>
-  <a href="<%=request.getContextPath()%>/user/cart" class="w3-bar-item w3-button">내 장바구니</a>
-  <a href="<%=request.getContextPath()%>/user/like" class="w3-bar-item w3-button">관심 상품</a>
+  <a href="<%=request.getContextPath()%>/basket/list" class="w3-bar-item w3-button">내 장바구니</a>
+  <a href="<%=request.getContextPath()%>/order/list" class="w3-bar-item w3-button">주문 목록</a>
 </div>
 <div class="box">
 		<img src="" alt="" class="box-img">

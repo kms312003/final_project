@@ -61,6 +61,10 @@
 			alert("생년월일을 입력해주세요.");
 			return false;
 		}
+		if(!form.phoneNum.value){
+			alert("전화번호를 입력해주세요.");
+			return false;
+		}
 		return true;
 	}
 	
@@ -134,7 +138,7 @@
 <body>
     <div class="col-sm-9 text-left"> 
     <center>
-	<form name="registerForm" action="<%= request.getContextPath() %>/admin/user/write" enctype="multipart/form-data" method="post" onsubmit="return checkboard()">
+	<form name="registerForm" action="<%= request.getContextPath() %>/adminuser/writePro" enctype="multipart/form-data" method="post" onsubmit="return checkboard()">
 		<div class="w3-container">
 		<h2>User 등록</h2>	
 			<table class="table table-bordered" style="width:80%;">
@@ -166,6 +170,10 @@
 					<td><input type="text" name="birth" size="50" maxlength="6" placeholder="생년월일"></td>
 				</tr>
 				<tr>
+					<td>전화번호</td>
+					<td><input type="text" name="phoneNum" size="50" maxlength="6" placeholder="전화번호(ex:01012341234)"></td>
+				</tr>
+				<tr>
 					<td>직업</td>
 					<td>
 						<input type=radio id="inputJob" name="job" value="STUDENT" checked>학생
@@ -195,7 +203,7 @@
 					<td colspan="2">
 					<input type="submit" class="btn btn-default" value="Create"> 
 					<input type="reset" class="btn btn-default" value="Reset">
-					<input type="button" class="btn btn-default" value="List" onclick="window.location='<%= request.getContextPath() %>/admin/user/list'">
+					<input type="button" class="btn btn-default" value="List" onclick="window.location='<%= request.getContextPath() %>/adminuser/list'">
 					</td>
 				</tr>
 				</center>

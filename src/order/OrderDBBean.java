@@ -74,14 +74,11 @@ public class OrderDBBean {
 
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
-		Map map = new HashMap();
-		map.put("order", order);
-		map.put("email", order.getEmail());
+		System.out.println("order::" + order);
 
-		int result = sqlSession.insert(namespace + ".insert", map);
+		sqlSession.insert(namespace + ".insertOrder", order);
 		sqlSession.commit();
 		sqlSession.close();
-		System.out.println(result);
 	}
 
 	// Order 삭제

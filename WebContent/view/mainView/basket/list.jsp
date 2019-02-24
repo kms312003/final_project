@@ -26,40 +26,64 @@
 		var price = 0;
 		var count = 0;
 		var productCode = "";
+		var checkedCnt = 0; 
 		
 		function checkOrder() {
-			$("input[name=basket]:checked").each(function(){
+			
+			<%-- $("input[name=basket]:checked").each(function() {
+				alert(this.not);
 				var checked = $(this).is(":checked");
-				var checkCnt = $(this).length;
-				
-				if(checked) {
-					console.log("value:::", this.value);
-					console.log("checkCnt:::", checkCnt);
-					line += this.value+", ";
+				var checkedCnt = checked.size;
+				alert(checked);
+				alert(checkedCnt);
+			
+			
+				if(checked > 0) {
+					
+					location.href='<%=request.getContextPath()%>/order/order?productId=' 
+						+ productId + '&productName=' + productName +'&price=' + price + '&count=' 
+						+ count +'&productCode=' + productCode +'&basketIds=' + basketIds;
+				} else {
+					alert('구매할 제품을 선택해주세요.');
 				}
+			
+			}); --%>
+			
+			$("input[name=basket]").each(function(){
 				
-				console.log("line:::", line);
-				var id = $(this).val();
-				console.log("id:::", id);
+				if(this.checked) {
+					checkedCnt += $(this).is(":checked").size;
+					alert("checkedCnt::::", checkedCnt);
+					basketIds[checkedCnt-1] = this.value;
+				} 
 				
-				for(var i = 0; i < checkCnt; i++) {
-					basketIds[i] = id;
-				}
+					
+				/* line += this.value+", "; */
+			
+				/* var id = this.value;
+				console.log("id:::", id); */
 				
-				if(checked && checkCnt == 1) {
+				
+				
+				/* if(checked && checkedCnt == 1) {
 					productId = ${id};
-					console.log("productId::::::::::", productId);
 					productName = document.getElementById('productName').innerHTML;
 					price = document.getElementById('price').innerHTML;
 					count = document.getElementById('count').innerHTML;
 					productCode = document.getElementById('productCode').innerHTML;
-				} 
-				console.log("basketIds:::", basketIds);
+				}  */
+				
 			});
+			/* alert(line); */
+			/* alert("basketIds::", basketIds);  */
 			
-			location.href='<%=request.getContextPath()%>/order/order?productId=' 
+			if(checkedCnt == 0) {
+				alert('구매할 제품을 한개 이상 선택해주세요.');
+			} else {
+				location.href='<%=request.getContextPath()%>/order/order?productId=' 
 					+ productId + '&productName=' + productName +'&price=' + price + '&count=' 
-					+ count +'&productCode=' + productCode +'&basketIds=' + basketIds;
+					+ count +'&productCode=' + productCode +'&basketIds=' + basketIds;	
+			}
 		}
 	 
 	// 선택삭제
